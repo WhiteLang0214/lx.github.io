@@ -253,6 +253,292 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/初识gulp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="langxue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/15/初识gulp/" itemprop="url">初识gulp</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:50:52+08:00">
+                2017-07-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Gulp-Tutorial"><a href="#Gulp-Tutorial" class="headerlink" title="Gulp Tutorial"></a>Gulp Tutorial</h2><blockquote>
+<p>Gulp: The streaming build system</p>
+</blockquote>
+<p><img src="img/Speed-up-your-workflow-with-a-Gulp-plugin.png" alt="gulp-logo"></p>
+<p>gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；<br>她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；<br>使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。</p>
+<p>项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线上服务器。<br>常见处理任包括以下几方面：</p>
+<ol>
+<li>模块化开发可以实现功能的复用并解决模块间的依赖关系，但带来好处的同时也使得功能代码的碎片化（若干文件）程度增加。</li>
+<li>使用less、sass等预处理器，可以降低CSS的维护成本，最终需要将这些预处理器编译成css文件；</li>
+<li>对静态资源（css、js、html、images）压缩合并可以提升网页打开速度，提高性能；</li>
+</ol>
+<p>以上任务完如果完全靠手动来完成是非常耗时耗力的且容易出错，实际开发通常借助构建工具来实现。<br>所谓构建工具是指通过一系简单配置就可以帮我们实现合并、压缩、校验、预处理等一系列任务的软件工具。<br>常见的构建工具包括：<code>Grunt、Gulp、F.I.S（百度出品）、webpack</code>等。</p>
+<p>Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不同的构建任务，<br>其以简洁的配置和卓越的性能成为目前主流的构建工具。</p>
+<p><img src="img/150046-20160308200954022-1598623728.jpg" alt="gulp-task"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>官方：<a href="http://gulpjs.com/" target="_blank" rel="external">http://gulpjs.com/</a></li>
+<li>中文官网：<a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">http://www.gulpjs.com.cn/</a></li>
+<li>npm：<a href="https://www.npmjs.com/package/gulp" target="_blank" rel="external">https://www.npmjs.com/package/gulp</a></li>
+<li>Github：<a href="https://github.com/gulpjs/gulp" target="_blank" rel="external">https://github.com/gulpjs/gulp</a></li>
+<li>Gitbook：<a href="https://wizardforcel.gitbooks.io/gulp-doc/content/2.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/gulp-doc/content/2.html</a></li>
+</ul>
+<hr>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><blockquote>
+<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md</a></p>
+</blockquote>
+<p>一：Install the gulp command</p>
+<p>在项目中使用 gulp 首先需要确保全局有 gulp-cli 环境，如果有就不需要执行下面的命令了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --global gulp-cli</span></div><div class="line">yarn global add gulp-cli</div></pre></td></tr></table></figure>
+<p>二：Install gulp in your devDependencies</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --save-dev gulp</span></div><div class="line">yarn add -D gulp</div></pre></td></tr></table></figure>
+<p>三：Create a file called gulpfile.js in your project root with these contents:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var gulp = require(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  console.log(<span class="string">'hello gulp'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>四：Test it out: Run the gulp command in your project directory:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="API-Documentation"><a href="#API-Documentation" class="headerlink" title="API Documentation"></a>API Documentation</h2><blockquote>
+<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/API.md</a></p>
+</blockquote>
+<ul>
+<li>gulp.task</li>
+<li>gulp.src</li>
+<li>gulp.dest</li>
+<li>gulp.watch</li>
+</ul>
+<h3 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name [, deps] [, fn])"></a>gulp.task(name [, deps] [, fn])</h3><p>作用：定义各种不同的任务</p>
+<ul>
+<li>gulp.task(name, fn)</li>
+<li>gulp.task(name, deps, fn)</li>
+<li>gulp.task(name, fn(cb))</li>
+<li>gulp.task(name, deps, fn(cb))</li>
+</ul>
+<p>一：普通任务</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>二：任务之间的依赖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">    cb()</div><div class="line">  &#125;, <span class="number">1000</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// b 任务依赖的 a 任务中的回调函数如果不调用，b 任务是不会执行的</span></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>三：gulp 流控制</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 当任务中是一个 gulp 流的时候则需要通过 return 来保证依赖中的执行顺序</span></div><div class="line">  <span class="keyword">return</span> gulp.src()</div><div class="line">    .pipe()</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// doSomething</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><blockquote>
+<p>gulp教程之gulp中文API：<a href="http://www.ydcss.com/archives/424" target="_blank" rel="external">http://www.ydcss.com/archives/424</a></p>
+</blockquote>
+<p>作用：根据路径（字符串或数组）读取需要构建的资源</p>
+<h4 id="globs"><a href="#globs" class="headerlink" title="globs"></a>globs</h4><p>需要处理的源文件匹配符路径。</p>
+<p>类型(必填)：String or StringArray，通配符路径匹配示例：</p>
+<ul>
+<li><code>src/a.js</code> 指定具体文件；</li>
+<li><code>*</code> 匹配所有文件    例：<code>src/*.js</code> (包含src下的所有js文件)；</li>
+<li><code>**</code> 匹配0个或多个子文件夹    例：<code>src/**/*.js</code> (包含src的0个或多个子文件夹下的js文件)；</li>
+<li><code>{}</code> 匹配多个属性    例：<code>src/{a,b}.js</code> (包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；</li>
+<li><code>!</code> 排除文件    例：<code>!src/a.js</code> (不包含src下的a.js文件)；</li>
+</ul>
+<h4 id="options-base"><a href="#options-base" class="headerlink" title="options.base"></a>options.base</h4><p>options.base：类型：String  设置输出路径以某个路径的某个组成部分为基础向后拼接，具体看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>) </div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/somedir/somefile.js'</span></div><div class="line"> </div><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>, &#123; <span class="attr">base</span>: <span class="string">'client'</span> &#125;)</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/js/somedir/somefile.js'</span></div></pre></td></tr></table></figure>
+<h3 id="gulp-dest-path-options"><a href="#gulp-dest-path-options" class="headerlink" title="gulp.dest(path[, options])"></a>gulp.dest(path[, options])</h3><p>作用：构建任务完成后资源存放的路径</p>
+<h3 id="gulp-watch-glob-opts-tasks"><a href="#gulp-watch-glob-opts-tasks" class="headerlink" title="gulp.watch(glob[, opts], tasks)"></a>gulp.watch(glob[, opts], tasks)</h3><blockquote>
+<p>监视指定资源的改动，然后可以调用响应的任务处理</p>
+</blockquote>
+<h3 id="gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob [, opts, cb])"></a>gulp.watch(glob [, opts, cb])</h3><hr>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><table>
+<thead>
+<tr>
+<th>插件名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>del</td>
+<td>删除文件或文件夹</td>
+</tr>
+<tr>
+<td>gulp-less</td>
+<td>编译LESS文件</td>
+</tr>
+<tr>
+<td>gulp-rname</td>
+<td>重命名文件</td>
+</tr>
+<tr>
+<td>gulp-imagemin</td>
+<td>图片压缩</td>
+</tr>
+<tr>
+<td>gulp-uglify</td>
+<td>压缩Javascript</td>
+</tr>
+<tr>
+<td>gulp-concat</td>
+<td>合并 js 文件</td>
+</tr>
+<tr>
+<td>gulp-concat-css</td>
+<td>合并 css 文件</td>
+</tr>
+<tr>
+<td>gulp-cssnano</td>
+<td>压缩 css</td>
+</tr>
+<tr>
+<td>gulp-htmlmin</td>
+<td>压缩HTML</td>
+</tr>
+<tr>
+<td>gulp-nunjucks</td>
+<td>模板引擎</td>
+</tr>
+<tr>
+<td>gulp-rev</td>
+<td>添加版本号</td>
+</tr>
+<tr>
+<td>gulp-rev-collector</td>
+<td>内容替换</td>
+</tr>
+<tr>
+<td>gulp-useref</td>
+<td>gulp-if</td>
+</tr>
+<tr>
+<td>gulp-load-plugins</td>
+<td>依赖自动加载</td>
+</tr>
+<tr>
+<td>gulp-useref</td>
+<td>自动合并打包处理</td>
+</tr>
+<tr>
+<td>gulp-wrap</td>
+<td>包装内容</td>
+</tr>
+<tr>
+<td>gulp-angular-templatecache</td>
+<td>AngularJS 模板缓存</td>
+</tr>
+<tr>
+<td>browser-sync</td>
+<td>和 gulp 配合使用实现文件改变执行某个任务后自动刷新</td>
+</tr>
+<tr>
+<td>yargs</td>
+<td>获取命令行参数</td>
+</tr>
+<tr>
+<td>gulp-if</td>
+<td>根据判断条件执行某个插件</td>
+</tr>
+<tr>
+<td>http-proxy-middleware</td>
+<td>http 代理插件</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="gulp-实战之：高级写页面"><a href="#gulp-实战之：高级写页面" class="headerlink" title="gulp 实战之：高级写页面"></a>gulp 实战之：高级写页面</h2><p>实现 HTML 模板功能，例如公共 HTML 头部和底部，提供可维护性，<br>以及实现 HTML 自动压缩，css 压缩，js 压缩，或者合并。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/VUE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1022,7 +1308,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
