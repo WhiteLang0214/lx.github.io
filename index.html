@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -282,7 +282,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:50:52+08:00">
                 2017-07-15
@@ -568,7 +568,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:42:13+08:00">
                 2017-07-15
@@ -607,14 +607,14 @@
       
         
           
-            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
 <li>记<br>需要先安装node和npm,可以使用淘宝镜像安装</li>
 <li>安装淘宝镜像<br>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a></li>
 <li>全局安装<br>$ npm install –global vue-cli</li>
 <li>创建一个基于 webpack 模板的新项目<br>$ vue init webpack my-project</li>
-<li>安装依赖<br>$ cd my-project<br>$ npm install<br>$ npm run dev<h3 id="安装遇到的问题"><a href="#安装遇到的问题" class="headerlink" title="安装遇到的问题"></a>安装遇到的问题</h3></li>
+<li>安装依赖<br>$ cd my-project<br>$ npm install<br>$ npm run dev<h2 id="安装遇到的问题"><a href="#安装遇到的问题" class="headerlink" title="安装遇到的问题"></a>安装遇到的问题</h2></li>
 <li>在安装过程中，如果不安装依赖(npm install)，不能正常启动</li>
-<li>在正常启动服务后，打开的页面报错，报错内容：Cannot GET /<br>解决： 我把整个项目都删除之后重新安装了一遍，就可以正常启动了<h3 id="开始项目"><a href="#开始项目" class="headerlink" title="开始项目"></a>开始项目</h3><h4 id="一·TodoList"><a href="#一·TodoList" class="headerlink" title="一·TodoList"></a>一·TodoList</h4></li>
+<li>在正常启动服务后，打开的页面报错，报错内容：Cannot GET /<br>解决： 我把整个项目都删除之后重新安装了一遍，就可以正常启动了<h2 id="开始项目"><a href="#开始项目" class="headerlink" title="开始项目"></a>开始项目</h2><h3 id="一·TodoList"><a href="#一·TodoList" class="headerlink" title="一·TodoList"></a>一·TodoList</h3></li>
 <li>在app.vue中编写你的代码<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#app</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'Avenir'</span>, Helvetica, Arial, sans-serif;</div><div class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</div><div class="line">  <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#2c3e50</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">60px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">outline-style</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> auto <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">list-style</span>: none;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20</span>x;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#3c3c3c</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.finished</span> &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: underline;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -692,7 +692,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:39:34+08:00">
                 2017-07-15
@@ -815,7 +815,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:33:32+08:00">
                 2017-07-15
@@ -958,7 +958,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-15T22:04:24+08:00">
                 2014-07-15
@@ -1174,7 +1174,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-15T22:20:12+08:00">
                 2014-06-15
@@ -1309,7 +1309,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1363,7 +1363,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
