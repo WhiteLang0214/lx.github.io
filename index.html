@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/15/事件DOMContentLoaded和load的区别/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2017/07/15/事件DOMContentLoaded和load的区别/" itemprop="url">事件DOMContentLoaded和load的区别</a></h1>
         
 
         <div class="post-meta">
@@ -282,9 +282,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:37:48+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:39:34+08:00">
                 2017-07-15
               </time>
             
@@ -321,8 +321,7 @@
       
         
           
-            <p>#事件DOMContentLoaded和load的区别</p>
-<p>##他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。<br>DOM文档加载的步骤为:</p>
+            <h2 id="事件DOMContentLoaded和load的区别"><a href="#事件DOMContentLoaded和load的区别" class="headerlink" title="事件DOMContentLoaded和load的区别"></a>事件DOMContentLoaded和load的区别</h2><h3 id="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><a href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。" class="headerlink" title="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"></a>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</h3><p>DOM文档加载的步骤为:</p>
 <ol>
 <li>解析HTML结构。</li>
 <li>加载外部脚本和样式表文件。</li>
@@ -330,10 +329,10 @@
 <li>DOM树构建完成。//DOMContentLoaded</li>
 <li>加载图片等外部文件。</li>
 <li>页面加载完毕。//load</li>
-<li>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<br>##原生写法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不兼容老的浏览器</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;，<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<li>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<h3 id="原生写法"><a href="#原生写法" class="headerlink" title="原生写法"></a>原生写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不兼容老的浏览器</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;，<span class="literal">false</span>)</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>##JQ的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="JQ的写法"><a href="#JQ的写法" class="headerlink" title="JQ的写法"></a>JQ的写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
           
         
@@ -406,7 +405,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:33:32+08:00">
                 2017-07-15
@@ -549,7 +548,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-15T22:04:24+08:00">
                 2014-07-15
@@ -765,7 +764,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-15T22:20:12+08:00">
                 2014-06-15
@@ -900,7 +899,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -954,7 +953,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
