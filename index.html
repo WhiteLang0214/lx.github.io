@@ -1040,6 +1040,422 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/20/canvas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="langxue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/20/canvas/" itemprop="url">canvas</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-20T21:04:16+08:00">
+                2016-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="canvas介绍"><a href="#canvas介绍" class="headerlink" title="canvas介绍"></a>canvas介绍</h2><pre><code>ECHARTS开源框架
+1. HTML5新增的标签
+2. canvas标签具有默认的宽高:300*150。
+   设置canvas宽高的方式:
+   ① 通过样式设置,并不会改变canvas标签中像素点的个数,只会增加像素点的大小,会将canvas进行拉伸。
+   ② 通过属性设置,改变了canvas标签中的像素点的个数,建议使用属性设置canvas标签的宽高
+3. IE9以下浏览器不支持,浏览器会当做普通的div标签渲染,并会显示标签中的内容
+4. 一般在js中进行开发
+5. 坐标系:页面左上角为坐标系原点,往右---&gt;X轴正方向;往下---&gt;Y轴正方向
+</code></pre><h2 id="canvas-getContext-获取canvas上下文"><a href="#canvas-getContext-获取canvas上下文" class="headerlink" title="canvas.getContext();获取canvas上下文"></a>canvas.getContext();获取canvas上下文</h2><pre><code>canvas的上下文:提供一系列的画图工具的容器
+    获取canvas标签的上下文(工具箱):canvas.getContext();
+    var ctx=canvas.getContext(&quot;2d&quot;);
+    方法的参数:2d图形,参数为&quot;2d&quot;;
+    方法的返回值:ConvasRenderingContext2D类型的实例
+</code></pre><h3 id="beginPath-开启新状态"><a href="#beginPath-开启新状态" class="headerlink" title="beginPath();开启新状态"></a>beginPath();开启新状态</h3><pre><code>1. 开辟一个新的状态(包含描边的颜色,填充的颜色,线宽,伸缩,平移旋转),当同一画布中绘制不同状态的图形,就需要开启。
+2. 如果没有beginPath()的情况下,所有绘制的轨迹都是同一个状态下的,在同一个状态中,指定的状态只能有一种状态值。
+3. 在beginPath()下,可以指定其他的状态值。
+4. 开启beginPath()同时会继承上一状态的所有状态值,如果重新设置该状态的值,跟上一状态的值就没有任何关系了
+5. beginPath()之后,如果没有moveTo(),第一个lineTo()会成为moveTo()
+6. 特性:
+    ① beginPath()开启新状态之后,会忘记之前状态的绘制轨迹(绘制起点和终点)。
+    ② 在新状态中并没有重新指定绘制的起点,第一次lineTo就相当于moveTo这样指定了绘制的起点。
+</code></pre><h3 id="moveTo-起点"><a href="#moveTo-起点" class="headerlink" title="moveTo()起点"></a>moveTo()起点</h3><pre><code>1. 设置绘制的起点:ctx.moveTo(50,50);
+</code></pre><h3 id="lineTo-终点"><a href="#lineTo-终点" class="headerlink" title="lineTo();终点"></a>lineTo();终点</h3><pre><code>1. 指定绘制的终点:ctx.lineTo(500,50);
+2. 需要调用stroke方法才能完成绘制,有无moveTo方法都可以
+</code></pre><h3 id="closePath-合并终点和起点"><a href="#closePath-合并终点和起点" class="headerlink" title="closePath();合并终点和起点"></a>closePath();合并终点和起点</h3><pre><code>1. 将图形从绘制的终点到绘制的起点用直线连接起来:ctx.closePath();
+</code></pre><h3 id="strokeStyle；描边样式"><a href="#strokeStyle；描边样式" class="headerlink" title="strokeStyle；描边样式"></a>strokeStyle；描边样式</h3><pre><code>1. 指定描边的颜色:ctx.strokeStyle=&quot;&quot;;
+2. 属性值:任意颜色值rgb(255,255,0)、rgba(255,255,255,.3)、#ccc、red
+3. 在调用stroke()之前设置strokeStyle属性
+4. 绘制当前所有图形的描边的颜色都是同一个颜色
+</code></pre><h3 id="lineWidth；线宽"><a href="#lineWidth；线宽" class="headerlink" title="lineWidth；线宽"></a>lineWidth；线宽</h3><pre><code>1. 线宽:线条具有默认的宽度为1px,从线条的中轴线开始,分别向外延伸1px的虚影(指定颜色淡化的效果,黑色--&gt;灰色;红色--&gt;粉红)
+2. 设置线宽为2:ctx.lineWidth=2;也是从线条的中轴线开始,分别向外延伸1px的实心部分
+3. 设置线宽为3px: ctx.lineWidth=3;从中轴线开始分别向外延伸1px的实心部分,1px的虚影
+4. 设置线宽为4px: ctx.lineWidth=4;从中轴线开始分别向外延伸2px的实心部分,2px的虚影
+5. 结论:设置线宽的时候,线宽值为n为奇数,具有(n-1)/2的实心部分,1px的虚影;n为偶数,具有n/2的实心部分
+</code></pre><h3 id="stroke-描边"><a href="#stroke-描边" class="headerlink" title="stroke();描边"></a>stroke();描边</h3><pre><code>1. 描边的操作:将绘制的轨迹描绘出来:ctx.stroke();
+2. 对当前路径进行描边
+</code></pre><h3 id="Math-sin"><a href="#Math-sin" class="headerlink" title="Math.sin();"></a>Math.sin();</h3><pre><code>1. 参数是一个弧度:360度对应的弧度是2π,180度对应的弧度是π,60度对应的弧度是π/3
+Math.sin(Math.PI/3);
+</code></pre><h3 id="setLineDash-；设置虚线"><a href="#setLineDash-；设置虚线" class="headerlink" title="setLineDash()；设置虚线"></a>setLineDash()；设置虚线</h3><pre><code>1. 设置虚线的属性:setLineDash
+2. 接收一个数组:
+    ctx.setLineDash([5]);数组中有一个元素,表示实线部分的长度为5px,空白部分的长度也为5px。
+    ctx.setLineDash([10,2]);实线部分长度为10,空白部分为2
+    ctx.setLineDash([10,2,2,2]);第一个实线部分长度为10,第一个空白部分长度为2,第二个实线部分长度为2,第二个空白部分长度为2,第三个实线部分为10,第三个空白部分长度为2...
+</code></pre><h3 id="getLineDash-；获取虚线"><a href="#getLineDash-；获取虚线" class="headerlink" title="getLineDash()；获取虚线"></a>getLineDash()；获取虚线</h3><pre><code>1. 获取之前通过seLineDash()设置的虚线属性,获取一次轮回需要多少次
+2. 如果setLineDash()设置的数组的元素是奇数,返回的是原数组*2
+   ctx.setLineDash([10,2,2,2]);
+   console.log(ctx.getLineDash());[10,2,2,2,10,2,2,2]
+3. 如果setLineDash()设置的数组的元素是偶数,返回的是原数组
+   ctx.setLineDash([10,2,2]);
+   console.log(ctx.getLineDash());[10,2,2]
+</code></pre><h3 id="lineDashOffset-设置虚线的偏移量"><a href="#lineDashOffset-设置虚线的偏移量" class="headerlink" title="lineDashOffset;设置虚线的偏移量"></a>lineDashOffset;设置虚线的偏移量</h3><pre><code>1. 设置的值是正数,第一个实线部分向左缩进指定像素
+    ctx.lineDashOffset=5;设置第一个实线部分的起点往左缩进了5px;
+2. 设置的值是负数,第一个实线部分向右偏移指定像素
+    ctx.lineDashOffset=-10;设置第一个实线部分的起点往右偏移10px
+3. ctx.lineDashOffset=-100;
+</code></pre><h3 id="clearRect-擦除画布"><a href="#clearRect-擦除画布" class="headerlink" title="clearRect();擦除画布"></a>clearRect();擦除画布</h3><pre><code>1. 以矩形的区域为基准来进行擦除
+2. 参数:x,y,width,height; ctx.clearRect(100,100,200,300);
+3. 擦除画布的全部内容:ctx.clearRect(0,0,canvas.width,canvas.height);
+4. 或者可以设置canvas.width=canvas,width;或者canvas.height=canvas.height;
+</code></pre><h3 id="※fill-填充图形"><a href="#※fill-填充图形" class="headerlink" title="※fill();填充图形"></a>※fill();填充图形</h3><pre><code>1. 特性:
+    ① fill()在绘制非闭合图形的时候,会自动的将绘制的终点和绘制的起点连接起来,最终将该闭合的区域进行填充。相当于调用closePath()
+    ② 填充时,遵循非0环绕规则:判断某个区域是否需要填充,以该区域中的每一个像素点为单位,判断每一个像素点是否需要填充。
+      填充过程:找到某个像素点,从这个点开始往区域外部的任意方向发射一条射线,从该点开始记为0,一直往射线方向延伸,在射线与绘制的轨迹相交的地方,判定相交的方式。若射线与顺时针绘制轨迹相交则+1,若射线逆时针绘制轨迹相交则-1,最终一直到射线结束,计算最终数值,如果数值为0,则表示该点不需要填充;不为0,则表示该点需要填充。
+</code></pre><h3 id="fillStyle-设置填充的颜色"><a href="#fillStyle-设置填充的颜色" class="headerlink" title="fillStyle;设置填充的颜色"></a>fillStyle;设置填充的颜色</h3><pre><code>1. 设置填充的图形颜色为粉色:ctx.fillStyle=&quot;pink&quot;;
+</code></pre><h3 id="内置绘制矩形的方法"><a href="#内置绘制矩形的方法" class="headerlink" title="内置绘制矩形的方法"></a>内置绘制矩形的方法</h3><pre><code>1. rect();绘制没有描边和填充的矩形,会记忆路径
+   ① 参数:顶点,顶点,宽度,高度 ctx.rect(50,50,300,200);
+2. strokeRect();绘制描边的矩形,不会记忆路径
+   ① 内部实现:先绘制矩形的路径,再进行描边
+   ② 设置描边的颜色或线宽,要在strokeRect()前面任意位置设置
+   ③ 有stroke()的功能
+3. fillRect();绘制填充的矩形
+   ① 参数:顶点,顶点,宽度,高度 ctx.rect(50,50,300,200);
+   ② 在fillStroke()之前设置填充的颜色
+</code></pre><h2 id="其他线型相关属性"><a href="#其他线型相关属性" class="headerlink" title="其他线型相关属性"></a>其他线型相关属性</h2><h3 id="lineCap-设置线帽"><a href="#lineCap-设置线帽" class="headerlink" title="lineCap;设置线帽"></a>lineCap;设置线帽</h3><pre><code>1. 默认值: butt没有线帽
+2. round:圆的线帽,直线两边被两个半圆包裹起来 ctx.lineCap=&quot;round&quot;;
+3. square:方的线帽,线段两边被方形包裹起来 ctx.lineCap=&quot;square&quot;;
+</code></pre><h3 id="lineJoin-线条交叉处的样式"><a href="#lineJoin-线条交叉处的样式" class="headerlink" title="lineJoin;线条交叉处的样式"></a>lineJoin;线条交叉处的样式</h3><pre><code>1. 设置不同线条交叉的方式
+2. 默认值:miter;交叉处是一个箭头
+3. 将线条交叉部分的箭头变为圆角:round: ctx.lineJoin=&quot;round&quot;;
+4. 将线条交叉部分的箭头剔除:bevel: ctx.lineJoin=&quot;bevel&quot;;
+</code></pre><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><h3 id="1-绘制直线"><a href="#1-绘制直线" class="headerlink" title="1. 绘制直线"></a>1. 绘制直线</h3><pre><code>//获取canvas标签
+var canvas=document.querySelector(&quot;canvas&quot;);
+//获取绘制工具canvas的2d上下文
+var ctx=canvas.getContext(&quot;2d&quot;);
+//设置绘制起点
+ctx.moveTo(50,50);
+//设置绘制直线
+ctx.lineTo(150,150);
+//描边
+ctx.stroke();
+</code></pre><h3 id="2-绘制正三角形"><a href="#2-绘制正三角形" class="headerlink" title="2. 绘制正三角形"></a>2. 绘制正三角形</h3><pre><code>//Math.sin方法的参数是一个弧度：
+//360度对应的弧度是2π
+//180度对应的弧度是π(Math.PI)
+//60度对应的弧度π/3
+var canvas=document.querySelector(&quot;canvas&quot;);
+var ctx=canvas.getContext(&quot;2d&quot;);
+var h=Math.sin(Math.PI/3) *300;
+var leftX=50;
+var leftY=500;
+//计算出头部顶点的坐标
+var topX=leftX+300/2;
+var topY=leftY-h;
+//右边顶点的坐标
+var rightX=leftX+300;
+var rightY=leftY;
+//绘制三角形：
+ctx.moveTo(leftX,leftY);
+ctx.lineTo(topX,topY);
+ctx.lineTo(rightX,rightY);
+ctx.lineTo(leftX,leftY);
+ctx.stroke();
+</code></pre><h3 id="3-绘制2种描边色的线条"><a href="#3-绘制2种描边色的线条" class="headerlink" title="3. 绘制2种描边色的线条"></a>3. 绘制2种描边色的线条</h3><pre><code>ctx.moveTo(50,50);
+ctx.lineTo(350,50);
+ctx.strokeStyle=&quot;red;
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(50,50);
+ctx.lineTo(150,50);
+ctx.strokeStyle=&quot;green;
+ctx.stroke();
+</code></pre><h3 id="4-绘制虚线"><a href="#4-绘制虚线" class="headerlink" title="4. 绘制虚线"></a>4. 绘制虚线</h3><pre><code>for(var i=0; i&lt;7; i++){
+    ctx.moveTo(startX+(linelength+spacelength)*i,startY);
+    ctx.lineTo(startX+(linelength+spacelength)*i+linelength,startY);
+    ctx.strokeStyle=&quot;blue&quot;;
+    ctx.stroke();
+}
+</code></pre><h3 id="5-使用setLineDash-绘制虚线"><a href="#5-使用setLineDash-绘制虚线" class="headerlink" title="5.使用setLineDash()绘制虚线"></a>5.使用setLineDash()绘制虚线</h3><pre><code>ctx.setLineDash([10,20,5,2]);
+</code></pre><h3 id="6-绘制标准回字形"><a href="#6-绘制标准回字形" class="headerlink" title="6.绘制标准回字形"></a>6.绘制标准回字形</h3><pre><code>方式① fill()
+方式② fill()的非0环绕规则
+方式③ 线宽方式
+</code></pre><h3 id="7-绘制矩形"><a href="#7-绘制矩形" class="headerlink" title="7.绘制矩形"></a>7.绘制矩形</h3><h2 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h2><h3 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h3><pre><code>如果会产生路径,一定会受上一个路径所影响
+每次绘制文字,之间都是独立的,不会相互影响
+文字的状态受会受到影响的,比如文字的大小,描边的颜色,填充的颜色,线宽
+</code></pre><h3 id="1-strokeText-绘制描边的文本"><a href="#1-strokeText-绘制描边的文本" class="headerlink" title="1. strokeText();绘制描边的文本"></a>1. strokeText();绘制描边的文本</h3><pre><code>1. 参数:① 文本内容 ② 坐标X ③ 坐标Y:ctx.strokeText(&quot;hello&quot;,100,100);
+2. 设置文本颜色,在描边文本前面设置strokeStyle
+3. font;设置文本的格式.绘制文本之前设置,默认字体大小为:12px
+    ctx.font=&quot;30px 微软雅黑&quot;;
+</code></pre><h3 id="2-fillText-绘制填充的文本"><a href="#2-fillText-绘制填充的文本" class="headerlink" title="2. fillText();绘制填充的文本"></a>2. fillText();绘制填充的文本</h3><pre><code>1. 参数:① 文本内容 ② 坐标X ③ 坐标
+2. 设置文本颜色,在描边文本前面设置fillStyle
+3. font属性设置方式同上
+4. 
+</code></pre><h3 id="3-文字的坐标"><a href="#3-文字的坐标" class="headerlink" title="3. 文字的坐标"></a>3. 文字的坐标</h3><h3 id="4-textAlign属性-设置水平对齐方式"><a href="#4-textAlign属性-设置水平对齐方式" class="headerlink" title="4. textAlign属性; 设置水平对齐方式"></a>4. textAlign属性; 设置水平对齐方式</h3><pre><code>1. ctx.textAlign;默认左对齐,水平对齐方式
+2. 文字居中对齐,计算了文字的总宽度,将文字均匀的分布在参考点的两侧
+    ctx.textAlign=&quot;center&quot;;
+3. 右对齐表示文字的最右边靠着参考点
+4. start===left;     end===right
+5. 以参考线为准,左边靠着参考线,右边靠着参考线,中间靠着参考线
+</code></pre><h3 id="5-textBaseline属性-设置垂直对齐方式"><a href="#5-textBaseline属性-设置垂直对齐方式" class="headerlink" title="5. textBaseline属性; 设置垂直对齐方式"></a>5. textBaseline属性; 设置垂直对齐方式</h3><pre><code>1. 默认的垂直对齐方式:alphabetic
+   对于英语来说,正好就是英语四线格的第三条线,如:g排列在参考点的上边和下边;对于中文来说,是将英语四线格的高度以田字格的方式存在,此时的参考点位于田字格的三2/3位置。
+2. 属性值:hanging
+   ctx.textBaseline=&quot;hanging&quot;;对于中文的参考点位于田字格的顶部;对于英文的参考点位于四线格的顶部
+3. 属性值:top
+   ctx.textBaseline=&quot;top&quot;;对于中文来说,此时参考点位于田字格顶部再上去一点点;对于英文来说,此时参考点位于四线格的顶部再上去一点点
+4. 属性值:bottom
+   ctx.textBaseline=&quot;bottom&quot;;中文田字格的底部再下去一点;英文四线格的底部再下去一点
+5. 属性值:middle
+   ctx.textBaseline=&quot;middle&quot;;中文正好是田字格的一半;英文正好是四线格的中间
+</code></pre><h3 id="6-measureText-计算文字宽度"><a href="#6-measureText-计算文字宽度" class="headerlink" title="6. measureText(); 计算文字宽度"></a>6. measureText(); 计算文字宽度</h3><pre><code>1. 返回一个对象,有width属性,计算文字宽度
+</code></pre><h2 id="绘制圆弧"><a href="#绘制圆弧" class="headerlink" title="绘制圆弧"></a>绘制圆弧</h2><h3 id="1-arc"><a href="#1-arc" class="headerlink" title="1. arc();"></a>1. arc();</h3><pre><code>1. 直接绘制圆弧,不需要moveTo,圆弧的起点就是绘制的起点
+2. 参数:
+    ① 圆心的X轴坐标
+    ② 圆心的Y轴坐标
+    ③ 圆的半径
+    ④ 起始弧度
+    ⑤ 结束弧度
+    ⑥ true:如果逆时针绘制,需传入第6个参数
+3. 顺时针旋转:从弧度为0的点开始,顺时针旋转,弧度会越来越大:旋转90度,弧度增加PI/2;旋转180度,弧度增加PI。没顺时针旋转一圈,所增加的弧度就是2PI
+4. 逆时针旋转的弧度:从弧度为0的点开始,逆时针旋转,弧度值会越来越小:旋转90度,弧度值为-PI/2
+5. 弧度为0的点和弧度为2PI的点和弧度为-2PI的点重合
+6. arc方法如果是该状态下的第一次绘图,arc方法起始弧度的位置就是该状态绘制的起点
+7. 弧度值:圆心往右该圆弧上的点对应的弧度值为:0,顺时针弧度值越大,逆时针弧度值越小
+</code></pre><h3 id="2-根据角度计算弧度"><a href="#2-根据角度计算弧度" class="headerlink" title="2. 根据角度计算弧度"></a>2. 根据角度计算弧度</h3><pre><code>function (angle) {
+  return angle*Math.PI/180;
+}
+</code></pre><h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><pre><code>1. 绘制&quot;Hello javascript!&quot; 将它绘制在画布的正中央,并且画出参考线
+2. 逆时针和顺时针绘制圆弧
+3. 绘制圆动画
+4. 绘制等分饼形图
+var canvas = document.getElementById(&quot;canvas&quot;);
+var ctx = canvas.getContext(&quot;2d&quot;);
+/**@param ctx 上下文
+ * @param startRadian  绘制的起点
+ * @param num 等分的扇形的份数
+ * @param circleX  圆心的X轴坐标
+ * @param circleY  圆心的Y轴坐标
+ * @param randius  圆心的半径
+ */
+function drewRandian(ctx,startRadian,num,circleX,circleY,randius){
+    var colors =( &quot;aliceblue,antiquewhite,aqua,aquamarine,azure,beige,bisque,black,blanchedalmond,blue&quot;).split(&apos;,&apos;);
+    var everyRadian=2*Math.PI/num;
+    for(var i=0; i&lt;num; i++) {
+        ctx.beginPath();
+        ctx.moveTo(circleX,circleY);       ctx.arc(circleX,circleY,randius,startRadian+everyRadian*i,startRadian+everyRadian*(i+1));
+        ctx.fillStyle=colors[i];
+        ctx.fill();
+    }
+}
+drewRandian(ctx,0.5*Math.PI,10,100,100,50);
+5. 根据用户提供的数据绘制饼形图
+</code></pre><h2 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h2><h3 id="1-var-img-new-Image-创建图片对象"><a href="#1-var-img-new-Image-创建图片对象" class="headerlink" title="1. var img=new Image(); 创建图片对象"></a>1. var img=new Image(); 创建图片对象</h3><pre><code>1. img为DOM元素
+2. img.src=&quot;&quot;;指定图片路径
+3. 有两种创建图片对象的方式:
+    ① 创建dom元素:var img=docuemnt.createElement(&quot;img&quot;);
+    ② 创建内置对象Image的实例:var img=new Image();
+</code></pre><h3 id="2-ctx-drawImage-img-x-y-3个参数-将图片绘制到canvas画布中"><a href="#2-ctx-drawImage-img-x-y-3个参数-将图片绘制到canvas画布中" class="headerlink" title="2. ctx.drawImage(img,x,y); 3个参数 将图片绘制到canvas画布中"></a>2. ctx.drawImage(img,x,y); 3个参数 将图片绘制到canvas画布中</h3><pre><code>1. 参数:
+    ① 图片对象
+    ② 图片在画布中的X坐标
+    ③ 图片在画布中的Y坐标
+    ④ 例:ctx.drawImage(img,0,0);图片的左上角顶点就是(0,0)
+2. 直接调用drawImage()时无法将图片绘制到画布中,必须等图片真正的加载完成再将图片绘制到画布中。
+   方法①: 等网页整个加载完成,图片是网页的其中一个资源,可以在该事件内部完成绘制图片: window.onload
+   方法②: 通过图片的onload事件,在该事件内部绘制图片:img.onload
+3. 向画布上绘制图像、画布或视频
+</code></pre><h3 id="3-ctx-drawImage-img-x-y-width-height-5个参数-将指定图片在画布中的大小"><a href="#3-ctx-drawImage-img-x-y-width-height-5个参数-将指定图片在画布中的大小" class="headerlink" title="3. ctx.drawImage(img,x,y,width,height); 5个参数 将指定图片在画布中的大小"></a>3. ctx.drawImage(img,x,y,width,height); 5个参数 将指定图片在画布中的大小</h3><pre><code>1. 参数:
+    ① 图片对象
+    ② 图片在画布中的X坐标
+    ③ 图片在画布中的Y坐标
+    ④ 图片在画布上的宽(注意保持纵横比)
+    ⑤ 图片在画布上的高(注意保持纵横比)
+2. 把图像按照指定大小绘制到指定位置
+</code></pre><h3 id="4-ctx-drawImage-img-sx-sy-sw-sh-x-y-width-height-9个参数"><a href="#4-ctx-drawImage-img-sx-sy-sw-sh-x-y-width-height-9个参数" class="headerlink" title="4. ctx.drawImage(img,sx,sy,sw,sh,x,y,width,height); 9个参数"></a>4. ctx.drawImage(img,sx,sy,sw,sh,x,y,width,height); 9个参数</h3><pre><code>1. 参数:
+    ① 图片对象
+    ② 图片的矩形区域顶点X坐标 sx
+    ③ 图片的矩形区域顶点Y坐标 sy
+    ④ 图片的矩形区域的宽 sw
+    ⑤ 图片的矩形区域的高 sh
+    ⑥ 图片在画布中的X坐标
+    ⑦ 图片在画布中的Y坐标
+    ⑧ 图片在画布上的宽(注意保持纵横比)
+    ⑨ 图片在画布上的高(注意保持纵横比)
+2. 将图片以sx,sy点为顶点,宽度为sw,高度为sh,
+3. 把部分图像按照指定大小绘制到指定位置
+</code></pre><h2 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h2><pre><code>1. 改变canvas的坐标系,并不会改变内容。
+2. 变换都是修改了canvas的坐标系的位置,从而实现其中内容的位置
+</code></pre><h3 id="1-ctx-trandlate-x-y-平移变换"><a href="#1-ctx-trandlate-x-y-平移变换" class="headerlink" title="1. ctx.trandlate(x,y); 平移变换"></a>1. ctx.trandlate(x,y); 平移变换</h3><pre><code>1. 第一个参数:x方向平移的距离,第二个参数:y方向平移的距离
+2. 移动canvas坐标系的原点(顶点)的位置
+3. 在绘制指定的图形之前进行平移
+code:
+    //在水平方向上平移
+    ctx.translate(100,0);
+    ctx.strokeRect(0,0,300,200);
+    //在垂直方向上平移
+    ctx.translate(0,-100);
+    ctx.strokeRect(0,0,300,200);
+</code></pre><h3 id="2-ctx-rotate-radian-旋转变换"><a href="#2-ctx-rotate-radian-旋转变换" class="headerlink" title="2. ctx.rotate(radian);  旋转变换"></a>2. ctx.rotate(radian);  旋转变换</h3><pre><code>1. radian参数: 旋转的角度;radian为正数,表示顺时针旋转;radian为负数,表示逆时针旋转
+2. 旋转了canvas坐标系
+3. 多次调用结果会累加
+code:
+    //顺时针旋转45°
+    ctx.rotate(Math.PI/4);
+    ctx.strokeRect(0,0,100,200);
+    //逆时针旋转45°
+    ctx.rotate(-Math.PI*2);
+    ctx.fillRect(0,0,100,100);
+</code></pre><h3 id="3-ctx-scale-伸缩变换"><a href="#3-ctx-scale-伸缩变换" class="headerlink" title="3. ctx.scale(); 伸缩变换"></a>3. ctx.scale(); 伸缩变换</h3><pre><code>1. 第一个参数:X轴压缩或拉伸;第二个参数:Y轴压缩或拉伸
+</code></pre><h3 id="4-状态的保存与恢复"><a href="#4-状态的保存与恢复" class="headerlink" title="4. 状态的保存与恢复"></a>4. 状态的保存与恢复</h3><h5 id="1-ctx-save-保存状态"><a href="#1-ctx-save-保存状态" class="headerlink" title="1. ctx.save(); 保存状态"></a>1. ctx.save(); 保存状态</h5><pre><code>1. 保存状态:ctx.save();保存当前这一行代码所处的所有状态(包括:描边的颜色,填充的颜色,线宽,伸缩,平移旋转)的值
+</code></pre><h5 id="1-ctx-restore-状态恢复-访问到原坐标系的状态"><a href="#1-ctx-restore-状态恢复-访问到原坐标系的状态" class="headerlink" title="1. ctx.restore(); 状态恢复,访问到原坐标系的状态"></a>1. ctx.restore(); 状态恢复,访问到原坐标系的状态</h5><pre><code>1. ctx.redtore(); 将之前保存好的状态值取出来,恢复到上一次保存的状态
+</code></pre><h3 id="5-堆内存-先进先出-栈内存-先进后出"><a href="#5-堆内存-先进先出-栈内存-先进后出" class="headerlink" title="5. 堆内存: 先进先出;   栈内存: 先进后出"></a>5. 堆内存: 先进先出;   栈内存: 先进后出</h3><h3 id="6-状态栈"><a href="#6-状态栈" class="headerlink" title="6. 状态栈"></a>6. 状态栈</h3><pre><code>1. 遵循先进后出的规则   与状态相关
+2. 当保存多个状态的时候,在取出这些状态的时候,按照栈内存的取出顺序(先进后出)
+code:
+    //绘制红色描边的矩形
+    ctx.strokeStyle=&quot;red&quot;;
+    ctx.strokeRect(0,0,100,200);
+    ctx.save();//保存了红色描边的状态
+    //绘制蓝色描边的矩形
+    ctx.strokeStyle=&quot;blue&quot;;
+    ctx.strokeRect(100,0,100,200);
+    ctx.save();//保存了蓝色描边的状态
+    //绘制红色描边的圆形
+    ctx.restore();//第一次取出的是蓝色描边的状态
+    ctx.restore();//第二次取出的是红色描边的状态
+    ctx.arc(200,300,150,0,2*Math.PI);
+    ctx.stroke();
+</code></pre><h2 id="绘图上下文提供的API"><a href="#绘图上下文提供的API" class="headerlink" title="绘图上下文提供的API"></a>绘图上下文提供的API</h2><h3 id="1-ctx-globalAlpha-设置图形的透明度"><a href="#1-ctx-globalAlpha-设置图形的透明度" class="headerlink" title="1. ctx.globalAlpha; 设置图形的透明度"></a>1. ctx.globalAlpha; 设置图形的透明度</h3><pre><code>1. 值:0-1
+</code></pre><h3 id="2-ctx-getImageData-x-y-width-height-画布指定矩形的像素数据"><a href="#2-ctx-getImageData-x-y-width-height-画布指定矩形的像素数据" class="headerlink" title="2. ctx.getImageData(x,y,width,height); 画布指定矩形的像素数据"></a>2. ctx.getImageData(x,y,width,height); 画布指定矩形的像素数据</h3><pre><code>1. 参数:左上角顶点的X坐标,Y坐标,绘制矩形的宽,高
+2. 返回ImageData对象,对象中的width和height表示矩形区域的宽高;该对象中有一个属性是data属性,data属性表示由矩形区域中每一个像素点的rgba的值组成的一维数组,该数组中每连续4个元素表示一个像素点的rgba的值,a表示颜色的透明度(获取到的a的值范围0-255,设置的时候a的值范围0-1),
+</code></pre><h3 id="3-ctx-globalCompositeOperation"><a href="#3-ctx-globalCompositeOperation" class="headerlink" title="3. ctx.globalCompositeOperation"></a>3. ctx.globalCompositeOperation</h3><pre><code>1. 表示图形之间重叠的时候指定的操作
+2. 默认:source-over;后绘制的图形覆盖前面绘制的图形
+   destination-over; 原有的绘制的图形覆盖后绘制的图形
+   source-in; 新图形仅会出现与原有内容重叠的部分,其他区域为透明,只显示新内容
+   destination-in; 原有内容中与新图形重叠的部分被保留,只显示旧内容
+   source-out; 只有新图形中与原有内容不重叠的部分会被绘制出来,只显示新内容
+   destination-out; 原有内容中与新图形不重叠的部分会被保留,只显示旧内容,重叠的部分消失
+</code></pre><h2 id="练习-2"><a href="#练习-2" class="headerlink" title="练习"></a>练习</h2><h3 id="1-刮刮乐"><a href="#1-刮刮乐" class="headerlink" title="1. 刮刮乐"></a>1. 刮刮乐</h3><pre><code>1.canvas画布的大小设置为图片的大小
+2.给canvas画布添加背景图片,canvas.style.backgroundImage=&quot;url()&quot;;
+3.设置遮挡层,在这个画布上绘制矩形,设置rgba的值
+4.实现刮的效果,鼠标按下---&gt;同时鼠标移动:$(&quot;canvas&quot;).on(&quot;mousedown&quot;,function(){  $(&quot;canvas&quot;).on(&quot;mousemove&quot;,function(){
+  })
+})//此时的问题1:此时放下鼠标.还是会触发mousemove事件,所以要在鼠标抬起的事件中,移除mousemove事件:$(&quot;canvas&quot;).on(&quot;mouseup&quot;,function(){
+ $(&quot;canvas&quot;).off(&quot;mousemove&quot;);
+})//此时的问题2:按下鼠标并且移动鼠标,会正常触发事件;如果移出画布,不触发事件;但此时在鼠标抬起的状态下,从画布外回到画布内,依然会触发事件,所以要再绑定一个事件,在鼠标离开的时候,也要解除mousemove事件
+5.获取canvas画布的像素点
+6.判断未被刮掉的像素点:定义一个变量来存储,如果rgba的值=原来设定的rgba的值,那这个像素点还未被刮掉,让变量++
+7.如果未被刮掉的像素点的变量&lt;整个画布的像素点,就清空整个画布,显示整个背景图片(当刮掉一半就显示奖品图片:获取canvas标签中每一个像素点的信息---&gt;判断像素点是否已经被刮掉了---&gt;判断如果该像素点的rgba的值还等于原来的值,那就是没有被刮掉---&gt;判断没有被刮掉的点如果小于画布的总像素点,就清空整个画布,直接显示商品)
+</code></pre><h3 id="2-时钟—面向对象"><a href="#2-时钟—面向对象" class="headerlink" title="2. 时钟—面向对象"></a>2. 时钟—面向对象</h3><pre><code>1. 时钟构造函数Clock,在构造函数的原型中添加方法
+2. 在Clock的原型对象中,this---&gt;构造函数的实例,用this调用方法
+3. ① 绘制大圆 ② 绘制刻度线,在刻度线中绘制文字 ③ 绘制指针
+4. ① 绘制大圆:参数,大圆圆心X坐标,大圆圆心Y坐标,大圆半径,绘制起始弧度,绘制终点弧度
+5. ② 绘制刻度线:参数:大圆圆心X坐标,大圆圆心Y坐标,大圆半径,刻度线的长度,刻度线的线宽,计算刻度线的绘制起始弧度和结束弧度,绘制
+6. ③ 绘制刻度线上的文字:参数:位于大圆的弧度,大圆圆心X坐标.大圆圆心Y坐标.大圆半径,大圆线宽.刻度线线宽.计算文字在大圆的X坐标和Y坐标
+7. ④ 绘制指针:参数:大圆圆心X坐标.大圆圆心Y坐标,大圆半径,指针线宽,计算指针绘制的起始坐标和结束坐标
+</code></pre><h2 id="注意问题"><a href="#注意问题" class="headerlink" title="注意问题"></a>注意问题</h2><pre><code>1. 当用户传递参数错误时,throw new Error(&quot;文字提醒&quot;);提高用户体验
+2. 参数空判断---短路运算 opts.bigRadius=opts.bigRadius || 50;//如果有值就返回值,没有则返回50
+3. jQuery中绑定两个事件,用空格隔开
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/12/nodeJS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2401,135 +2817,13 @@ XML文件侧重于存储数据
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/15/使用hexo搭建静态博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/15/使用hexo搭建静态博客/" itemprop="url">使用hexo搭建静态博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-15T22:20:12+08:00">
-                2014-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>官方网站：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># 初始化一个博客</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># 切入 blog 目录</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># 启动预览</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 创建博客</span></div><div class="line">hexo new 文章标题</div></pre></td></tr></table></figure>
-<h3 id="结合-Github-Pages-自动发布博客"><a href="#结合-Github-Pages-自动发布博客" class="headerlink" title="结合 Github Pages 自动发布博客"></a>结合 Github Pages 自动发布博客</h3><p>一：Github 创建域名仓库</p>
-<p>二：修改博客中的 _config.yml 文件中</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:密码@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
-<p>三：安装插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>四：发布</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-<p>上面两条命令可以简写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>使用其中哪一个命令都可以发布</p>
-<p>五.主题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在主题商店找到喜欢的主题</div><div class="line">找到作者的github地址  复制</div><div class="line">在themes文件中,拷贝地址 git <span class="built_in">clone</span> 地址 --depth=1</div><div class="line">复制主题文件夹名</div><div class="line">_config.yml文件中  更改theme:的内容</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2573,7 +2867,7 @@ XML文件侧重于存储数据
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
