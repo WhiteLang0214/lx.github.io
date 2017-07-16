@@ -93,12 +93,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="郎雪的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="http://www.2cto.com/kf/201202/118111.htmlhttp://www.webhek.com/misc/interactive-resumehttp://www.codecombat.cnhttp://webhek.com 问题 值类型的变量不能动态添加成员 引用类型的对象可以动态添加成员 变量是不是对象就看后面有没有new  js 最初的浏览器:网易公司发明 Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析js">
+<meta property="og:url" content="http://yoursite.com/2015/03/10/浅析js/index.html">
 <meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="http://www.2cto.com/kf/201202/118111.htmlhttp://www.webhek.com/misc/interactive-resumehttp://www.codecombat.cnhttp://webhek.com 问题 值类型的变量不能动态添加成员 引用类型的对象可以动态添加成员 变量是不是对象就看后面有没有new  js 最初的浏览器:网易公司发明 Ja">
+<meta property="og:updated_time" content="2017-07-16T15:37:33.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="郎雪的博客">
+<meta name="twitter:title" content="浅析js">
+<meta name="twitter:description" content="http://www.2cto.com/kf/201202/118111.htmlhttp://www.webhek.com/misc/interactive-resumehttp://www.codecombat.cnhttp://webhek.com 问题 值类型的变量不能动态添加成员 引用类型的对象可以动态添加成员 变量是不是对象就看后面有没有new  js 最初的浏览器:网易公司发明 Ja">
 
 
 
@@ -126,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/03/10/浅析js/"/>
 
 
 
 
 
-  <title>郎雪的博客</title>
+  <title>浅析js | 郎雪的博客</title>
   
 
 
@@ -157,9 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,685 +244,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/初识gulp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/15/初识gulp/" itemprop="url">初识gulp</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:50:52+08:00">
-                2017-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Gulp-Tutorial"><a href="#Gulp-Tutorial" class="headerlink" title="Gulp Tutorial"></a>Gulp Tutorial</h2><blockquote>
-<p>Gulp: The streaming build system</p>
-</blockquote>
-<p><img src="img/Speed-up-your-workflow-with-a-Gulp-plugin.png" alt="gulp-logo"></p>
-<p>gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；<br>她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；<br>使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。</p>
-<p>项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线上服务器。<br>常见处理任包括以下几方面：</p>
-<ol>
-<li>模块化开发可以实现功能的复用并解决模块间的依赖关系，但带来好处的同时也使得功能代码的碎片化（若干文件）程度增加。</li>
-<li>使用less、sass等预处理器，可以降低CSS的维护成本，最终需要将这些预处理器编译成css文件；</li>
-<li>对静态资源（css、js、html、images）压缩合并可以提升网页打开速度，提高性能；</li>
-</ol>
-<p>以上任务完如果完全靠手动来完成是非常耗时耗力的且容易出错，实际开发通常借助构建工具来实现。<br>所谓构建工具是指通过一系简单配置就可以帮我们实现合并、压缩、校验、预处理等一系列任务的软件工具。<br>常见的构建工具包括：<code>Grunt、Gulp、F.I.S（百度出品）、webpack</code>等。</p>
-<p>Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不同的构建任务，<br>其以简洁的配置和卓越的性能成为目前主流的构建工具。</p>
-<p><img src="img/150046-20160308200954022-1598623728.jpg" alt="gulp-task"></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
-<li>官方：<a href="http://gulpjs.com/" target="_blank" rel="external">http://gulpjs.com/</a></li>
-<li>中文官网：<a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">http://www.gulpjs.com.cn/</a></li>
-<li>npm：<a href="https://www.npmjs.com/package/gulp" target="_blank" rel="external">https://www.npmjs.com/package/gulp</a></li>
-<li>Github：<a href="https://github.com/gulpjs/gulp" target="_blank" rel="external">https://github.com/gulpjs/gulp</a></li>
-<li>Gitbook：<a href="https://wizardforcel.gitbooks.io/gulp-doc/content/2.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/gulp-doc/content/2.html</a></li>
-</ul>
-<hr>
-<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><blockquote>
-<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md</a></p>
-</blockquote>
-<p>一：Install the gulp command</p>
-<p>在项目中使用 gulp 首先需要确保全局有 gulp-cli 环境，如果有就不需要执行下面的命令了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --global gulp-cli</span></div><div class="line">yarn global add gulp-cli</div></pre></td></tr></table></figure>
-<p>二：Install gulp in your devDependencies</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --save-dev gulp</span></div><div class="line">yarn add -D gulp</div></pre></td></tr></table></figure>
-<p>三：Create a file called gulpfile.js in your project root with these contents:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var gulp = require(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  console.log(<span class="string">'hello gulp'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>四：Test it out: Run the gulp command in your project directory:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp</div></pre></td></tr></table></figure>
-<hr>
-<h2 id="API-Documentation"><a href="#API-Documentation" class="headerlink" title="API Documentation"></a>API Documentation</h2><blockquote>
-<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/API.md</a></p>
-</blockquote>
-<ul>
-<li>gulp.task</li>
-<li>gulp.src</li>
-<li>gulp.dest</li>
-<li>gulp.watch</li>
-</ul>
-<h3 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name [, deps] [, fn])"></a>gulp.task(name [, deps] [, fn])</h3><p>作用：定义各种不同的任务</p>
-<ul>
-<li>gulp.task(name, fn)</li>
-<li>gulp.task(name, deps, fn)</li>
-<li>gulp.task(name, fn(cb))</li>
-<li>gulp.task(name, deps, fn(cb))</li>
-</ul>
-<p>一：普通任务</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>二：任务之间的依赖</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">    cb()</div><div class="line">  &#125;, <span class="number">1000</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// b 任务依赖的 a 任务中的回调函数如果不调用，b 任务是不会执行的</span></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>三：gulp 流控制</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 当任务中是一个 gulp 流的时候则需要通过 return 来保证依赖中的执行顺序</span></div><div class="line">  <span class="keyword">return</span> gulp.src()</div><div class="line">    .pipe()</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// doSomething</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><blockquote>
-<p>gulp教程之gulp中文API：<a href="http://www.ydcss.com/archives/424" target="_blank" rel="external">http://www.ydcss.com/archives/424</a></p>
-</blockquote>
-<p>作用：根据路径（字符串或数组）读取需要构建的资源</p>
-<h4 id="globs"><a href="#globs" class="headerlink" title="globs"></a>globs</h4><p>需要处理的源文件匹配符路径。</p>
-<p>类型(必填)：String or StringArray，通配符路径匹配示例：</p>
-<ul>
-<li><code>src/a.js</code> 指定具体文件；</li>
-<li><code>*</code> 匹配所有文件    例：<code>src/*.js</code> (包含src下的所有js文件)；</li>
-<li><code>**</code> 匹配0个或多个子文件夹    例：<code>src/**/*.js</code> (包含src的0个或多个子文件夹下的js文件)；</li>
-<li><code>{}</code> 匹配多个属性    例：<code>src/{a,b}.js</code> (包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；</li>
-<li><code>!</code> 排除文件    例：<code>!src/a.js</code> (不包含src下的a.js文件)；</li>
-</ul>
-<h4 id="options-base"><a href="#options-base" class="headerlink" title="options.base"></a>options.base</h4><p>options.base：类型：String  设置输出路径以某个路径的某个组成部分为基础向后拼接，具体看下面示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>) </div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/somedir/somefile.js'</span></div><div class="line"> </div><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>, &#123; <span class="attr">base</span>: <span class="string">'client'</span> &#125;)</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/js/somedir/somefile.js'</span></div></pre></td></tr></table></figure>
-<h3 id="gulp-dest-path-options"><a href="#gulp-dest-path-options" class="headerlink" title="gulp.dest(path[, options])"></a>gulp.dest(path[, options])</h3><p>作用：构建任务完成后资源存放的路径</p>
-<h3 id="gulp-watch-glob-opts-tasks"><a href="#gulp-watch-glob-opts-tasks" class="headerlink" title="gulp.watch(glob[, opts], tasks)"></a>gulp.watch(glob[, opts], tasks)</h3><blockquote>
-<p>监视指定资源的改动，然后可以调用响应的任务处理</p>
-</blockquote>
-<h3 id="gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob [, opts, cb])"></a>gulp.watch(glob [, opts, cb])</h3><hr>
-<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><table>
-<thead>
-<tr>
-<th>插件名称</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>del</td>
-<td>删除文件或文件夹</td>
-</tr>
-<tr>
-<td>gulp-less</td>
-<td>编译LESS文件</td>
-</tr>
-<tr>
-<td>gulp-rname</td>
-<td>重命名文件</td>
-</tr>
-<tr>
-<td>gulp-imagemin</td>
-<td>图片压缩</td>
-</tr>
-<tr>
-<td>gulp-uglify</td>
-<td>压缩Javascript</td>
-</tr>
-<tr>
-<td>gulp-concat</td>
-<td>合并 js 文件</td>
-</tr>
-<tr>
-<td>gulp-concat-css</td>
-<td>合并 css 文件</td>
-</tr>
-<tr>
-<td>gulp-cssnano</td>
-<td>压缩 css</td>
-</tr>
-<tr>
-<td>gulp-htmlmin</td>
-<td>压缩HTML</td>
-</tr>
-<tr>
-<td>gulp-nunjucks</td>
-<td>模板引擎</td>
-</tr>
-<tr>
-<td>gulp-rev</td>
-<td>添加版本号</td>
-</tr>
-<tr>
-<td>gulp-rev-collector</td>
-<td>内容替换</td>
-</tr>
-<tr>
-<td>gulp-useref</td>
-<td>gulp-if</td>
-</tr>
-<tr>
-<td>gulp-load-plugins</td>
-<td>依赖自动加载</td>
-</tr>
-<tr>
-<td>gulp-useref</td>
-<td>自动合并打包处理</td>
-</tr>
-<tr>
-<td>gulp-wrap</td>
-<td>包装内容</td>
-</tr>
-<tr>
-<td>gulp-angular-templatecache</td>
-<td>AngularJS 模板缓存</td>
-</tr>
-<tr>
-<td>browser-sync</td>
-<td>和 gulp 配合使用实现文件改变执行某个任务后自动刷新</td>
-</tr>
-<tr>
-<td>yargs</td>
-<td>获取命令行参数</td>
-</tr>
-<tr>
-<td>gulp-if</td>
-<td>根据判断条件执行某个插件</td>
-</tr>
-<tr>
-<td>http-proxy-middleware</td>
-<td>http 代理插件</td>
-</tr>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="gulp-实战之：高级写页面"><a href="#gulp-实战之：高级写页面" class="headerlink" title="gulp 实战之：高级写页面"></a>gulp 实战之：高级写页面</h2><p>实现 HTML 模板功能，例如公共 HTML 头部和底部，提供可维护性，<br>以及实现 HTML 自动压缩，css 压缩，js 压缩，或者合并。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/VUE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/15/VUE/" itemprop="url">VUE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:42:13+08:00">
-                2017-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>记<br>需要先安装node和npm,可以使用淘宝镜像安装</li>
-<li>安装淘宝镜像<br>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a></li>
-<li>全局安装<br>$ npm install –global vue-cli</li>
-<li>创建一个基于 webpack 模板的新项目<br>$ vue init webpack my-project</li>
-<li>安装依赖<br>$ cd my-project<br>$ npm install<br>$ npm run dev<h2 id="安装遇到的问题"><a href="#安装遇到的问题" class="headerlink" title="安装遇到的问题"></a>安装遇到的问题</h2></li>
-<li>在安装过程中，如果不安装依赖(npm install)，不能正常启动</li>
-<li>在正常启动服务后，打开的页面报错，报错内容：Cannot GET /<br>解决： 我把整个项目都删除之后重新安装了一遍，就可以正常启动了<h2 id="开始项目"><a href="#开始项目" class="headerlink" title="开始项目"></a>开始项目</h2><h3 id="一·TodoList"><a href="#一·TodoList" class="headerlink" title="一·TodoList"></a>一·TodoList</h3></li>
-<li>在app.vue中编写你的代码<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#app</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">'Avenir'</span>, Helvetica, Arial, sans-serif;</div><div class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</div><div class="line">  <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#2c3e50</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">60px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">input</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">outline-style</span>: none;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> auto <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">list-style</span>: none;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20</span>x;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#3c3c3c</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.finished</span> &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: underline;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-html</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入清单"</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">"addNew"</span> <span class="attr">v-model</span>=<span class="string">"newItem"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- enter键触发函数，获取input框中的内容，展示在下面的li中，下面的li应该是根据添加的条目循环出来的 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 将标签绑定类名finished  值为item.isFinishedn  为true的时候应用类  为false的时候移除类 --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;finished:item.isFinished&#125;"</span> <span class="attr">v-on:click</span>=<span class="string">"toggleFinished(item)"</span>&gt;</span>&#123;&#123; item.label &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span> <span class="comment">&lt;!-- 展示的是获取的input框中的新条目 --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 导入store.js文件</span></div><div class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">'./store'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'app'</span>,</div><div class="line">  <span class="attr">components</span>: &#123; Store &#125;,  <span class="comment">//如果不写，只有引用了 Store ，卻沒把他加入父組件的 Components 裡面   会报错</span></div><div class="line">  <span class="comment">// 返回的数据都写在data函数中</span></div><div class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">title</span>: <span class="string">"This is a langxue's TodoList"</span>,</div><div class="line">      <span class="attr">newItem</span>: <span class="string">''</span>, <span class="comment">//input框中的输入的内容</span></div><div class="line">      items:Store.fetch() <span class="comment">//把添加的新条目添加到本地缓存文件中</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// 监听</span></div><div class="line">  watch: &#123;</div><div class="line">    <span class="attr">items</span>: &#123;</div><div class="line">      <span class="attr">handler</span>:<span class="function"><span class="keyword">function</span>(<span class="params">items</span>)</span>&#123;</div><div class="line">        Store.save(items)</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">deep</span>:<span class="literal">true</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// 方法</span></div><div class="line">  methods: &#123;</div><div class="line">    <span class="comment">// 添加新条目的方法</span></div><div class="line">    addNew : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">this</span>.items.push(&#123; <span class="comment">//报错  this.items为空</span></div><div class="line">        label : <span class="keyword">this</span>.newItem, <span class="comment">//label是键  this.newItem是值，填充到html中</span></div><div class="line">        <span class="string">"isFinished"</span> : <span class="literal">false</span> <span class="comment">//定义变量，值默认给false</span></div><div class="line">      &#125;)</div><div class="line">      <span class="keyword">this</span>.newItem = <span class="string">''</span> <span class="comment">//在添加完新条目之后。讲input框清空</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">toggleFinished</span>: <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">      item.isFinished = !item.isFinished</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在APP.vue同级目录下建立store.js文件，其中内容如下：</span></div><div class="line"><span class="comment">//作用存储用户填写的新条目</span></div><div class="line"><span class="keyword">const</span> STORAGE_KEY=<span class="string">'todos-vuejs'</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</div><div class="line">  <span class="attr">fetch</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.JSON.parse(<span class="built_in">window</span>.localStorage.getItem(STORAGE_KEY)||<span class="string">'[]'</span>)</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">save</span>:<span class="function"><span class="keyword">function</span> (<span class="params">items</span>)</span>&#123;</div><div class="line">    <span class="built_in">window</span>.localStorage.setItem(STORAGE_KEY,<span class="built_in">window</span>.JSON.stringify(items))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/事件DOMContentLoaded和load的区别/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/15/事件DOMContentLoaded和load的区别/" itemprop="url">事件DOMContentLoaded和load的区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:39:34+08:00">
-                2017-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><a href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。" class="headerlink" title="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"></a>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</h3><p>DOM文档加载的步骤为:</p>
-<ol>
-<li>解析HTML结构。</li>
-<li>加载外部脚本和样式表文件。</li>
-<li>解析并执行脚本代码。</li>
-<li>DOM树构建完成。//DOMContentLoaded</li>
-<li>加载图片等外部文件。</li>
-<li>页面加载完毕。//load</li>
-<li>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<h3 id="原生写法"><a href="#原生写法" class="headerlink" title="原生写法"></a>原生写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不兼容老的浏览器</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;，<span class="literal">false</span>)</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="JQ的写法"><a href="#JQ的写法" class="headerlink" title="JQ的写法"></a>JQ的写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/那些年遇到的git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/15/那些年遇到的git/" itemprop="url">那些年遇到的git</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-15T23:33:32+08:00">
-                2017-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="GIT版本管理工具"><a href="#GIT版本管理工具" class="headerlink" title="GIT版本管理工具"></a>GIT版本管理工具</h2><pre><code>git可以把每个版本都存起来，方便我们找到各个历史版本。
-git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。
-</code></pre><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="1-开始一个新项目，使用git管理代码"><a href="#1-开始一个新项目，使用git管理代码" class="headerlink" title="1. 开始一个新项目，使用git管理代码"></a>1. 开始一个新项目，使用git管理代码</h3><p>（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））</p>
-<ol>
-<li>首先注册一个git账号。这个oschina提供的git服务就是管理代码的一个空间。</li>
-<li>新建项目，填上项目名称，git地址等信息以后，就可以新建一个项目了。</li>
-<li><p>添加ssh的key，添加key的作用是允许你的电脑访问git 仓库。如果git 项目是私有的,那么指定谁可以访问谁不可以访问。我们把自己计算机上的ssh key添加到git 项目上，就表示我们电脑里的key能访问了，可以理解成key的白名单。配置方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 邮箱地址填注册git时用的邮箱，然后按3个回车。 </div><div class="line">ssh-keygen -t rsa -C &quot;xxx@happymmall.com&quot; </div><div class="line"># 在git.oschina的项目里添加公钥，查看公钥内容： </div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置本地的git选项，可以在用户目录下，新建一个.gitconfig文件，把下面的内容放里面。其中的name是在提交的代码时使用的名称，可以随意指定，还有一个是email，这个email一定要和注册git 时使用同一个。<br>这个配置文件中的alias是一些命令的快捷键，比如切换分支是git checkout xxx，如果配置了alias，就可以直接输入git co xxx，这两个命令时等价的。<br>push一项位置成simple，表示是在push的时候只把当前分支推送到远程对应的分支上，这个也可以不配置，因为git2.x版本以后，默认的就是simple模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[user] </div><div class="line">	name = Rosen </div><div class="line">	email = xxx@happymmall.com </div><div class="line">[alias] </div><div class="line">	co=checkout </div><div class="line">	ci=commit </div><div class="line">	st=status </div><div class="line">	pl=pull </div><div class="line">	ps=push </div><div class="line">	dt=difftool </div><div class="line">	l=log—stat </div><div class="line">	cp=cherry-pick </div><div class="line">	ca=commit -am </div><div class="line">	b=branch </div><div class="line">[push] </div><div class="line">	default = simple！</div></pre></td></tr></table></figure>
-</li>
-<li><p>从远程克隆代码，这个git项目就算建好了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用项目的ssh形式的地址 </div><div class="line">git clone xxx</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="2-开始使用git"><a href="#2-开始使用git" class="headerlink" title="2. 开始使用git"></a>2. 开始使用git</h3><h4 id="1-git分支使用规范"><a href="#1-git分支使用规范" class="headerlink" title="1. git分支使用规范"></a>1. git分支使用规范</h4><ol>
-<li>当项目clone下来，默认会处在master分支上，也就是git的默认分支，通常我们不在主分支上做开发，如果更规范些，master分支会对开发人员设置成只读模式，最终由上线人员把要上线的代码合并到master分支上，这时候我们就要自己做一个开发分支了。如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#切换到master分支</div><div class="line">git checkout master</div><div class="line"></div><div class="line">#拉取最新代码</div><div class="line">git pull</div><div class="line"></div><div class="line">#以master分支为基础，新建本地分支，新分支名以erlang1.0为例</div><div class="line">git checkout -b erlang1.0</div><div class="line"></div><div class="line">#在远程建立对应的分支，只有新建分支时需要执行这步，以后只需要git push即可</div><div class="line">git push --set-upstream origin erlang1.0</div><div class="line"></div><div class="line">#以后向远程上传代码</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="3-要在一个已有的分支上开发"><a href="#3-要在一个已有的分支上开发" class="headerlink" title="3. 要在一个已有的分支上开发"></a>3. 要在一个已有的分支上开发</h3><ol>
-<li>因为是已有分支，就不用自己新建了，直接切换到指定分支，还是以erlang1.0为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#切换分支</div><div class="line">git checkout erlang1.0</div><div class="line"></div><div class="line">#拉取当前分支最新代码</div><div class="line">git pull</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="4-开发到一定程度，想看看改动了什么内容"><a href="#4-开发到一定程度，想看看改动了什么内容" class="headerlink" title="4. 开发到一定程度，想看看改动了什么内容"></a>4. 开发到一定程度，想看看改动了什么内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#看文件的改动</div><div class="line">git status</div><div class="line"></div><div class="line">#看文件内容的变动</div><div class="line">git diff</div></pre></td></tr></table></figure>
-<h3 id="5-代码开发完成，想提交代码"><a href="#5-代码开发完成，想提交代码" class="headerlink" title="5. 代码开发完成，想提交代码"></a>5. 代码开发完成，想提交代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#首先是追踪变更的文件</div><div class="line">git add .</div><div class="line"></div><div class="line">#然后提交到本地</div><div class="line">git commit -m &apos;提交代码的说明&apos;</div><div class="line"></div><div class="line">#提交到远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-<h3 id="6-当前分支代码开发完成，准备提交上线"><a href="#6-当前分支代码开发完成，准备提交上线" class="headerlink" title="6. 当前分支代码开发完成，准备提交上线"></a>6. 当前分支代码开发完成，准备提交上线</h3><ol>
-<li>在上线的时候，一般由管理员或发布人员把开发分支的代码合并到master分支上，上线前我们把远程master最新的代码合并到我们的分支上再提交，才能保证我们的开发分支版本高于master分支。如果不这么做，有多人开发的话，就有可能造成A发布了一个版本，等B发布的时候会把A发布的内容冲掉</li>
-<li>merge完成后，就可以做提交了，通常使用pull request提交合并到master分支的请求，管理员合并后，我们的分支内容就可以上线了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 合并远程分支</div><div class="line">git merge origin master</div><div class="line"></div><div class="line"># 注意：如果发现merge的结果里有CONFLICT，就表示当前分支和远程master分支有文件冲突，我们要手动解决一下冲突再做一次提交才可以</div><div class="line"></div><div class="line"># 没冲突或解决冲突后，提交到当前分支的远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">转载自：</div><div class="line">链接：http://www.imooc.com/article/19060</div><div class="line">来源：慕课网！</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
 
   
 
@@ -946,9 +272,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/03/10/浅析js/" itemprop="url">浅析js</a></h1>
+          <h1 class="post-title" itemprop="name headline">浅析js</h1>
         
 
         <div class="post-meta">
@@ -995,9 +319,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
       
 
       
-        
-          
-            <p><a href="http://www.2cto.com/kf/201202/118111.html" target="_blank" rel="external">http://www.2cto.com/kf/201202/118111.html</a><br><a href="http://www.webhek.com/misc/interactive-resume" target="_blank" rel="external">http://www.webhek.com/misc/interactive-resume</a><br><a href="http://www.codecombat.cn" target="_blank" rel="external">http://www.codecombat.cn</a><br><a href="http://webhek.com" target="_blank" rel="external">http://webhek.com</a></p>
+        <p><a href="http://www.2cto.com/kf/201202/118111.html" target="_blank" rel="external">http://www.2cto.com/kf/201202/118111.html</a><br><a href="http://www.webhek.com/misc/interactive-resume" target="_blank" rel="external">http://www.webhek.com/misc/interactive-resume</a><br><a href="http://www.codecombat.cn" target="_blank" rel="external">http://www.codecombat.cn</a><br><a href="http://webhek.com" target="_blank" rel="external">http://webhek.com</a></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
 <li>值类型的变量不能动态添加成员</li>
 <li>引用类型的对象可以动态添加成员</li>
@@ -1535,20 +857,27 @@ return cache[key];
 <li>模式说明:动态原型方式相当于混合构造函数,原型方式的一个特例,方法直接在函数中定义,但是因为<br>if(typeof Parent._lev == “undefined”){<br>  Parent._lev=true;<br>}<br>从而保证了创建该对象的实例时,属性的方法不会被重复创建<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=<span class="string">"张三"</span>;</div><div class="line">  <span class="keyword">this</span>.age=<span class="string">"30"</span>;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span>._lev==<span class="string">"undefined"</span>)&#123;</div><div class="line">    Parent.prototype.lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">    &#125;</div><div class="line">    Parent._lev=<span class="literal">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> Parent();</div></pre></td></tr></table></figure></li>
 </ol>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -1556,497 +885,42 @@ return cache[key];
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/03/01/DOM的第一次/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/03/01/DOM的第一次/" itemprop="url">DOM的第一次</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-01T23:23:19+08:00">
-                2015-03-01
-              </time>
+              <a href="/2015/03/01/DOM的第一次/" rel="next" title="DOM的第一次">
+                <i class="fa fa-chevron-left"></i> DOM的第一次
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2017/07/15/那些年遇到的git/" rel="prev" title="那些年遇到的git">
+                那些年遇到的git <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
-2. DOM: Document Object Model 文档对象模型
-    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
-3. BOM
-</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
-XML文件侧重于存储数据
-</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
-</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
-</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
-找元素===也就是找标签===也就是对象
-操作这个标签===也就是操作标签的属性和样式
-创建标签,删除标签
-</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
-</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
-2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
-3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
-</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
-</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
-</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
-返回的是: 伪数组
-</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
-返回的是: 伪数组
-</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/07/15/快捷键替代鼠标/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/07/15/快捷键替代鼠标/" itemprop="url">快捷键替代鼠标</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-07-15T22:04:24+08:00">
-                2014-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><ul>
-<li>单独按Windows：显示或隐藏 “开始”功能表</li>
-<li>Windows+BREAK：显示“系统属性” 对话框</li>
-<li>Windows+D：显示桌面</li>
-<li>Windows+M：最小化所有窗口</li>
-<li>Windows+Shift+M：还原最小化的窗口</li>
-<li>Windows+E：开启“资源管理器”</li>
-<li>Windows+F：查找文件或文件夹</li>
-<li>Windows+ctrl+ F：查找电脑</li>
-<li>Windows+F1：显示 Windows “帮助”</li>
-<li>Windows+R：开启“运行” 对话框</li>
-<li>Windows+U：开启 “公用程序管理器”</li>
-<li>Windows+L：切换使用者（Windows XP新功能）<h2 id="Ctrl"><a href="#Ctrl" class="headerlink" title="Ctrl"></a>Ctrl</h2></li>
-<li>Ctrl+S 保存</li>
-<li>Ctrl+W 关闭程序</li>
-<li>Ctrl+N 新建</li>
-<li>Ctrl+O 打开</li>
-<li>Ctrl+Z 撤销</li>
-<li>Ctrl+F 查找</li>
-<li>Ctrl+X 剪切</li>
-<li>Ctrl+C 复制</li>
-<li>Ctrl+V 粘贴</li>
-<li>Ctrl+A 全选</li>
-<li>Ctrl+[ 缩小文字</li>
-<li>Ctrl+] 放大文字</li>
-<li>Ctrl+B 粗体</li>
-<li>Ctrl+I 斜体</li>
-<li>Ctrl+U 下划线</li>
-<li>Ctrl+Shift 输入法切换</li>
-<li>Ctrl+空格 中英文切换</li>
-<li>Ctrl+回车 QQ号中发送信息</li>
-<li>Ctrl+Home 光标快速移到文件头</li>
-<li>Ctrl+End 光标快速移到文件尾</li>
-<li>Ctrl+Esc 显示开始菜单</li>
-<li>Ctrl+Shift+&lt; 快速缩小文字</li>
-<li>Ctrl+Shift+&gt; 快速放大文字</li>
-<li>Ctrl+F5 在IE中强行刷新</li>
-<li>Ctrl+拖动文件 复制文件</li>
-<li>Ctrl+Backspace 启动\关闭输入法</li>
-<li>拖动文件时按住Ctrl+Shift 创建快捷方式<h2 id="Alt"><a href="#Alt" class="headerlink" title="Alt"></a>Alt</h2></li>
-<li>Alt+F4 关闭当前程序</li>
-<li>Alt+空格+C 关闭窗口</li>
-<li>Alt+空格+N 最小化当前窗口</li>
-<li>Alt+空格+R 恢复最小化窗口</li>
-<li>Alt+空格+X 最大化当前窗口</li>
-<li>Alt+空格+M 移动窗口</li>
-<li>Alt+空格+S 改变窗口大小</li>
-<li>Alt+Tab 两个程序交换</li>
-<li>Alt+255 QQ号中输入无名人</li>
-<li>Alt+F 打开文件菜单</li>
-<li>Alt+V 打开视图菜单</li>
-<li>Alt+E 打开编辑菜单</li>
-<li>Alt+I 打开插入菜单</li>
-<li>Alt+O 打开格式菜单</li>
-<li>Alt+T 打开工具菜单</li>
-<li>Alt+A 打开表格菜单</li>
-<li>Alt+W 打开窗口菜单</li>
-<li>Alt+H 打开帮助菜单</li>
-<li>Alt+回车 查看文件属性</li>
-<li>Alt+双击文件 查看文件属性</li>
-<li>Alt+X 关闭C语言<h2 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h2></li>
-<li>Shift+空格 半\全角切换</li>
-<li>Shift+右击 右菜单打开方式</li>
-<li>Shift+F10 选中文件的右菜单</li>
-<li>Shift+多级文件 全部关闭</li>
-<li>Shift+Del 直接删除文件</li>
-<li>Shift+＾ 处在中文标点符号半角在智能ABC中省曰号</li>
-<li>Shift+\ 处在中文标点符号半角在智能ABC中顿号<h2 id="常规键盘快捷键"><a href="#常规键盘快捷键" class="headerlink" title="常规键盘快捷键"></a>常规键盘快捷键</h2></li>
-<li>Ctrl + C 复制。</li>
-<li>Ctrl + X 剪切。</li>
-<li>Ctrl + V 粘贴。</li>
-<li>Ctrl + Z 撤消。</li>
-<li>DELETE 删除。</li>
-<li>Shift + Delete 永久删除所选项，而不将它放到“回收站”中。</li>
-<li>拖动某一项时按 CTRL 复制所选项。</li>
-<li>拖动某一项时按 CTRL + SHIFT 创建所选项目的快捷键。</li>
-<li>F2 重新命名所选项目。</li>
-<li>CTRL + 向右键 将插入点移动到下一个单词的起始处。</li>
-<li>CTRL + 向左键 将插入点移动到前一个单词的起始处。</li>
-<li>CTRL + 向下键 将插入点移动到下一段落的起始处。</li>
-<li>CTRL + 向上键 将插入点移动到前一段落的起始处。</li>
-<li>CTRL + SHIFT + 任何箭头键 突出显示一块文本。</li>
-<li>SHIFT + 任何箭头键 在窗口或桌面上选择多项，或者选中文档中的文本。</li>
-<li>Ctrl + A 选中全部内容。</li>
-<li>F3 搜索文件或文件夹。</li>
-<li>Alt + Enter 查看所选项目的属性。</li>
-<li>Alt + F4 关闭当前项目或者退出当前程序。</li>
-<li>ALT + Enter 显示所选对象的属性。</li>
-<li>Alt + 空格键 为当前窗口打开快捷菜单。</li>
-<li>Ctrl + F4 在允许同时打开多个文档的程序中关闭当前文档。</li>
-<li>Alt + Tab 在打开的项目之间切换。</li>
-<li>Alt + Esc 以项目打开的顺序循环切换。</li>
-<li>F6 在窗口或桌面上循环切换屏幕元素。</li>
-<li>F4 显示“我的电脑”和“Windows 资源管理器”中的“地址”栏列表。</li>
-<li>Shift + F10 显示所选项的快捷菜单。</li>
-<li>Alt + 空格键 显示当前窗口的“系统”菜单。</li>
-<li>Ctrl + Esc 显示“开始”菜单。</li>
-<li>ALT + 菜单名中带下划线的字母 显示相应的菜单。</li>
-<li>在打开的菜单上显示的命令名称中带有下划线的字母 执行相应的命令。</li>
-<li>F10 激活当前程序中的菜单条。</li>
-<li>右箭头键 打开右边的下一菜单或者打开子菜单。</li>
-<li>左箭头键 打开左边的下一菜单或者关闭子菜单。</li>
-<li>F5 刷新当前窗口。</li>
-<li>BackSpace 在“我的电脑”或“Windows 资源管理器”中查找</li>
-</ul>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/15/使用hexo搭建静态博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/15/使用hexo搭建静态博客/" itemprop="url">使用hexo搭建静态博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-15T22:20:12+08:00">
-                2014-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>官方网站：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># 初始化一个博客</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># 切入 blog 目录</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># 启动预览</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 创建博客</span></div><div class="line">hexo new 文章标题</div></pre></td></tr></table></figure>
-<h3 id="结合-Github-Pages-自动发布博客"><a href="#结合-Github-Pages-自动发布博客" class="headerlink" title="结合 Github Pages 自动发布博客"></a>结合 Github Pages 自动发布博客</h3><p>一：Github 创建域名仓库</p>
-<p>二：修改博客中的 _config.yml 文件中</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:密码@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
-<p>三：安装插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>四：发布</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-<p>上面两条命令可以简写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>使用其中哪一个命令都可以发布</p>
-<p>五.主题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在主题商店找到喜欢的主题</div><div class="line">找到作者的github地址  复制</div><div class="line">在themes文件中,拷贝地址 git <span class="built_in">clone</span> 地址 --depth=1</div><div class="line">复制主题文件夹名</div><div class="line">_config.yml文件中  更改theme:的内容</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -2054,6 +928,10 @@ XML文件侧重于存储数据
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -2074,8 +952,17 @@ XML文件侧重于存储数据
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://E:\My folder\photos\psb.jpg"
@@ -2119,6 +1006,22 @@ XML文件侧重于存储数据
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js"><span class="nav-number">2.</span> <span class="nav-text">js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器"><span class="nav-number">3.</span> <span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript组成"><span class="nav-number">4.</span> <span class="nav-text">JavaScript组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS基本语法及注意事项"><span class="nav-number">5.</span> <span class="nav-text">JS基本语法及注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS基本代码及引入问题"><span class="nav-number">6.</span> <span class="nav-text">JS基本代码及引入问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script标签中的属性"><span class="nav-number">7.</span> <span class="nav-text">script标签中的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">8.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">9.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-基本数据类型"><span class="nav-number">9.1.</span> <span class="nav-text">1. 基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-复杂数据类型"><span class="nav-number">9.2.</span> <span class="nav-text">2. 复杂数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Number"><span class="nav-number">9.3.</span> <span class="nav-text">3. Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-String"><span class="nav-number">9.4.</span> <span class="nav-text">4. String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Boolean"><span class="nav-number">9.5.</span> <span class="nav-text">5. Boolean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-undefined"><span class="nav-number">9.6.</span> <span class="nav-text">6. undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-二进制-八进制-十进制-十六进制"><span class="nav-number">9.7.</span> <span class="nav-text">5. 二进制,八进制,十进制,十六进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-数值检测—–isNaN"><span class="nav-number">9.8.</span> <span class="nav-text">6. 数值检测—–isNaN()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-案例"><span class="nav-number">9.9.</span> <span class="nav-text">7. 案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型转换"><span class="nav-number">10.</span> <span class="nav-text">数据类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数字类型和其他类型转字符串类型"><span class="nav-number">10.1.</span> <span class="nav-text">1. 数字类型和其他类型转字符串类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-基本数据类型转数值类型"><span class="nav-number">10.2.</span> <span class="nav-text">2. 基本数据类型转数值类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义字符"><span class="nav-number">11.</span> <span class="nav-text">转义字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof"><span class="nav-number">12.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">13.</span> <span class="nav-text">操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算数运算符"><span class="nav-number">13.1.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合运算符"><span class="nav-number">13.2.</span> <span class="nav-text">复合运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">13.3.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">13.4.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#短路问题"><span class="nav-number">13.5.</span> <span class="nav-text">短路问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">14.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的交换"><span class="nav-number">14.1.</span> <span class="nav-text">变量的交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量基础"><span class="nav-number">14.2.</span> <span class="nav-text">变量基础:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量"><span class="nav-number">14.2.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐式全局变量"><span class="nav-number">14.2.2.</span> <span class="nav-text">隐式全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局对象"><span class="nav-number">14.2.3.</span> <span class="nav-text">全局对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量声明"><span class="nav-number">14.3.</span> <span class="nav-text">变量声明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量声明提升"><span class="nav-number">14.3.1.</span> <span class="nav-text">变量声明提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数表达式与函数声明提升的区别"><span class="nav-number">14.3.2.</span> <span class="nav-text">函数表达式与函数声明提升的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名函数表达式"><span class="nav-number">14.3.3.</span> <span class="nav-text">命名函数表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#名字解析顺序"><span class="nav-number">14.3.4.</span> <span class="nav-text">名字解析顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面解析机制"><span class="nav-number">15.</span> <span class="nav-text">页面解析机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery事件进阶"><span class="nav-number">16.</span> <span class="nav-text">jQuery事件进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件框架"><span class="nav-number">17.</span> <span class="nav-text">事件框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件的发展历程"><span class="nav-number">17.1.</span> <span class="nav-text">事件的发展历程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件流"><span class="nav-number">17.2.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件冒泡"><span class="nav-number">17.2.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册事件"><span class="nav-number">17.2.2.</span> <span class="nav-text">注册事件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#on"><span class="nav-number">17.2.2.1.</span> <span class="nav-text">on</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#addEventListener"><span class="nav-number">17.2.2.2.</span> <span class="nav-text">addEventListener</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#addEvent"><span class="nav-number">17.2.2.3.</span> <span class="nav-text">addEvent</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除事件"><span class="nav-number">17.2.3.</span> <span class="nav-text">移除事件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#removeEventListener"><span class="nav-number">17.2.3.1.</span> <span class="nav-text">removeEventListener</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js库和框架"><span class="nav-number">18.</span> <span class="nav-text">js库和框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-js库"><span class="nav-number">18.1.</span> <span class="nav-text">1. js库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-框架"><span class="nav-number">18.2.</span> <span class="nav-text">2. 框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">19.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组和伪数组"><span class="nav-number">19.1.</span> <span class="nav-text">数组和伪数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#判断数据是真数组还是伪数组"><span class="nav-number">19.1.1.</span> <span class="nav-text">判断数据是真数组还是伪数组?</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-真数组"><span class="nav-number">19.1.1.1.</span> <span class="nav-text">1. 真数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-伪数组"><span class="nav-number">19.1.1.2.</span> <span class="nav-text">2. 伪数组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-将一个伪数组变成一个真数组"><span class="nav-number">19.1.1.3.</span> <span class="nav-text">3. 将一个伪数组变成一个真数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组方法"><span class="nav-number">19.2.</span> <span class="nav-text">数组方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null和Undefined"><span class="nav-number">20.</span> <span class="nav-text">Null和Undefined</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Null类型"><span class="nav-number">20.1.</span> <span class="nav-text">1. Null类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Undefined类型"><span class="nav-number">20.2.</span> <span class="nav-text">2. Undefined类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-判断"><span class="nav-number">20.3.</span> <span class="nav-text">3. 判断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域与作用域链"><span class="nav-number">21.</span> <span class="nav-text">作用域与作用域链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">22.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的2种声明方式"><span class="nav-number">22.1.</span> <span class="nav-text">函数的2种声明方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-函数声明"><span class="nav-number">22.1.1.</span> <span class="nav-text">1. 函数声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-函数表达式"><span class="nav-number">22.1.2.</span> <span class="nav-text">2. 函数表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数的使用"><span class="nav-number">22.2.</span> <span class="nav-text">匿名函数的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哪些地方可能用到匿名函数"><span class="nav-number">22.2.1.</span> <span class="nav-text">哪些地方可能用到匿名函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柯里化和反柯里化"><span class="nav-number">22.3.</span> <span class="nav-text">柯里化和反柯里化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-柯里化-高阶函数"><span class="nav-number">22.3.1.</span> <span class="nav-text">1. 柯里化==高阶函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的4种调用模式"><span class="nav-number">22.4.</span> <span class="nav-text">函数的4种调用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-普通函数调用–函数模式"><span class="nav-number">22.4.1.</span> <span class="nav-text">1. 普通函数调用–函数模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-构造函数调用–构造器调用模式"><span class="nav-number">22.4.2.</span> <span class="nav-text">2. 构造函数调用–构造器调用模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-方法调用模式-方法模式"><span class="nav-number">22.4.3.</span> <span class="nav-text">3. 方法调用模式-方法模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-上下文调用模式call-apply"><span class="nav-number">22.4.4.</span> <span class="nav-text">4. 上下文调用模式call()/apply()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-bind模式–ES5"><span class="nav-number">22.4.5.</span> <span class="nav-text">5. bind模式–ES5</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">23.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-闭包的概念"><span class="nav-number">23.1.</span> <span class="nav-text">1. 闭包的概念:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-闭包的特征"><span class="nav-number">23.2.</span> <span class="nav-text">2. 闭包的特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-闭包如何使用"><span class="nav-number">23.3.</span> <span class="nav-text">3. 闭包如何使用:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#经典案例"><span class="nav-number">23.4.</span> <span class="nav-text">经典案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeList"><span class="nav-number">24.</span> <span class="nav-text">NodeList</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么NodeList不是数组"><span class="nav-number">24.1.</span> <span class="nav-text">为什么NodeList不是数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js中的兼容问题-不少于5种"><span class="nav-number">25.</span> <span class="nav-text">js中的兼容问题(不少于5种)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">26.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in运算符"><span class="nav-number">26.1.</span> <span class="nav-text">in运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceof运算符"><span class="nav-number">26.2.</span> <span class="nav-text">instanceof运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型和值类型"><span class="nav-number">27.</span> <span class="nav-text">引用类型和值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js面向对象"><span class="nav-number">28.</span> <span class="nav-text">js面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象原理"><span class="nav-number">28.1.</span> <span class="nav-text">面向对象原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象设计模式"><span class="nav-number">28.2.</span> <span class="nav-text">面向对象设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-工厂模式"><span class="nav-number">28.2.1.</span> <span class="nav-text">1. 工厂模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-构造函数模式"><span class="nav-number">28.2.2.</span> <span class="nav-text">2. 构造函数模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-js原型模式"><span class="nav-number">28.2.3.</span> <span class="nav-text">3. js原型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-构造函数-原型js混合模式"><span class="nav-number">28.2.4.</span> <span class="nav-text">4. 构造函数+原型js混合模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-构造函数-原型的动态原型模式"><span class="nav-number">28.2.5.</span> <span class="nav-text">5. 构造函数+原型的动态原型模式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2232,10 +1135,10 @@ XML文件侧重于存储数据
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
