@@ -929,6 +929,140 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/03/01/DOM的第一次/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="langxue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/03/01/DOM的第一次/" itemprop="url">DOM的第一次</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-01T23:23:19+08:00">
+                2015-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
+2. DOM: Document Object Model 文档对象模型
+    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
+3. BOM
+</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
+XML文件侧重于存储数据
+</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
+</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
+</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
+找元素===也就是找标签===也就是对象
+操作这个标签===也就是操作标签的属性和样式
+创建标签,删除标签
+</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
+</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
+2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
+3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
+</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
+</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
+</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
+返回的是: 伪数组
+</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
+返回的是: 伪数组
+</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/07/15/快捷键替代鼠标/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1308,7 +1442,7 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>

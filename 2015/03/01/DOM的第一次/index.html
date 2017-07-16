@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
+<meta name="description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用hexo搭建静态博客">
-<meta property="og:url" content="http://yoursite.com/2014/06/15/使用hexo搭建静态博客/index.html">
+<meta property="og:title" content="DOM的第一次">
+<meta property="og:url" content="http://yoursite.com/2015/03/01/DOM的第一次/index.html">
 <meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
-<meta property="og:updated_time" content="2017-07-15T15:46:07.326Z">
+<meta property="og:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
+<meta property="og:updated_time" content="2017-07-16T15:25:09.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用hexo搭建静态博客">
-<meta name="twitter:description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
+<meta name="twitter:title" content="DOM的第一次">
+<meta name="twitter:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2014/06/15/使用hexo搭建静态博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2015/03/01/DOM的第一次/"/>
 
 
 
 
 
-  <title>使用hexo搭建静态博客 | 郎雪的博客</title>
+  <title>DOM的第一次 | 郎雪的博客</title>
   
 
 
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/15/使用hexo搭建静态博客/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/03/01/DOM的第一次/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="langxue">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用hexo搭建静态博客</h1>
+          <h1 class="post-title" itemprop="name headline">DOM的第一次</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-06-15T22:20:12+08:00">
-                2014-06-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-03-01T23:23:19+08:00">
+                2015-03-01
               </time>
             
 
@@ -319,22 +319,30 @@
       
 
       
-        <blockquote>
-<p>官方网站：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># 初始化一个博客</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># 切入 blog 目录</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># 启动预览</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 创建博客</span></div><div class="line">hexo new 文章标题</div></pre></td></tr></table></figure>
-<h3 id="结合-Github-Pages-自动发布博客"><a href="#结合-Github-Pages-自动发布博客" class="headerlink" title="结合 Github Pages 自动发布博客"></a>结合 Github Pages 自动发布博客</h3><p>一：Github 创建域名仓库</p>
-<p>二：修改博客中的 _config.yml 文件中</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:密码@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
-<p>三：安装插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>四：发布</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-<p>上面两条命令可以简写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>使用其中哪一个命令都可以发布</p>
-<p>五.主题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在主题商店找到喜欢的主题</div><div class="line">找到作者的github地址  复制</div><div class="line">在themes文件中,拷贝地址 git <span class="built_in">clone</span> 地址 --depth=1</div><div class="line">复制主题文件夹名</div><div class="line">_config.yml文件中  更改theme:的内容</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-
+        <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
+2. DOM: Document Object Model 文档对象模型
+    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
+3. BOM
+</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
+XML文件侧重于存储数据
+</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
+</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
+</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
+找元素===也就是找标签===也就是对象
+操作这个标签===也就是操作标签的属性和样式
+创建标签,删除标签
+</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
+</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
+2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
+3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
+</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
+</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
+</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
+返回的是: 伪数组
+</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
+返回的是: 伪数组
+</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
+</code></pre>
       
     </div>
 
@@ -370,14 +378,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2014/07/15/快捷键替代鼠标/" rel="next" title="快捷键替代鼠标">
+                <i class="fa fa-chevron-left"></i> 快捷键替代鼠标
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/07/15/快捷键替代鼠标/" rel="prev" title="快捷键替代鼠标">
-                快捷键替代鼠标 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/15/那些年遇到的git/" rel="prev" title="那些年遇到的git">
+                那些年遇到的git <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -490,7 +502,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结合-Github-Pages-自动发布博客"><span class="nav-number">1.</span> <span class="nav-text">结合 Github Pages 自动发布博客</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JavaScript分三个部分"><span class="nav-number">1.</span> <span class="nav-text">1. JavaScript分三个部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HTML和XML"><span class="nav-number">2.</span> <span class="nav-text">2. HTML和XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-学习DOM的目的"><span class="nav-number">3.</span> <span class="nav-text">3. 学习DOM的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-document"><span class="nav-number">4.</span> <span class="nav-text">4. document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-DOM可以操作页面"><span class="nav-number">5.</span> <span class="nav-text">5. DOM可以操作页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-事件"><span class="nav-number">6.</span> <span class="nav-text">6. 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-触发和响应"><span class="nav-number">6.1.</span> <span class="nav-text">1. 触发和响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-事件源-事件的触发者"><span class="nav-number">6.2.</span> <span class="nav-text">2. 事件源(事件的触发者)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-响应的程序-事件处理程序"><span class="nav-number">6.3.</span> <span class="nav-text">3. 响应的程序====事件处理程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-原生JS操作CSS样式"><span class="nav-number">7.</span> <span class="nav-text">7. 原生JS操作CSS样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-给元素设置样式"><span class="nav-number">7.1.</span> <span class="nav-text">1. 给元素设置样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-checked-disabled-selected…"><span class="nav-number">7.2.</span> <span class="nav-text">2. checked,disabled,selected…</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getElementById"><span class="nav-number">8.</span> <span class="nav-text">getElementById()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getElementByName"><span class="nav-number">9.</span> <span class="nav-text">getElementByName()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getElementByTagName"><span class="nav-number">10.</span> <span class="nav-text">getElementByTagName()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innerText"><span class="nav-number">11.</span> <span class="nav-text">innerText</span></a></li></ol></div>
             
 
           </div>
