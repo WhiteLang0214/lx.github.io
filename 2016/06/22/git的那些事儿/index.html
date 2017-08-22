@@ -1,306 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>git的那些事儿 | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="GIT版本管理工具git可以把每个版本都存起来，方便我们找到各个历史版本。 git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。 具体操作1. 开始一个新项目，使用git管理代码（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））  首先注册一个git账号。这个oschi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="git的那些事儿">
-<meta property="og:url" content="http://yoursite.com/2016/06/22/git的那些事儿/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="GIT版本管理工具git可以把每个版本都存起来，方便我们找到各个历史版本。 git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。 具体操作1. 开始一个新项目，使用git管理代码（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））  首先注册一个git账号。这个oschi">
-<meta property="og:updated_time" content="2017-08-22T15:40:55.949Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git的那些事儿">
-<meta name="twitter:description" content="GIT版本管理工具git可以把每个版本都存起来，方便我们找到各个历史版本。 git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。 具体操作1. 开始一个新项目，使用git管理代码（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））  首先注册一个git账号。这个oschi">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-git的那些事儿" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    git的那些事儿
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <a id="more"></a>
-<h2 id="GIT版本管理工具"><a href="#GIT版本管理工具" class="headerlink" title="GIT版本管理工具"></a>GIT版本管理工具</h2><pre><code>git可以把每个版本都存起来，方便我们找到各个历史版本。
-git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。
-</code></pre><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="1-开始一个新项目，使用git管理代码"><a href="#1-开始一个新项目，使用git管理代码" class="headerlink" title="1. 开始一个新项目，使用git管理代码"></a>1. 开始一个新项目，使用git管理代码</h3><p>（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））</p>
-<ol>
-<li>首先注册一个git账号。这个oschina提供的git服务就是管理代码的一个空间。</li>
-<li>新建项目，填上项目名称，git地址等信息以后，就可以新建一个项目了。</li>
-<li><p>添加ssh的key，添加key的作用是允许你的电脑访问git 仓库。如果git 项目是私有的,那么指定谁可以访问谁不可以访问。我们把自己计算机上的ssh key添加到git 项目上，就表示我们电脑里的key能访问了，可以理解成key的白名单。配置方法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 邮箱地址填注册git时用的邮箱，然后按3个回车。 </div><div class="line">ssh-keygen -t rsa -C &quot;xxx@happymmall.com&quot; </div><div class="line"># 在git.oschina的项目里添加公钥，查看公钥内容： </div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
-</li>
-<li><p>配置本地的git选项，可以在用户目录下，新建一个.gitconfig文件，把下面的内容放里面。其中的name是在提交的代码时使用的名称，可以随意指定，还有一个是email，这个email一定要和注册git 时使用同一个。<br>这个配置文件中的alias是一些命令的快捷键，比如切换分支是git checkout xxx，如果配置了alias，就可以直接输入git co xxx，这两个命令时等价的。<br>push一项位置成simple，表示是在push的时候只把当前分支推送到远程对应的分支上，这个也可以不配置，因为git2.x版本以后，默认的就是simple模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[user] </div><div class="line">	name = Rosen </div><div class="line">	email = xxx@happymmall.com </div><div class="line">[alias] </div><div class="line">	co=checkout </div><div class="line">	ci=commit </div><div class="line">	st=status </div><div class="line">	pl=pull </div><div class="line">	ps=push </div><div class="line">	dt=difftool </div><div class="line">	l=log—stat </div><div class="line">	cp=cherry-pick </div><div class="line">	ca=commit -am </div><div class="line">	b=branch </div><div class="line">[push] </div><div class="line">	default = simple！</div></pre></td></tr></table></figure>
-</li>
-<li><p>从远程克隆代码，这个git项目就算建好了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用项目的ssh形式的地址 </div><div class="line">git clone xxx</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="2-开始使用git"><a href="#2-开始使用git" class="headerlink" title="2. 开始使用git"></a>2. 开始使用git</h3><h4 id="1-git分支使用规范"><a href="#1-git分支使用规范" class="headerlink" title="1. git分支使用规范"></a>1. git分支使用规范</h4><ol>
-<li>当项目clone下来，默认会处在master分支上，也就是git的默认分支，通常我们不在主分支上做开发，如果更规范些，master分支会对开发人员设置成只读模式，最终由上线人员把要上线的代码合并到master分支上，这时候我们就要自己做一个开发分支了。如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#切换到master分支</div><div class="line">git checkout master</div><div class="line"></div><div class="line">#拉取最新代码</div><div class="line">git pull</div><div class="line"></div><div class="line">#以master分支为基础，新建本地分支，新分支名以erlang1.0为例</div><div class="line">git checkout -b erlang1.0</div><div class="line"></div><div class="line">#在远程建立对应的分支，只有新建分支时需要执行这步，以后只需要git push即可</div><div class="line">git push --set-upstream origin erlang1.0</div><div class="line"></div><div class="line">#以后向远程上传代码</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="3-要在一个已有的分支上开发"><a href="#3-要在一个已有的分支上开发" class="headerlink" title="3. 要在一个已有的分支上开发"></a>3. 要在一个已有的分支上开发</h3><ol>
-<li>因为是已有分支，就不用自己新建了，直接切换到指定分支，还是以erlang1.0为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#切换分支</div><div class="line">git checkout erlang1.0</div><div class="line"></div><div class="line">#拉取当前分支最新代码</div><div class="line">git pull</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="4-开发到一定程度，想看看改动了什么内容"><a href="#4-开发到一定程度，想看看改动了什么内容" class="headerlink" title="4. 开发到一定程度，想看看改动了什么内容"></a>4. 开发到一定程度，想看看改动了什么内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#看文件的改动</div><div class="line">git status</div><div class="line"></div><div class="line">#看文件内容的变动</div><div class="line">git diff</div></pre></td></tr></table></figure>
-<h3 id="5-代码开发完成，想提交代码"><a href="#5-代码开发完成，想提交代码" class="headerlink" title="5. 代码开发完成，想提交代码"></a>5. 代码开发完成，想提交代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#首先是追踪变更的文件</div><div class="line">git add .</div><div class="line"></div><div class="line">#然后提交到本地</div><div class="line">git commit -m &apos;提交代码的说明&apos;</div><div class="line"></div><div class="line">#提交到远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-<h3 id="6-当前分支代码开发完成，准备提交上线"><a href="#6-当前分支代码开发完成，准备提交上线" class="headerlink" title="6. 当前分支代码开发完成，准备提交上线"></a>6. 当前分支代码开发完成，准备提交上线</h3><ol>
-<li>在上线的时候，一般由管理员或发布人员把开发分支的代码合并到master分支上，上线前我们把远程master最新的代码合并到我们的分支上再提交，才能保证我们的开发分支版本高于master分支。如果不这么做，有多人开发的话，就有可能造成A发布了一个版本，等B发布的时候会把A发布的内容冲掉</li>
-<li>merge完成后，就可以做提交了，通常使用pull request提交合并到master分支的请求，管理员合并后，我们的分支内容就可以上线了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 合并远程分支</div><div class="line">git merge origin master</div><div class="line"></div><div class="line"># 注意：如果发现merge的结果里有CONFLICT，就表示当前分支和远程master分支有文件冲突，我们要手动解决一下冲突再做一次提交才可以</div><div class="line"></div><div class="line"># 没冲突或解决冲突后，提交到当前分支的远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">转载自：</div><div class="line">链接：http://www.imooc.com/article/19060</div><div class="line">来源：慕课网！</div><div class="line">​```## GIT版本管理工具</div><div class="line">	git可以把每个版本都存起来，方便我们找到各个历史版本。</div><div class="line">	git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。</div><div class="line">## 具体操作</div><div class="line">### 1. 开始一个新项目，使用git管理代码</div><div class="line">（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））</div><div class="line">1. 首先注册一个git账号。这个oschina提供的git服务就是管理代码的一个空间。</div><div class="line">2. 新建项目，填上项目名称，git地址等信息以后，就可以新建一个项目了。</div><div class="line">3. 添加ssh的key，添加key的作用是允许你的电脑访问git 仓库。如果git 项目是私有的,那么指定谁可以访问谁不可以访问。我们把自己计算机上的ssh key添加到git 项目上，就表示我们电脑里的key能访问了，可以理解成key的白名单。配置方法如下：</div><div class="line">​```git</div><div class="line"># 邮箱地址填注册git时用的邮箱，然后按3个回车。 </div><div class="line">ssh-keygen -t rsa -C &quot;xxx@happymmall.com&quot; </div><div class="line"># 在git.oschina的项目里添加公钥，查看公钥内容： </div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
-<ol>
-<li><p>配置本地的git选项，可以在用户目录下，新建一个.gitconfig文件，把下面的内容放里面。其中的name是在提交的代码时使用的名称，可以随意指定，还有一个是email，这个email一定要和注册git 时使用同一个。<br>这个配置文件中的alias是一些命令的快捷键，比如切换分支是git checkout xxx，如果配置了alias，就可以直接输入git co xxx，这两个命令时等价的。<br>push一项位置成simple，表示是在push的时候只把当前分支推送到远程对应的分支上，这个也可以不配置，因为git2.x版本以后，默认的就是simple模式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[user] </div><div class="line">	name = Rosen </div><div class="line">	email = xxx@happymmall.com </div><div class="line">[alias] </div><div class="line">	co=checkout </div><div class="line">	ci=commit </div><div class="line">	st=status </div><div class="line">	pl=pull </div><div class="line">	ps=push </div><div class="line">	dt=difftool </div><div class="line">	l=log—stat </div><div class="line">	cp=cherry-pick </div><div class="line">	ca=commit -am </div><div class="line">	b=branch </div><div class="line">[push] </div><div class="line">	default = simple！</div></pre></td></tr></table></figure>
-</li>
-<li><p>从远程克隆代码，这个git项目就算建好了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用项目的ssh形式的地址 </div><div class="line">git clone xxx</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="2-开始使用git-1"><a href="#2-开始使用git-1" class="headerlink" title="2. 开始使用git"></a>2. 开始使用git</h3><h4 id="1-git分支使用规范-1"><a href="#1-git分支使用规范-1" class="headerlink" title="1. git分支使用规范"></a>1. git分支使用规范</h4><ol>
-<li>当项目clone下来，默认会处在master分支上，也就是git的默认分支，通常我们不在主分支上做开发，如果更规范些，master分支会对开发人员设置成只读模式，最终由上线人员把要上线的代码合并到master分支上，这时候我们就要自己做一个开发分支了。如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#切换到master分支</div><div class="line">git checkout master</div><div class="line"></div><div class="line">#拉取最新代码</div><div class="line">git pull</div><div class="line"></div><div class="line">#以master分支为基础，新建本地分支，新分支名以erlang1.0为例</div><div class="line">git checkout -b erlang1.0</div><div class="line"></div><div class="line">#在远程建立对应的分支，只有新建分支时需要执行这步，以后只需要git push即可</div><div class="line">git push --set-upstream origin erlang1.0</div><div class="line"></div><div class="line">#以后向远程上传代码</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="3-要在一个已有的分支上开发-1"><a href="#3-要在一个已有的分支上开发-1" class="headerlink" title="3. 要在一个已有的分支上开发"></a>3. 要在一个已有的分支上开发</h3><ol>
-<li>因为是已有分支，就不用自己新建了，直接切换到指定分支，还是以erlang1.0为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#切换分支</div><div class="line">git checkout erlang1.0</div><div class="line"></div><div class="line">#拉取当前分支最新代码</div><div class="line">git pull</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="4-开发到一定程度，想看看改动了什么内容-1"><a href="#4-开发到一定程度，想看看改动了什么内容-1" class="headerlink" title="4. 开发到一定程度，想看看改动了什么内容"></a>4. 开发到一定程度，想看看改动了什么内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#看文件的改动</div><div class="line">git status</div><div class="line"></div><div class="line">#看文件内容的变动</div><div class="line">git diff</div></pre></td></tr></table></figure>
-<h3 id="5-代码开发完成，想提交代码-1"><a href="#5-代码开发完成，想提交代码-1" class="headerlink" title="5. 代码开发完成，想提交代码"></a>5. 代码开发完成，想提交代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#首先是追踪变更的文件</div><div class="line">git add .</div><div class="line"></div><div class="line">#然后提交到本地</div><div class="line">git commit -m &apos;提交代码的说明&apos;</div><div class="line"></div><div class="line">#提交到远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-<h3 id="6-当前分支代码开发完成，准备提交上线-1"><a href="#6-当前分支代码开发完成，准备提交上线-1" class="headerlink" title="6. 当前分支代码开发完成，准备提交上线"></a>6. 当前分支代码开发完成，准备提交上线</h3><ol>
-<li>在上线的时候，一般由管理员或发布人员把开发分支的代码合并到master分支上，上线前我们把远程master最新的代码合并到我们的分支上再提交，才能保证我们的开发分支版本高于master分支。如果不这么做，有多人开发的话，就有可能造成A发布了一个版本，等B发布的时候会把A发布的内容冲掉</li>
-<li>merge完成后，就可以做提交了，通常使用pull request提交合并到master分支的请求，管理员合并后，我们的分支内容就可以上线了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 合并远程分支</div><div class="line">git merge origin master</div><div class="line"></div><div class="line"># 注意：如果发现merge的结果里有CONFLICT，就表示当前分支和远程master分支有文件冲突，我们要手动解决一下冲突再做一次提交才可以</div><div class="line"></div><div class="line"># 没冲突或解决冲突后，提交到当前分支的远程</div><div class="line">git push</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">转载自：</div><div class="line">链接：http://www.imooc.com/article/19060</div><div class="line">来源：慕课网！</div></pre></td></tr></table></figure>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2016-06-22T15:34:51.000Z" itemprop="datePublished">2016-06-22</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2016/08/22/浅析js/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    浅析js
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2016/06/22/DOM/" class="ui tiny button">
-                    
-                    DOM
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#GIT版本管理工具"><span>GIT版本管理工具</span></a></li><li><a href="#具体操作"><span>具体操作</span></a><ol><li><a href="#1-开始一个新项目，使用git管理代码"><span>1. 开始一个新项目，使用git管理代码</span></a></li><li><a href="#2-开始使用git"><span>2. 开始使用git</span></a><ol><li><a href="#1-git分支使用规范"><span>1. git分支使用规范</span></a></li></ol></li><li><a href="#3-要在一个已有的分支上开发"><span>3. 要在一个已有的分支上开发</span></a></li><li><a href="#4-开发到一定程度，想看看改动了什么内容"><span>4. 开发到一定程度，想看看改动了什么内容</span></a></li><li><a href="#5-代码开发完成，想提交代码"><span>5. 代码开发完成，想提交代码</span></a></li><li><a href="#6-当前分支代码开发完成，准备提交上线"><span>6. 当前分支代码开发完成，准备提交上线</span></a></li><li><a href="#2-开始使用git-1"><span>2. 开始使用git</span></a><ol><li><a href="#1-git分支使用规范-1"><span>1. git分支使用规范</span></a></li></ol></li><li><a href="#3-要在一个已有的分支上开发-1"><span>3. 要在一个已有的分支上开发</span></a></li><li><a href="#4-开发到一定程度，想看看改动了什么内容-1"><span>4. 开发到一定程度，想看看改动了什么内容</span></a></li><li><a href="#5-代码开发完成，想提交代码-1"><span>5. 代码开发完成，想提交代码</span></a></li><li><a href="#6-当前分支代码开发完成，准备提交上线-1"><span>6. 当前分支代码开发完成，准备提交上线</span></a></li></ol></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments

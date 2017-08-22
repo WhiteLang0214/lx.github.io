@@ -1,272 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>DOM | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
-<meta property="og:type" content="article">
-<meta property="og:title" content="DOM">
-<meta property="og:url" content="http://yoursite.com/2016/06/22/DOM/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
-<meta property="og:updated_time" content="2017-08-22T15:34:27.299Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DOM">
-<meta name="twitter:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-DOM" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    DOM
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
-2. DOM: Document Object Model 文档对象模型
-    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
-3. BOM
-</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
-XML文件侧重于存储数据
-</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
-</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
-</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
-找元素===也就是找标签===也就是对象
-操作这个标签===也就是操作标签的属性和样式
-创建标签,删除标签
-</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
-</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
-2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
-3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
-</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
-</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
-</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
-返回的是: 伪数组
-</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
-返回的是: 伪数组
-</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
-</code></pre>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2016-06-22T08:33:08.000Z" itemprop="datePublished">2016-06-22</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2016/06/22/git的那些事儿/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    git的那些事儿
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2016/06/22/使用hexo搭建静态博客/" class="ui tiny button">
-                    
-                    使用hexo搭建静态博客
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#1-JavaScript分三个部分"><span>1. JavaScript分三个部分</span></a></li><li><a href="#2-HTML和XML"><span>2. HTML和XML</span></a></li><li><a href="#3-学习DOM的目的"><span>3. 学习DOM的目的</span></a></li><li><a href="#4-document"><span>4. document</span></a></li><li><a href="#5-DOM可以操作页面"><span>5. DOM可以操作页面</span></a></li><li><a href="#6-事件"><span>6. 事件</span></a><ol><li><a href="#1-触发和响应"><span>1. 触发和响应</span></a></li><li><a href="#2-事件源-事件的触发者"><span>2. 事件源(事件的触发者)</span></a></li><li><a href="#3-响应的程序-事件处理程序"><span>3. 响应的程序====事件处理程序</span></a></li></ol></li><li><a href="#7-原生JS操作CSS样式"><span>7. 原生JS操作CSS样式</span></a><ol><li><a href="#1-给元素设置样式"><span>1. 给元素设置样式</span></a></li><li><a href="#2-checked-disabled-selected…"><span>2. checked,disabled,selected…</span></a></li></ol></li><li><a href="#getElementById"><span>getElementById()</span></a></li><li><a href="#getElementByName"><span>getElementByName()</span></a></li><li><a href="#getElementByTagName"><span>getElementByTagName()</span></a></li><li><a href="#innerText"><span>innerText</span></a></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments

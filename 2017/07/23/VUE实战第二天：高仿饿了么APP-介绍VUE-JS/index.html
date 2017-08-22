@@ -1,274 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>VUE实战第二天：高仿饿了么APP---介绍VUE.JS | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="MVVM框架View- 视图---&amp;gt;DOM ViewModel- 通讯---&amp;gt;观察者 - 连接视图和数据之间的中间件 - 当数据发生变化,viewModel能监听到数据变化,就告知view改变 - 当视图发生变化,viewModel也能监听到视图的变化,告知数据改变 Model- 数据---&amp;gt;javascript 好处1. 针对具有复杂交互逻辑的前端应用 2. 提供基础的架构抽">
-<meta property="og:type" content="article">
-<meta property="og:title" content="VUE实战第二天：高仿饿了么APP---介绍VUE.JS">
-<meta property="og:url" content="http://yoursite.com/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="MVVM框架View- 视图---&amp;gt;DOM ViewModel- 通讯---&amp;gt;观察者 - 连接视图和数据之间的中间件 - 当数据发生变化,viewModel能监听到数据变化,就告知view改变 - 当视图发生变化,viewModel也能监听到视图的变化,告知数据改变 Model- 数据---&amp;gt;javascript 好处1. 针对具有复杂交互逻辑的前端应用 2. 提供基础的架构抽">
-<meta property="og:updated_time" content="2017-08-22T16:28:32.107Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VUE实战第二天：高仿饿了么APP---介绍VUE.JS">
-<meta name="twitter:description" content="MVVM框架View- 视图---&amp;gt;DOM ViewModel- 通讯---&amp;gt;观察者 - 连接视图和数据之间的中间件 - 当数据发生变化,viewModel能监听到数据变化,就告知view改变 - 当视图发生变化,viewModel也能监听到视图的变化,告知数据改变 Model- 数据---&amp;gt;javascript 好处1. 针对具有复杂交互逻辑的前端应用 2. 提供基础的架构抽">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-VUE实战第二天：高仿饿了么APP-介绍VUE-JS" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    VUE实战第二天：高仿饿了么APP---介绍VUE.JS
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <a id="more"></a>
-<h2 id="MVVM框架"><a href="#MVVM框架" class="headerlink" title="MVVM框架"></a>MVVM框架</h2><h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><pre><code>- 视图---&gt;DOM
-</code></pre><h3 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h3><pre><code>- 通讯---&gt;观察者
-- 连接视图和数据之间的中间件
-- 当数据发生变化,viewModel能监听到数据变化,就告知view改变
-- 当视图发生变化,viewModel也能监听到视图的变化,告知数据改变
-</code></pre><h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><pre><code>- 数据---&gt;javascript
-</code></pre><h2 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h2><pre><code>1. 针对具有复杂交互逻辑的前端应用
-2. 提供基础的架构抽象
-3. 通过Ajax数据持久化,保证前端用户体验,不需要刷新页面
-</code></pre><h2 id="什么是Vue-js"><a href="#什么是Vue-js" class="headerlink" title="什么是Vue.js"></a>什么是Vue.js</h2><pre><code>1. 轻量级MVVM框架
-2. 数据驱动 + 组件化的前端开发
-3. 社区完善
-</code></pre><h2 id="vue-js-对比-angular-js-rect"><a href="#vue-js-对比-angular-js-rect" class="headerlink" title="vue.js 对比 angular.js , rect"></a>vue.js 对比 angular.js , rect</h2><pre><code>1. vue.js:更轻量,gzip后大小只有20k
-2. vue.js更容易上,学习曲线平稳,demo简单易懂
-3. 吸取两家之长,借鉴了angular的指令和react的组件化
-4. vue.js有自己的计算属性
-</code></pre><h2 id="VUE-JS核心思想"><a href="#VUE-JS核心思想" class="headerlink" title="VUE.JS核心思想"></a>VUE.JS核心思想</h2><h3 id="1-数据驱动"><a href="#1-数据驱动" class="headerlink" title="1. 数据驱动"></a>1. 数据驱动</h3><pre><code>- DOM是数据的一种自然映射
-- 如果没有mvvm框架,数据和视图交互:通过ajax从后台获取到数据,通过手动改变DOM,从而让数据在页面进行改变,这样手动改变DOM,繁琐且容易出错
-- 而使用VUE.JS,省去了手动改变DOM变化的步骤。在VUE.JS中只需要改变数据,通过Directives指令给DOM进行一层封装,当数据发生变化,会通知指令去修改对应的DOM
-</code></pre><h4 id="数据响应原理"><a href="#数据响应原理" class="headerlink" title="数据响应原理"></a>数据响应原理</h4><pre><code>- 数据改变是如何驱动视图自动更新的
-</code></pre><h3 id="2-组件化"><a href="#2-组件化" class="headerlink" title="2. 组件化"></a>2. 组件化</h3><pre><code>- 目的扩展HTML元素,封装可重用的代码
-</code></pre><h4 id="1-组件设计原则"><a href="#1-组件设计原则" class="headerlink" title="1. 组件设计原则"></a>1. 组件设计原则</h4><pre><code>- 页面上每个独立的可视/可交互区域视为一个组件
-- 每个组件对应一个工程目录,组件所需要的各种资源在这个目录下就近维护
-- 页面不过是组件容器,组件可以嵌套自由组合形成完整的页面
-</code></pre>
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2017-07-22T16:27:56.000Z" itemprop="datePublished">2017-07-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    VUE实战第三天：高仿饿了么APP---Vue-cli开始项目
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2017/07/23/VUE实战第一天：高仿饿了么APP-项目先导/" class="ui tiny button">
-                    
-                    VUE实战第一天：高仿饿了么APP---项目先导
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#MVVM框架"><span>MVVM框架</span></a><ol><li><a href="#View"><span>View</span></a></li><li><a href="#ViewModel"><span>ViewModel</span></a></li><li><a href="#Model"><span>Model</span></a></li></ol></li><li><a href="#好处"><span>好处</span></a></li><li><a href="#什么是Vue-js"><span>什么是Vue.js</span></a></li><li><a href="#vue-js-对比-angular-js-rect"><span>vue.js 对比 angular.js , rect</span></a></li><li><a href="#VUE-JS核心思想"><span>VUE.JS核心思想</span></a><ol><li><a href="#1-数据驱动"><span>1. 数据驱动</span></a><ol><li><a href="#数据响应原理"><span>数据响应原理</span></a></li></ol></li><li><a href="#2-组件化"><span>2. 组件化</span></a><ol><li><a href="#1-组件设计原则"><span>1. 组件设计原则</span></a></li></ol></li></ol></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments

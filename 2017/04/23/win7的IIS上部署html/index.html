@@ -1,270 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>win7的IIS上部署html | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="怎样打开win7的IIS功能 在windows7桌面上的左下角，点击“开始”，找到“控制面板”，并点击进去。 进入控制面板后，首先将“查看方式”选择为“类别”,以缩小图标查找的范围，然后点击“程序” 进入“程序”显示页面后，找到“程序和功能”一栏，点击“打开或关闭Windows功能”。 进入到“打开或关闭Windows功能”页面后，找到”Internet信息服务“一栏，可以看到其前面的勾未勾上。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="win7的IIS上部署html">
-<meta property="og:url" content="http://yoursite.com/2017/04/23/win7的IIS上部署html/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="怎样打开win7的IIS功能 在windows7桌面上的左下角，点击“开始”，找到“控制面板”，并点击进去。 进入控制面板后，首先将“查看方式”选择为“类别”,以缩小图标查找的范围，然后点击“程序” 进入“程序”显示页面后，找到“程序和功能”一栏，点击“打开或关闭Windows功能”。 进入到“打开或关闭Windows功能”页面后，找到”Internet信息服务“一栏，可以看到其前面的勾未勾上。">
-<meta property="og:updated_time" content="2017-08-22T16:24:19.534Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="win7的IIS上部署html">
-<meta name="twitter:description" content="怎样打开win7的IIS功能 在windows7桌面上的左下角，点击“开始”，找到“控制面板”，并点击进去。 进入控制面板后，首先将“查看方式”选择为“类别”,以缩小图标查找的范围，然后点击“程序” 进入“程序”显示页面后，找到“程序和功能”一栏，点击“打开或关闭Windows功能”。 进入到“打开或关闭Windows功能”页面后，找到”Internet信息服务“一栏，可以看到其前面的勾未勾上。">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-win7的IIS上部署html" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    win7的IIS上部署html
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <a id="more"></a>
-<h2 id="怎样打开win7的IIS功能"><a href="#怎样打开win7的IIS功能" class="headerlink" title="怎样打开win7的IIS功能"></a>怎样打开win7的IIS功能</h2><ol>
-<li>在windows7桌面上的左下角，点击“开始”，找到“控制面板”，并点击进去。</li>
-<li>进入控制面板后，首先将“查看方式”选择为“类别”,以缩小图标查找的范围，然后点击“程序”</li>
-<li>进入“程序”显示页面后，找到“程序和功能”一栏，点击“打开或关闭Windows功能”。</li>
-<li>进入到“打开或关闭Windows功能”页面后，找到”Internet信息服务“一栏，可以看到其前面的勾未勾上。</li>
-<li>点击”Internet信息服务“前面的”+“将其自目录全部展开，分别将FTP、服务器、web管理工具、万维网服务目录下的所有选项进行勾选，最后点击”确定“即可。</li>
-<li>IIS功能打开完毕后，可以在开始-&gt;程序搜索框里面输入”iis“,找到iis应用软件，并打开，打开之后就可以进行iis的一些配置，发布asp.net网站了。</li>
-</ol>
-<h2 id="怎样在IIS中部署网站"><a href="#怎样在IIS中部署网站" class="headerlink" title="怎样在IIS中部署网站"></a>怎样在IIS中部署网站</h2><ol>
-<li>开始菜单—-搜索框—输入IIS，在结果中，找到IIS快捷方式,选择internet信息服务(IIS)管理器</li>
-<li>进入IIS主界面，打开三角选项卡,右键网站，选择“添加网站”。</li>
-<li>在“添加网站”对话框中，添加网站名称。</li>
-<li>点击应用程序池选择，设置网站的应用程序池（默认新建一个和网站名称一样的应用程序池），当然你也可以选择其他应用程序池，新手推荐用默认程序池就可以了</li>
-<li>接下来选择项目存放的路径，项目文件夹必须是项目的根目录，选择完毕，点击确定。</li>
-<li>配置网站的IP地址和端口，如果本机有独立的IP地址，可以选择固定的IP，如果本机只是测试环境，可以填写127.0.0.1    设置完成，点击确定。</li>
-<li>设置的端口不能被占用,查看方式:cmd—&gt;netstat -a</li>
-<li>最后一步设置网站的默认页面：点击新建完成的网站，在右边栏目中，找到“默认文档”</li>
-<li>点击“默认文档”，弹出窗口中，右键—添加—-输入设置为主页面的文件名，然后确定，OK，部署网站就完成了</li>
-<li>最后测试一下网站是否部署成功：网站名称，右键，选择管理网站，点击浏览</li>
-</ol>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2017-04-23T12:19:37.000Z" itemprop="datePublished">2017-04-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2017/05/11/项目构建工具gulp/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    项目构建工具gulp
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2017/04/21/html标签A和Map/" class="ui tiny button">
-                    
-                    html标签A和Map
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#怎样打开win7的IIS功能"><span>怎样打开win7的IIS功能</span></a></li><li><a href="#怎样在IIS中部署网站"><span>怎样在IIS中部署网站</span></a></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments

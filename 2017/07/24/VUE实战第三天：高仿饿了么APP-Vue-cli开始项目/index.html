@@ -1,292 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>VUE实战第三天：高仿饿了么APP---Vue-cli开始项目 | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
-<meta property="og:type" content="article">
-<meta property="og:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
-<meta property="og:url" content="http://yoursite.com/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
-<meta property="og:updated_time" content="2017-08-22T16:29:57.890Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
-<meta name="twitter:description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-VUE实战第三天：高仿饿了么APP-Vue-cli开始项目" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    VUE实战第三天：高仿饿了么APP---Vue-cli开始项目
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <a id="more"></a>
-<h2 id="vue-cli脚手架工具"><a href="#vue-cli脚手架工具" class="headerlink" title="vue-cli脚手架工具"></a>vue-cli脚手架工具</h2><pre><code>- 帮助我们写好vue.js基础代码的工具,帮助我们搞定
-- 目录结构
-- 本地调试
-- 代码部署
-- 热加载
-- 单元测试
-</code></pre><h2 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h2><pre><code>- 保障node.js在版本4.4.5以上
-- 
-</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>- $npm install -g vue-cli
-</code></pre><h3 id="初始化webpack打包项目名"><a href="#初始化webpack打包项目名" class="headerlink" title="初始化webpack打包项目名"></a>初始化webpack打包项目名</h3><pre><code>- $vue init webpack 项目名
-</code></pre><h3 id="切换到目录"><a href="#切换到目录" class="headerlink" title="切换到目录"></a>切换到目录</h3><pre><code>- $cd 项目名
-</code></pre><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><pre><code>- $npm install
-- 安装成功后,项目中增加文件:node_modules
-</code></pre><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre><code>- $npm run dev
-- 如果出现listening at http: // localhost: 4000就说明启动成功了
-</code></pre><h2 id="项目文件"><a href="#项目文件" class="headerlink" title="项目文件"></a>项目文件</h2><h3 id="一级目录"><a href="#一级目录" class="headerlink" title="一级目录"></a>一级目录</h3><h4 id="1-build"><a href="#1-build" class="headerlink" title="1. build"></a>1. build</h4><h4 id="2-config"><a href="#2-config" class="headerlink" title="2. config"></a>2. config</h4><h4 id="3-node-modules"><a href="#3-node-modules" class="headerlink" title="3. node_modules"></a>3. node_modules</h4><pre><code>- 通过npm install 安装的依赖代码库
-</code></pre><h4 id="4-src"><a href="#4-src" class="headerlink" title="4. src"></a>4. src</h4><pre><code>- 存放的源码
-</code></pre><h4 id="5-static"><a href="#5-static" class="headerlink" title="5. static"></a>5. static</h4><pre><code>- 存放的静态资源
-</code></pre><h3 id="babelIrc文件"><a href="#babelIrc文件" class="headerlink" title=".babelIrc文件"></a>.babelIrc文件</h3><ol>
-<li>babel-plugin-transform-es2015-block-scopped-function文件将es6的语法转换为es5的语法</li>
-<li>babel-plugin-transform-es2015-classes文件将class编译成es5编译类的方式</li>
-<li>babel-plugin-transform-runtime—&gt;lib—&gt;definitions.js文件对es6的symble</li>
-</ol>
-<h3 id="editorconfig文件"><a href="#editorconfig文件" class="headerlink" title=".editorconfig文件"></a>.editorconfig文件</h3><ol>
-<li>编辑器一些的配置</li>
-</ol>
-<h3 id="eslintignore文件"><a href="#eslintignore文件" class="headerlink" title=".eslintignore文件"></a>.eslintignore文件</h3><ol>
-<li>忽略语法检查的目录文件</li>
-<li>主要对build和config文件中的js做es语法检查<h3 id="eslintsrc-js"><a href="#eslintsrc-js" class="headerlink" title=".eslintsrc.js"></a>.eslintsrc.js</h3></li>
-<li>extends: ‘standard’  使用标准的语法标准</li>
-<li>rules可以修改规则<br>为:0的就是忽略语法检查<ol>
-<li>‘arrow-parens’:对箭头函数的规则</li>
-</ol>
-</li>
-</ol>
-<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><ol>
-<li>入口html文件</li>
-<li>webpack编译时,会将项目自动插入到index.html中</li>
-</ol>
-<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><ol>
-<li>入口文件的js</li>
-</ol>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2017-07-23T16:29:33.000Z" itemprop="datePublished">2017-07-24</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2017/08/01/VUE实战第四天：高仿饿了么APP-webpack打包/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    VUE实战第四天：高仿饿了么APP---webpack打包
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/" class="ui tiny button">
-                    
-                    VUE实战第二天：高仿饿了么APP---介绍VUE.JS
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#vue-cli脚手架工具"><span>vue-cli脚手架工具</span></a></li><li><a href="#安装vue-cli"><span>安装vue-cli</span></a><ol><li><a href="#安装"><span>安装</span></a></li><li><a href="#初始化webpack打包项目名"><span>初始化webpack打包项目名</span></a></li><li><a href="#切换到目录"><span>切换到目录</span></a></li><li><a href="#安装依赖"><span>安装依赖</span></a></li><li><a href="#运行"><span>运行</span></a></li></ol></li><li><a href="#项目文件"><span>项目文件</span></a><ol><li><a href="#一级目录"><span>一级目录</span></a><ol><li><a href="#1-build"><span>1. build</span></a></li><li><a href="#2-config"><span>2. config</span></a></li><li><a href="#3-node-modules"><span>3. node_modules</span></a></li><li><a href="#4-src"><span>4. src</span></a></li><li><a href="#5-static"><span>5. static</span></a></li></ol></li><li><a href="#babelIrc文件"><span>.babelIrc文件</span></a></li><li><a href="#editorconfig文件"><span>.editorconfig文件</span></a></li><li><a href="#eslintignore文件"><span>.eslintignore文件</span></a></li><li><a href="#eslintsrc-js"><span>.eslintsrc.js</span></a></li><li><a href="#index-html"><span>index.html</span></a></li><li><a href="#main-js"><span>main.js</span></a></li></ol></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments

@@ -1,305 +1,34 @@
+include mixins
 
+extends partial/layout
 
-<!DOCTYPE html>
-<html lang="zh-CN.yml">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="null">
-    <title>VUE实战第一天：高仿饿了么APP---项目先导 | 郎雪的博客</title>
+block site_title
+    != page.title + " · " + config.title
 
-    <!-- Open Graph -->
-    <meta name="description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
-<meta property="og:type" content="article">
-<meta property="og:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
-<meta property="og:url" content="http://yoursite.com/2017/07/23/VUE实战第一天：高仿饿了么APP-项目先导/index.html">
-<meta property="og:site_name" content="郎雪的博客">
-<meta property="og:description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
-<meta property="og:updated_time" content="2017-08-22T16:26:56.890Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
-<meta name="twitter:description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
+block description
+    - var desc = page.desc || strip_html(page.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 150);
+    meta(name="description", content=desc)
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:undefined",
-  "image": "http://E:\My folder\photos\psb.jpg",
-  "name": "langxue",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
-</head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
-
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>郎雪的博客</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">langxue</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="post-VUE实战第一天：高仿饿了么APP-项目先导" class="ui main container article-type-post">
-
-    
-
-    <div class="ui divided grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
-                
-
-<h1 class="ui header">
-    
-    VUE实战第一天：高仿饿了么APP---项目先导
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <a id="more"></a>
-<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
-<li>掌握vue.js在实战中的应用</li>
-<li>学会使用vue.js完整地开发移动端APP</li>
-<li>学会组件化,模块化的开发方式</li>
-</ul>
-<h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><ol>
-<li>vue.js框架介绍</li>
-<li>vue-cli脚手架 搭建基本代码框架</li>
-<li>vue-router 官方插件管理路由</li>
-<li>vue-resource Ajax通信</li>
-<li>webpack  构建工具</li>
-<li>es6 + eslint  eslint : es6代码风格检查工具</li>
-<li>工程化  组件化  模块化</li>
-<li>移动端常用的开发技巧<ul>
-<li>flex弹性布局</li>
-<li>css stickyfooter</li>
-<li>酷炫的交互设计</li>
-</ul>
-</li>
-</ol>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
-<li>需求分析</li>
-<li>脚手架工具</li>
-<li>数据mock</li>
-<li>架构设计</li>
-<li>代码编写</li>
-<li>自测</li>
-<li>编译打包</li>
-</ol>
-<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><ol>
-<li>代码开发及测试环节<ul>
-<li>UI标注</li>
-<li>真是数据演示</li>
-</ul>
-</li>
-<li>代码规范<ul>
-<li>架构设计</li>
-<li>组件抽象</li>
-<li>模块拆分</li>
-<li>代码风格统一</li>
-<li>JS变量命名规范</li>
-<li>CSS代码规范</li>
-</ul>
-</li>
-</ol>
-<h2 id="功能技术分析"><a href="#功能技术分析" class="headerlink" title="功能技术分析"></a>功能技术分析</h2><ol>
-<li>后端—&gt;用vue-resource做数据交互</li>
-<li>前端—&gt;用vue-router实现单页应用</li>
-<li>用第三方js库better-scroll实现最大程度组件化,重复的CSS可以最大程度复用</li>
-<li>收藏商家功能—&gt;用html5的localstorge</li>
-<li>图标字体的使用</li>
-<li>移动端1像素边框</li>
-<li>css sticky footer布局</li>
-<li>flex弹性布局</li>
-</ol>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2017-07-22T16:26:14.000Z" itemprop="datePublished">2017-07-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    VUE实战第二天：高仿饿了么APP---介绍VUE.JS
-                    
-
-                </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a href="/2017/07/05/vueJS/" class="ui tiny button">
-                    
-                    vueJS
-                    
-                    <i class="angle right icon"></i></a>
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
-            
-            <div class="three wide computer three wide tablet column">
-
-                <div class="ui sticky article-toc" id="article-toc">
-                    <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#学习目标"><span>学习目标</span></a></li><li><a href="#学习内容"><span>学习内容</span></a></li><li><a href="#流程"><span>流程</span></a></li><li><a href="#要求"><span>要求</span></a></li><li><a href="#功能技术分析"><span>功能技术分析</span></a></li></ol>
-                </div>
-
-            </div>
-            
-
-        </div>
-    </div>
-</div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2017 <a href="/">langxue</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
-</body>
-</html>
+block content
+  .autopagerize_page_element: .content: .post-page
+    include mixins
+    +make_post(page, true)
+    .share
+      .evernote
+        a.fa.fa-bookmark(href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();", ref="nofollow", target="_blank")
+      .weibo
+        a.fa.fa-weibo(href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));")
+      .twitter
+        a.fa.fa-twitter(href=url_for("http://twitter.com/home?status="+","+config.url+"/"+page.path+","+config.title+","+page.title+",;"))
+    - var prev = page.prev ? page.prev.path : false;
+    - var next = page.next ? page.next.path : false;
+    .pagination
+      ul.clearfix
+        if prev
+          li.pre.pagbuttons
+            a.btn(role="navigation",href=url_for(prev), title=page.prev.title)!= __('prev_post')
+        if next
+          li.next.pagbuttons
+            a.btn(role="navigation",href=url_for(next), title=page.next.title)!= __('next_post')
+    if page.comments
+        include partial/comments
