@@ -1,99 +1,15 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>highcharts | 郎雪的博客</title>
 
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN.yml">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="https://www.hcharts.cn/兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库[TOC]  配置项主配置(chart)123chart: &amp;#123;  &amp;#125; alignTicks: Boolean(刻度对齐)  默认是：true.  当使用多轴时，两个或更多个相对轴(opposite axes)的刻度，将通过向具有最小刻度的轴添加刻度">
+    <!-- Open Graph -->
+    <meta name="description" content="https://www.hcharts.cn/兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库[TOC]  配置项主配置(chart)123chart: &amp;#123;  &amp;#125; alignTicks: Boolean(刻度对齐)  默认是：true.  当使用多轴时，两个或更多个相对轴(opposite axes)的刻度，将通过向具有最小刻度的轴添加刻度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="highcharts">
 <meta property="og:url" content="http://yoursite.com/2017/04/14/highcharts/index.html">
@@ -104,222 +20,127 @@
 <meta name="twitter:title" content="highcharts">
 <meta name="twitter:description" content="https://www.hcharts.cn/兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库[TOC]  配置项主配置(chart)123chart: &amp;#123;  &amp;#125; alignTicks: Boolean(刻度对齐)  默认是：true.  当使用多轴时，两个或更多个相对轴(opposite axes)的刻度，将通过向具有最小刻度的轴添加刻度">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "langxue",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
 </script>
 
+    
 
-
-  <link rel="canonical" href="http://yoursite.com/2017/04/14/highcharts/"/>
-
-
-
-
-
-  <title>highcharts | 郎雪的博客</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
 
 </head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">郎雪的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">langxue</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+    
     
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/14/highcharts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">highcharts</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-14T00:07:19+08:00">
-                2017-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
 
-    <div class="post-body" itemprop="articleBody">
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
 
-      
-      
+    
 
-      
-        <a id="more"></a>
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-highcharts" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    highcharts
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
 <blockquote>
 <p><a href="https://www.hcharts.cn/" target="_blank" rel="external">https://www.hcharts.cn/</a><br>兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库<br>[TOC]</p>
 </blockquote>
@@ -586,340 +407,109 @@
 - colors: [&apos;#7cb5ec&apos;, &apos;#434348&apos;, &apos;#90ed7d&apos;, &apos;#f7a35c&apos;, &apos;#8085e9&apos;, 
 </code></pre><p>   ‘#f15c80’, ‘#e4d354’, ‘#2b908f’, ‘#f45b5b’, ‘#91e8e1’]<br>    -默认颜色还可以设置在序列及某种类型图表序列里，详见column.colors, pie.colors.<br>    -在 样式模式中，colors选项不存在。 相反，颜色在CSS中定义，并通过数据列或点的类名称应用，或者通过 chart.colorCount 设置</p>
 <h3 id="去掉图表右侧打印按钮"><a href="#去掉图表右侧打印按钮" class="headerlink" title="去掉图表右侧打印按钮"></a>去掉图表右侧打印按钮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exporting:&#123;</div><div class="line">  enabled: flase</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
+                        
+                    </div>
 
-    <div>
-      
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-04-13T16:07:19.000Z" itemprop="datePublished">2017-04-14</time>
+
+    </span>
+    <span class="post-description-item">
         
+    </span>
+</div>
 
-      
-    </div>
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div>
-      
-        
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
 
-      
-    </div>
+                <a href="/2017/04/20/HTML5的本地存储/" class="ui tiny button">
 
-    <div>
-      
-        
+                    <i class="angle left icon"></i>
+                    
+                    HTML5的本地存储
+                    
 
-      
-    </div>
+                </a>
 
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/12/快捷键替代鼠标/" rel="next" title="快捷键替代鼠标">
-                <i class="fa fa-chevron-left"></i> 快捷键替代鼠标
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/HTML5的本地存储/" rel="prev" title="HTML5的本地存储">
-                HTML5的本地存储 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://E:\My folder\photos\psb.jpg"
-               alt="langxue" />
-          <p class="site-author-name" itemprop="name">langxue</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
+                
             </div>
-          
+            <div class="column nav-right">
+                
 
-          
-
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
+                <a href="/2017/03/12/快捷键替代鼠标/" class="ui tiny button">
+                    
+                    快捷键替代鼠标
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
         </div>
+    </div>
 
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+</div>
+                
+            </div>
 
             
-              
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#配置项"><span>配置项</span></a><ol><li><a href="#主配置-chart"><span>主配置(chart)</span></a><ol><li><a href="#alignTicks-Boolean-刻度对齐"><span>alignTicks: Boolean(刻度对齐)</span></a></li><li><a href="#animation-Boolean-Object-动画效果"><span>animation: Boolean|Object(动画效果)</span></a></li><li><a href="#backgroundColor-Color-背景色"><span>backgroundColor: Color(背景色)</span></a></li><li><a href="#borderColor-Color-边框颜色"><span>borderColor: Color(边框颜色)</span></a></li><li><a href="#borderRadius-Number-边框圆角"><span>borderRadius: Number(边框圆角)</span></a></li><li><a href="#borderWidth-Number-边框宽度"><span>borderWidth: Number(边框宽度)</span></a></li><li><a href="#className-String-样式类"><span>className: String(样式类)</span></a></li><li><a href="#colorCount-Number-颜色数量"><span>colorCount: Number(颜色数量)</span></a></li><li><a href="#description-String-描述"><span>description: String(描述)</span></a></li><li><a href="#height-Number-String-高度"><span>height: Number|String(高度)</span></a></li><li><a href="#ignoreHiddenSeries-Boolean-忽略隐藏系列"><span>ignoreHiddenSeries: Boolean(忽略隐藏系列)</span></a></li><li><a href="#inverted-Boolean-反转坐标轴"><span>inverted: Boolean(反转坐标轴)</span></a></li><li><a href="#margin-Array-外边距"><span>margin: Array(外边距)</span></a></li><li><a href="#marginBottom-Number-底边距"><span>marginBottom: Number(底边距)</span></a></li><li><a href="#marginLeft-Number-左边距"><span>marginLeft: Number(左边距)</span></a></li><li><a href="#marginRight-Number-右边距"><span>marginRight: Number(右边距)</span></a></li><li><a href="#marginTop-Number-上边距"><span>marginTop: Number(上边距)</span></a></li><li><a href="#panKey-String-平移键"><span>panKey: String(平移键)</span></a></li><li><a href="#panning-Boolean-平移"><span>panning: Boolean(平移)</span></a></li><li><a href="#pinchType-String-缩放类型"><span>pinchType: String(缩放类型)</span></a></li><li><a href="#plotBackgroundColor-Color-绘图区背景色"><span>plotBackgroundColor: Color(绘图区背景色)</span></a></li><li><a href="#plotBackgroundImage-String-绘图区背景图"><span>plotBackgroundImage: String(绘图区背景图)</span></a></li><li><a href="#plotBorderColor-Color-绘图区边框色"><span>plotBorderColor: Color(绘图区边框色)</span></a></li><li><a href="#plotBorderWidth-Number-绘图区边框宽度"><span>plotBorderWidth: Number(绘图区边框宽度)</span></a></li><li><a href="#plotShadow-Boolean-Object-绘图区阴影"><span>plotShadow: Boolean|Object(绘图区阴影)</span></a></li><li><a href="#polar-Boolean-极地图"><span>polar: Boolean(极地图)</span></a></li><li><a href="#reflow-Boolean-重新适应-重新适应"><span>reflow: Boolean(重新适应)(重新适应)</span></a></li><li><a href="#renderTo-String-Object-渲染"><span>renderTo: String|Object(渲染)</span></a></li><li><a href="#selectionMarkerFill-Color-选中背景色"><span>selectionMarkerFill: Color(选中背景色)</span></a></li><li><a href="#shadow-Boolean-Object-阴影"><span>shadow: Boolean|Object(阴影)</span></a></li><li><a href="#showAxes-Boolean-显示坐标轴"><span>showAxes: Boolean(显示坐标轴)</span></a></li><li><a href="#spacing-Array-内边距"><span>spacing: Array(内边距)</span></a></li><li><a href="#spacingBottom-Number-下内边距"><span>spacingBottom: Number(下内边距)</span></a></li><li><a href="#spacingLeft-Number-做内边距"><span>spacingLeft: Number(做内边距)</span></a></li><li><a href="#spacingRight-Number-右内边距"><span>spacingRight: Number(右内边距)</span></a></li><li><a href="#spacingTop-Number-上内边距"><span>spacingTop: Number(上内边距)</span></a></li><li><a href="#style-CSSObject-样式"><span>style: CSSObject(样式)</span></a></li><li><a href="#type-String-图表类型"><span>type: String(图表类型)</span></a></li><li><a href="#typeDescription-String-类型描述"><span>typeDescription: String(类型描述)</span></a></li><li><a href="#width-Number-宽度"><span>width: Number(宽度)</span></a></li><li><a href="#zoomType-String-缩放方式"><span>zoomType: String(缩放方式)</span></a></li><li><a href="#events-图表相关事件"><span>events(图表相关事件)</span></a></li><li><a href="#options3d"><span>options3d</span></a></li><li><a href="#resetZoomButton-重置缩放按钮"><span>resetZoomButton(重置缩放按钮)</span></a></li></ol></li></ol></li><li><a href="#颜色集合"><span>颜色集合</span></a><ol><li><a href="#colors-颜色集合"><span>colors(颜色集合)</span></a></li><li><a href="#去掉图表右侧打印按钮"><span>去掉图表右侧打印按钮</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
             
 
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置项"><span class="nav-number">1.</span> <span class="nav-text">配置项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主配置-chart"><span class="nav-number">1.1.</span> <span class="nav-text">主配置(chart)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#alignTicks-Boolean-刻度对齐"><span class="nav-number">1.1.1.</span> <span class="nav-text">alignTicks: Boolean(刻度对齐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#animation-Boolean-Object-动画效果"><span class="nav-number">1.1.2.</span> <span class="nav-text">animation: Boolean|Object(动画效果)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#backgroundColor-Color-背景色"><span class="nav-number">1.1.3.</span> <span class="nav-text">backgroundColor: Color(背景色)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#borderColor-Color-边框颜色"><span class="nav-number">1.1.4.</span> <span class="nav-text">borderColor: Color(边框颜色)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#borderRadius-Number-边框圆角"><span class="nav-number">1.1.5.</span> <span class="nav-text">borderRadius: Number(边框圆角)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#borderWidth-Number-边框宽度"><span class="nav-number">1.1.6.</span> <span class="nav-text">borderWidth: Number(边框宽度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#className-String-样式类"><span class="nav-number">1.1.7.</span> <span class="nav-text">className: String(样式类)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#colorCount-Number-颜色数量"><span class="nav-number">1.1.8.</span> <span class="nav-text">colorCount: Number(颜色数量)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#description-String-描述"><span class="nav-number">1.1.9.</span> <span class="nav-text">description: String(描述)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#height-Number-String-高度"><span class="nav-number">1.1.10.</span> <span class="nav-text">height: Number|String(高度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ignoreHiddenSeries-Boolean-忽略隐藏系列"><span class="nav-number">1.1.11.</span> <span class="nav-text">ignoreHiddenSeries: Boolean(忽略隐藏系列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inverted-Boolean-反转坐标轴"><span class="nav-number">1.1.12.</span> <span class="nav-text">inverted: Boolean(反转坐标轴)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#margin-Array-外边距"><span class="nav-number">1.1.13.</span> <span class="nav-text">margin: Array(外边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marginBottom-Number-底边距"><span class="nav-number">1.1.14.</span> <span class="nav-text">marginBottom: Number(底边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marginLeft-Number-左边距"><span class="nav-number">1.1.15.</span> <span class="nav-text">marginLeft: Number(左边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marginRight-Number-右边距"><span class="nav-number">1.1.16.</span> <span class="nav-text">marginRight: Number(右边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#marginTop-Number-上边距"><span class="nav-number">1.1.17.</span> <span class="nav-text">marginTop: Number(上边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#panKey-String-平移键"><span class="nav-number">1.1.18.</span> <span class="nav-text">panKey: String(平移键)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#panning-Boolean-平移"><span class="nav-number">1.1.19.</span> <span class="nav-text">panning: Boolean(平移)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pinchType-String-缩放类型"><span class="nav-number">1.1.20.</span> <span class="nav-text">pinchType: String(缩放类型)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plotBackgroundColor-Color-绘图区背景色"><span class="nav-number">1.1.21.</span> <span class="nav-text">plotBackgroundColor: Color(绘图区背景色)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plotBackgroundImage-String-绘图区背景图"><span class="nav-number">1.1.22.</span> <span class="nav-text">plotBackgroundImage: String(绘图区背景图)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plotBorderColor-Color-绘图区边框色"><span class="nav-number">1.1.23.</span> <span class="nav-text">plotBorderColor: Color(绘图区边框色)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plotBorderWidth-Number-绘图区边框宽度"><span class="nav-number">1.1.24.</span> <span class="nav-text">plotBorderWidth: Number(绘图区边框宽度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plotShadow-Boolean-Object-绘图区阴影"><span class="nav-number">1.1.25.</span> <span class="nav-text">plotShadow: Boolean|Object(绘图区阴影)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#polar-Boolean-极地图"><span class="nav-number">1.1.26.</span> <span class="nav-text">polar: Boolean(极地图)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reflow-Boolean-重新适应-重新适应"><span class="nav-number">1.1.27.</span> <span class="nav-text">reflow: Boolean(重新适应)(重新适应)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#renderTo-String-Object-渲染"><span class="nav-number">1.1.28.</span> <span class="nav-text">renderTo: String|Object(渲染)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selectionMarkerFill-Color-选中背景色"><span class="nav-number">1.1.29.</span> <span class="nav-text">selectionMarkerFill: Color(选中背景色)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shadow-Boolean-Object-阴影"><span class="nav-number">1.1.30.</span> <span class="nav-text">shadow: Boolean|Object(阴影)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#showAxes-Boolean-显示坐标轴"><span class="nav-number">1.1.31.</span> <span class="nav-text">showAxes: Boolean(显示坐标轴)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spacing-Array-内边距"><span class="nav-number">1.1.32.</span> <span class="nav-text">spacing: Array(内边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spacingBottom-Number-下内边距"><span class="nav-number">1.1.33.</span> <span class="nav-text">spacingBottom: Number(下内边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spacingLeft-Number-做内边距"><span class="nav-number">1.1.34.</span> <span class="nav-text">spacingLeft: Number(做内边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spacingRight-Number-右内边距"><span class="nav-number">1.1.35.</span> <span class="nav-text">spacingRight: Number(右内边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spacingTop-Number-上内边距"><span class="nav-number">1.1.36.</span> <span class="nav-text">spacingTop: Number(上内边距)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#style-CSSObject-样式"><span class="nav-number">1.1.37.</span> <span class="nav-text">style: CSSObject(样式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type-String-图表类型"><span class="nav-number">1.1.38.</span> <span class="nav-text">type: String(图表类型)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typeDescription-String-类型描述"><span class="nav-number">1.1.39.</span> <span class="nav-text">typeDescription: String(类型描述)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#width-Number-宽度"><span class="nav-number">1.1.40.</span> <span class="nav-text">width: Number(宽度)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zoomType-String-缩放方式"><span class="nav-number">1.1.41.</span> <span class="nav-text">zoomType: String(缩放方式)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#events-图表相关事件"><span class="nav-number">1.1.42.</span> <span class="nav-text">events(图表相关事件)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#options3d"><span class="nav-number">1.1.43.</span> <span class="nav-text">options3d</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resetZoomButton-重置缩放按钮"><span class="nav-number">1.1.44.</span> <span class="nav-text">resetZoomButton(重置缩放按钮)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#颜色集合"><span class="nav-number">2.</span> <span class="nav-text">颜色集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#colors-颜色集合"><span class="nav-number">2.1.</span> <span class="nav-text">colors(颜色集合)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉图表右侧打印按钮"><span class="nav-number">2.2.</span> <span class="nav-text">去掉图表右侧打印按钮</span></a></li></ol></li></ol></div>
-            
+        </div>
+    </div>
+</div>
 
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
-      
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">langxue</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
 
     </div>
-  </aside>
 
 
-        
-      </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">langxue</span>
-</div>
 
+<!-- scripts list from theme config.yml -->
 
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
 
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
 
-        
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
 
-        
-      </div>
-    </footer>
+<script src="/js/semantic-ui-algolia.js"></script>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+<script src="/js/aloha-events.js"></script>
 
-  </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

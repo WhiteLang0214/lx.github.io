@@ -1,99 +1,15 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>nodeJS | 郎雪的博客</title>
 
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-CN.yml">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="NodeJS node是js写的后台语言之一 基于chrome v8引擎 使用了一个事件驱动,非阻塞I/O  Node服务器配置环境变量 类似于桌面快捷方式 作用：方便从终端快速启动某个软件  系统环境变量加载规则REPL环境 会事先加载nodejs中的核心模块  模块化开发思想1. 模块的体现1. 第三方包的学习2. NodeJS核心模块: NodeJS本身提供3. 自定义模块: 自己写 模块">
+    <!-- Open Graph -->
+    <meta name="description" content="NodeJS node是js写的后台语言之一 基于chrome v8引擎 使用了一个事件驱动,非阻塞I/O  Node服务器配置环境变量 类似于桌面快捷方式 作用：方便从终端快速启动某个软件  系统环境变量加载规则REPL环境 会事先加载nodejs中的核心模块  模块化开发思想1. 模块的体现1. 第三方包的学习2. NodeJS核心模块: NodeJS本身提供3. 自定义模块: 自己写 模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nodeJS">
 <meta property="og:url" content="http://yoursite.com/2017/06/10/nodeJS/index.html">
@@ -104,222 +20,127 @@
 <meta name="twitter:title" content="nodeJS">
 <meta name="twitter:description" content="NodeJS node是js写的后台语言之一 基于chrome v8引擎 使用了一个事件驱动,非阻塞I/O  Node服务器配置环境变量 类似于桌面快捷方式 作用：方便从终端快速启动某个软件  系统环境变量加载规则REPL环境 会事先加载nodejs中的核心模块  模块化开发思想1. 模块的体现1. 第三方包的学习2. NodeJS核心模块: NodeJS本身提供3. 自定义模块: 自己写 模块">
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "langxue",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
 </script>
 
+    
 
-
-  <link rel="canonical" href="http://yoursite.com/2017/06/10/nodeJS/"/>
-
-
-
-
-
-  <title>nodeJS | 郎雪的博客</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
 
 </head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">郎雪的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">langxue</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+    
     
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/10/nodeJS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="langxue">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="郎雪的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">nodeJS</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-10T08:50:38+08:00">
-                2017-06-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
     
 
-    <div class="post-body" itemprop="articleBody">
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
 
-      
-      
+    
 
-      
-        <a id="more"></a>
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-nodeJS" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    nodeJS
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
 <h2 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h2><ol>
 <li>node是js写的后台语言之一</li>
 <li>基于chrome v8引擎</li>
@@ -578,340 +399,109 @@ exports
 <li>使用db对象,对数据进行增删改查</li>
 </ol>
 
-      
-    </div>
+                        
+                    </div>
 
-    <div>
-      
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-06-10T00:50:38.000Z" itemprop="datePublished">2017-06-10</time>
+
+    </span>
+    <span class="post-description-item">
         
+    </span>
+</div>
 
-      
-    </div>
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
 
-    <div>
-      
-        
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
 
-      
-    </div>
+                <a href="/2017/06/23/禁止微信webview调整字体大小/" class="ui tiny button">
 
-    <div>
-      
-        
+                    <i class="angle left icon"></i>
+                    
+                    禁止微信webview调整字体大小
+                    
 
-      
-    </div>
+                </a>
 
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/05/canvas/" rel="next" title="canvas">
-                <i class="fa fa-chevron-left"></i> canvas
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/23/禁止微信webview调整字体大小/" rel="prev" title="禁止微信webview调整字体大小">
-                禁止微信webview调整字体大小 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://E:\My folder\photos\psb.jpg"
-               alt="langxue" />
-          <p class="site-author-name" itemprop="name">langxue</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
+                
             </div>
-          
+            <div class="column nav-right">
+                
 
-          
-
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
+                <a href="/2017/06/05/canvas/" class="ui tiny button">
+                    
+                    canvas
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
         </div>
+    </div>
 
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+</div>
+                
+            </div>
 
             
-              
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#NodeJS"><span>NodeJS</span></a></li><li><a href="#Node服务器"><span>Node服务器</span></a><ol><li><a href="#配置环境变量"><span>配置环境变量</span></a></li><li><a href="#系统环境变量加载规则"><span>系统环境变量加载规则</span></a></li></ol></li><li><a href="#REPL环境"><span>REPL环境</span></a></li><li><a href="#模块化开发思想"><span>模块化开发思想</span></a><ol><li><a href="#1-模块的体现"><span>1. 模块的体现</span></a><ol><li><a href="#1-第三方包的学习"><span>1. 第三方包的学习</span></a></li><li><a href="#2-NodeJS核心模块-NodeJS本身提供"><span>2. NodeJS核心模块: NodeJS本身提供</span></a></li><li><a href="#3-自定义模块-自己写"><span>3. 自定义模块: 自己写</span></a></li></ol></li></ol></li><li><a href="#1-NodeJS的核心模块"><span>1. NodeJS的核心模块</span></a><ol><li><a href="#http—网络操作"><span>http—网络操作</span></a></li><li><a href="#url—url操作处理"><span>url—url操作处理</span></a></li><li><a href="#querystring—主要做get参数处理"><span>querystring—主要做get参数处理</span></a><ol><li><a href="#querystring-get"><span>querystring-get</span></a></li></ol></li><li><a href="#file-system（fs）—文件-文件夹操作"><span>file system（fs）—文件/文件夹操作</span></a><ol><li><a href="#1-读取文件-文件夹"><span>1.读取文件/文件夹</span></a><ol><li><a href="#1-fs-readFile-file-options-cakkback-–-gt-异步读取"><span>1.fs.readFile(file[,options],cakkback)–>异步读取</span></a></li><li><a href="#2-fs-readFileSync-options-–-gt-同步读取"><span>2.fs.readFileSync([options])–>同步读取</span></a></li></ol></li><li><a href="#2-文件-文件夹操作"><span>2.文件/文件夹操作</span></a><ol><li><a href="#1-创建-删除"><span>1.创建,删除</span></a></li><li><a href="#3-文件-文件夹写入–重命名–删除"><span>3.文件/文件夹写入–重命名–删除</span></a></li></ol></li></ol></li><li><a href="#path—文件路径操作"><span>path—文件路径操作</span></a></li><li><a href="#Global模块"><span>Global模块</span></a><ol><li><a href="#属性1-dirname"><span>属性1. __dirname</span></a></li><li><a href="#属性2-filename"><span>属性2. __filename</span></a></li><li><a href="#属性3-require"><span>属性3. require()</span></a></li><li><a href="#属性4-module"><span>属性4. module</span></a></li><li><a href="#属性5-exports"><span>属性5. exports</span></a></li></ol></li></ol></li><li><a href="#2-自定义模块—用到Global中的属性"><span>2. 自定义模块—用到Global中的属性</span></a><ol><li><a href="#1-nodejs遵循CommonJS规范"><span>1. nodejs遵循CommonJS规范</span></a><ol><li><a href="#CommonJS和ECMAScript"><span>CommonJS和ECMAScript</span></a></li></ol></li><li><a href="#2-Commonjs规范内容"><span>2.Commonjs规范内容:</span></a><ol><li><a href="#require"><span>require()</span></a></li><li><a href="#module-exports–-gt-导出单个成员"><span>module.exports–>导出单个成员</span></a></li><li><a href="#exports-xxx—导出多个"><span>exports.xxx—导出多个</span></a></li></ol></li><li><a href="#注意"><span>注意:</span></a></li></ol></li><li><a href="#3-第三方包模块"><span>3. 第三方包模块</span></a><ol><li><a href="#npmjs-com上–本地包"><span>npmjs.com上–本地包</span></a></li><li><a href="#安装nodemon-全局包"><span>安装nodemon-全局包</span></a></li></ol></li><li><a href="#从淘宝的镜像上下载第三方包"><span>从淘宝的镜像上下载第三方包</span></a><ol><li><a href="#步骤"><span>步骤</span></a></li></ol></li></ol></li><li><a href="#require-加载规则"><span>require()加载规则</span></a></li><li><a href="#开启服务器"><span>开启服务器</span></a></li><li><a href="#ES6语法"><span>ES6语法</span></a><ol><li><a href="#let"><span>let</span></a></li><li><a href="#const"><span>const</span></a></li><li><a href="#字符串方法"><span>字符串方法</span></a><ol><li><a href="#includes-gt-indexOf"><span>includes===>indexOf</span></a></li><li><a href="#startsWith-判断协议头"><span>startsWith: 判断协议头</span></a></li><li><a href="#endsWith-可以判断文件后缀"><span>endsWith: 可以判断文件后缀</span></a></li><li><a href="#repeat-数字"><span>repeat(数字)</span></a></li></ol></li><li><a href="#箭头函数"><span>箭头函数</span></a></li></ol></li><li><a href="#服务器端渲染"><span>服务器端渲染</span></a></li><li><a href="#get和post的复习"><span>get和post的复习</span></a><ol><li><a href="#相同点："><span>相同点：</span></a></li><li><a href="#不同点："><span>不同点：</span></a></li><li><a href="#应用场景"><span>应用场景</span></a></li></ol></li><li><a href="#http协议"><span>http协议</span></a><ol><li><a href="#请求"><span>请求</span></a></li><li><a href="#响应"><span>响应</span></a></li></ol></li><li><a href="#同步和异步"><span>同步和异步</span></a><ol><li><a href="#相同"><span>相同</span></a></li><li><a href="#不同"><span>不同</span></a><ol><li><a href="#同步"><span>同步</span></a></li><li><a href="#异步"><span>异步</span></a><ol><li><a href="#应用场景-1"><span>应用场景</span></a></li><li><a href="#特点"><span>特点:</span></a></li></ol></li></ol></li></ol></li><li><a href="#express"><span>express</span></a><ol><li><a href="#好处"><span>好处</span></a></li><li><a href="#路由"><span>路由</span></a></li><li><a href="#all-amp-next"><span>all & next</span></a></li><li><a href="#静态资源处理"><span>静态资源处理</span></a></li></ol></li><li><a href="#数据库"><span>数据库</span></a></li><li><a href="#mongoDB"><span>mongoDB</span></a></li><li><a href="#NodeJS中操作mongoDB"><span>NodeJS中操作mongoDB</span></a></li></ol>
+                </div>
+
+            </div>
             
 
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS"><span class="nav-number">1.</span> <span class="nav-text">NodeJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node服务器"><span class="nav-number">2.</span> <span class="nav-text">Node服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置环境变量"><span class="nav-number">2.1.</span> <span class="nav-text">配置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统环境变量加载规则"><span class="nav-number">2.2.</span> <span class="nav-text">系统环境变量加载规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPL环境"><span class="nav-number">3.</span> <span class="nav-text">REPL环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块化开发思想"><span class="nav-number">4.</span> <span class="nav-text">模块化开发思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-模块的体现"><span class="nav-number">4.1.</span> <span class="nav-text">1. 模块的体现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-第三方包的学习"><span class="nav-number">4.1.1.</span> <span class="nav-text">1. 第三方包的学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-NodeJS核心模块-NodeJS本身提供"><span class="nav-number">4.1.2.</span> <span class="nav-text">2. NodeJS核心模块: NodeJS本身提供</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-自定义模块-自己写"><span class="nav-number">4.1.3.</span> <span class="nav-text">3. 自定义模块: 自己写</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NodeJS的核心模块"><span class="nav-number">5.</span> <span class="nav-text">1. NodeJS的核心模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http—网络操作"><span class="nav-number">5.1.</span> <span class="nav-text">http—网络操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url—url操作处理"><span class="nav-number">5.2.</span> <span class="nav-text">url—url操作处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#querystring—主要做get参数处理"><span class="nav-number">5.3.</span> <span class="nav-text">querystring—主要做get参数处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#querystring-get"><span class="nav-number">5.3.1.</span> <span class="nav-text">querystring-get</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file-system（fs）—文件-文件夹操作"><span class="nav-number">5.4.</span> <span class="nav-text">file system（fs）—文件/文件夹操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-读取文件-文件夹"><span class="nav-number">5.4.1.</span> <span class="nav-text">1.读取文件/文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-fs-readFile-file-options-cakkback-–-gt-异步读取"><span class="nav-number">5.4.1.1.</span> <span class="nav-text">1.fs.readFile(file[,options],cakkback)–>异步读取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-fs-readFileSync-options-–-gt-同步读取"><span class="nav-number">5.4.1.2.</span> <span class="nav-text">2.fs.readFileSync([options])–>同步读取</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-文件-文件夹操作"><span class="nav-number">5.4.2.</span> <span class="nav-text">2.文件/文件夹操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-创建-删除"><span class="nav-number">5.4.2.1.</span> <span class="nav-text">1.创建,删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-文件-文件夹写入–重命名–删除"><span class="nav-number">5.4.2.2.</span> <span class="nav-text">3.文件/文件夹写入–重命名–删除</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#path—文件路径操作"><span class="nav-number">5.5.</span> <span class="nav-text">path—文件路径操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Global模块"><span class="nav-number">5.6.</span> <span class="nav-text">Global模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性1-dirname"><span class="nav-number">5.6.1.</span> <span class="nav-text">属性1. __dirname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性2-filename"><span class="nav-number">5.6.2.</span> <span class="nav-text">属性2. __filename</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性3-require"><span class="nav-number">5.6.3.</span> <span class="nav-text">属性3. require()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性4-module"><span class="nav-number">5.6.4.</span> <span class="nav-text">属性4. module</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性5-exports"><span class="nav-number">5.6.5.</span> <span class="nav-text">属性5. exports</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自定义模块—用到Global中的属性"><span class="nav-number">6.</span> <span class="nav-text">2. 自定义模块—用到Global中的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-nodejs遵循CommonJS规范"><span class="nav-number">6.1.</span> <span class="nav-text">1. nodejs遵循CommonJS规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonJS和ECMAScript"><span class="nav-number">6.1.1.</span> <span class="nav-text">CommonJS和ECMAScript</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Commonjs规范内容"><span class="nav-number">6.2.</span> <span class="nav-text">2.Commonjs规范内容:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#require"><span class="nav-number">6.2.1.</span> <span class="nav-text">require()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module-exports–-gt-导出单个成员"><span class="nav-number">6.2.2.</span> <span class="nav-text">module.exports–>导出单个成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exports-xxx—导出多个"><span class="nav-number">6.2.3.</span> <span class="nav-text">exports.xxx—导出多个</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">6.3.</span> <span class="nav-text">注意:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-第三方包模块"><span class="nav-number">7.</span> <span class="nav-text">3. 第三方包模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#npmjs-com上–本地包"><span class="nav-number">7.0.1.</span> <span class="nav-text">npmjs.com上–本地包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装nodemon-全局包"><span class="nav-number">7.0.2.</span> <span class="nav-text">安装nodemon-全局包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从淘宝的镜像上下载第三方包"><span class="nav-number">7.1.</span> <span class="nav-text">从淘宝的镜像上下载第三方包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤"><span class="nav-number">7.1.1.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#require-加载规则"><span class="nav-number">8.</span> <span class="nav-text">require()加载规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启服务器"><span class="nav-number">9.</span> <span class="nav-text">开启服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6语法"><span class="nav-number">10.</span> <span class="nav-text">ES6语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#let"><span class="nav-number">10.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">10.2.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串方法"><span class="nav-number">10.3.</span> <span class="nav-text">字符串方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#includes-gt-indexOf"><span class="nav-number">10.3.1.</span> <span class="nav-text">includes===>indexOf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#startsWith-判断协议头"><span class="nav-number">10.3.2.</span> <span class="nav-text">startsWith: 判断协议头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#endsWith-可以判断文件后缀"><span class="nav-number">10.3.3.</span> <span class="nav-text">endsWith: 可以判断文件后缀</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat-数字"><span class="nav-number">10.3.4.</span> <span class="nav-text">repeat(数字)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">10.4.</span> <span class="nav-text">箭头函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端渲染"><span class="nav-number">11.</span> <span class="nav-text">服务器端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#get和post的复习"><span class="nav-number">12.</span> <span class="nav-text">get和post的复习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相同点："><span class="nav-number">12.1.</span> <span class="nav-text">相同点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同点："><span class="nav-number">12.2.</span> <span class="nav-text">不同点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">12.3.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http协议"><span class="nav-number">13.</span> <span class="nav-text">http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求"><span class="nav-number">13.1.</span> <span class="nav-text">请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应"><span class="nav-number">13.2.</span> <span class="nav-text">响应</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步和异步"><span class="nav-number">14.</span> <span class="nav-text">同步和异步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相同"><span class="nav-number">14.1.</span> <span class="nav-text">相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同"><span class="nav-number">14.2.</span> <span class="nav-text">不同</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步"><span class="nav-number">14.2.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步"><span class="nav-number">14.2.2.</span> <span class="nav-text">异步</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用场景-1"><span class="nav-number">14.2.2.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">14.2.2.2.</span> <span class="nav-text">特点:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express"><span class="nav-number">15.</span> <span class="nav-text">express</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好处"><span class="nav-number">15.1.</span> <span class="nav-text">好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">15.2.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#all-amp-next"><span class="nav-number">15.3.</span> <span class="nav-text">all & next</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态资源处理"><span class="nav-number">15.4.</span> <span class="nav-text">静态资源处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">16.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mongoDB"><span class="nav-number">17.</span> <span class="nav-text">mongoDB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NodeJS中操作mongoDB"><span class="nav-number">18.</span> <span class="nav-text">NodeJS中操作mongoDB</span></a></li></ol></div>
-            
+        </div>
+    </div>
+</div>
 
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
-      
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">langxue</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
 
     </div>
-  </aside>
 
 
-        
-      </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">langxue</span>
-</div>
 
+<!-- scripts list from theme config.yml -->
 
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
 
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
 
-        
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
 
-        
-      </div>
-    </footer>
+<script src="/js/semantic-ui-algolia.js"></script>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
+<script src="/js/aloha-events.js"></script>
 
-  </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
