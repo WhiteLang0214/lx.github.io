@@ -1,27 +1,1588 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/page_header.pug
-  ul.post-list(style='max-width:'+ theme.content_width +'px')
-    each post in page.posts.data
-      li 
-        p.date #{time(post.date, 'LL')}
-        if post.title
-          h4.title
-            a(href=url_for(post.path)) #{post.title}
-          .excerpt !{post.excerpt}
-        else
-          .no-title !{post.content}
-        if post.photos && post.photos.length
-          a(href=url_for(post.path))
-            img.photo(src=post.photos[0])
-        ul.meta
-          li
-            i.icon.icon-author
-            | #{config.author}
-          li
-            i.icon.icon-clock
-            | #{parseInt(post.content ? post.content.length/900 : 0)} Minutes
-          li
-            i.icon.icon-category
-            | !{list_categories(post.categories)}
-  include ./_partial/pagination.pug
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN.yml">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="郎雪的博客">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="郎雪的博客">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
+
+
+
+
+
+  <title>郎雪的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郎雪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/22/浅析js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/22/浅析js/" itemprop="url">浅析js</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-22T10:30:34+08:00">
+                2016-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<blockquote>
+<p><a href="http://www.2cto.com/kf/201202/118111.html" target="_blank" rel="external">http://www.2cto.com/kf/201202/118111.html</a><br><a href="http://www.webhek.com/misc/interactive-resume" target="_blank" rel="external">http://www.webhek.com/misc/interactive-resume</a><br><a href="http://www.codecombat.cn" target="_blank" rel="external">http://www.codecombat.cn</a><br><a href="http://webhek.com" target="_blank" rel="external">http://webhek.com</a></p>
+</blockquote>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>值类型的变量不能动态添加成员</li>
+<li>引用类型的对象可以动态添加成员</li>
+<li>变量是不是对象就看后面有没有new</li>
+</ul>
+<h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><ul>
+<li>最初的浏览器:网易公司发明</li>
+<li>JavaScript是一个技术,也是一门语言,简称js,原名LiveScript</li>
+<li>JS是一门脚本语言,弱类型语言,动态类型语言,解析型语言</li>
+<li>脚本语言:遇到一行代码就执行一行代码;</li>
+<li>解析型语言:遇到一行代码就解释一行代码,就执行一行代码</li>
+<li>编译语言:编译器可以把代码进行编译(翻译成二进制)一起执行</li>
+<li>弱类型语言:声明变量都用var</li>
+<li>强类型语言:在声明变量时要定义变量的数据类型</li>
+<li>动态类型语言:① 在代码执行的过程中,才知道这个变量到底是什么类型的; ② 变量想要有属性直接      点·就可以,变量想要有方法,直接点·就可以添加</li>
+<li>最初的目的:进行简单的客户端的验证</li>
+<li>现在的目的:页面特效(pc端的网页效果),移动端(移动web和app),异步和服务器交互,服务器开发(node.js)</li>
+<li>客户端:在自己电脑上可以运行,在别人电脑上也可以运行,但相互之间是独立的,这样的程序叫做客户端程序</li>
+<li>javscript是布兰登·艾奇经过10天开发的</li>
+<li>网页的组成::</li>
+</ul>
+<ol>
+<li>HTML:主要作用:侧重于展示信息</li>
+<li>CSS:作用:添加样式,美化页面</li>
+<li>JS:让页面有计算的能力,验证数据,特效….主要作用:验证,特效</li>
+</ol>
+<ul>
+<li>动态页面: ① 页面中如果有HTML,CSS,JS,可以看成这个页面就称之为动态类型页面,也叫DHTML; ② 浏览器访问页面,向服务器发送请求,服务器没有这个页面,通过请求动态生成一个新的页面返回给浏览器,此时这个页面也叫动态页面</li>
+<li>跨平台特性: 可以在不同操作系统中运行 (c#是微软发明的.net技术中的一种变成语言,不能跨平台)</li>
+</ul>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><ul>
+<li>浏览器:是指可以显示网页服务器或文件系统的HTML文件内容,并让用户与这些文件交互的一种软件;也就是显示页面的一个软件</li>
+<li>五大浏览器:—-内核</li>
+</ul>
+<ol>
+<li>chrome谷歌—-</li>
+<li>firefox火狐—-</li>
+<li>Safari—-</li>
+<li>ie—-</li>
+<li>opera欧鹏—-</li>
+</ol>
+<ul>
+<li>浏览器工作原理:HTML通过浏览器引擎中专门负责解析HTML,CSS,JS的渲染引擎,渲染引擎中有网络通信,解析器(负责JS执行),后端负责绘制组合框和窗口(<a href="http://www.2cto.com/kf/201202/118111.html" target="_blank" rel="external">http://www.2cto.com/kf/201202/118111.html</a>)</li>
+</ul>
+<ol>
+<li>User Interface  用户界面，我们所看到的浏览器</li>
+<li>Browser engine  浏览器引擎，用来查询和操作渲染引擎</li>
+<li>Rendering engine 用来显示请求的内容，负责解析HTML、CSS——-渲染引擎</li>
+<li>Networking   网络，负责发送网络请求</li>
+<li>JavaScript Interpreter(解析者)   JavaScript解析器，负责执行JavaScript的代码</li>
+<li>UI Backend   UI后端，用来绘制类似组合框和弹出窗口</li>
+<li>Data Persistence(持久化)  数据持久化，数据存储  cookie、HTML5中的sessionStorage</li>
+</ol>
+<h2 id="JavaScript组成"><a href="#JavaScript组成" class="headerlink" title="JavaScript组成"></a>JavaScript组成</h2><ol>
+<li>ES(ECMAScript):JS的标准的基本语法。(变量,数据类型,运算符,语句,函数,面向对象…)</li>
+<li>DOM(document object model)</li>
+<li>BOM(browser object model)</li>
+</ol>
+<ul>
+<li>JS开发环境:WebStorm,sublime,记事本,前端的IDE–集成开发环境)</li>
+<li>JS运行环境:只要有浏览器即可</li>
+<li>JS语言中:点·出来的东西未必能用,点·不出来的东西或许能用</li>
+</ul>
+<h2 id="JS基本语法及注意事项"><a href="#JS基本语法及注意事项" class="headerlink" title="JS基本语法及注意事项"></a>JS基本语法及注意事项</h2><ul>
+<li><ol>
+<li>在JS中声明变量都用var,因为JS是一门弱类型语言</li>
+</ol>
+</li>
+<li><ol>
+<li>每行代码结束用分号 ;</li>
+</ol>
+</li>
+<li><ol>
+<li>字符串使用双引号(字符串可以用单引号),只是推荐</li>
+</ol>
+</li>
+<li><ol>
+<li>大小写敏感</li>
+</ol>
+</li>
+</ul>
+<h2 id="JS基本代码及引入问题"><a href="#JS基本代码及引入问题" class="headerlink" title="JS基本代码及引入问题"></a>JS基本代码及引入问题</h2><ul>
+<li><ol>
+<li><meta charset="utf-8">网页编码格式</li>
+</ol>
+</li>
+<li><meta name="keywords" content="内容">网页关键字</li>
+<li><meta name="description" content="描述内容">网页描述内容</li>
+<li><ol>
+<li><title>网页标题</title></li>
+</ol>
+</li>
+<li><ol>
+<li>JS代码写在页面的script标签中,可以在head标签中,也可以写在body标签中,如果script标签写在了html标签后面,但浏览器在解析的时候,会将script标签移动到body结束标签的前面;</li>
+</ol>
+</li>
+<li><ol>
+<li>JS代码写的位置:<br>内部引用:JS代码可以写在页面的script标签中,<br>内联写法:可以直接写在html标签中;<br>外部引用:可以放在外部的JS文件中,但需要在html中写script标签,添加Src属性,将外部的js文件引入,此script标签中不能写入其他代码</li>
+</ol>
+</li>
+<li>页面中可以写多对script标签,如果前面的Script标签中的代码出错,后面的script标签中的代码不会受影响;如果在<u>一对script标签中</u>有一行代码出错了,那么<u>这对script标签</u>中的这行代码,的后面的代码不会执行。</li>
+</ul>
+<h2 id="script标签中的属性"><a href="#script标签中的属性" class="headerlink" title="script标签中的属性"></a>script标签中的属性</h2><ul>
+<li><ol>
+<li>异步:多个人同时做多件事,多行代码可以同时执行。属性和属性值一样,且属性值只有一个,就是该属性本身<br> async=”async”,只要下载完成就执行,可以省略属性值(就是只写async或defer即可,但不推荐)<br> defer=”defer”;需要下载,在页面中全部内容加载完毕后才执行。</li>
+</ol>
+</li>
+<li><ol>
+<li>同步:一个人有顺序的做多件事,代码一行一行的执行,第一行代码执行后,第二行代码才开始执行。</li>
+</ol>
+</li>
+<li><ol>
+<li>type=”text/javascript”或language=”javascript”(php中见得多,不推荐使用);告诉浏览器:下面的script标签中写的是js代码</li>
+</ol>
+</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><ul>
+<li>注释就是对代码的一个解释,注释中写的内容不被解析</li>
+<li>注释分类:单行注释,多行注释,文档注释(对类或函数的一种解释)</li>
+<li><ol>
+<li>html注释:  <!--注释内容--></li>
+</ol>
+</li>
+<li><ol>
+<li>css注释: 多行注释 /*注释内容*/</li>
+</ol>
+</li>
+<li><ol>
+<li>js注释: 单行注释 //;   多行注释/<em> </em>/; </li>
+</ol>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="1-基本数据类型"><a href="#1-基本数据类型" class="headerlink" title="1. 基本数据类型"></a>1. 基本数据类型</h3><ul>
+<li>String(字符串类型) ,Boolean(布尔类型), Number(数字类型) , Symbol(ES6)</li>
+<li>Null(空类型) Undefined(未定义类型)<h3 id="2-复杂数据类型"><a href="#2-复杂数据类型" class="headerlink" title="2. 复杂数据类型"></a>2. 复杂数据类型</h3></li>
+<li>Object(对象类型),Array(数组类型),Date(日期类型),Regexp(正则)<h3 id="3-Number"><a href="#3-Number" class="headerlink" title="3. Number"></a>3. Number</h3></li>
+<li>0.1 + 0.2 == 0.3000000000004;</li>
+<li>在js中,小数不要做判断对比,会出错</li>
+<li>Number.MAX_VALUE;数字中的最大值1.797793134+308</li>
+<li>Number.MIN_VALUE;数字中的最小值5e-324<h3 id="4-String"><a href="#4-String" class="headerlink" title="4. String"></a>4. String</h3></li>
+<li>字符串:可以用单引号,也可以用双引号</li>
+<li>特性:字符串不可变—-面向对象讲复杂类型时讲</li>
+<li>字符串和html代码的嵌入,在双引号里,可以写单引号</li>
+<li>字符串拼接: 用加号+</li>
+<li>字符串和数字之间用+号,是字符串拼接<br>var str1 = “nihao”;<br>var str2 =10;<br>console.log(str1 + str2);  //nihao18</li>
+<li>两个字符串之间用-号,结果为:NaN<br>var str1=”hello”;<br>var str2 = “你好”;<br>console.log(str1 - str2); //NaN</li>
+<li>两个数字类型的字符串相加+<br>var str1 = “10”;<br>var str2 = “20”;<br>console.log(str1 + str2); //1020 </li>
+<li>两个数字类型的字符串相减-,可参与运算<br>var str1 = “10”;<br>var str2 = “20”;<br>console.log( str1 - str2); //-20<h3 id="5-Boolean"><a href="#5-Boolean" class="headerlink" title="5. Boolean"></a>5. Boolean</h3></li>
+<li>两个值: true==1  和   false==0</li>
+<li>通常性别用布尔类型来存储,<br>var sex = true;   var sex2 = false;</li>
+<li>任何的数据类型几乎都可以转布尔类型<br>console.log(Boolean(值));</li>
+<li>false:数字0,空字符串,null,undefined</li>
+<li>true: 数字1,其他数字,非空字符串,Object<h3 id="6-undefined"><a href="#6-undefined" class="headerlink" title="6. undefined"></a>6. undefined</h3></li>
+<li>一个变量声明了,没赋值</li>
+<li>一个函数,没有明确返回值,用变量接收了,值就是undefined<h3 id="5-二进制-八进制-十进制-十六进制"><a href="#5-二进制-八进制-十进制-十六进制" class="headerlink" title="5. 二进制,八进制,十进制,十六进制"></a>5. 二进制,八进制,十进制,十六进制</h3></li>
+<li>二进制: 0  1</li>
+<li>八进制: 0,1,2,3,4,5,6,7</li>
+<li>十进制: 0,1,2,3,4,5,6,7,8,9</li>
+<li>十六进制:颜色0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f<h3 id="6-数值检测—–isNaN"><a href="#6-数值检测—–isNaN" class="headerlink" title="6. 数值检测—–isNaN()"></a>6. 数值检测—–isNaN()</h3></li>
+<li>判断当前变量的值不是数字</li>
+<li>返回值: 布尔值true/false<h3 id="7-案例"><a href="#7-案例" class="headerlink" title="7. 案例"></a>7. 案例</h3></li>
+<li>当一个变量的<u>值</u>是null或变量的<u>类型</u>是undefined,那么该变量就没有计算的意义</li>
+<li>在变量参与运算之前,判断该变量是否有意义<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=<span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> result=num+<span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(result); <span class="comment">//1</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num;</div><div class="line"><span class="keyword">var</span> result=num+<span class="number">1</span>;</div><div class="line"><span class="built_in">console</span>.log(result); <span class="comment">//NaN</span></div></pre></td></tr></table></figure>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="1-数字类型和其他类型转字符串类型"><a href="#1-数字类型和其他类型转字符串类型" class="headerlink" title="1. 数字类型和其他类型转字符串类型"></a>1. 数字类型和其他类型转字符串类型</h3><ul>
+<li>方式1. .toString(); //undefined/null不能调用toString()</li>
+<li>方式2. String(变量);<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> num=<span class="number">10</span>;</div><div class="line">  <span class="keyword">var</span> flag=<span class="literal">true</span>;</div><div class="line">  <span class="keyword">var</span> number;</div><div class="line">  <span class="keyword">var</span> num3=<span class="literal">null</span>;</div><div class="line">  <span class="keyword">var</span> num4=<span class="number">18</span>;</div><div class="line">* <span class="built_in">console</span>.log(num.toString()); <span class="comment">//字符串类型的10</span></div><div class="line">* <span class="built_in">console</span>.log(flag.toString()); <span class="comment">//字符串类型的true</span></div><div class="line">* <span class="built_in">console</span>.log(number.toString()); <span class="comment">//报错</span></div><div class="line">* <span class="built_in">console</span>.log(num3.toString());<span class="comment">//报错</span></div><div class="line">* <span class="built_in">console</span>.log(num4.toString(<span class="number">16</span>)); <span class="comment">//表示把数字18转为16进制,结果为:12</span></div><div class="line">* <span class="built_in">console</span>.log(<span class="built_in">String</span>(<span class="number">20</span>)); <span class="comment">//把数字20转为字符串,结果为:数字20</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-基本数据类型转数值类型"><a href="#2-基本数据类型转数值类型" class="headerlink" title="2. 基本数据类型转数值类型"></a>2. 基本数据类型转数值类型</h3><ul>
+<li>基本数据类型转数字类型: </li>
+</ul>
+<ol>
+<li>parseInt(要转换的值);—转整数</li>
+<li>parseFloat(要转换的值);—转小数</li>
+<li>Number(要转换的值);—能转则转,不能则NaN,只要不是数字就NaN,要是纯的小数,就转小数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str=<span class="string">"108"</span>;</div><div class="line"><span class="keyword">var</span> result=str+<span class="number">30</span>;</div><div class="line"><span class="built_in">console</span>.log(result); <span class="comment">//结果为:10830</span></div><div class="line"><span class="keyword">var</span> result2=<span class="built_in">parseInt</span>(str)+<span class="number">30</span>;</div><div class="line"><span class="built_in">console</span>.log(result2); <span class="comment">//结果为: 138</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"20"</span>)); <span class="comment">//20</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"20fsd"</span>)); <span class="comment">//20</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"fsd20"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"2fsd0"</span>)); <span class="comment">//2</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"20.89"</span>)); <span class="comment">//20</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">"20.89.67.45"</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"20"</span>)); <span class="comment">//20</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"20fsd"</span>)); <span class="comment">//20</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"fsd20"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"2fsd0"</span>)); <span class="comment">//2</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"20.89"</span>)); <span class="comment">//20.89</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">"20.89.67.45"</span>)); <span class="comment">//20.89</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">"20.9fsd"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">"20fsd"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">"fsd20"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">"2fsd0"</span>)); <span class="comment">//NaN</span></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">"20.89"</span>)); <span class="comment">//20.89</span></div></pre></td></tr></table></figure>
+<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><ul>
+<li>\ 反斜杠:后面的内容不解析</li>
+<li>\t 水平制表符: 浏览器解析出来是4个空格</li>
+<li>\r 回车</li>
+<li>\n 换行<h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2></li>
+<li>判断变量的数据类型</li>
+<li><ol>
+<li>typeof 变量名</li>
+</ol>
+</li>
+<li><ol>
+<li>typeof (变量名)</li>
+</ol>
+</li>
+<li>如果要看null里面的值,要用Sting(null)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num=<span class="number">10</span>; <span class="comment">//"number"</span></div><div class="line">va str=<span class="string">"hello"</span>; <span class="comment">//"string"</span></div><div class="line"><span class="keyword">var</span> nll=<span class="literal">null</span>; <span class="comment">//"object"</span></div><div class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(); <span class="comment">//"object"</span></div><div class="line"><span class="keyword">var</span> flag=<span class="literal">true</span>; <span class="comment">//"boolean"</span></div><div class="line"><span class="keyword">var</span> def; <span class="comment">//"undefined"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在变量参与运算之前,判断该变量是否有意义,直接判断这个变量的数据类型是"undefined"或变量的值是否为null</span></div><div class="line"><span class="keyword">var</span> num;</div><div class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> (num)==<span class="string">"undefined"</span> || num == <span class="literal">null</span>)&#123;</div><div class="line"> <span class="built_in">console</span>.log(<span class="string">"没意义"</span>); </div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"有意义"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><ul>
+<li>每个运算符都对应自己的运算表达式<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3></li>
+<li>+-*/%</li>
+<li>算数运算表达式:由算术运算符连接起来的表达式</li>
+</ul>
+<ol>
+<li><p>一元运算符:需要一个操作数来运算,++  –<br>一元运算表达式:由一元运算符连接起来的表达式<br><1> ++:<br>   num++: 后加+,如果参与运算,先把自身的值取出来,参与运算,运算结束后,自身加1<br>   ++num: 先加+,如果先参与运算,先自身加1,然后再参与运算<br><2> –:  –num   num–同上</2></1></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="number">1</span>; <span class="keyword">var</span> b=a++ + ++a; <span class="comment">//b=4</span></div><div class="line"><span class="keyword">var</span> a=<span class="number">1</span>; <span class="keyword">var</span> b=a++ + a++; <span class="comment">//b=3</span></div><div class="line"><span class="keyword">var</span> a=<span class="number">1</span>; <span class="keyword">var</span> b=++a + a++; <span class="comment">//b=4</span></div><div class="line"><span class="keyword">var</span> a=<span class="number">1</span>; <span class="keyword">var</span> b=++a + ++a; <span class="comment">//b=5</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>二元运算符:需要两个操作数来运算,+ - * / %</p>
+</li>
+<li>三元运算符<h3 id="复合运算符"><a href="#复合运算符" class="headerlink" title="复合运算符"></a>复合运算符</h3></li>
+</ol>
+<ul>
+<li>+=  -=  *=  /=  %=</li>
+<li>复合运算表达式:由复合运算符连接起来的表达式<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3></li>
+<li>\ &gt;  &lt;  &gt;=  &lt;=  ==  ===  !=  !==</li>
+<li>比较运算表达式:由比较运算符连接起来的表达式</li>
+<li>结果为:布尔类型</li>
+<li>==: 不严格等于,只要是类型相等或值相等,结果就为true</li>
+<li>===: 严格等于,值和类型都相等,才为true<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3></li>
+<li><ol>
+<li>&amp;&amp; 逻辑与(并且):表达式1 &amp;&amp; 表达式2<br>如果有一个表达式的结果为false,整个结果为false;<br>表达式都为true,结果采薇true</li>
+</ol>
+</li>
+<li><ol>
+<li>||逻辑或(或者) : 表达式1 || 表达式2<br>如果有一个表达式的结果为true,这个结果为true</li>
+</ol>
+</li>
+<li><ol>
+<li>!取非(取反):  !表达式<br>如果表达式为true,则结果为false<br>如果表达式为false,则结果为true</li>
+</ol>
+</li>
+<li>逻辑运算表达式:由逻辑运算符连接起来的表达式</li>
+<li>结果为:布尔类型<h3 id="短路问题"><a href="#短路问题" class="headerlink" title="短路问题"></a>短路问题</h3></li>
+<li>短路:前半部分正常的停了,不往后运算了</li>
+<li>表达式1 &amp;&amp; 表达式2<ol>
+<li>如果表达式1的值为对象,表达式2为true,结果为:true<br>如果表达式1的值为true,表达式2为对象,结果为:对象</li>
+</ol>
+</li>
+<li>表达式1 || 表达式2</li>
+<li>false &amp;&amp; true;—-结果为false</li>
+<li>true || false;—结果为true<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的交换"><a href="#变量的交换" class="headerlink" title="变量的交换"></a>变量的交换</h3></li>
+<li><ol>
+<li>方式一:借助第三方变量</li>
+</ol>
+</li>
+<li><ol>
+<li>方式二:加减运算</li>
+</ol>
+</li>
+<li><ol>
+<li>方式三:位运算(c语言中),把数据转换为二进制,再转换为反码,再转换为补码…<h3 id="变量基础"><a href="#变量基础" class="headerlink" title="变量基础:"></a>变量基础:</h3></li>
+</ol>
+</li>
+<li>变量:变量只是存储数据的一个空间,不同的值应该使用不同数据类型的变量来存储;</li>
+<li>变量本身并没有数据类型,如果说某个变量是某种数据类型,那么是变量保存了该数据类型的值;</li>
+<li>如果在var声明语句中给变量指定初始值,  在给它存入值之前,这个变量的初始值就是undefined</li>
+<li>js的全局变量是全局对象的属性</li>
+<li>运行的程序在内存,正在使用的数据在内存<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4></li>
+<li>通过var关键字创建的全局变量(任何函数之外创建的),是不能被删除的</li>
+<li>使用var声明的变量具有变量声明提升的特性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> num);<span class="comment">//"undefined"</span></div><div class="line">num=<span class="number">100</span>;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> num);<span class="comment">//"number"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="隐式全局变量"><a href="#隐式全局变量" class="headerlink" title="隐式全局变量"></a>隐式全局变量</h4><ul>
+<li>无var创建的隐式全局变量(不管是在什么位置创建的),是能被删除的</li>
+<li>表明,在技术上,隐私全局变量不是真正的全局变量,但他们是全局对象的属性,属性可以通过delete操作符删除,为全局变量是不能的</li>
+<li>没有用var关键字声明的变量是隐式全局变量,不具有声明提升的特性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=b=c=<span class="number">20</span>;  <span class="comment">//b和c是隐式全局变量,全局变量只有a</span></div><div class="line"><span class="keyword">var</span> a,b=c=<span class="number">20</span>;   <span class="comment">//c是隐式全局变量,a和b是全局变量</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义三个全局变量</span></div><div class="line"><span class="keyword">var</span> a1 = <span class="number">1</span>;</div><div class="line">a1 = <span class="number">2</span>; <span class="comment">// 反面教材</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   a3 = <span class="number">3</span>; <span class="comment">// 反面教材</span></div><div class="line">&#125;());</div><div class="line"><span class="comment">// 试图删除</span></div><div class="line"><span class="keyword">delete</span> a1; <span class="comment">// false</span></div><div class="line"><span class="keyword">delete</span> a2; <span class="comment">// true</span></div><div class="line"><span class="keyword">delete</span> a3; <span class="comment">// true</span></div><div class="line"><span class="comment">// 测试该删除</span></div><div class="line"><span class="keyword">typeof</span> a1; <span class="comment">// "number"</span></div><div class="line"><span class="keyword">typeof</span> a2; <span class="comment">// "undefined"</span></div><div class="line"><span class="keyword">typeof</span> a3; <span class="comment">// "undefined"</span></div></pre></td></tr></table></figure>
+<h4 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h4><ul>
+<li><p>在浏览器中,全局对象可以通过window属性在代码的任何位置访问,但可能在其他环境下叫做其他的,如果需要在没有window标识符下访问全局对象,可以在任何层级的函数作用域中做如下操作:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> global = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+</li>
+<li><p>这种方法可获得全局对象,因为其在函数中被当做函数调用了,this指向全局对象,只适用于非严格模式</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3></li>
+<li>语法:数据类型   变量名 = 值;</li>
+<li>变量名:应该由字母,数字,下划线,$组成,标准中一般由$,或下划线,或字母开头</li>
+<li>变量名要有意义</li>
+<li>驼峰命名法:变量名都是小写的字母,如果变量名是多个单词的组合,第一个单词的首字母是小写,后面单词的首字母是大写</li>
+<li>字符串在声明的时候,或赋值时,或初始化时,可以用单引号,也可以用双引号<h4 id="变量声明提升"><a href="#变量声明提升" class="headerlink" title="变量声明提升"></a>变量声明提升</h4></li>
+<li>js引擎在执行的时候,会把所有的变量都提升到当前作用域的最前面</li>
+<li>js没有块级作用域,函数是js中唯一拥有自身作用域的结构<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> v = <span class="string">"hello"</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(v);</div><div class="line">  <span class="keyword">var</span> v = <span class="string">"world"</span>;</div><div class="line">&#125;)();</div><div class="line"><span class="comment">//结果为: undefined</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//说明:在function作用域内,变量v的声明被提升了,所以最初的代码相当于</span></div><div class="line"><span class="keyword">var</span> v = <span class="string">"hello"</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> v; <span class="comment">//变量提升</span></div><div class="line">  <span class="built_in">console</span>.log(v); <span class="comment">//undefined</span></div><div class="line">  v = <span class="string">"world"</span>; <span class="comment">//变量赋值</span></div><div class="line">&#125;)();</div><div class="line"><span class="comment">//输出结果为: undefined</span></div></pre></td></tr></table></figure>
+<h4 id="函数表达式与函数声明提升的区别"><a href="#函数表达式与函数声明提升的区别" class="headerlink" title="函数表达式与函数声明提升的区别"></a>函数表达式与函数声明提升的区别</h4><ul>
+<li>函数表达式:先做变量提升,然后在赋值的地方才会给变量赋值一个函数</li>
+<li>函数声明:函数声明提升的时候就赋值了一个函数<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  f1(); </div><div class="line">  f2();</div><div class="line">  <span class="keyword">var</span> f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;; <span class="comment">//函数表达式</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;&#125; <span class="comment">//函数声明</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//变量提升结果</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> f1, <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">  f1(); <span class="comment">//"undefined"</span></div><div class="line">  f2(); <span class="comment">//正常调用函数f2</span></div><div class="line">  f1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h4 id="命名函数表达式"><a href="#命名函数表达式" class="headerlink" title="命名函数表达式"></a>命名函数表达式</h4><ul>
+<li>像函数声明一样为函数表达式指定一个名字,但这不会使函数表达式成为函数声明,命名函数表达式的名字不会进入名字空间,也不会被提升</li>
+<li>命名函数表达式的名字只在该函数的作用域内部有效<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f();</div><div class="line">foo();</div><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo);&#125;;</div><div class="line">f();</div><div class="line">foo();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//变量提升</span></div><div class="line"><span class="keyword">var</span> f;</div><div class="line">f(); <span class="comment">//TypeError:f is not a function 不会执行下面的代码</span></div><div class="line">foo(); <span class="comment">//foo is not defined</span></div><div class="line">f = <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo);&#125;;</div><div class="line">f(); <span class="comment">//"function"</span></div><div class="line">foo(); <span class="comment">// "foo is not defined"</span></div></pre></td></tr></table></figure>
+<h4 id="名字解析顺序"><a href="#名字解析顺序" class="headerlink" title="名字解析顺序"></a>名字解析顺序</h4><ul>
+<li>js中一个名字(name)以四种方式进入作用域,优先级顺序如下:<ol>
+<li>语言内置:所有的作用域中都有this和arguments关键字</li>
+<li>形式参数:函数的参数在函数作用域中都是有效的</li>
+<li>函数声明:如:function foo(){}</li>
+<li>变量声明:如:var bar;</li>
+</ol>
+</li>
+<li>表明:如果一个变量的名字与函数的名字相同,那么函数的名字会覆盖变量的名字,无论在代码中的顺序任何。但变量的初始化是按照在代码中的顺序进行的。</li>
+<li>如果形参中有多个同名变量,即使最后一个同名参数没有定义,最后一个同名参数也会覆盖其他同名参数<br><u> 例外:可以覆盖语言内置的名字arguments</u><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> foo;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo); </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">    foo = <span class="string">"foo"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> foo,<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;&#125;; <span class="comment">//首先声明变量foo,再声明函数foo,因为函数名和变量名相同,且在同一个作用域中,所以函数声明覆盖变量声明</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo);  <span class="comment">//"function"</span></div><div class="line">    foo = <span class="string">"foo"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo); <span class="comment">//"string"</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h2 id="页面解析机制"><a href="#页面解析机制" class="headerlink" title="页面解析机制"></a>页面解析机制</h2><ul>
+<li>浏览器是自顶向下解析我们写的代码,解析之前形成一个DOM树,如果在元素的上面获取元素js文件,那么有可能会获取不到元素;则应该把获取元素代码放在元素的下面。</li>
+<li>如果在window.onload中获取元素,这段代码放在任何位置都是可以执行的</li>
+</ul>
+<h2 id="jQuery事件进阶"><a href="#jQuery事件进阶" class="headerlink" title="jQuery事件进阶"></a>jQuery事件进阶</h2><ul>
+<li>Live:淘汰了</li>
+<li>Bind:绑定已经加载好的空间</li>
+<li>One:只执行一次</li>
+<li>On:绑定动态添加的和绑定已经加载好的</li>
+</ul>
+<h2 id="事件框架"><a href="#事件框架" class="headerlink" title="事件框架"></a>事件框架</h2><h3 id="事件的发展历程"><a href="#事件的发展历程" class="headerlink" title="事件的发展历程"></a>事件的发展历程</h3><ul>
+<li>80年代:<button onclick="alert('您好')">你好</button></li>
+<li>90年代:&gt;button onclick=’testfn()’&gt;你好&lt;/button</li>
+<li>02年代:<button id="btn"></button><pre><code>var btn=document.getElementById(&quot;btn&quot;);
+btn.onclick=function(){}
+</code></pre></li>
+<li>为了分工,发展趋势是不断解耦合<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3></li>
+<li>事件流:包含冒泡,捕获<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4></li>
+<li>事件冒泡:事件从特定的事件到不特定的事件按顺序触发</li>
+<li>IE只支持冒泡事件<h4 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h4><h5 id="on"><a href="#on" class="headerlink" title="on"></a>on</h5></li>
+<li>on的方式绑定事件,后面的会覆盖前面的<h5 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h5></li>
+<li>参数:eventName,fn,false</li>
+<li>IE8不支持,谷歌和火狐支持</li>
+<li>优点:1. 可以绑定多个事件; 2. 动态添加事件3<h5 id="addEvent"><a href="#addEvent" class="headerlink" title="addEvent"></a>addEvent</h5></li>
+<li>参数:”on”+eventName,fn</li>
+</ul>
+<h4 id="移除事件"><a href="#移除事件" class="headerlink" title="移除事件"></a>移除事件</h4><h5 id="removeEventListener"><a href="#removeEventListener" class="headerlink" title="removeEventListener"></a>removeEventListener</h5><ul>
+<li>参数:eventName,命名函数,false</li>
+</ul>
+<h2 id="js库和框架"><a href="#js库和框架" class="headerlink" title="js库和框架"></a>js库和框架</h2><h3 id="1-js库"><a href="#1-js库" class="headerlink" title="1. js库"></a>1. js库</h3><ul>
+<li>js库包含一些能够完成特定或特定类型任务的重用的代码,注重实现的功能,一些方法的集合<br>(jQ)<h3 id="2-框架"><a href="#2-框架" class="headerlink" title="2. 框架"></a>2. 框架</h3></li>
+<li>框架侧重整体提供的一种解决方案,不只是某一个方法或函数,解决方案的集合(Boostrap,vue.js,react.js,anglar.js)<br>You call Library.Framework calls you.</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组和伪数组"><a href="#数组和伪数组" class="headerlink" title="数组和伪数组"></a>数组和伪数组</h3><h4 id="判断数据是真数组还是伪数组"><a href="#判断数据是真数组还是伪数组" class="headerlink" title="判断数据是真数组还是伪数组?"></a>判断数据是真数组还是伪数组?</h4><h5 id="1-真数组"><a href="#1-真数组" class="headerlink" title="1. 真数组"></a>1. 真数组</h5><ol>
+<li>数据 instanceof Array</li>
+<li>Object.prototype.toString.call(数据)===”[object Array]”</li>
+<li>Array.isArray(数据)<h5 id="2-伪数组"><a href="#2-伪数组" class="headerlink" title="2. 伪数组"></a>2. 伪数组</h5></li>
+<li>var o={length : 0}; 这就是一个伪数组</li>
+<li>添加元素: o [0]=”abc”;但伪数组的length属性不会增长</li>
+<li>伪数组:有length属性,能够用for循环将每一个元素遍历出来的</li>
+<li>有length属性,属性值必须为”number”,且number&gt;=0</li>
+<li>对象必须按照索引存储值<h5 id="3-将一个伪数组变成一个真数组"><a href="#3-将一个伪数组变成一个真数组" class="headerlink" title="3. 将一个伪数组变成一个真数组"></a>3. 将一个伪数组变成一个真数组</h5></li>
+<li>[].slice.call(o);o是对象,把o当做成数组,把里面的元素从第0个元素到最后一个元素截取出来,当做数组返回;[]存在的价值就是为了找到后面的方法</li>
+</ol>
+<ul>
+<li>看到上面的代码,就理解成:就是o在调用slice方法,以数组的形式返回</li>
+</ul>
+<h3 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h3><ol>
+<li>splice(); 从数组中添加/删除元素,返回被删除的数组<br>参数: 1. index; 2. 要删除的数量,如果设置为0,则不会删除项目<br>从索引为index的位置开始删除指定个数的元素,返回删除后的数组</li>
+<li>join(“分隔符”); 将数组从分隔符分开转换成字符串</li>
+<li>slice:把数组中从某一个元素到另一个元素的数据取出,如果第2个参数没有,就把给定的元素位置到最后取出;如果第1个参数没有,相当于传递了undefined,undefined==0,相当于从第0个元素到最后一个元素取出</li>
+</ol>
+<h2 id="Null和Undefined"><a href="#Null和Undefined" class="headerlink" title="Null和Undefined"></a>Null和Undefined</h2><h3 id="1-Null类型"><a href="#1-Null类型" class="headerlink" title="1. Null类型"></a>1. Null类型</h3><ol>
+<li>Null类型只有一个值,即null,是javascript语言的关键字。null表示尚未存在的对象,常用来表示函数返回一个不存在的对象</li>
+<li>typeof null==”object”</li>
+<li>if语句中,会自动将null转为false</li>
+<li>转为数值类型为:0  alert(Number(null));–&gt;0</li>
+<li>用法: ① 作为函数的参数,表示该函数的参数不是一个对象;<pre><code>② 作为对象原型链的终点
+</code></pre><h3 id="2-Undefined类型"><a href="#2-Undefined类型" class="headerlink" title="2. Undefined类型"></a>2. Undefined类型</h3></li>
+<li>Undefined类型只有一个值,即undefined,是预定义的全局变量。当声明的变量未被初始化时,变量的默认值为undefined</li>
+<li>typeof undefined==”undefined”</li>
+<li>if语句中,会自动将undefined转为false</li>
+<li>转为数值类型为:NaN   alert(Number(undefined));–&gt;NaN</li>
+<li>用法: ① 变量被声明,但没被赋值<pre><code>② 调用函数时,应该提供的参数没有提供,该参数就处理为undefined(如:形参个数5个,实参传了3个,其余的形参就处理成undefined)
+③ 对象没有赋值的属性,该属性值为undefined
+④ 函数没有返回值时,默认返回undefined
+</code></pre><h3 id="3-判断"><a href="#3-判断" class="headerlink" title="3. 判断"></a>3. 判断</h3></li>
+</ol>
+<ul>
+<li>null和undefined不包含任何属性和方法,使用 . 和 [] 来存取这两个值的成员或方法,都会报错</li>
+<li>如果给一个变量或者属性或作为参数传入函数,可以使用null<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alert(<span class="literal">null</span> == <span class="literal">undefined</span>); <span class="comment">//true</span></div><div class="line">alert(<span class="literal">null</span> === <span class="literal">undefined</span>); <span class="comment">//false</span></div><div class="line">alert(<span class="keyword">typeof</span> <span class="literal">null</span> == <span class="keyword">typeof</span> <span class="literal">undefined</span>); <span class="comment">//false</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="作用域与作用域链"><a href="#作用域与作用域链" class="headerlink" title="作用域与作用域链"></a>作用域与作用域链</h2><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数的2种声明方式"><a href="#函数的2种声明方式" class="headerlink" title="函数的2种声明方式"></a>函数的2种声明方式</h3><h4 id="1-函数声明"><a href="#1-函数声明" class="headerlink" title="1. 函数声明"></a>1. 函数声明</h4><pre><code>函数可执行多次,有函数声明提升的特性
+1. function foo(){};
+</code></pre><h4 id="2-函数表达式"><a href="#2-函数表达式" class="headerlink" title="2. 函数表达式"></a>2. 函数表达式</h4><pre><code>1. 匿名函数表达式: var a=function(){}
+    函数可执行多次,有变量提升的特性,无函数声明提升
+2. 有名函数表达式: var a=function foo(){}
+3. 自调用函数表达式: (function(){})()
+    函数只执行一次,为了创建作用域,保护变量不被污染
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bar();</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line">    alert(foo()); <span class="comment">//8</span></div><div class="line"><span class="comment">//2.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> bar;</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">return</span> bar();</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line">        &#125;;</div><div class="line">&#125;</div><div class="line">    alert(foo()); <span class="comment">//3</span></div><div class="line"><span class="comment">//3.</span></div><div class="line">alert(foo());<span class="comment">//3</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> bar;</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">return</span> bar();</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line">        &#125;;</div><div class="line">&#125;</div><div class="line"><span class="comment">//4.</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> bar;</div><div class="line">        <span class="keyword">return</span> bar();</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">3</span>;</div><div class="line">        &#125;;</div><div class="line">        bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">8</span>;</div><div class="line">        &#125;;</div><div class="line">&#125;</div><div class="line">    alert(foo()); <span class="comment">// [Type Error]:bar is not function</span></div></pre></td></tr></table></figure>
+<h3 id="匿名函数的使用"><a href="#匿名函数的使用" class="headerlink" title="匿名函数的使用"></a>匿名函数的使用</h3><h4 id="哪些地方可能用到匿名函数"><a href="#哪些地方可能用到匿名函数" class="headerlink" title="哪些地方可能用到匿名函数"></a>哪些地方可能用到匿名函数</h4><ol>
+<li>自调用函数:可以少写一个变量<br>由于不需要使用哦变量名,或变量名只用一两次,因此不需要使用名字,减少内存占用</li>
+<li>函数表达式:道格拉斯提出<br>var f=function(){}</li>
+</ol>
+<h3 id="柯里化和反柯里化"><a href="#柯里化和反柯里化" class="headerlink" title="柯里化和反柯里化"></a>柯里化和反柯里化</h3><ul>
+<li>学习柯里化方法:书籍-《javascript模式》,库和框架的源代码<h4 id="1-柯里化-高阶函数"><a href="#1-柯里化-高阶函数" class="headerlink" title="1. 柯里化==高阶函数"></a>1. 柯里化==高阶函数</h4></li>
+<li>柯里化===高阶函数:就是专门处理函数的函数—生成函数的函数—生成能实现一个功能的函数<br>就是本身有一个函数,这个函数调用完之后还是返回一个函数</li>
+<li>函数的作用对于我们开发来讲,一般的作用:为了封装,完成复用,完成某个功能</li>
+<li>生成函数的函数,目的是:一个函数的返回值还是函数,那么实际上是在生成同种类型或功能类型的函数 </li>
+<li>例:以jq为例,元素获取#dv .c div—&gt;在jq中采用的算法是:反向查,如下:<pre><code>a. 找到所有的div
+b. 看所有的div的祖代元素,是否有满足.c的
+c. 在结果中看其祖代元素是不是#dv
+就有一个非常重要的需求:判断元素是否满足某个选择器
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下面代码实现查找祖代元素---判断parentNode的parentNode的parentNode</span></div><div class="line"><span class="keyword">var</span> tmp=node;</div><div class="line"><span class="keyword">while</span>(tmp = tmp.parentNode)&#123;</div><div class="line">  <span class="keyword">if</span>(满足)&#123;</div><div class="line">  <span class="keyword">return</span> ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//判断子代元素---判断parentNode</span></div><div class="line"><span class="keyword">var</span> tmp = node;</div><div class="line">tmp = tmp.parentNode;</div><div class="line"><span class="keyword">if</span>(满足)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//判断过滤并行元素---判断当前元素</span></div><div class="line"><span class="keyword">var</span> tmp=node;</div><div class="line"><span class="keyword">if</span>(满足)...</div></pre></td></tr></table></figure>
+<ul>
+<li>怎么判断上面满足的条件?—jq中采用了一个方式,以下面三个为例<br>现在的需求是判断元素是否满足某个选择器<br>#id      tmp,id===idName<br>.c          tmp,className.split(“ “).indexOf(className) ! = -1;为什么要调split(“ “);本质上在html标准中,类样式是用空格分隔的,现在用split(“ “)分隔,再用indexOf()判断里面对应的值是否&gt;-1<br>div   tmp.nodeName.toLowerCase() == tagName.toLowerCase();<br>还有多少个选择器,jq中定义了一个函数<br>function func(callback){}—&gt;function<br>callback必须带有一个dom元素作为参数,返回一个函数<br>这个函数的功能:返回符合参数表示的判断规则的函数<br>该函数专门返回:<ol>
+<li>能判断元素是否符合某个id元素的函数</li>
+<li>能判断元素是否符合某个class样式的元素的函数</li>
+<li>能判断元素是否符合某个标签名的元素的函数</li>
+<li>…..等等</li>
+</ol>
+</li>
+<li>使用返回函数的函数目的不是必须使用,而是在代码整合(重构)的基础上,让代码可以更加复用</li>
+<li>vue.js</li>
+</ul>
+<h3 id="函数的4种调用模式"><a href="#函数的4种调用模式" class="headerlink" title="函数的4种调用模式"></a>函数的4种调用模式</h3><ul>
+<li>如何区分</li>
+<li>this指向<h4 id="1-普通函数调用–函数模式"><a href="#1-普通函数调用–函数模式" class="headerlink" title="1. 普通函数调用–函数模式"></a>1. 普通函数调用–函数模式</h4></li>
+<li>没有任何做引导,直接调用,常见形式:func(); 或 (function(){})();</li>
+<li>this—&gt;全局对象  因为javascript运行在浏览器中,所以this=window,如果运行再别的地方,this就是别的了<h4 id="2-构造函数调用–构造器调用模式"><a href="#2-构造函数调用–构造器调用模式" class="headerlink" title="2. 构造函数调用–构造器调用模式"></a>2. 构造函数调用–构造器调用模式</h4></li>
+<li>有一个new关键字做引导,是要创建一个对象出来的</li>
+<li>this–&gt;刚刚被创建出来的实例<h4 id="3-方法调用模式-方法模式"><a href="#3-方法调用模式-方法模式" class="headerlink" title="3. 方法调用模式-方法模式"></a>3. 方法调用模式-方法模式</h4></li>
+<li>必须有一个对象做引导,必须是对象找到方法来调用</li>
+<li>常见形式:o1.func(); 或 arr<a href="">0</a>;</li>
+<li>this–&gt;引导对象(调用方法的对象)<h4 id="4-上下文调用模式call-apply"><a href="#4-上下文调用模式call-apply" class="headerlink" title="4. 上下文调用模式call()/apply()"></a>4. 上下文调用模式call()/apply()</h4></li>
+<li>上下文:函数的执行环境===this到底是哪个对象</li>
+<li>上下文模式:就是可以指定this含义的调用模式,就是说,this是谁,根据传的参数而定,传的参数是什么就是什么</li>
+<li>call()/apply():这两个函数方法没有区别,只是参数的调用形式上不同,功能上相同。</li>
+<li>call()/apply()参数1的规则:<ol>
+<li>参数:如果是一个对象,那么函数中的this就是这个对象</li>
+<li>参数:如果是null或undefined,那么this就是全局对象</li>
+<li>参数:如果是基本数据类型(数字,字符串,布尔),那么this就是对应的基本包装类型对象(Number,String,Boolean)</li>
+</ol>
+</li>
+<li>func();–func.apply();–func.call()是函数调用的等价形式</li>
+<li>注意:call().apply()的调用形式规则<ol>
+<li>apply();参数只有两个,参数1:this指向;参数2:是一个对象,参数2也就是arguments,就相当于原函数的参数<br>如果将数组零零散散的传入,就要用到apply()</li>
+<li>call();参数可以多个,参数1:this指向;参数2以后是函数所需要的所有参数,在Call的内部,arguments从1开始其后的所有参数,就相当于原函数的参数</li>
+</ol>
+</li>
+<li>例1. [].push.apply([],o); []调用push方法,并将o对象作为参数传入</li>
+<li>例2. [].slice.call(o);o调用slice方法(就是在借用函数),并将对象o当做参数传入</li>
+<li>借用构造函数继承(经典使用)<br>function Person(name){<br>  this.name = name;<br>}<br>function Student(name,age,gender){<br>  Person.call(this,name);//相当于this在调Person<br>  this.age=age;<br>  this.gender=gender;<br>}<br>var stu = new Student(“jim”,”19”,”男”);<h4 id="5-bind模式–ES5"><a href="#5-bind模式–ES5" class="headerlink" title="5. bind模式–ES5"></a>5. bind模式–ES5</h4></li>
+</ul>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="1-闭包的概念"><a href="#1-闭包的概念" class="headerlink" title="1. 闭包的概念:"></a>1. 闭包的概念:</h3><ol>
+<li>闭就是封闭之意:所谓的封闭,就是内部的东西外部无法访问,所以函数构成封闭结构,函数内部的局部变量,外界无法访问。在javascript中,可从作用域角度考虑。</li>
+<li>包就是包裹,指的就是范围,其实指的是有开始-结束的一个范围,数组是包,对象也是包,而函数也是包,</li>
+<li>所谓的闭包,就是一个空间,里面的数据外部无法访问,那么我们说函数构成闭包的结构</li>
+<li>函数构成闭包,但是没有任何作用:因为函数内的数据外界无法访问,而且函数执行结束后,数据就会被释放;如果想要使用闭包,就不能让其释放,而且需要访问里面的数据</li>
+</ol>
+<ul>
+<li>结论:<ol>
+<li>函数构成闭包</li>
+<li>我要使用这个闭包中的数据,但是作用域规则告诉我们使用不了:里面可以访问外面的,外面无法访问里面的 <h3 id="2-闭包的特征"><a href="#2-闭包的特征" class="headerlink" title="2. 闭包的特征"></a>2. 闭包的特征</h3></li>
+</ol>
+</li>
+<li>闭包的特征:有私有数据,缓存数据</li>
+<li>能够缓存数据和含有私有数据的函数才是闭包。但不是所有的函数是闭包</li>
+<li>函数执行的时候占用内存,函数执行完毕后,释放内存(回收内存)<h3 id="3-闭包如何使用"><a href="#3-闭包如何使用" class="headerlink" title="3. 闭包如何使用:"></a>3. 闭包如何使用:</h3></li>
+<li>两个基本结构:<ol>
+<li>function xxx(){<br>return function(){<br> return 数据<br>}<br>}<br>var f =xxx();<br>f=null; 或 f=其他;<br>在调用xxx();没有东西接收返回值的时候,才会释放;<br>或有变量接收返回值,但后来给变量赋值为null,数据也会释放</li>
+<li>function func(num1, num2){<br>//私有数据<br>return {<br> func1: function(){<br>   return num1;<br> },<br> func2: function(){<br>   reutrn num2;<br> }<br>}<br>}<br> 可以返回两个数据<h3 id="经典案例"><a href="#经典案例" class="headerlink" title="经典案例"></a>经典案例</h3></li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>沙箱模式(自调用)<br>(function(){})()<br>为什么自调用后就安全了,因为这是一个闭包,闭包有私有数据,在函数内部声明的变量,外界是不会访问到的,不会污染全局</li>
+<li>缓存案例–Vue.js;jQuery.js<br>function createCache(fn){<br>  //返回一个存对象的数据<br>  var cache={};<br>  reutrn function(key,value){<pre><code>//功能是:从cache里面把对应的值取出
+if(value){
+  return cache[key]=fn(value);
+}
+return cache[key];
+</code></pre>  }<br>}</li>
+<li>事件案例addEventListener 和 attachEvent<br>在函数中解决兼容性<br><1> addEventListener<br>  添加事件:用的事件名,不带on,事件处理中的参数是事件对象<br><2> attachEvent<br>  IE低版本浏览器独有的<br>  添加事件:必须带on,</2></1></li>
+</ol>
+<ul>
+<li>死递归,会造成溢出,什么叫溢出?<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例:</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> num=<span class="number">123</span>;</div><div class="line">  func();</div><div class="line">&#125;</div><div class="line">func();</div><div class="line"><span class="comment">//当func调用时,上面的的代码就开始执行了,函数内部有变量num,需要在内存开辟空间,在函数内部func再次调用,同时外面的func仍然在调用,所以内存空间不会释放,而同时会再次开辟空间,所以造成了死递归</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//例:</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> num;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> f=func(<span class="number">123</span>);</div><div class="line">f();<span class="comment">//结果:123</span></div><div class="line"><span class="comment">//f调用一次,就能获取到123,再调用还能获取123,说明此时函数内部的变量num没有释放。实际上每次调用f,f中是没有任何数据的,在之前调用了func,才是将数据缓存下来了,所以调用f时会获取到结果</span></div></pre></td></tr></table></figure>
+<h2 id="NodeList"><a href="#NodeList" class="headerlink" title="NodeList"></a>NodeList</h2><ul>
+<li>内置对象</li>
+<li>通过类似document.querySelectorAll()等方法获取的一组相同标签的DOM元素,是NodeList函数的实例,<u>它不是数组</u>。</li>
+<li>可以直接获取length属性,可以根据索引取到对应的单独的元素<h3 id="为什么NodeList不是数组"><a href="#为什么NodeList不是数组" class="headerlink" title="为什么NodeList不是数组"></a>为什么NodeList不是数组</h3></li>
+</ul>
+<ol>
+<li>验证:直接方法,用Array专有的push和pop方法,会提示没有这两个方法</li>
+<li>验证:修改NodeList的原型<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.testNodeList = <span class="string">"test nodelist"</span>; <span class="comment">//数组添加原型属性</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">NodeList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> list = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>);</div><div class="line">    alert(list.testNodeList);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="keyword">new</span> <span class="built_in">Array</span>().testNodeList); </div><div class="line">    NodeList(); <span class="comment">//undefined    </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="js中的兼容问题-不少于5种"><a href="#js中的兼容问题-不少于5种" class="headerlink" title="js中的兼容问题(不少于5种)"></a>js中的兼容问题(不少于5种)</h2><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="in运算符"><a href="#in运算符" class="headerlink" title="in运算符"></a>in运算符</h3><ul>
+<li>in运算符:是判断一个属性(或方法)是否在一个对象中(或原型中)。in是关键字</li>
+<li>语法格式: 字符串 in 对象(obj);</li>
+<li>含义:判断obj对象中是否含有该字符串描述的成员,如果有返回true,否则返回false</li>
+<li>返回值:布尔值</li>
+<li>在javascript中,对象就是键值对,一个值非函数就是属性,是属性就是方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o=&#123;</div><div class="line">  <span class="attr">name</span>:<span class="string">"jim"</span>,</div><div class="line">  <span class="attr">sayHello</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"name"</span> <span class="keyword">in</span> o);--&gt;<span class="literal">true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"age"</span> <span class="keyword">in</span> o);--&gt;<span class="literal">false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"sayHello"</span> <span class="keyword">in</span> o);--&gt;<span class="literal">true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"toString"</span> <span class="keyword">in</span> o);--&gt;<span class="literal">true</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="instanceof运算符"><a href="#instanceof运算符" class="headerlink" title="instanceof运算符"></a>instanceof运算符</h3><ul>
+<li>语法:obj instanceof func</li>
+<li>含义:判断函数func的prototype属性是否在obj的原型链上,如果在则返回true,否则返回false</li>
+<li>返回值:布尔值</li>
+</ul>
+<h2 id="引用类型和值类型"><a href="#引用类型和值类型" class="headerlink" title="引用类型和值类型"></a>引用类型和值类型</h2><ul>
+<li>值类型:存放值本身</li>
+<li>引用类型:存放值的地址</li>
+</ul>
+<h2 id="js面向对象"><a href="#js面向对象" class="headerlink" title="js面向对象"></a>js面向对象</h2><h3 id="面向对象原理"><a href="#面向对象原理" class="headerlink" title="面向对象原理"></a>面向对象原理</h3><h3 id="面向对象设计模式"><a href="#面向对象设计模式" class="headerlink" title="面向对象设计模式"></a>面向对象设计模式</h3><h4 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1. 工厂模式"></a>1. 工厂模式</h4><ol>
+<li>模式说明:在函数中定义一个对象,给对象添加属性和方法,最后在函数的最后返回该对象。</li>
+<li>引用说明:引用的时候使用工厂经典方式:var x=parent()而不是混合工厂方式var a=new parent()的方式, <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">   <span class="keyword">return</span> <span class="string">"啊打"</span>;  </div><div class="line">&#125;;  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">       <span class="keyword">var</span>  Child = <span class="keyword">new</span> <span class="built_in">Object</span>();  </div><div class="line">       Child.name=<span class="string">"李小龙"</span>;  </div><div class="line">       Child.age=<span class="string">"30"</span>;  </div><div class="line">       Child.lev=lev;  </div><div class="line">     <span class="keyword">return</span> Child;  </div><div class="line">&#125;;  </div><div class="line">  </div><div class="line"><span class="keyword">var</span>  x = Parent();  </div><div class="line">alert(x.name);  </div><div class="line">alert(x.lev());</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="2-构造函数模式"><a href="#2-构造函数模式" class="headerlink" title="2. 构造函数模式"></a>2. 构造函数模式</h4><ol>
+<li>模式说明:使用构造函数方式创建对象,无需在函数内部创建新的对象,而使用this指代,无需明确返回</li>
+<li>与工厂模式异同:<ol>
+<li>不同:工厂模式在函数内部创建新的对象;构造函数模式不用在函数内部创建新的对象</li>
+<li>相同:在函数内部可以定义属性和方法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=<span class="string">"张三"</span>;</div><div class="line">  <span class="keyword">this</span>.age=<span class="string">"30"</span>;</div><div class="line">  <span class="keyword">this</span>.lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> Parent();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="3-js原型模式"><a href="#3-js原型模式" class="headerlink" title="3. js原型模式"></a>3. js原型模式</h4><ol>
+<li>模式说明:利用函数的prototype属性对属性进行定义<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">Parent.prototype.name=<span class="string">"张三"</span>;</div><div class="line">Parent.prototype.age=<span class="string">"30"</span>;</div><div class="line">Parent.prototype.lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> Parent();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="4-构造函数-原型js混合模式"><a href="#4-构造函数-原型js混合模式" class="headerlink" title="4. 构造函数+原型js混合模式"></a>4. 构造函数+原型js混合模式</h4><ol>
+<li>模式说明:混合搭配使用构造函数的方式和原型方式,将属性定义在函数中,将方法的定义在函数的原型prototype中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=<span class="string">"张三"</span>;</div><div class="line">  <span class="keyword">this</span>.age=<span class="string">"30"</span>;</div><div class="line">&#125;</div><div class="line">Parent.prototype.lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> Parent();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-构造函数-原型的动态原型模式"><a href="#5-构造函数-原型的动态原型模式" class="headerlink" title="5. 构造函数+原型的动态原型模式"></a>5. 构造函数+原型的动态原型模式</h4><ol>
+<li>模式说明:动态原型方式相当于混合构造函数,原型方式的一个特例,方法直接在函数中定义,但是因为<br>if(typeof Parent._lev == “undefined”){<br>  Parent._lev=true;<br>}<br>从而保证了创建该对象的实例时,属性的方法不会被重复创建<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=<span class="string">"张三"</span>;</div><div class="line">  <span class="keyword">this</span>.age=<span class="string">"30"</span>;</div><div class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span>._lev==<span class="string">"undefined"</span>)&#123;</div><div class="line">    Parent.prototype.lev=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">    &#125;</div><div class="line">    Parent._lev=<span class="literal">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> Parent();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/22/git的那些事儿/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/22/git的那些事儿/" itemprop="url">git的那些事儿</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T23:34:51+08:00">
+                2016-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<h2 id="GIT版本管理工具"><a href="#GIT版本管理工具" class="headerlink" title="GIT版本管理工具"></a>GIT版本管理工具</h2><pre><code>git可以把每个版本都存起来，方便我们找到各个历史版本。
+git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。
+</code></pre><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h3 id="1-开始一个新项目，使用git管理代码"><a href="#1-开始一个新项目，使用git管理代码" class="headerlink" title="1. 开始一个新项目，使用git管理代码"></a>1. 开始一个新项目，使用git管理代码</h3><p>（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））</p>
+<ol>
+<li>首先注册一个git账号。这个oschina提供的git服务就是管理代码的一个空间。</li>
+<li>新建项目，填上项目名称，git地址等信息以后，就可以新建一个项目了。</li>
+<li><p>添加ssh的key，添加key的作用是允许你的电脑访问git 仓库。如果git 项目是私有的,那么指定谁可以访问谁不可以访问。我们把自己计算机上的ssh key添加到git 项目上，就表示我们电脑里的key能访问了，可以理解成key的白名单。配置方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 邮箱地址填注册git时用的邮箱，然后按3个回车。 </div><div class="line">ssh-keygen -t rsa -C &quot;xxx@happymmall.com&quot; </div><div class="line"># 在git.oschina的项目里添加公钥，查看公钥内容： </div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置本地的git选项，可以在用户目录下，新建一个.gitconfig文件，把下面的内容放里面。其中的name是在提交的代码时使用的名称，可以随意指定，还有一个是email，这个email一定要和注册git 时使用同一个。<br>这个配置文件中的alias是一些命令的快捷键，比如切换分支是git checkout xxx，如果配置了alias，就可以直接输入git co xxx，这两个命令时等价的。<br>push一项位置成simple，表示是在push的时候只把当前分支推送到远程对应的分支上，这个也可以不配置，因为git2.x版本以后，默认的就是simple模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[user] </div><div class="line">	name = Rosen </div><div class="line">	email = xxx@happymmall.com </div><div class="line">[alias] </div><div class="line">	co=checkout </div><div class="line">	ci=commit </div><div class="line">	st=status </div><div class="line">	pl=pull </div><div class="line">	ps=push </div><div class="line">	dt=difftool </div><div class="line">	l=log—stat </div><div class="line">	cp=cherry-pick </div><div class="line">	ca=commit -am </div><div class="line">	b=branch </div><div class="line">[push] </div><div class="line">	default = simple！</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程克隆代码，这个git项目就算建好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用项目的ssh形式的地址 </div><div class="line">git clone xxx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2-开始使用git"><a href="#2-开始使用git" class="headerlink" title="2. 开始使用git"></a>2. 开始使用git</h3><h4 id="1-git分支使用规范"><a href="#1-git分支使用规范" class="headerlink" title="1. git分支使用规范"></a>1. git分支使用规范</h4><ol>
+<li>当项目clone下来，默认会处在master分支上，也就是git的默认分支，通常我们不在主分支上做开发，如果更规范些，master分支会对开发人员设置成只读模式，最终由上线人员把要上线的代码合并到master分支上，这时候我们就要自己做一个开发分支了。如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#切换到master分支</div><div class="line">git checkout master</div><div class="line"></div><div class="line">#拉取最新代码</div><div class="line">git pull</div><div class="line"></div><div class="line">#以master分支为基础，新建本地分支，新分支名以erlang1.0为例</div><div class="line">git checkout -b erlang1.0</div><div class="line"></div><div class="line">#在远程建立对应的分支，只有新建分支时需要执行这步，以后只需要git push即可</div><div class="line">git push --set-upstream origin erlang1.0</div><div class="line"></div><div class="line">#以后向远程上传代码</div><div class="line">git push</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="3-要在一个已有的分支上开发"><a href="#3-要在一个已有的分支上开发" class="headerlink" title="3. 要在一个已有的分支上开发"></a>3. 要在一个已有的分支上开发</h3><ol>
+<li>因为是已有分支，就不用自己新建了，直接切换到指定分支，还是以erlang1.0为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#切换分支</div><div class="line">git checkout erlang1.0</div><div class="line"></div><div class="line">#拉取当前分支最新代码</div><div class="line">git pull</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-开发到一定程度，想看看改动了什么内容"><a href="#4-开发到一定程度，想看看改动了什么内容" class="headerlink" title="4. 开发到一定程度，想看看改动了什么内容"></a>4. 开发到一定程度，想看看改动了什么内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#看文件的改动</div><div class="line">git status</div><div class="line"></div><div class="line">#看文件内容的变动</div><div class="line">git diff</div></pre></td></tr></table></figure>
+<h3 id="5-代码开发完成，想提交代码"><a href="#5-代码开发完成，想提交代码" class="headerlink" title="5. 代码开发完成，想提交代码"></a>5. 代码开发完成，想提交代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#首先是追踪变更的文件</div><div class="line">git add .</div><div class="line"></div><div class="line">#然后提交到本地</div><div class="line">git commit -m &apos;提交代码的说明&apos;</div><div class="line"></div><div class="line">#提交到远程</div><div class="line">git push</div></pre></td></tr></table></figure>
+<h3 id="6-当前分支代码开发完成，准备提交上线"><a href="#6-当前分支代码开发完成，准备提交上线" class="headerlink" title="6. 当前分支代码开发完成，准备提交上线"></a>6. 当前分支代码开发完成，准备提交上线</h3><ol>
+<li>在上线的时候，一般由管理员或发布人员把开发分支的代码合并到master分支上，上线前我们把远程master最新的代码合并到我们的分支上再提交，才能保证我们的开发分支版本高于master分支。如果不这么做，有多人开发的话，就有可能造成A发布了一个版本，等B发布的时候会把A发布的内容冲掉</li>
+<li>merge完成后，就可以做提交了，通常使用pull request提交合并到master分支的请求，管理员合并后，我们的分支内容就可以上线了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 合并远程分支</div><div class="line">git merge origin master</div><div class="line"></div><div class="line"># 注意：如果发现merge的结果里有CONFLICT，就表示当前分支和远程master分支有文件冲突，我们要手动解决一下冲突再做一次提交才可以</div><div class="line"></div><div class="line"># 没冲突或解决冲突后，提交到当前分支的远程</div><div class="line">git push</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">转载自：</div><div class="line">链接：http://www.imooc.com/article/19060</div><div class="line">来源：慕课网！</div><div class="line">​```## GIT版本管理工具</div><div class="line">	git可以把每个版本都存起来，方便我们找到各个历史版本。</div><div class="line">	git可以设计版本，比如：分支开发，分支合并和分支回滚等操作，能方便的让多人参与同一个项目的开发，更符合团队作战的开发方式。</div><div class="line">## 具体操作</div><div class="line">### 1. 开始一个新项目，使用git管理代码</div><div class="line">（以git.oschina.net为例（oschina可以免费创建私有项目，github创建私有得花钱））</div><div class="line">1. 首先注册一个git账号。这个oschina提供的git服务就是管理代码的一个空间。</div><div class="line">2. 新建项目，填上项目名称，git地址等信息以后，就可以新建一个项目了。</div><div class="line">3. 添加ssh的key，添加key的作用是允许你的电脑访问git 仓库。如果git 项目是私有的,那么指定谁可以访问谁不可以访问。我们把自己计算机上的ssh key添加到git 项目上，就表示我们电脑里的key能访问了，可以理解成key的白名单。配置方法如下：</div><div class="line">​```git</div><div class="line"># 邮箱地址填注册git时用的邮箱，然后按3个回车。 </div><div class="line">ssh-keygen -t rsa -C &quot;xxx@happymmall.com&quot; </div><div class="line"># 在git.oschina的项目里添加公钥，查看公钥内容： </div><div class="line">cat ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure>
+<ol>
+<li><p>配置本地的git选项，可以在用户目录下，新建一个.gitconfig文件，把下面的内容放里面。其中的name是在提交的代码时使用的名称，可以随意指定，还有一个是email，这个email一定要和注册git 时使用同一个。<br>这个配置文件中的alias是一些命令的快捷键，比如切换分支是git checkout xxx，如果配置了alias，就可以直接输入git co xxx，这两个命令时等价的。<br>push一项位置成simple，表示是在push的时候只把当前分支推送到远程对应的分支上，这个也可以不配置，因为git2.x版本以后，默认的就是simple模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[user] </div><div class="line">	name = Rosen </div><div class="line">	email = xxx@happymmall.com </div><div class="line">[alias] </div><div class="line">	co=checkout </div><div class="line">	ci=commit </div><div class="line">	st=status </div><div class="line">	pl=pull </div><div class="line">	ps=push </div><div class="line">	dt=difftool </div><div class="line">	l=log—stat </div><div class="line">	cp=cherry-pick </div><div class="line">	ca=commit -am </div><div class="line">	b=branch </div><div class="line">[push] </div><div class="line">	default = simple！</div></pre></td></tr></table></figure>
+</li>
+<li><p>从远程克隆代码，这个git项目就算建好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># 使用项目的ssh形式的地址 </div><div class="line">git clone xxx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="2-开始使用git-1"><a href="#2-开始使用git-1" class="headerlink" title="2. 开始使用git"></a>2. 开始使用git</h3><h4 id="1-git分支使用规范-1"><a href="#1-git分支使用规范-1" class="headerlink" title="1. git分支使用规范"></a>1. git分支使用规范</h4><ol>
+<li>当项目clone下来，默认会处在master分支上，也就是git的默认分支，通常我们不在主分支上做开发，如果更规范些，master分支会对开发人员设置成只读模式，最终由上线人员把要上线的代码合并到master分支上，这时候我们就要自己做一个开发分支了。如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#切换到master分支</div><div class="line">git checkout master</div><div class="line"></div><div class="line">#拉取最新代码</div><div class="line">git pull</div><div class="line"></div><div class="line">#以master分支为基础，新建本地分支，新分支名以erlang1.0为例</div><div class="line">git checkout -b erlang1.0</div><div class="line"></div><div class="line">#在远程建立对应的分支，只有新建分支时需要执行这步，以后只需要git push即可</div><div class="line">git push --set-upstream origin erlang1.0</div><div class="line"></div><div class="line">#以后向远程上传代码</div><div class="line">git push</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="3-要在一个已有的分支上开发-1"><a href="#3-要在一个已有的分支上开发-1" class="headerlink" title="3. 要在一个已有的分支上开发"></a>3. 要在一个已有的分支上开发</h3><ol>
+<li>因为是已有分支，就不用自己新建了，直接切换到指定分支，还是以erlang1.0为例<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#切换分支</div><div class="line">git checkout erlang1.0</div><div class="line"></div><div class="line">#拉取当前分支最新代码</div><div class="line">git pull</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-开发到一定程度，想看看改动了什么内容-1"><a href="#4-开发到一定程度，想看看改动了什么内容-1" class="headerlink" title="4. 开发到一定程度，想看看改动了什么内容"></a>4. 开发到一定程度，想看看改动了什么内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#看文件的改动</div><div class="line">git status</div><div class="line"></div><div class="line">#看文件内容的变动</div><div class="line">git diff</div></pre></td></tr></table></figure>
+<h3 id="5-代码开发完成，想提交代码-1"><a href="#5-代码开发完成，想提交代码-1" class="headerlink" title="5. 代码开发完成，想提交代码"></a>5. 代码开发完成，想提交代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#首先是追踪变更的文件</div><div class="line">git add .</div><div class="line"></div><div class="line">#然后提交到本地</div><div class="line">git commit -m &apos;提交代码的说明&apos;</div><div class="line"></div><div class="line">#提交到远程</div><div class="line">git push</div></pre></td></tr></table></figure>
+<h3 id="6-当前分支代码开发完成，准备提交上线-1"><a href="#6-当前分支代码开发完成，准备提交上线-1" class="headerlink" title="6. 当前分支代码开发完成，准备提交上线"></a>6. 当前分支代码开发完成，准备提交上线</h3><ol>
+<li>在上线的时候，一般由管理员或发布人员把开发分支的代码合并到master分支上，上线前我们把远程master最新的代码合并到我们的分支上再提交，才能保证我们的开发分支版本高于master分支。如果不这么做，有多人开发的话，就有可能造成A发布了一个版本，等B发布的时候会把A发布的内容冲掉</li>
+<li>merge完成后，就可以做提交了，通常使用pull request提交合并到master分支的请求，管理员合并后，我们的分支内容就可以上线了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 合并远程分支</div><div class="line">git merge origin master</div><div class="line"></div><div class="line"># 注意：如果发现merge的结果里有CONFLICT，就表示当前分支和远程master分支有文件冲突，我们要手动解决一下冲突再做一次提交才可以</div><div class="line"></div><div class="line"># 没冲突或解决冲突后，提交到当前分支的远程</div><div class="line">git push</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">转载自：</div><div class="line">链接：http://www.imooc.com/article/19060</div><div class="line">来源：慕课网！</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/22/DOM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/22/DOM/" itemprop="url">DOM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T16:33:08+08:00">
+                2016-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
+2. DOM: Document Object Model 文档对象模型
+    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
+3. BOM
+</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
+XML文件侧重于存储数据
+</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
+</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
+</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
+找元素===也就是找标签===也就是对象
+操作这个标签===也就是操作标签的属性和样式
+创建标签,删除标签
+</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
+</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
+2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
+3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
+</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
+</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
+</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
+返回的是: 伪数组
+</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
+返回的是: 伪数组
+</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/22/使用hexo搭建静态博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/06/22/使用hexo搭建静态博客/" itemprop="url">使用hexo搭建静态博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T13:29:07+08:00">
+                2016-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>官方网站：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># 初始化一个博客</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># 切入 blog 目录</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># 启动预览</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 创建博客</span></div><div class="line">hexo new 文章标题</div></pre></td></tr></table></figure>
+<h3 id="结合-Github-Pages-自动发布博客"><a href="#结合-Github-Pages-自动发布博客" class="headerlink" title="结合 Github Pages 自动发布博客"></a>结合 Github Pages 自动发布博客</h3><p>一：Github 创建域名仓库</p>
+<p>二：修改博客中的 _config.yml 文件中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:密码@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
+<p>三：安装插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>四：发布</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
+<p>上面两条命令可以简写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
+<p>使用其中哪一个命令都可以发布</p>
+<p>五.主题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在主题商店找到喜欢的主题</div><div class="line">找到作者的github地址  复制</div><div class="line">在themes文件中,拷贝地址 git <span class="built_in">clone</span> 地址 --depth=1</div><div class="line">复制主题文件夹名</div><div class="line">_config.yml文件中  更改theme:的内容</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
+<h3 id="文章到github时遇到的问题"><a href="#文章到github时遇到的问题" class="headerlink" title="文章到github时遇到的问题"></a>文章到github时遇到的问题</h3><ol>
+<li>hexo 无预览的内容显示<ul>
+<li>主题配置里面有个auto_excerpt配置项，它的length属性值是预览截取的字数。hexo建议在md文件加入
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/06/22/使用hexo搭建静态博客/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://E:\My folder\photos\psb.jpg"
+               alt="郎雪" />
+          <p class="site-author-name" itemprop="name">郎雪</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郎雪</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,45 +1,745 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN.yml">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1像素border问题 1像素边框在pc端的模拟器上浏览正常,但手机端是pc端的1/2,在手机端上看到的不是真正的1像素  如何做成真正的1像素 通过伪类缩放来做成1像素的效果   1像素border经常用,所以在公共的Stylus中新建文件 123456789101112131415161718border-1px($color)  position: relative  &amp;amp;:afte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE实战第七天：高仿饿了么APP---1像素border和vue-resource">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/VUE实战第七天：高仿饿了么APP-1像素border和vue-resource/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="1像素border问题 1像素边框在pc端的模拟器上浏览正常,但手机端是pc端的1/2,在手机端上看到的不是真正的1像素  如何做成真正的1像素 通过伪类缩放来做成1像素的效果   1像素border经常用,所以在公共的Stylus中新建文件 123456789101112131415161718border-1px($color)  position: relative  &amp;amp;:afte">
+<meta property="og:updated_time" content="2017-08-22T16:36:45.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE实战第七天：高仿饿了么APP---1像素border和vue-resource">
+<meta name="twitter:description" content="1像素border问题 1像素边框在pc端的模拟器上浏览正常,但手机端是pc端的1/2,在手机端上看到的不是真正的1像素  如何做成真正的1像素 通过伪类缩放来做成1像素的效果   1像素border经常用,所以在公共的Stylus中新建文件 123456789101112131415161718border-1px($color)  position: relative  &amp;amp;:afte">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/02/VUE实战第七天：高仿饿了么APP-1像素border和vue-resource/"/>
+
+
+
+
+
+  <title>VUE实战第七天：高仿饿了么APP---1像素border和vue-resource | 郎雪的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郎雪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/VUE实战第七天：高仿饿了么APP-1像素border和vue-resource/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VUE实战第七天：高仿饿了么APP---1像素border和vue-resource</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-02T20:34:59+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h2 id="1像素border问题"><a href="#1像素border问题" class="headerlink" title="1像素border问题"></a>1像素border问题</h2><ul>
+<li>1像素边框在pc端的模拟器上浏览正常,但手机端是pc端的1/2,在手机端上看到的不是真正的1像素</li>
+</ul>
+<h3 id="如何做成真正的1像素"><a href="#如何做成真正的1像素" class="headerlink" title="如何做成真正的1像素"></a>如何做成真正的1像素</h3><ul>
+<li>通过伪类缩放来做成1像素的效果</li>
+</ul>
+<ol>
+<li><p>1像素border经常用,所以在公共的Stylus中新建文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">border-1px($color)</div><div class="line">  position: relative</div><div class="line">  &amp;:after</div><div class="line">    content: &apos;&apos;</div><div class="line">    display: block</div><div class="line">    position: absolute</div><div class="line">    left: 0</div><div class="line">    bottom: 0</div><div class="line">    width: 100%</div><div class="line">    border-top: 1px solid $color</div><div class="line">  &amp;:before</div><div class="line">    content: &apos;&apos;</div><div class="line">    display: block</div><div class="line">    position: absolute</div><div class="line">    left: 0</div><div class="line">    bottom: 0</div><div class="line">    width: 100%</div><div class="line">    border-top: 1px solid $color</div></pre></td></tr></table></figure>
+</li>
+<li><p>给不同DPR的设备设置缩放值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@media(-webkit-min-device-pixel-radio: 1.5),(min-device-pixel-ratio:1.5)</div><div class="line">  .border-1px</div><div class="line">    -webkit-transform: scaleY(0.7)</div><div class="line">    transform: scaleY(0.7)</div><div class="line">@media(-webkit-min-device-pixel-radio: 2),(min-device-pixel-ratio:2)</div><div class="line">  .border-1px</div><div class="line">    -webkit-transform: scaleY(0.5)</div><div class="line">    transform: scaleY(0.5)</div></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js中引入新建的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 全局引用stylus</div><div class="line">import &apos;./common/stylus/xxx.styl&apos;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Vue2-0的vue-resource"><a href="#Vue2-0的vue-resource" class="headerlink" title="Vue2.0的vue-resource"></a>Vue2.0的vue-resource</h2><ul>
+<li>Vue1.x推荐使用的是ajax插件vue-resource,但是从Vue更新到2.x,主流的Vue项目都选择axios来完成ajax请求,而大型项目都会使用Vuex来管理数据</li>
+</ul>
+<ol>
+<li><p>使用cnpm安装axios</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install axios -S</div></pre></td></tr></table></figure>
+</li>
+<li><p>引用插件</p>
+</li>
+</ol>
+<ul>
+<li>安装其他插件的时候,可以直接在main.js中引入并Vue.use(),但是axios不能use,只能每个需要发送请求的组件中及时引入插件。两种开发思路:一:在引入axios之后,修改原型链;二是结合Vuex,封装一个aciton。具体操作如下:</li>
+<li>方案一:改写原型链</li>
+</ul>
+<ol>
+<li><p>首先在main.js中引入axios</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import axios from &apos;axios&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>此时如果在其他的组件中,是无法使用axios命令的,单如果将axios改写为Vue的原型属性,就能解决这个问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Vue.prototype.#ajax = axios</div></pre></td></tr></table></figure>
+</li>
+<li><p>在main.js中添加了这两行代码之后,就能直接在组件的methods中使用$ajax命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">  submitForm () &#123;</div><div class="line">    this.$ajax(&#123;</div><div class="line">      methods: &apos;post&apos;,</div><div class="line">      url: &apos;/&apos;,</div><div class="line">      data: &#123;</div><div class="line">        name: &apos;lisi&apos;,</div><div class="line">        info: &apos;xxx&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>方案二:在Vuex中封装</li>
+</ul>
+<ol>
+<li>①mutations: 从结果上看,mutations类似于事件,用于提交Vuex中的状态state。有一个固有参数state,接收的是Vuex中的state对象</li>
+<li>②action: 类似于mutations,主要区别在于,ation可以包含一部操作,而且可以通过action来提交mutations。有一个固有的参数context,但是context是state的父级,包含state，getters</li>
+<li><p>Vuex的仓库是store.js,将axios引入,并在action添加新的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">// store.js</div><div class="line">import Vue from &apos;Vue&apos;</div><div class="line">import Vuex from &apos;vuex&apos;</div><div class="line"></div><div class="line">// 引入axios</div><div class="line">import axios from &apos;axios&apos;</div><div class="line"></div><div class="line">Vue.use(Vuex)</div><div class="line"></div><div class="line">const store = new Vuex.Store(&#123;</div><div class="line">  // 定义状态</div><div class="line">  state: &#123;</div><div class="line">    test01: &#123;</div><div class="line">      name: &apos;lisi&apos;</div><div class="line">    &#125;,</div><div class="line">    test02: &#123;</div><div class="line">      tell: &apos;11111111111&apos;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  actions: &#123;</div><div class="line">    // 封装一个ajax方法</div><div class="line">    saveForm(context) &#123;</div><div class="line">      axios(&#123;</div><div class="line">        method: &apos;post&apos;,</div><div class="line">        url: &apos;/&apos;,</div><div class="line">        data: context.state.test02</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">export default store</div></pre></td></tr></table></figure>
+</li>
+<li><p>即使在main.js中引入了axios,并改写了原型链,也无法在store.js中直接使用$ajax命令；所以这两种方案是相互独立的。在组件发送请求的时候,需要使用this.$store.dispatch来分发</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">methods: &#123;</div><div class="line">  submitForm () &#123;</div><div class="line">    this.$store.dispatch(&apos;saveForm&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>submitForm是绑定在组件上的一个方法,将处罚saveForm,从而通过axios向服务器发送请求</p>
+</li>
+</ol>
+<ul>
+<li>配置axios</li>
+</ul>
+<ol>
+<li><p>上面封装的方法中,使用了axios的三个配置项,实际上只有url是必须的。为了方便,axios还为每种方法起了别名,比如上面的saveForm方法等价于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">axios.post(&apos;/&apos;,context.state.test02)</div></pre></td></tr></table></figure>
+</li>
+<li><p>完整的请求还应当包括.then和.catch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.then(function(res)&#123;</div><div class="line">  console.log(res)</div><div class="line">&#125;)</div><div class="line">.catch(function(err)&#123;</div><div class="line">  console.log(err)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>当请求成功时,会执行then,否则执行.catch</p>
+</li>
+</ol>
+<h2 id="Vue2-0的ajax—-gt-Vuex"><a href="#Vue2-0的ajax—-gt-Vuex" class="headerlink" title="Vue2.0的ajax—-&gt;Vuex"></a>Vue2.0的ajax—-&gt;Vuex</h2><ul>
+<li>如果项目结构简单,父子组件之间的数据传递可以使用props或者$emit等方式；但大型项目,很多时候都需要在子组件之间传递数据,更好的方式就是使用Vue的状态管理工具Vuex来解决</li>
+</ul>
+<ol>
+<li><p>首先使用npm安装Vuex</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install vuex -S</div></pre></td></tr></table></figure>
+</li>
+<li><p>在目录结构中,在src下创建vuex文件夹,下面创建核心仓库 store.js</p>
+</li>
+<li><p>在main.js中引入store.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import store from &apos;./vuex/store&apos;</div><div class="line">Vue.use(Vuex)</div><div class="line"></div><div class="line">/* eslint-disable no-new */</div><div class="line">new Vue(&#123;</div><div class="line">  el: &apos;#app&apos;,</div><div class="line">  store,</div><div class="line">  render: h =&gt; h(App)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建核心仓库store.js</p>
+<ul>
+<li>Vuex应用的状态state都应当存放在store.js里面,Vue组件可以从store.js里面获取状态,可以把store通俗的理解为一个全局变量的仓库。但是和单纯的全局变量又有区别,主要体现在当store中的状态发生改变时,相应的vue组件也会得到高效更新。</li>
+<li>在src目录下创建一个vuex目录,将Store.js放到vue3x目录下</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/02/VUE实战第六天：高仿饿了么APP-vue-router/" rel="next" title="VUE实战第六天：高仿饿了么APP---vue-router">
+                <i class="fa fa-chevron-left"></i> VUE实战第六天：高仿饿了么APP---vue-router
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://E:\My folder\photos\psb.jpg"
+               alt="郎雪" />
+          <p class="site-author-name" itemprop="name">郎雪</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1像素border问题"><span class="nav-number">1.</span> <span class="nav-text">1像素border问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何做成真正的1像素"><span class="nav-number">1.1.</span> <span class="nav-text">如何做成真正的1像素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue2-0的vue-resource"><span class="nav-number">2.</span> <span class="nav-text">Vue2.0的vue-resource</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue2-0的ajax—-gt-Vuex"><span class="nav-number">3.</span> <span class="nav-text">Vue2.0的ajax—->Vuex</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郎雪</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

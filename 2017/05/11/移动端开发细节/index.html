@@ -1,45 +1,817 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN.yml">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1. 移动web开发1. 移动web开发:web页面在移动端 2. 访问方式2. 访问方式: ① 直接在手机端的浏览器访问页面             ② 嵌入app中的页面 3. 移动站布局方案:1. 宽高自适应1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度 2. 响应式web开发1. 响应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端开发细节">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/移动端开发细节/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="1. 移动web开发1. 移动web开发:web页面在移动端 2. 访问方式2. 访问方式: ① 直接在手机端的浏览器访问页面             ② 嵌入app中的页面 3. 移动站布局方案:1. 宽高自适应1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度 2. 响应式web开发1. 响应">
+<meta property="og:updated_time" content="2017-08-22T16:24:53.667Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端开发细节">
+<meta name="twitter:description" content="1. 移动web开发1. 移动web开发:web页面在移动端 2. 访问方式2. 访问方式: ① 直接在手机端的浏览器访问页面             ② 嵌入app中的页面 3. 移动站布局方案:1. 宽高自适应1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度 2. 响应式web开发1. 响应">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/移动端开发细节/"/>
+
+
+
+
+
+  <title>移动端开发细节 | 郎雪的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郎雪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/移动端开发细节/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端开发细节</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T21:00:10+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h2 id="1-移动web开发"><a href="#1-移动web开发" class="headerlink" title="1. 移动web开发"></a>1. 移动web开发</h2><pre><code>1. 移动web开发:web页面在移动端
+</code></pre><h2 id="2-访问方式"><a href="#2-访问方式" class="headerlink" title="2. 访问方式"></a>2. 访问方式</h2><pre><code>2. 访问方式: ① 直接在手机端的浏览器访问页面
+            ② 嵌入app中的页面
+</code></pre><h2 id="3-移动站布局方案"><a href="#3-移动站布局方案" class="headerlink" title="3. 移动站布局方案:"></a>3. 移动站布局方案:</h2><h3 id="1-宽高自适应"><a href="#1-宽高自适应" class="headerlink" title="1. 宽高自适应"></a>1. 宽高自适应</h3><pre><code>1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度
+</code></pre><h3 id="2-响应式web开发"><a href="#2-响应式web开发" class="headerlink" title="2. 响应式web开发"></a>2. 响应式web开发</h3><pre><code>1. 响应式web开发:全设备的适配 采用了流式布局,媒体查询,液态图片三项技术
+</code></pre><h3 id="3-rem"><a href="#3-rem" class="headerlink" title="3.  rem"></a>3.  rem</h3><pre><code>1. 使用默认的文字大小,元素本身的文字大小修改,并不会改变大小,只改变文字大小,相对的是html字体大小
+2. 依托&quot;比&quot;特性:用rem做布局,把大的设计图放在小的屏幕,为不同屏幕设不同的font-size,等比例缩放,大图计算font-size=屏幕宽/好算的值px,把px--&gt;rem,(例:width:100/font-size rem;)
+3. 在媒体查询中,将html设置font-size=屏幕宽/好算的值
+4. 补充小知识点:em的基本使用:根据文字大小,没设置,根据浏览器默认值,设置,根据元素设置值
+</code></pre><h2 id="4-移动浏览器"><a href="#4-移动浏览器" class="headerlink" title="4. 移动浏览器:"></a>4. 移动浏览器:</h2><pre><code>① 国产主流浏览器:内核 webkit
+② 移动端浏览器更新频率高,兼容性好
+③ 移动端的设备发展趋势:屏幕越来越大(要考虑分辨率的问题),目前主流最小屏幕宽度320px
+</code></pre><h2 id="5-webkit内核中一些私有的meta标签"><a href="#5-webkit内核中一些私有的meta标签" class="headerlink" title="5. webkit内核中一些私有的meta标签"></a>5. webkit内核中一些私有的meta标签</h2><pre><code>① 设置视口属性
+    &lt;meta content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=0;&quot; name=&quot;viewport&quot; /&gt;
+② 是iphone设备中的safari私有的meta标签,表示:允许全屏模式浏览
+    &lt;meta content=&quot;yes” name=&quot; apple-mobile-web-app-capable&quot; /&gt;
+③ 是iphone的私有标签,指定iphone中safari顶端的状态条的样式
+    &lt;meta content=&quot;black&quot; name=&quot; apple-mobile-web-app-status-bar-style&quot;/&gt;
+④ 告诉设备忽略将页面中的数字识别为电话号码
+    &lt;meta content=&quot;telephone=no&quot; name=&quot;format-detection&quot; /&gt;
+</code></pre><h2 id="6-移动web测试"><a href="#6-移动web测试" class="headerlink" title="6. 移动web测试"></a>6. 移动web测试</h2><pre><code>① 真机测试 ② 模拟环境测试
+</code></pre><h2 id="7-视口属性—开发中首先设置"><a href="#7-视口属性—开发中首先设置" class="headerlink" title="7. 视口属性—开发中首先设置"></a>7. 视口属性—开发中首先设置</h2><pre><code>1. viewport属性: 仅移动端有的属性, emmet语法: meta:vp 做移动端要开启视口属性
+    写法①: &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0&quot; /&gt;
+    写法②: &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot; /&gt;
+2. 视口属性目的: 让移动的页面布局基于设备的宽度布局
+3. 视口属性支持设置的属性: 
+    ① name=viewport 固定写法,只在移动端能被识别,谷歌浏览器的测试页面也能识别
+    ② width=device-width 支持设置内容宽度为设备的物理宽度,也支持320px,若设置了固定值,就无法实现全设备适配
+    ③ user-scalable 用户是否可进行缩放,可以开启(true),禁用缩放(false/no)
+    ④ initial-scale 初始的缩放值,一般设置1.0即可
+    ⑤ minimum-scale 最小的缩放值(为了保证缩放之后的显示效果,无法缩放到更小的值),1.0位临界点
+    ⑥ maximum-scale 最大的缩放值 最大的缩放
+</code></pre><h2 id="8-响应式web开发"><a href="#8-响应式web开发" class="headerlink" title="8. 响应式web开发"></a>8. 响应式web开发</h2><pre><code>1. 响应式:针对任意设备(不只是针对移动端),网页内容进行完美布局的一种显示机制,影响网页布局的因素:宽度
+    ① 要能检测出是什么设备,检测设备的宽度:js或css3的媒体查询,
+    ② 让网页内容在当前设备下完美显示:在不同屏幕下,给同一盒子加载不同css样式,使用css3的媒体查询技术,检测当前设备的宽度,在不同的设备宽度下,给网页加载不同的css样式,使网页适配于当前屏幕
+</code></pre><h3 id="1-响应式web开发—媒体查询"><a href="#1-响应式web开发—媒体查询" class="headerlink" title="1. 响应式web开发—媒体查询"></a>1. 响应式web开发—媒体查询</h3><pre><code>1. 媒体查询:为了减少http请求,为了响应式布局,在css样式表中进行媒体查询,而不是在head中使用link进行家长在
+2. 格式: @media screen and (查询条件){样式}
+        {}:大括号内书写样式
+    例: @media screen and (max-width:960px){}
+        设备屏幕宽度和视口宽度同时满足最大不超过960px,才会调用{}中的样式
+3. @media screen 遵循层级样式表,如果样式冲突,后面的样式会覆盖前面的样式
+    满足屏幕宽度和视口宽度同时满足最大不超过960px,调用大括号样式
+4. 多个媒体查询用and连接
+</code></pre><h3 id="2-响应式web开发—流式布局"><a href="#2-响应式web开发—流式布局" class="headerlink" title="2. 响应式web开发—流式布局"></a>2. 响应式web开发—流式布局</h3><pre><code>1. 流式布局以百分比进行布局。重要:关注元素的父级层
+2. 流式布局的应用是为了和媒体查询完美的结合使用
+</code></pre><h3 id="3-响应式web开发—液态图片"><a href="#3-响应式web开发—液态图片" class="headerlink" title="3. 响应式web开发—液态图片"></a>3. 响应式web开发—液态图片</h3><pre><code>1. 要实现液态图片,需加入代码:img{max-width:100%}
+</code></pre><h2 id="9-border-box-box-sizing"><a href="#9-border-box-box-sizing" class="headerlink" title="9. border-box : box-sizing"></a>9. border-box : box-sizing</h2><pre><code>1. border-box : box-sizing  一般设置在base.css中
+2. border-box　：box-sizing  保证元素自身的尺寸不变,盒子尺寸就是宽度和高度,添加的padding,border,会通过压缩内容的方式来设置盒子大小
+</code></pre><h2 id="10-高亮效果"><a href="#10-高亮效果" class="headerlink" title="10. 高亮效果"></a>10. 高亮效果</h2><pre><code>1. 移动端独有的高亮效果,webkit内核才有:-webkit-tap-hightlight-color:颜色;如果去掉一般设置为透明
+2. transparent  直接设置为透明  -webkit-tap-highlight-color: transparent;
+3. *号无法获取到伪元素,所以初始化时要给伪元素单独设置border-box: box-sizing
+4. -webkit-appearance:none;  有部分浏览器会默认为input添加3d渲染效果,高光3d渐变,所以通过此方式去掉
+</code></pre><h2 id="11-css预处理程序"><a href="#11-css预处理程序" class="headerlink" title="11. css预处理程序"></a>11. css预处理程序</h2><h3 id="1-less"><a href="#1-less" class="headerlink" title="1. less"></a>1. less</h3><pre><code>1. less: 是css预处理程序,写的时候文件后缀名为.less,项目上线要转为.css文件
+2. 注释:若在less中写//,在编译为css文件后看不到注释;若写/**/,编译为css文件可以看到
+3. 定义变量: 用@,(例如:@jsred:rgb(100,200,135));编译为css文件后,颜色会编译为16进制
+4. 嵌套写法: 可在一个标签中写另一个标签,编译为css文件直接会以后代选择器方式显示设置样式
+5. 伪元素: 清除空格,在伪元素前加&amp;
+6. 设置颜色: 把设置颜色工具写在一个div的less中,css中就把该div设置了该样式
+7. 运算支持: 在外面定义的变量,如:@jdred:rbg(100,200,135), 在后面需要的地方直接设置@jdred即可
+8. 通栏部分添加固定定位后,需设固定宽度 width:100%
+9. 混入写法: 定义一个类,在另一个类中写入这个类
+</code></pre><h3 id="2-sass"><a href="#2-sass" class="headerlink" title="2. sass"></a>2. sass</h3><pre><code>1. css预处理程序
+2. 定义变量: 用$
+3. 支持数学运算
+4. 支持混入写法:在类名前用一个关键字@mixin,在另一个类中医用,用关键字@include
+</code></pre><h2 id="12-最大-amp-最小宽高"><a href="#12-最大-amp-最小宽高" class="headerlink" title="12. 最大&amp;最小宽高"></a>12. 最大&amp;最小宽高</h2><h3 id="1-最大宽高"><a href="#1-最大宽高" class="headerlink" title="1. 最大宽高"></a>1. 最大宽高</h3><pre><code>1. 最大宽:max-width;最大高:max-height;设置最大尺寸的宽度和高度,移动设备一般尺寸不设置,要么设640px,要么设750px。
+</code></pre><h3 id="2-最小宽高"><a href="#2-最小宽高" class="headerlink" title="2. 最小宽高"></a>2. 最小宽高</h3><pre><code>1. 最小宽min-width; 最小高min-height; 设置最小尺寸的宽度和高度
+2. 约束网页最小宽度,保证显示效果,只设min-width默认与父元素同宽,压缩小于这个值会出现滚动条
+</code></pre><h3 id="3-目前移动设备"><a href="#3-目前移动设备" class="headerlink" title="3. 目前移动设备"></a>3. 目前移动设备</h3><pre><code>1. 目前移动设备,主流最小宽度为320px,最大尺寸一般为640px/750px
+2. 可设置min-width:320px, 可变大,为body设置即可
+</code></pre><h2 id="13-元素设置了fixed"><a href="#13-元素设置了fixed" class="headerlink" title="13. 元素设置了fixed"></a>13. 元素设置了fixed</h2><pre><code>1. 元素设置了fixed,相对的是设备的尺寸,(如:导航栏),故要单独设置min-width
+</code></pre><h2 id="14-目前手机屏幕"><a href="#14-目前手机屏幕" class="headerlink" title="14. 目前手机屏幕"></a>14. 目前手机屏幕</h2><h3 id="1-普通屏"><a href="#1-普通屏" class="headerlink" title="1. 普通屏"></a>1. 普通屏</h3><pre><code>1. 屏幕宽度跟屏幕的分辨率一直,低端机/入门机
+</code></pre><h3 id="2-视网膜屏幕"><a href="#2-视网膜屏幕" class="headerlink" title="2. 视网膜屏幕"></a>2. 视网膜屏幕</h3><pre><code>1. 使用更多的像素显示元素,分辨率大到一定程度就是视网膜屏
+</code></pre><h3 id="3-分辨率"><a href="#3-分辨率" class="headerlink" title="3. 分辨率:"></a>3. 分辨率:</h3><pre><code>1. 分辨率:值得是屏幕组成的像素点
+2. 例:1366*768=宽度1366个像素点,高度768个像素点
+</code></pre><h3 id="4-如何实现不同设备加载不同图片"><a href="#4-如何实现不同设备加载不同图片" class="headerlink" title="4. 如何实现不同设备加载不同图片"></a>4. 如何实现不同设备加载不同图片</h3><pre><code>1. 判断设备是否是视网膜屏幕,如果是普通屏,加载普通图片,是视网膜屏幕,加载高清图片;
+2. 设备为背景图片background:如果不设置图片的大小,默认为图片的原默认大小,所以要设置图片的Size属性,可以把background设置单独类,压缩图片尺寸:background-size
+</code></pre><h4 id="1-2x图"><a href="#1-2x图" class="headerlink" title="1. 2x图"></a>1. 2x图</h4><p>)</p>
+<h3 id="5-switch-case"><a href="#5-switch-case" class="headerlink" title="5. switch-case"></a>5. switch-case</h3><pre><code>1. 用switch-case获取屏幕比例
+</code></pre><h3 id="5-window-devicePixelRatio浏览器的像素比例"><a href="#5-window-devicePixelRatio浏览器的像素比例" class="headerlink" title="5. window.devicePixelRatio浏览器的像素比例"></a>5. window.devicePixelRatio浏览器的像素比例</h3><pre><code>1. 浏览器的一个属性
+</code></pre><h3 id="4-iphone"><a href="#4-iphone" class="headerlink" title="4. iphone"></a>4. iphone</h3><pre><code>1. iphone 3gs 普通屏幕
+2. iphone 4 4s 5 5s 6 6s 7 都是 2x屏幕
+3. iphone 6plus 6splus 7plus 都是 3x关系
+4. 一般会准备2x跟3x的图片,1x的图片直接使用大图压小即可
+</code></pre><h2 id="15-移动端的事件"><a href="#15-移动端的事件" class="headerlink" title="15. 移动端的事件"></a>15. 移动端的事件</h2><pre><code>1. 移动端的事件只有触屏设备才能出发,电脑端测试,谷歌切换到移动端,鼠标点操作
+</code></pre><h3 id="1-touch事件"><a href="#1-touch事件" class="headerlink" title="1. touch事件"></a>1. touch事件</h3><pre><code>1. 用addEventListner来绑定 touchstart touchmove touchend
+2. touchstart和touchmove绑定,传入事件参数e,获取触碰(/鼠标点击)和手指移动(/鼠标移动)的x坐标和y坐标,e.touches[0].clientX;原点在屏幕的左上角
+3. touchend事件,不能获取到坐标
+4. 用jQuery绑定touch事件:$(&quot;body&quot;).on(&quot;touchstart&quot;,function(e){})
+5. touch事件无法触发的问题:① 没有切换到移动端界面 ② 5.5的谷歌浏览器,url中输入chrome://flags/ --&gt;指针活动--&gt;调成已停用--&gt;重启浏览器
+</code></pre><h3 id="2-点击事件"><a href="#2-点击事件" class="headerlink" title="2. 点击事件"></a>2. 点击事件</h3><pre><code>1. 移动端的点击事件,延迟300毫秒,早期点击事件和双击放大事件冲突,所以延迟300毫秒解决操作来这个问题
+2. 那么我们现在做的话,解决办法
+    ① 通过touch事件,touch事件比click事件早完成,触摸就感觉是立即触发的,
+    ② 为页面添加视口属性,就认为是专门的移动站,仍比touch事件慢
+3. 所以: 移动端的点击事件,利用touch事件执行时机比click早的原理,封装tap事件
+</code></pre><h3 id="3-封装tap事件"><a href="#3-封装tap事件" class="headerlink" title="3. 封装tap事件"></a>3. 封装tap事件</h3><pre><code>// 想要使用touch的三个事件来封装一个叫做tap的轻敲事件
+// 需要满足 如下 三个条件
+// 用户手指放上去停留很久不用触发
+var startTime = 0;
+// 用户手指放上去移动了不用触发
+var isMove =false;
+// 用户手指放上去不移动很快松开才触发
+document.body.addEventListener(&apos;touchstart&apos;,function(){
+    startTime = Date.now();
+    // 每次触摸开始的时候都将isMove重置为false
+    isMove = false;
+})
+document.body.addEventListener(&apos;touchmove&apos;,function(){
+    console.log(&apos;移动了&apos;);
+    isMove =true;
+})
+document.body.addEventListener(&apos;touchend&apos;,function(){
+    var delayTime = Date.now() - startTime;
+    if(delayTime&gt;=120){
+        console.log(&apos;时间太长了 不满足条件&apos;);
+        return;
+    }
+    if(isMove == true){
+        console.log(&apos;移动了 不满足条件了&apos;);
+        return;
+    }
+    //如果时间很短并且没有移动满足所有条件可以触发
+    console.log(&apos;时间很短,并且 没有移动 触发 tap事件&apos;);
+})
+</code></pre><h2 id="16-带鱼屏"><a href="#16-带鱼屏" class="headerlink" title="16. 带鱼屏"></a>16. 带鱼屏</h2><pre><code>1. 约束版心,屏幕尺寸1366*768,最大尺寸为3
+2. 专业用户
+</code></pre><h2 id="17-zepto"><a href="#17-zepto" class="headerlink" title="17. zepto"></a>17. zepto</h2><pre><code>1. 移动端的js库(移动端的jQ)
+2. 因为jQ集成的代码太多,就剔除了将jQ的代码分为不同的模块,可以根据需要导入不同的模块,鉴于这个需求,就有人重新封装了一个js库,专门用于移动端
+3. 使用:
+    ① 使用之前,要导入zepto的核心模块zepto.js
+    &lt;script src=&quot;js/zepto/zepto.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+    ② 移动端用到了事件模块,所以要导入事件模块event.js
+    &lt;script src=&quot;js/zepto/event.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+    移动端也有touch模块,但是导入touch模块,桌面端无法使用,所以绑定事件可以导入事件模块
+    ③ 用到了动画模块,就导入动画模块,内部是使用过渡实现的
+    &lt;script src=&quot;js/zepto/fx.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+4. zepto为元素绑定多个事件,-可写上,也可省略,对象形式也一样
+5. 注意:touch无法触发的问题:
+</code></pre><h2 id="18-iScroll"><a href="#18-iScroll" class="headerlink" title="18. iScroll"></a>18. iScroll</h2><pre><code>1. 滚动的元素需要放在一个容器中,调用IScroll方法事件滚动
+&lt;script src=&quot;js/iscroll/iscroll.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+var myScroll=new IScroll(&quot;#wrapper&quot;);
+</code></pre><h2 id="19-swiper"><a href="#19-swiper" class="headerlink" title="19. swiper"></a>19. swiper</h2><pre><code>1. 滑动轮播图
+&lt;script src=&quot;js/swiper/swiper.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+var swiper=new Swiper(){
+  loop: true,
+  autoplay :2000
+}
+</code></pre><h2 id="开发中注意"><a href="#开发中注意" class="headerlink" title="开发中注意"></a>开发中注意</h2><pre><code>1. 移动端不建议用弹性布局,因为弹性布局在UC浏览器不支持
+2. 宽高: 宽度: 一般跟屏幕一致,不让用户在水平方向上移动
+              高度: 不限制
+1. 项目中遇到内容排列显示的布局,建议使用:display : block
+2. 保证将每条数据都放在一个a标签中,为了在触屏手机上,为提升用户体验,尽可能保证用户的可点击区域较大
+3. 学会使用webkit-box:这个是webkit为display属性提供的值,可以灵活控制盒子模型
+4. 如何去除Android平台中邮箱地址的识别:IOS webapp API中IOS提供了一个meta标签,用于禁用ios对页面电话号码的自动识别。在ios中是不自动识别邮箱地址的。但在Android平台会自动检测邮箱地址,当用户touch到这个邮箱地址时,Android会弹出一个框提示用户发送邮件,如果你不想Android自动识别页面中的邮箱地址,可以加上meta标签:&lt;meta content=&quot;email=no&quot; name=&quot;format-detection&quot; /&gt;
+5. 如何去除ios和Android中的输入URL的控件条:在window.onload中设置setTimeout(scrollTo,0,0,0);且当前文档的内容高度必须是高于窗口的高度时,这句代码才有效执行
+6. 如何检测用户是通过主屏启动的webapp : 设置navigator.standalone为true。原因:从主屏启动的webapp和浏览器访问webapp最大的区别是它清除了浏览器上方和下放的工具条,这样的Webapp更加想nativeapp了,另外区别,window对象中的nacigator子对象的一个standalone属性。在Android中没有添加到主屏这回事
+7. 如何关闭ios中键盘自动大写:input元素中设置autocapitalize=&quot;off&quot;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/11/事件DOMContentLoaded和load的区别/" rel="next" title="事件DOMContentLoaded和load的区别">
+                <i class="fa fa-chevron-left"></i> 事件DOMContentLoaded和load的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/05/canvas/" rel="prev" title="canvas">
+                canvas <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://E:\My folder\photos\psb.jpg"
+               alt="郎雪" />
+          <p class="site-author-name" itemprop="name">郎雪</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-移动web开发"><span class="nav-number">1.</span> <span class="nav-text">1. 移动web开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-访问方式"><span class="nav-number">2.</span> <span class="nav-text">2. 访问方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移动站布局方案"><span class="nav-number">3.</span> <span class="nav-text">3. 移动站布局方案:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-宽高自适应"><span class="nav-number">3.1.</span> <span class="nav-text">1. 宽高自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-响应式web开发"><span class="nav-number">3.2.</span> <span class="nav-text">2. 响应式web开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-rem"><span class="nav-number">3.3.</span> <span class="nav-text">3.  rem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-移动浏览器"><span class="nav-number">4.</span> <span class="nav-text">4. 移动浏览器:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-webkit内核中一些私有的meta标签"><span class="nav-number">5.</span> <span class="nav-text">5. webkit内核中一些私有的meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-移动web测试"><span class="nav-number">6.</span> <span class="nav-text">6. 移动web测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-视口属性—开发中首先设置"><span class="nav-number">7.</span> <span class="nav-text">7. 视口属性—开发中首先设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-响应式web开发"><span class="nav-number">8.</span> <span class="nav-text">8. 响应式web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-响应式web开发—媒体查询"><span class="nav-number">8.1.</span> <span class="nav-text">1. 响应式web开发—媒体查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-响应式web开发—流式布局"><span class="nav-number">8.2.</span> <span class="nav-text">2. 响应式web开发—流式布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-响应式web开发—液态图片"><span class="nav-number">8.3.</span> <span class="nav-text">3. 响应式web开发—液态图片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-border-box-box-sizing"><span class="nav-number">9.</span> <span class="nav-text">9. border-box : box-sizing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-高亮效果"><span class="nav-number">10.</span> <span class="nav-text">10. 高亮效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-css预处理程序"><span class="nav-number">11.</span> <span class="nav-text">11. css预处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-less"><span class="nav-number">11.1.</span> <span class="nav-text">1. less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-sass"><span class="nav-number">11.2.</span> <span class="nav-text">2. sass</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-最大-amp-最小宽高"><span class="nav-number">12.</span> <span class="nav-text">12. 最大&最小宽高</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-最大宽高"><span class="nav-number">12.1.</span> <span class="nav-text">1. 最大宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-最小宽高"><span class="nav-number">12.2.</span> <span class="nav-text">2. 最小宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-目前移动设备"><span class="nav-number">12.3.</span> <span class="nav-text">3. 目前移动设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-元素设置了fixed"><span class="nav-number">13.</span> <span class="nav-text">13. 元素设置了fixed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-目前手机屏幕"><span class="nav-number">14.</span> <span class="nav-text">14. 目前手机屏幕</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-普通屏"><span class="nav-number">14.1.</span> <span class="nav-text">1. 普通屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-视网膜屏幕"><span class="nav-number">14.2.</span> <span class="nav-text">2. 视网膜屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-分辨率"><span class="nav-number">14.3.</span> <span class="nav-text">3. 分辨率:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何实现不同设备加载不同图片"><span class="nav-number">14.4.</span> <span class="nav-text">4. 如何实现不同设备加载不同图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2x图"><span class="nav-number">14.4.1.</span> <span class="nav-text">1. 2x图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-switch-case"><span class="nav-number">14.5.</span> <span class="nav-text">5. switch-case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-window-devicePixelRatio浏览器的像素比例"><span class="nav-number">14.6.</span> <span class="nav-text">5. window.devicePixelRatio浏览器的像素比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-iphone"><span class="nav-number">14.7.</span> <span class="nav-text">4. iphone</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-移动端的事件"><span class="nav-number">15.</span> <span class="nav-text">15. 移动端的事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-touch事件"><span class="nav-number">15.1.</span> <span class="nav-text">1. touch事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-点击事件"><span class="nav-number">15.2.</span> <span class="nav-text">2. 点击事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-封装tap事件"><span class="nav-number">15.3.</span> <span class="nav-text">3. 封装tap事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-带鱼屏"><span class="nav-number">16.</span> <span class="nav-text">16. 带鱼屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-zepto"><span class="nav-number">17.</span> <span class="nav-text">17. zepto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-iScroll"><span class="nav-number">18.</span> <span class="nav-text">18. iScroll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-swiper"><span class="nav-number">19.</span> <span class="nav-text">19. swiper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发中注意"><span class="nav-number">20.</span> <span class="nav-text">开发中注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郎雪</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,45 +1,702 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN.yml">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
+<meta property="og:url" content="http://yoursite.com/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
+<meta property="og:updated_time" content="2017-08-22T16:29:57.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
+<meta name="twitter:description" content="vue-cli脚手架工具- 帮助我们写好vue.js基础代码的工具,帮助我们搞定 - 目录结构 - 本地调试 - 代码部署 - 热加载 - 单元测试 安装vue-cli- 保障node.js在版本4.4.5以上 -  安装- $npm install -g vue-cli 初始化webpack打包项目名- $vue init webpack 项目名 切换到目录- $cd 项目名 安装依赖- $n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/"/>
+
+
+
+
+
+  <title>VUE实战第三天：高仿饿了么APP---Vue-cli开始项目 | 郎雪的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郎雪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郎雪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VUE实战第三天：高仿饿了么APP---Vue-cli开始项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-24T00:29:33+08:00">
+                2017-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h2 id="vue-cli脚手架工具"><a href="#vue-cli脚手架工具" class="headerlink" title="vue-cli脚手架工具"></a>vue-cli脚手架工具</h2><pre><code>- 帮助我们写好vue.js基础代码的工具,帮助我们搞定
+- 目录结构
+- 本地调试
+- 代码部署
+- 热加载
+- 单元测试
+</code></pre><h2 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h2><pre><code>- 保障node.js在版本4.4.5以上
+- 
+</code></pre><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>- $npm install -g vue-cli
+</code></pre><h3 id="初始化webpack打包项目名"><a href="#初始化webpack打包项目名" class="headerlink" title="初始化webpack打包项目名"></a>初始化webpack打包项目名</h3><pre><code>- $vue init webpack 项目名
+</code></pre><h3 id="切换到目录"><a href="#切换到目录" class="headerlink" title="切换到目录"></a>切换到目录</h3><pre><code>- $cd 项目名
+</code></pre><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><pre><code>- $npm install
+- 安装成功后,项目中增加文件:node_modules
+</code></pre><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><pre><code>- $npm run dev
+- 如果出现listening at http: // localhost: 4000就说明启动成功了
+</code></pre><h2 id="项目文件"><a href="#项目文件" class="headerlink" title="项目文件"></a>项目文件</h2><h3 id="一级目录"><a href="#一级目录" class="headerlink" title="一级目录"></a>一级目录</h3><h4 id="1-build"><a href="#1-build" class="headerlink" title="1. build"></a>1. build</h4><h4 id="2-config"><a href="#2-config" class="headerlink" title="2. config"></a>2. config</h4><h4 id="3-node-modules"><a href="#3-node-modules" class="headerlink" title="3. node_modules"></a>3. node_modules</h4><pre><code>- 通过npm install 安装的依赖代码库
+</code></pre><h4 id="4-src"><a href="#4-src" class="headerlink" title="4. src"></a>4. src</h4><pre><code>- 存放的源码
+</code></pre><h4 id="5-static"><a href="#5-static" class="headerlink" title="5. static"></a>5. static</h4><pre><code>- 存放的静态资源
+</code></pre><h3 id="babelIrc文件"><a href="#babelIrc文件" class="headerlink" title=".babelIrc文件"></a>.babelIrc文件</h3><ol>
+<li>babel-plugin-transform-es2015-block-scopped-function文件将es6的语法转换为es5的语法</li>
+<li>babel-plugin-transform-es2015-classes文件将class编译成es5编译类的方式</li>
+<li>babel-plugin-transform-runtime—&gt;lib—&gt;definitions.js文件对es6的symble</li>
+</ol>
+<h3 id="editorconfig文件"><a href="#editorconfig文件" class="headerlink" title=".editorconfig文件"></a>.editorconfig文件</h3><ol>
+<li>编辑器一些的配置</li>
+</ol>
+<h3 id="eslintignore文件"><a href="#eslintignore文件" class="headerlink" title=".eslintignore文件"></a>.eslintignore文件</h3><ol>
+<li>忽略语法检查的目录文件</li>
+<li>主要对build和config文件中的js做es语法检查<h3 id="eslintsrc-js"><a href="#eslintsrc-js" class="headerlink" title=".eslintsrc.js"></a>.eslintsrc.js</h3></li>
+<li>extends: ‘standard’  使用标准的语法标准</li>
+<li>rules可以修改规则<br>为:0的就是忽略语法检查<ol>
+<li>‘arrow-parens’:对箭头函数的规则</li>
+</ol>
+</li>
+</ol>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><ol>
+<li>入口html文件</li>
+<li>webpack编译时,会将项目自动插入到index.html中</li>
+</ol>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><ol>
+<li>入口文件的js</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/" rel="next" title="VUE实战第二天：高仿饿了么APP---介绍VUE.JS">
+                <i class="fa fa-chevron-left"></i> VUE实战第二天：高仿饿了么APP---介绍VUE.JS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/01/VUE实战第四天：高仿饿了么APP-webpack打包/" rel="prev" title="VUE实战第四天：高仿饿了么APP---webpack打包">
+                VUE实战第四天：高仿饿了么APP---webpack打包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://E:\My folder\photos\psb.jpg"
+               alt="郎雪" />
+          <p class="site-author-name" itemprop="name">郎雪</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli脚手架工具"><span class="nav-number">1.</span> <span class="nav-text">vue-cli脚手架工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装vue-cli"><span class="nav-number">2.</span> <span class="nav-text">安装vue-cli</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化webpack打包项目名"><span class="nav-number">2.2.</span> <span class="nav-text">初始化webpack打包项目名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到目录"><span class="nav-number">2.3.</span> <span class="nav-text">切换到目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖"><span class="nav-number">2.4.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">2.5.</span> <span class="nav-text">运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件"><span class="nav-number">3.</span> <span class="nav-text">项目文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级目录"><span class="nav-number">3.1.</span> <span class="nav-text">一级目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-build"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. build</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-config"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-node-modules"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. node_modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-src"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. src</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-static"><span class="nav-number">3.1.5.</span> <span class="nav-text">5. static</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babelIrc文件"><span class="nav-number">3.2.</span> <span class="nav-text">.babelIrc文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#editorconfig文件"><span class="nav-number">3.3.</span> <span class="nav-text">.editorconfig文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintignore文件"><span class="nav-number">3.4.</span> <span class="nav-text">.eslintignore文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintsrc-js"><span class="nav-number">3.5.</span> <span class="nav-text">.eslintsrc.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index-html"><span class="nav-number">3.6.</span> <span class="nav-text">index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-js"><span class="nav-number">3.7.</span> <span class="nav-text">main.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郎雪</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
