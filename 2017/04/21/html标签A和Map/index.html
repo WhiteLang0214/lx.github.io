@@ -93,13 +93,16 @@
 
 
 
+<meta name="description" content="` 标签 在html中标签作为超链接,用户从一张页面链接到另外一张页面。主要属性如下:  1.href : URL。用于规定链接指向的页面的URL。  2.target : 包括{_blank , _parent , _self , _top , framename}。规定在何处打开链接文档  _blank : 浏览器总在一个新打开,未命名的窗口中载入目标文档 _self : 在当前窗口打开目标">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ajax">
-<meta property="og:url" content="http://yoursite.com/2017/06/26/ajax/index.html">
+<meta property="og:title" content="html标签A和Map">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/html标签A和Map/index.html">
 <meta property="og:site_name" content="郎雪的博客">
-<meta property="og:updated_time" content="2017-07-16T15:45:56.656Z">
+<meta property="og:description" content="` 标签 在html中标签作为超链接,用户从一张页面链接到另外一张页面。主要属性如下:  1.href : URL。用于规定链接指向的页面的URL。  2.target : 包括{_blank , _parent , _self , _top , framename}。规定在何处打开链接文档  _blank : 浏览器总在一个新打开,未命名的窗口中载入目标文档 _self : 在当前窗口打开目标">
+<meta property="og:updated_time" content="2017-08-22T16:23:07.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ajax">
+<meta name="twitter:title" content="html标签A和Map">
+<meta name="twitter:description" content="` 标签 在html中标签作为超链接,用户从一张页面链接到另外一张页面。主要属性如下:  1.href : URL。用于规定链接指向的页面的URL。  2.target : 包括{_blank , _parent , _self , _top , framename}。规定在何处打开链接文档  _blank : 浏览器总在一个新打开,未命名的窗口中载入目标文档 _self : 在当前窗口打开目标">
 
 
 
@@ -127,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/26/ajax/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/21/html标签A和Map/"/>
 
 
 
 
 
-  <title>ajax | 郎雪的博客</title>
+  <title>html标签A和Map | 郎雪的博客</title>
   
 
 
@@ -252,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/ajax/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/21/html标签A和Map/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="langxue">
@@ -269,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ajax</h1>
+          <h1 class="post-title" itemprop="name headline">html标签A和Map</h1>
         
 
         <div class="post-meta">
@@ -281,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-26T10:40:45+08:00">
-                2017-06-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-21T23:17:37+08:00">
+                2017-04-21
               </time>
             
 
@@ -316,7 +319,76 @@
       
 
       
-        
+        <a id="more"></a>
+<h2 id="标签"><a href="#标签" class="headerlink" title="` 标签"></a>`<a> 标签</a></h2><ul>
+<li><p>在html中<a>标签作为超链接,用户从一张页面链接到另外一张页面。主要属性如下:</a></p>
+<ul>
+<li><p>1.href : URL。用于规定链接指向的页面的URL。</p>
+</li>
+<li><p>2.target : 包括{_blank , _parent , _self , _top , framename}。规定在何处打开链接文档</p>
+<ul>
+<li>_blank : 浏览器总在一个新打开,未命名的窗口中载入目标文档</li>
+<li>_self : 在当前窗口打开目标。_self是target默认值</li>
+<li>_parent : 在父窗口中打开目标</li>
+<li>_top : 会清除当前窗口所有包含的框架并将文档载入整个窗口</li>
+<li>framename : 在指定的框架中打开被链接文档</li>
+</ul>
+</li>
+<li><p>3.shape : 规定链接的形状。{default , rect , circle , pol},default规定全部区域,其他属性设置对应形状,HTML5不支持</p>
+</li>
+<li><p>4.coords: 规定链接的坐标,,定位shape的位置 , HTML5不支持</p>
+</li>
+</ul>
+</li>
+<li><p>在HTML中<a>标签还可以作为锚。当页面很长的时候，在顶部可能需要在页面定位，可以通过<a>标签实现,主要属性如下:</a></a></p>
+<ul>
+<li>1.name : 规定锚的名称。HTML5不支持<br>通过name属性可以设置锚,比如: <a name="c4">chapter4</a> 当要页面内定位,在另一个<a>标签href属性设置锚名称即可,例:</a></li>
+</ul>
+<ul>
+<li><a>标签内必须提供href或name属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;&lt;a id=&quot;top&quot; href= &quot;#c4&quot;&gt;查看 chapter4&lt;/a&gt;&lt;/p&gt;</div><div class="line">&lt;h2&gt;&lt;a id=&quot;anchor&quot; name=&quot;c4&quot;&gt;chapter c4&lt;/a&gt;&lt;/h2&gt;</div></pre></td></tr></table></figure>
+</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="map标签和area标签-图片热点"><a href="#map标签和area标签-图片热点" class="headerlink" title="map标签和area标签(图片热点)"></a>map标签和area标签(图片热点)</h2><ul>
+<li>在Html<map>标签用于定义一个客户端图像映射。主要属性如下：<ul>
+<li>id : 为map标签定义为的名称</li>
+<li>name : 为map规定的名称<ul>
+<li>注: <map>标签这2个属性都要求设置。</map></li>
+<li>因为设置图片热点的<img>标签的usemap属性需要引用<map>中的id和name属性,但是引用那个属性不同的浏览器不一致,所以我们需要同时向<map>添加id和name属性</map></map></li>
+</ul>
+</li>
+</ul>
+</map></li>
+<li>在Html中<area>标签用于定义图像映射中的区域，area 元素总是嵌套在 <map> 标签中。主要属性：<ul>
+<li>alt : 定义此去的替换文本,参考<a>标签</a></li>
+<li>href : 定义此区域的目标URL,参考<a>标签</a></li>
+<li>target : 规定在何处打开href属性指定的目标URL,参考<a>标签</a></li>
+<li>shape : 定义区域的形状,参考<a>标签</a></li>
+<li>coords : 定义可点击区域(对鼠标敏感的区域)的坐标,参考<a>标签<ul>
+<li>注: coords属性规定区域的x和y坐标,coords属性与shape属性配合使用,来规定区域的尺寸,形状,位置。图像在左上角的坐标是(0,0),具体设置如下:<ul>
+<li>圆形: shape = “circle” , coords = “a , y , z”<ul>
+<li>这里的 x 和 y 定义了圆心的位置（”0,0” 是图像左上角的坐标），r 是以像素为单位的圆形半径。</li>
+</ul>
+</li>
+<li>多边形：shape=”polygon”，coords=”x1,y1,x2,y2,x3,y3,…”<ul>
+<li>每一对 “x,y” 坐标都定义了多边形的一个顶点（”0,0” 是图像左上角的坐标）。定义三角形至少需要三组坐标；高纬多边形则需要更多数量的顶点。</li>
+<li>多边形会自动封闭，因此在列表的结尾不需要重复第一个坐标来闭合整个区域</li>
+</ul>
+</li>
+<li>矩形：shape=”rectangle”，coords=”x1,y1,x2,y2”<ul>
+<li>两对坐标分别定义了矩形左上角和右下角的坐标</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</a></li>
+</ul>
+</map></li>
+<li>一个图片热点的简单例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;1.jpg&quot; border=&quot;0&quot; usemap=&quot;#planetmap&quot; /&gt;</div><div class="line">&lt;map name=&quot;planetmap&quot; id=&quot;planetmap&quot;&gt;</div><div class="line">   &lt;area shape=&quot;circle&quot; coords=&quot;129,161,10&quot;  href =&quot;www.baidu。com&quot; alt=&quot;Mercury&quot; /&gt;</div><div class="line">&lt;/map&gt;</div></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
 
@@ -352,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/23/禁止微信webview调整字体大小/" rel="next" title="禁止微信webview调整字体大小">
-                <i class="fa fa-chevron-left"></i> 禁止微信webview调整字体大小
+              <a href="/2017/04/20/HTML5的本地存储/" rel="next" title="HTML5的本地存储">
+                <i class="fa fa-chevron-left"></i> HTML5的本地存储
               </a>
             
           </div>
@@ -362,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/05/vueJS/" rel="prev" title="vueJS">
-                vueJS <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/23/win7的IIS上部署html/" rel="prev" title="win7的IIS上部署html">
+                win7的IIS上部署html <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -412,8 +484,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://E:\My folder\photos\psb.jpg"
@@ -457,6 +538,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签"><span class="nav-number">1.</span> <span class="nav-text">` 标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map标签和area标签-图片热点"><span class="nav-number">2.</span> <span class="nav-text">map标签和area标签(图片热点)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

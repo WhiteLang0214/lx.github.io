@@ -93,13 +93,16 @@
 
 
 
+<meta name="description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ajax">
-<meta property="og:url" content="http://yoursite.com/2017/06/26/ajax/index.html">
+<meta property="og:title" content="事件DOMContentLoaded和load的区别">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/事件DOMContentLoaded和load的区别/index.html">
 <meta property="og:site_name" content="郎雪的博客">
-<meta property="og:updated_time" content="2017-07-16T15:45:56.656Z">
+<meta property="og:description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
+<meta property="og:updated_time" content="2017-08-22T15:58:21.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ajax">
+<meta name="twitter:title" content="事件DOMContentLoaded和load的区别">
+<meta name="twitter:description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
 
 
 
@@ -127,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/26/ajax/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/事件DOMContentLoaded和load的区别/"/>
 
 
 
 
 
-  <title>ajax | 郎雪的博客</title>
+  <title>事件DOMContentLoaded和load的区别 | 郎雪的博客</title>
   
 
 
@@ -252,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/ajax/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/事件DOMContentLoaded和load的区别/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="langxue">
@@ -269,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ajax</h1>
+          <h1 class="post-title" itemprop="name headline">事件DOMContentLoaded和load的区别</h1>
         
 
         <div class="post-meta">
@@ -281,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-26T10:40:45+08:00">
-                2017-06-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:00:37+08:00">
+                2017-05-11
               </time>
             
 
@@ -316,7 +319,19 @@
       
 
       
-        
+        <a id="more"></a>
+<h3 id="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><a href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。" class="headerlink" title="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"></a>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</h3><p>DOM文档加载的步骤为:</p>
+<ol>
+<li>解析HTML结构。</li>
+<li>加载外部脚本和样式表文件。</li>
+<li>解析并执行脚本代码。</li>
+<li>DOM树构建完成。//DOMContentLoaded</li>
+<li>加载图片等外部文件。</li>
+<li>页面加载完毕。//load</li>
+<li>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<h3 id="原生写法"><a href="#原生写法" class="headerlink" title="原生写法"></a>原生写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不兼容老的浏览器</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;，<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="JQ的写法"><a href="#JQ的写法" class="headerlink" title="JQ的写法"></a>JQ的写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -352,8 +367,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/23/禁止微信webview调整字体大小/" rel="next" title="禁止微信webview调整字体大小">
-                <i class="fa fa-chevron-left"></i> 禁止微信webview调整字体大小
+              <a href="/2017/05/11/项目构建工具gulp/" rel="next" title="项目构建工具gulp">
+                <i class="fa fa-chevron-left"></i> 项目构建工具gulp
               </a>
             
           </div>
@@ -362,8 +377,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/05/vueJS/" rel="prev" title="vueJS">
-                vueJS <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/11/移动端开发细节/" rel="prev" title="移动端开发细节">
+                移动端开发细节 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -412,8 +427,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://E:\My folder\photos\psb.jpg"
@@ -457,6 +481,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><span class="nav-number">1.</span> <span class="nav-text">他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生写法"><span class="nav-number">2.</span> <span class="nav-text">原生写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JQ的写法"><span class="nav-number">3.</span> <span class="nav-text">JQ的写法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
