@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-<html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN.yml">
 <head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<title>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-    移动端开发细节
   
-</title>
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
 
 <meta name="description" content="1. 移动web开发1. 移动web开发:web页面在移动端 2. 访问方式2. 访问方式: ① 直接在手机端的浏览器访问页面             ② 嵌入app中的页面 3. 移动站布局方案:1. 宽高自适应1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度 2. 响应式web开发1. 响应">
 <meta property="og:type" content="article">
@@ -24,15 +105,47 @@
 <meta name="twitter:description" content="1. 移动web开发1. 移动web开发:web页面在移动端 2. 访问方式2. 访问方式: ① 直接在手机端的浏览器访问页面             ② 嵌入app中的页面 3. 移动站布局方案:1. 宽高自适应1. 宽高自适应:定高    宽度自适应(width:100%),要设padding box-sizing;一些装饰性的元素高度固定,内容不需固定高度 2. 响应式web开发1. 响应">
 
 
-  <link rel="alternative" href="/atom.xml" title="郎雪的博客" type="application/atom+xml">
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
 
 
-  <link rel="icon" href="/favicon.png">
+  <link rel="canonical" href="http://yoursite.com/2017/05/11/移动端开发细节/"/>
 
 
-<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
-<link rel="stylesheet" href="/styles/main.css">
+
+
+
+  <title>移动端开发细节 | 郎雪的博客</title>
+  
+
+
+
+
+
+
+
+
 
 
 
@@ -40,135 +153,173 @@
 
 
 </head>
-<body
-  
-    class="monochrome"
-  
-  >
-  <div class="mobile-header">
-  <button class="sidebar-toggle" type="button">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-  </button>
-  <a class="title" href="/">郎雪的博客</a>
-</div>
 
-  <div class="main-container">
-    <div class="sidebar">
-  <div class="header">
-    <h1 class="title"><a href="/">郎雪的博客</a></h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+
+  
+  
     
-    <div class="info">
-      <div class="content">
-        
-        
-          <div class="author">郎雪</div>
-        
-      </div>
-      
-        <div class="avatar">
-          
-            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
-          
-        </div>
-      
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">郎雪的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-  <div class="body">
-    
-      
-        <ul class="nav">
-          
-            
-              <li class="category-list-container">
-                <a href="javascript:;">Category</a>
-                
-              </li>
-            
-          
-            
-              <li class="tag-list-container">
-                <a href="javascript:;">Tag</a>
-                
-              </li>
-            
-          
-            
-              <li class="archive-list-container">
-                <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/">2016</a><span class="archive-list-count">4</span></li></ul>
-              </li>
-            
-          
-        </ul>
-      
-        <ul class="nav">
-          
-            
-              <li>
-                <a href="/" title="Homepage">Homepage</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="/archives" title="By Year">By Year</a>
-              </li>
-            
-          
-        </ul>
-      
-        <ul class="nav">
-          
-            
-              <li>
-                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="external">Chan</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="https://github.com/denjones" title="Github" target="_blank" rel="external">Github</a>
-              </li>
-            
-          
-            
-              <li>
-                <a href="/atom.xml" title="RSS">RSS</a>
-              </li>
-            
-          
-        </ul>
-      
-    
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
   </div>
 </div>
 
-    <div class="main-content">
-      
-        <div style="max-width: 1000px">
-      
-          <article id="post-移动端开发细节" class="article article-type-post">
-  
-    <h1 class="article-header">
-      移动端开发细节
-    </h1>
-  
+<nav class="site-nav">
   
 
-  <div class="article-info">
-    <span class="article-date">
-  2017-05-11
-</span>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
 
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
 
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/移动端开发细节/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="langxue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://E:\My folder\photos\psb.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="郎雪的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端开发细节</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T21:00:10+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
-  </div>
-  <div class="article-entry">
-    <a id="more"></a>
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
 <h2 id="1-移动web开发"><a href="#1-移动web开发" class="headerlink" title="1. 移动web开发"></a>1. 移动web开发</h2><pre><code>1. 移动web开发:web页面在移动端
 </code></pre><h2 id="2-访问方式"><a href="#2-访问方式" class="headerlink" title="2. 访问方式"></a>2. 访问方式</h2><pre><code>2. 访问方式: ① 直接在手机端的浏览器访问页面
             ② 嵌入app中的页面
@@ -327,119 +478,340 @@ var swiper=new Swiper(){
 6. 如何检测用户是通过主屏启动的webapp : 设置navigator.standalone为true。原因:从主屏启动的webapp和浏览器访问webapp最大的区别是它清除了浏览器上方和下放的工具条,这样的Webapp更加想nativeapp了,另外区别,window对象中的nacigator子对象的一个standalone属性。在Android中没有添加到主屏这回事
 7. 如何关闭ios中键盘自动大写:input元素中设置autocapitalize=&quot;off&quot;
 </code></pre>
-  </div>
-  <footer class="article-footer">
-    
-  <div class="cc">
-    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.z" target="_blank" title="Attribution-ShareAlike">
-      <img src="/images/cc/cc.png">
-      
-          <img src="/images/cc/by.png">
-        
-          <img src="/images/cc/sa.png">
-      
-      <span>
-        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
-      </span>
-    </a>
-  </div>
-
-
-    
-
-  </footer>
-</article>
-
-
-
-
-
-
-
-          <div class="main-footer">
-  
-    © 2017 郎雪的博客 - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
-  
-</div>
-
-      
-        </div>
       
     </div>
-  </div>
-  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
-  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+    <div>
+      
+        
 
-  <!-- Root element of PhotoSwipe. Must have class pswp. -->
-  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      
+    </div>
 
-    <!-- Background of PhotoSwipe.
-             It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
+    <div>
+      
+        
 
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
+      
+    </div>
 
-      <!-- Container that holds slides.
-                PhotoSwipe keeps only 3 of them in the DOM to save memory.
-                Don't modify these 3 pswp__item elements, data is added later on. -->
-      <div class="pswp__container">
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-        <div class="pswp__item"></div>
-      </div>
+    <div>
+      
+        
 
-      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-      <div class="pswp__ui pswp__ui--hidden">
+      
+    </div>
 
-        <div class="pswp__top-bar">
+    <footer class="post-footer">
+      
 
-          <!--  Controls are self-explanatory. Order can be changed. -->
+      
+      
+      
 
-          <div class="pswp__counter"></div>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/11/事件DOMContentLoaded和load的区别/" rel="next" title="事件DOMContentLoaded和load的区别">
+                <i class="fa fa-chevron-left"></i> 事件DOMContentLoaded和load的区别
+              </a>
+            
+          </div>
 
-          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+          <span class="post-nav-divider"></span>
 
-          <button class="pswp__button pswp__button--share" title="Share"></button>
-
-          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-          <!-- element will get class pswp__preloader--active when preloader is running -->
-          <div class="pswp__preloader">
-            <div class="pswp__preloader__icn">
-              <div class="pswp__preloader__cut">
-                <div class="pswp__preloader__donut"></div>
-              </div>
-            </div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/05/canvas/" rel="prev" title="canvas">
+                canvas <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
+      
 
-        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-          <div class="pswp__share-tooltip"></div>
-        </div>
+      
+      
+    </footer>
+  </article>
 
-        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
 
-        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
 
-        <div class="pswp__caption">
-          <div class="pswp__caption__center"></div>
-        </div>
-      </div>
+    <div class="post-spread">
+      
     </div>
   </div>
 
-  <script src="/PhotoSwipe/photoswipe.js"></script>
-  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+          </div>
+          
 
 
-<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
-<script src="/scripts/main.js"></script>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://E:\My folder\photos\psb.jpg"
+               alt="langxue" />
+          <p class="site-author-name" itemprop="name">langxue</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-移动web开发"><span class="nav-number">1.</span> <span class="nav-text">1. 移动web开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-访问方式"><span class="nav-number">2.</span> <span class="nav-text">2. 访问方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移动站布局方案"><span class="nav-number">3.</span> <span class="nav-text">3. 移动站布局方案:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-宽高自适应"><span class="nav-number">3.1.</span> <span class="nav-text">1. 宽高自适应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-响应式web开发"><span class="nav-number">3.2.</span> <span class="nav-text">2. 响应式web开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-rem"><span class="nav-number">3.3.</span> <span class="nav-text">3.  rem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-移动浏览器"><span class="nav-number">4.</span> <span class="nav-text">4. 移动浏览器:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-webkit内核中一些私有的meta标签"><span class="nav-number">5.</span> <span class="nav-text">5. webkit内核中一些私有的meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-移动web测试"><span class="nav-number">6.</span> <span class="nav-text">6. 移动web测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-视口属性—开发中首先设置"><span class="nav-number">7.</span> <span class="nav-text">7. 视口属性—开发中首先设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-响应式web开发"><span class="nav-number">8.</span> <span class="nav-text">8. 响应式web开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-响应式web开发—媒体查询"><span class="nav-number">8.1.</span> <span class="nav-text">1. 响应式web开发—媒体查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-响应式web开发—流式布局"><span class="nav-number">8.2.</span> <span class="nav-text">2. 响应式web开发—流式布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-响应式web开发—液态图片"><span class="nav-number">8.3.</span> <span class="nav-text">3. 响应式web开发—液态图片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-border-box-box-sizing"><span class="nav-number">9.</span> <span class="nav-text">9. border-box : box-sizing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-高亮效果"><span class="nav-number">10.</span> <span class="nav-text">10. 高亮效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-css预处理程序"><span class="nav-number">11.</span> <span class="nav-text">11. css预处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-less"><span class="nav-number">11.1.</span> <span class="nav-text">1. less</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-sass"><span class="nav-number">11.2.</span> <span class="nav-text">2. sass</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-最大-amp-最小宽高"><span class="nav-number">12.</span> <span class="nav-text">12. 最大&最小宽高</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-最大宽高"><span class="nav-number">12.1.</span> <span class="nav-text">1. 最大宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-最小宽高"><span class="nav-number">12.2.</span> <span class="nav-text">2. 最小宽高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-目前移动设备"><span class="nav-number">12.3.</span> <span class="nav-text">3. 目前移动设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-元素设置了fixed"><span class="nav-number">13.</span> <span class="nav-text">13. 元素设置了fixed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-目前手机屏幕"><span class="nav-number">14.</span> <span class="nav-text">14. 目前手机屏幕</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-普通屏"><span class="nav-number">14.1.</span> <span class="nav-text">1. 普通屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-视网膜屏幕"><span class="nav-number">14.2.</span> <span class="nav-text">2. 视网膜屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-分辨率"><span class="nav-number">14.3.</span> <span class="nav-text">3. 分辨率:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何实现不同设备加载不同图片"><span class="nav-number">14.4.</span> <span class="nav-text">4. 如何实现不同设备加载不同图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2x图"><span class="nav-number">14.4.1.</span> <span class="nav-text">1. 2x图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-switch-case"><span class="nav-number">14.5.</span> <span class="nav-text">5. switch-case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-window-devicePixelRatio浏览器的像素比例"><span class="nav-number">14.6.</span> <span class="nav-text">5. window.devicePixelRatio浏览器的像素比例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-iphone"><span class="nav-number">14.7.</span> <span class="nav-text">4. iphone</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-移动端的事件"><span class="nav-number">15.</span> <span class="nav-text">15. 移动端的事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-touch事件"><span class="nav-number">15.1.</span> <span class="nav-text">1. touch事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-点击事件"><span class="nav-number">15.2.</span> <span class="nav-text">2. 点击事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-封装tap事件"><span class="nav-number">15.3.</span> <span class="nav-text">3. 封装tap事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-带鱼屏"><span class="nav-number">16.</span> <span class="nav-text">16. 带鱼屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-zepto"><span class="nav-number">17.</span> <span class="nav-text">17. zepto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-iScroll"><span class="nav-number">18.</span> <span class="nav-text">18. iScroll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-swiper"><span class="nav-number">19.</span> <span class="nav-text">19. swiper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发中注意"><span class="nav-number">20.</span> <span class="nav-text">开发中注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">langxue</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
