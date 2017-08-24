@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-CN.yml">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,12 +95,15 @@
 
 
 
+<meta name="description" content="我是一名前端开发工程师">
 <meta property="og:type" content="website">
 <meta property="og:title" content="郎雪的主页">
 <meta property="og:url" content="http://whitelang0214.github.io/myhexo/page/3/index.html">
 <meta property="og:site_name" content="郎雪的主页">
+<meta property="og:description" content="我是一名前端开发工程师">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="郎雪的主页">
+<meta name="twitter:description" content="我是一名前端开发工程师">
 
 
 
@@ -114,7 +117,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -156,7 +159,7 @@
 <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -201,22 +204,32 @@
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-主页">
+        <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            menu.主页
+            首页
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-文章">
+        <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            menu.文章
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -278,9 +291,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-22T10:30:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-22T10:30:34+08:00">
                 2016-08-22
               </time>
             
@@ -938,9 +951,9 @@ return cache[key];
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T23:34:51+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-22T23:34:51+08:00">
                 2016-06-22
               </time>
             
@@ -1110,9 +1123,9 @@ git可以设计版本，比如：分支开发，分支合并和分支回滚等�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T16:33:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-22T16:33:08+08:00">
                 2016-06-22
               </time>
             
@@ -1248,9 +1261,9 @@ XML文件侧重于存储数据
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-06-22T13:29:07+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-22T13:29:07+08:00">
                 2016-06-22
               </time>
             
@@ -1307,7 +1320,7 @@ XML文件侧重于存储数据
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/06/22/使用hexo搭建静态博客/#more" rel="contents">
-              Weiterlesen &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1389,16 +1402,16 @@ XML文件侧重于存储数据
                alt="郎雪" />
           <p class="site-author-name" itemprop="name">郎雪</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">我是一名前端开发工程师</p>
           
         </div>
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/">
+              <a href="/archives/">
                 <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
@@ -1411,7 +1424,7 @@ XML文件侧重于存储数据
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">标签</span>
               
             </div>
           
@@ -1468,11 +1481,11 @@ XML文件侧重于存储数据
 
 
 <!-- <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div> -->
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
