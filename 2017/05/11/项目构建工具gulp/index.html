@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="Gulp Tutorial Gulp: The streaming build system   gulp&amp;#x662F;&amp;#x524D;&amp;#x7AEF;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#x4E00;&amp;#x79CD;&amp;#x57FA;&amp;#x4E8E;&amp;#x6D41;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x6784;&amp;#x5EFA;&amp;#">
+<meta name="description" content="Gulp Tutorial Gulp: The streaming build system   gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目构建工具gulp">
 <meta property="og:url" content="http://whitelang0214.github.io/myhexo/2017/05/11/项目构建工具gulp/index.html">
 <meta property="og:site_name" content="郎雪的主页">
-<meta property="og:description" content="Gulp Tutorial Gulp: The streaming build system   gulp&amp;#x662F;&amp;#x524D;&amp;#x7AEF;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#x4E00;&amp;#x79CD;&amp;#x57FA;&amp;#x4E8E;&amp;#x6D41;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x6784;&amp;#x5EFA;&amp;#">
+<meta property="og:description" content="Gulp Tutorial Gulp: The streaming build system   gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线">
 <meta property="og:image" content="http://whitelang0214.github.io/myhexo/2017/05/11/项目构建工具gulp/img/Speed-up-your-workflow-with-a-Gulp-plugin.png">
 <meta property="og:image" content="http://whitelang0214.github.io/myhexo/2017/05/11/项目构建工具gulp/img/150046-20160308200954022-1598623728.jpg">
 <meta property="og:updated_time" content="2017-08-22T15:55:33.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目构建工具gulp">
-<meta name="twitter:description" content="Gulp Tutorial Gulp: The streaming build system   gulp&amp;#x662F;&amp;#x524D;&amp;#x7AEF;&amp;#x5F00;&amp;#x53D1;&amp;#x8FC7;&amp;#x7A0B;&amp;#x4E2D;&amp;#x4E00;&amp;#x79CD;&amp;#x57FA;&amp;#x4E8E;&amp;#x6D41;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&amp;#x6784;&amp;#x5EFA;&amp;#">
+<meta name="twitter:description" content="Gulp Tutorial Gulp: The streaming build system   gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线">
 <meta name="twitter:image" content="http://whitelang0214.github.io/myhexo/2017/05/11/项目构建工具gulp/img/Speed-up-your-workflow-with-a-Gulp-plugin.png">
 
 
@@ -158,6 +158,10 @@
 
 
 </head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
 
@@ -328,135 +332,135 @@
 <h2 id="Gulp-Tutorial"><a href="#Gulp-Tutorial" class="headerlink" title="Gulp Tutorial"></a>Gulp Tutorial</h2><blockquote>
 <p>Gulp: The streaming build system</p>
 </blockquote>
-<p><a class="magnific-img" href="img/Speed-up-your-workflow-with-a-Gulp-plugin.png"><img src="img/Speed-up-your-workflow-with-a-Gulp-plugin.png" alt="gulp-logo" class="ui centered image"></a></p>
-<p>gulp&#x662F;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E00;&#x79CD;&#x57FA;&#x4E8E;&#x6D41;&#x7684;&#x4EE3;&#x7801;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x662F;&#x81EA;&#x52A8;&#x5316;&#x9879;&#x76EE;&#x7684;&#x6784;&#x5EFA;&#x5229;&#x5668;&#xFF1B;<br>&#x5979;&#x4E0D;&#x4EC5;&#x80FD;&#x5BF9;&#x7F51;&#x7AD9;&#x8D44;&#x6E90;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x5F00;&#x53D1;&#x8FC7;&#x7A0B;&#x4E2D;&#x5F88;&#x591A;&#x91CD;&#x590D;&#x7684;&#x4EFB;&#x52A1;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x6B63;&#x786E;&#x7684;&#x5DE5;&#x5177;&#x81EA;&#x52A8;&#x5B8C;&#x6210;&#xFF1B;<br>&#x4F7F;&#x7528;&#x5979;&#xFF0C;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x5F88;&#x6109;&#x5FEB;&#x7684;&#x7F16;&#x5199;&#x4EE3;&#x7801;&#xFF0C;&#x800C;&#x4E14;&#x5927;&#x5927;&#x63D0;&#x9AD8;&#x6211;&#x4EEC;&#x7684;&#x5DE5;&#x4F5C;&#x6548;&#x7387;&#x3002;</p>
-<p>&#x9879;&#x76EE;&#x6784;&#x5EFA;&#x662F;&#x6307;&#x9879;&#x76EE;&#x4E0A;&#x7EBF;&#x4E4B;&#x524D;&#x5BF9;&#x9879;&#x76EE;&#x6E90;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4E00;&#x7CFB;&#x5217;&#x5904;&#x7406;&#xFF0C;&#x4F7F;&#x5176;&#x4EE5;&#x6700;&#x4F73;&#x7684;&#x5F62;&#x5F0F;&#x8FD0;&#x884C;&#x4E8E;&#x7EBF;&#x4E0A;&#x670D;&#x52A1;&#x5668;&#x3002;<br>&#x5E38;&#x89C1;&#x5904;&#x7406;&#x4EFB;&#x5305;&#x62EC;&#x4EE5;&#x4E0B;&#x51E0;&#x65B9;&#x9762;&#xFF1A;</p>
-<ol class="ui list">
-<li>&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x529F;&#x80FD;&#x7684;&#x590D;&#x7528;&#x5E76;&#x89E3;&#x51B3;&#x6A21;&#x5757;&#x95F4;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x4F46;&#x5E26;&#x6765;&#x597D;&#x5904;&#x7684;&#x540C;&#x65F6;&#x4E5F;&#x4F7F;&#x5F97;&#x529F;&#x80FD;&#x4EE3;&#x7801;&#x7684;&#x788E;&#x7247;&#x5316;&#xFF08;&#x82E5;&#x5E72;&#x6587;&#x4EF6;&#xFF09;&#x7A0B;&#x5EA6;&#x589E;&#x52A0;&#x3002;</li>
-<li>&#x4F7F;&#x7528;less&#x3001;sass&#x7B49;&#x9884;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x53EF;&#x4EE5;&#x964D;&#x4F4E;CSS&#x7684;&#x7EF4;&#x62A4;&#x6210;&#x672C;&#xFF0C;&#x6700;&#x7EC8;&#x9700;&#x8981;&#x5C06;&#x8FD9;&#x4E9B;&#x9884;&#x5904;&#x7406;&#x5668;&#x7F16;&#x8BD1;&#x6210;css&#x6587;&#x4EF6;&#xFF1B;</li>
-<li>&#x5BF9;&#x9759;&#x6001;&#x8D44;&#x6E90;&#xFF08;css&#x3001;js&#x3001;html&#x3001;images&#xFF09;&#x538B;&#x7F29;&#x5408;&#x5E76;&#x53EF;&#x4EE5;&#x63D0;&#x5347;&#x7F51;&#x9875;&#x6253;&#x5F00;&#x901F;&#x5EA6;&#xFF0C;&#x63D0;&#x9AD8;&#x6027;&#x80FD;&#xFF1B;</li>
+<p><img src="img/Speed-up-your-workflow-with-a-Gulp-plugin.png" alt="gulp-logo"></p>
+<p>gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；<br>她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；<br>使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。</p>
+<p>项目构建是指项目上线之前对项目源代码进行一系列处理，使其以最佳的形式运行于线上服务器。<br>常见处理任包括以下几方面：</p>
+<ol>
+<li>模块化开发可以实现功能的复用并解决模块间的依赖关系，但带来好处的同时也使得功能代码的碎片化（若干文件）程度增加。</li>
+<li>使用less、sass等预处理器，可以降低CSS的维护成本，最终需要将这些预处理器编译成css文件；</li>
+<li>对静态资源（css、js、html、images）压缩合并可以提升网页打开速度，提高性能；</li>
 </ol>
-<p>&#x4EE5;&#x4E0A;&#x4EFB;&#x52A1;&#x5B8C;&#x5982;&#x679C;&#x5B8C;&#x5168;&#x9760;&#x624B;&#x52A8;&#x6765;&#x5B8C;&#x6210;&#x662F;&#x975E;&#x5E38;&#x8017;&#x65F6;&#x8017;&#x529B;&#x7684;&#x4E14;&#x5BB9;&#x6613;&#x51FA;&#x9519;&#xFF0C;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x901A;&#x5E38;&#x501F;&#x52A9;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x6765;&#x5B9E;&#x73B0;&#x3002;<br>&#x6240;&#x8C13;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x662F;&#x6307;&#x901A;&#x8FC7;&#x4E00;&#x7CFB;&#x7B80;&#x5355;&#x914D;&#x7F6E;&#x5C31;&#x53EF;&#x4EE5;&#x5E2E;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x5408;&#x5E76;&#x3001;&#x538B;&#x7F29;&#x3001;&#x6821;&#x9A8C;&#x3001;&#x9884;&#x5904;&#x7406;&#x7B49;&#x4E00;&#x7CFB;&#x5217;&#x4EFB;&#x52A1;&#x7684;&#x8F6F;&#x4EF6;&#x5DE5;&#x5177;&#x3002;<br>&#x5E38;&#x89C1;&#x7684;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x5305;&#x62EC;&#xFF1A;<code>Grunt&#x3001;Gulp&#x3001;F.I.S&#xFF08;&#x767E;&#x5EA6;&#x51FA;&#x54C1;&#xFF09;&#x3001;webpack</code>&#x7B49;&#x3002;</p>
-<p>Gulp&#x662F;&#x57FA;&#x4E8E;Nodejs&#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E2A;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#xFF0C;&#x501F;&#x52A9;gulp&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7684;&#x6784;&#x5EFA;&#x4EFB;&#x52A1;&#xFF0C;<br>&#x5176;&#x4EE5;&#x7B80;&#x6D01;&#x7684;&#x914D;&#x7F6E;&#x548C;&#x5353;&#x8D8A;&#x7684;&#x6027;&#x80FD;&#x6210;&#x4E3A;&#x76EE;&#x524D;&#x4E3B;&#x6D41;&#x7684;&#x6784;&#x5EFA;&#x5DE5;&#x5177;&#x3002;</p>
-<p><a class="magnific-img" href="img/150046-20160308200954022-1598623728.jpg"><img src="img/150046-20160308200954022-1598623728.jpg" alt="gulp-task" class="ui centered image"></a></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul class="ui list">
-<li>&#x5B98;&#x65B9;&#xFF1A;<a href="http://gulpjs.com/" target="_blank" rel="external">http://gulpjs.com/</a></li>
-<li>&#x4E2D;&#x6587;&#x5B98;&#x7F51;&#xFF1A;<a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">http://www.gulpjs.com.cn/</a></li>
-<li>npm&#xFF1A;<a href="https://www.npmjs.com/package/gulp" target="_blank" rel="external">https://www.npmjs.com/package/gulp</a></li>
-<li>Github&#xFF1A;<a href="https://github.com/gulpjs/gulp" target="_blank" rel="external">https://github.com/gulpjs/gulp</a></li>
-<li>Gitbook&#xFF1A;<a href="https://wizardforcel.gitbooks.io/gulp-doc/content/2.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/gulp-doc/content/2.html</a></li>
+<p>以上任务完如果完全靠手动来完成是非常耗时耗力的且容易出错，实际开发通常借助构建工具来实现。<br>所谓构建工具是指通过一系简单配置就可以帮我们实现合并、压缩、校验、预处理等一系列任务的软件工具。<br>常见的构建工具包括：<code>Grunt、Gulp、F.I.S（百度出品）、webpack</code>等。</p>
+<p>Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不同的构建任务，<br>其以简洁的配置和卓越的性能成为目前主流的构建工具。</p>
+<p><img src="img/150046-20160308200954022-1598623728.jpg" alt="gulp-task"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>官方：<a href="http://gulpjs.com/" target="_blank" rel="external">http://gulpjs.com/</a></li>
+<li>中文官网：<a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">http://www.gulpjs.com.cn/</a></li>
+<li>npm：<a href="https://www.npmjs.com/package/gulp" target="_blank" rel="external">https://www.npmjs.com/package/gulp</a></li>
+<li>Github：<a href="https://github.com/gulpjs/gulp" target="_blank" rel="external">https://github.com/gulpjs/gulp</a></li>
+<li>Gitbook：<a href="https://wizardforcel.gitbooks.io/gulp-doc/content/2.html" target="_blank" rel="external">https://wizardforcel.gitbooks.io/gulp-doc/content/2.html</a></li>
 </ul>
 <hr>
 <h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><blockquote>
-<p>&#x5B98;&#x65B9;&#x6587;&#x6863;&#xFF1A;<a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md</a></p>
+<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md</a></p>
 </blockquote>
-<p>&#x4E00;&#xFF1A;Install the gulp command</p>
-<p>&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528; gulp &#x9996;&#x5148;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x5168;&#x5C40;&#x6709; gulp-cli &#x73AF;&#x5883;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x4E86;&#x3002;</p>
+<p>一：Install the gulp command</p>
+<p>在项目中使用 gulp 首先需要确保全局有 gulp-cli 环境，如果有就不需要执行下面的命令了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --global gulp-cli</span></div><div class="line">yarn global add gulp-cli</div></pre></td></tr></table></figure>
-<p>&#x4E8C;&#xFF1A;Install gulp in your devDependencies</p>
+<p>二：Install gulp in your devDependencies</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm install --save-dev gulp</span></div><div class="line">yarn add -D gulp</div></pre></td></tr></table></figure>
-<p>&#x4E09;&#xFF1A;Create a file called gulpfile.js in your project root with these contents:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var gulp = require(<span class="string">&apos;gulp&apos;</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">&apos;default&apos;</span>, <span class="function"><span class="title">function</span></span>() {</div><div class="line">  console.log(<span class="string">&apos;hello gulp&apos;</span>)</div><div class="line">})</div></pre></td></tr></table></figure>
-<p>&#x56DB;&#xFF1A;Test it out: Run the gulp command in your project directory:</p>
+<p>三：Create a file called gulpfile.js in your project root with these contents:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var gulp = require(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  console.log(<span class="string">'hello gulp'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>四：Test it out: Run the gulp command in your project directory:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp</div></pre></td></tr></table></figure>
 <hr>
 <h2 id="API-Documentation"><a href="#API-Documentation" class="headerlink" title="API Documentation"></a>API Documentation</h2><blockquote>
-<p>&#x5B98;&#x65B9;&#x6587;&#x6863;&#xFF1A;<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/API.md</a></p>
+<p>官方文档：<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank" rel="external">https://github.com/gulpjs/gulp/blob/master/docs/API.md</a></p>
 </blockquote>
-<ul class="ui list">
+<ul>
 <li>gulp.task</li>
 <li>gulp.src</li>
 <li>gulp.dest</li>
 <li>gulp.watch</li>
 </ul>
-<h3 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name [, deps] [, fn])"></a>gulp.task(name [, deps] [, fn])</h3><p>&#x4F5C;&#x7528;&#xFF1A;&#x5B9A;&#x4E49;&#x5404;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x4EFB;&#x52A1;</p>
-<ul class="ui list">
+<h3 id="gulp-task-name-deps-fn"><a href="#gulp-task-name-deps-fn" class="headerlink" title="gulp.task(name [, deps] [, fn])"></a>gulp.task(name [, deps] [, fn])</h3><p>作用：定义各种不同的任务</p>
+<ul>
 <li>gulp.task(name, fn)</li>
 <li>gulp.task(name, deps, fn)</li>
 <li>gulp.task(name, fn(cb))</li>
 <li>gulp.task(name, deps, fn(cb))</li>
 </ul>
-<p>&#x4E00;&#xFF1A;&#x666E;&#x901A;&#x4EFB;&#x52A1;</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">&apos;a&apos;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&apos;1 aaa&apos;</span>)</div><div class="line">})</div><div class="line"></div><div class="line">gulp.task(<span class="string">&apos;b&apos;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&apos;2 bbb&apos;</span>)</div><div class="line">})</div></pre></td></tr></table></figure>
-<p>&#x4E8C;&#xFF1A;&#x4EFB;&#x52A1;&#x4E4B;&#x95F4;&#x7684;&#x4F9D;&#x8D56;</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">&apos;a&apos;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>{</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">&apos;1 aaa&apos;</span>)</div><div class="line">    cb()</div><div class="line">  }, <span class="number">1000</span>)</div><div class="line">})</div><div class="line"></div><div class="line"><span class="comment">// b &#x4EFB;&#x52A1;&#x4F9D;&#x8D56;&#x7684; a &#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x5982;&#x679C;&#x4E0D;&#x8C03;&#x7528;&#xFF0C;b &#x4EFB;&#x52A1;&#x662F;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#x7684;</span></div><div class="line">gulp.task(<span class="string">&apos;b&apos;</span>, [<span class="string">&apos;a&apos;</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&apos;2 bbb&apos;</span>)</div><div class="line">})</div></pre></td></tr></table></figure>
-<p>&#x4E09;&#xFF1A;gulp &#x6D41;&#x63A7;&#x5236;</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">&apos;a&apos;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">  <span class="comment">// &#x5F53;&#x4EFB;&#x52A1;&#x4E2D;&#x662F;&#x4E00;&#x4E2A; gulp &#x6D41;&#x7684;&#x65F6;&#x5019;&#x5219;&#x9700;&#x8981;&#x901A;&#x8FC7; return &#x6765;&#x4FDD;&#x8BC1;&#x4F9D;&#x8D56;&#x4E2D;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;</span></div><div class="line">  <span class="keyword">return</span> gulp.src()</div><div class="line">    .pipe()</div><div class="line">    <span class="comment">// ...</span></div><div class="line">})</div><div class="line"></div><div class="line">gulp.task(<span class="string">&apos;b&apos;</span>, [<span class="string">&apos;a&apos;</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">  <span class="comment">// doSomething</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<p>一：普通任务</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>二：任务之间的依赖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'1 aaa'</span>)</div><div class="line">    cb()</div><div class="line">  &#125;, <span class="number">1000</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// b 任务依赖的 a 任务中的回调函数如果不调用，b 任务是不会执行的</span></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'2 bbb'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>三：gulp 流控制</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'a'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// 当任务中是一个 gulp 流的时候则需要通过 return 来保证依赖中的执行顺序</span></div><div class="line">  <span class="keyword">return</span> gulp.src()</div><div class="line">    .pipe()</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">gulp.task(<span class="string">'b'</span>, [<span class="string">'a'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="comment">// doSomething</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h3 id="gulp-src-globs-options"><a href="#gulp-src-globs-options" class="headerlink" title="gulp.src(globs[, options])"></a>gulp.src(globs[, options])</h3><blockquote>
-<p>gulp&#x6559;&#x7A0B;&#x4E4B;gulp&#x4E2D;&#x6587;API&#xFF1A;<a href="http://www.ydcss.com/archives/424" target="_blank" rel="external">http://www.ydcss.com/archives/424</a></p>
+<p>gulp教程之gulp中文API：<a href="http://www.ydcss.com/archives/424" target="_blank" rel="external">http://www.ydcss.com/archives/424</a></p>
 </blockquote>
-<p>&#x4F5C;&#x7528;&#xFF1A;&#x6839;&#x636E;&#x8DEF;&#x5F84;&#xFF08;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x6570;&#x7EC4;&#xFF09;&#x8BFB;&#x53D6;&#x9700;&#x8981;&#x6784;&#x5EFA;&#x7684;&#x8D44;&#x6E90;</p>
-<h4 id="globs"><a href="#globs" class="headerlink" title="globs"></a>globs</h4><p>&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x6E90;&#x6587;&#x4EF6;&#x5339;&#x914D;&#x7B26;&#x8DEF;&#x5F84;&#x3002;</p>
-<p>&#x7C7B;&#x578B;(&#x5FC5;&#x586B;)&#xFF1A;String or StringArray&#xFF0C;&#x901A;&#x914D;&#x7B26;&#x8DEF;&#x5F84;&#x5339;&#x914D;&#x793A;&#x4F8B;&#xFF1A;</p>
-<ul class="ui list">
-<li><code>src/a.js</code> &#x6307;&#x5B9A;&#x5177;&#x4F53;&#x6587;&#x4EF6;&#xFF1B;</li>
-<li><code>*</code> &#x5339;&#x914D;&#x6240;&#x6709;&#x6587;&#x4EF6;    &#x4F8B;&#xFF1A;<code>src/*.js</code> (&#x5305;&#x542B;src&#x4E0B;&#x7684;&#x6240;&#x6709;js&#x6587;&#x4EF6;)&#xFF1B;</li>
-<li><code>**</code> &#x5339;&#x914D;0&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5B50;&#x6587;&#x4EF6;&#x5939;    &#x4F8B;&#xFF1A;<code>src/**/*.js</code> (&#x5305;&#x542B;src&#x7684;0&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5B50;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;js&#x6587;&#x4EF6;)&#xFF1B;</li>
-<li><code>{}</code> &#x5339;&#x914D;&#x591A;&#x4E2A;&#x5C5E;&#x6027;    &#x4F8B;&#xFF1A;<code>src/{a,b}.js</code> (&#x5305;&#x542B;a.js&#x548C;b.js&#x6587;&#x4EF6;)  src/*.{jpg,png,gif}(src&#x4E0B;&#x7684;&#x6240;&#x6709;jpg/png/gif&#x6587;&#x4EF6;)&#xFF1B;</li>
-<li><code>!</code> &#x6392;&#x9664;&#x6587;&#x4EF6;    &#x4F8B;&#xFF1A;<code>!src/a.js</code> (&#x4E0D;&#x5305;&#x542B;src&#x4E0B;&#x7684;a.js&#x6587;&#x4EF6;)&#xFF1B;</li>
+<p>作用：根据路径（字符串或数组）读取需要构建的资源</p>
+<h4 id="globs"><a href="#globs" class="headerlink" title="globs"></a>globs</h4><p>需要处理的源文件匹配符路径。</p>
+<p>类型(必填)：String or StringArray，通配符路径匹配示例：</p>
+<ul>
+<li><code>src/a.js</code> 指定具体文件；</li>
+<li><code>*</code> 匹配所有文件    例：<code>src/*.js</code> (包含src下的所有js文件)；</li>
+<li><code>**</code> 匹配0个或多个子文件夹    例：<code>src/**/*.js</code> (包含src的0个或多个子文件夹下的js文件)；</li>
+<li><code>{}</code> 匹配多个属性    例：<code>src/{a,b}.js</code> (包含a.js和b.js文件)  src/*.{jpg,png,gif}(src下的所有jpg/png/gif文件)；</li>
+<li><code>!</code> 排除文件    例：<code>!src/a.js</code> (不包含src下的a.js文件)；</li>
 </ul>
-<h4 id="options-base"><a href="#options-base" class="headerlink" title="options.base"></a>options.base</h4><p>options.base&#xFF1A;&#x7C7B;&#x578B;&#xFF1A;String  &#x8BBE;&#x7F6E;&#x8F93;&#x51FA;&#x8DEF;&#x5F84;&#x4EE5;&#x67D0;&#x4E2A;&#x8DEF;&#x5F84;&#x7684;&#x67D0;&#x4E2A;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x4E3A;&#x57FA;&#x7840;&#x5411;&#x540E;&#x62FC;&#x63A5;&#xFF0C;&#x5177;&#x4F53;&#x770B;&#x4E0B;&#x9762;&#x793A;&#x4F8B;&#xFF1A;</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">&apos;client/js/**/*.js&apos;</span>) </div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">&apos;build&apos;</span>))  <span class="comment">// Writes &apos;build/somedir/somefile.js&apos;</span></div><div class="line"> </div><div class="line">gulp.src(<span class="string">&apos;client/js/**/*.js&apos;</span>, { <span class="attr">base</span>: <span class="string">&apos;client&apos;</span> })</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">&apos;build&apos;</span>))  <span class="comment">// Writes &apos;build/js/somedir/somefile.js&apos;</span></div></pre></td></tr></table></figure>
-<h3 id="gulp-dest-path-options"><a href="#gulp-dest-path-options" class="headerlink" title="gulp.dest(path[, options])"></a>gulp.dest(path[, options])</h3><p>&#x4F5C;&#x7528;&#xFF1A;&#x6784;&#x5EFA;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;&#x540E;&#x8D44;&#x6E90;&#x5B58;&#x653E;&#x7684;&#x8DEF;&#x5F84;</p>
+<h4 id="options-base"><a href="#options-base" class="headerlink" title="options.base"></a>options.base</h4><p>options.base：类型：String  设置输出路径以某个路径的某个组成部分为基础向后拼接，具体看下面示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>) </div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/somedir/somefile.js'</span></div><div class="line"> </div><div class="line">gulp.src(<span class="string">'client/js/**/*.js'</span>, &#123; <span class="attr">base</span>: <span class="string">'client'</span> &#125;)</div><div class="line">  .pipe(minify())</div><div class="line">  .pipe(gulp.dest(<span class="string">'build'</span>))  <span class="comment">// Writes 'build/js/somedir/somefile.js'</span></div></pre></td></tr></table></figure>
+<h3 id="gulp-dest-path-options"><a href="#gulp-dest-path-options" class="headerlink" title="gulp.dest(path[, options])"></a>gulp.dest(path[, options])</h3><p>作用：构建任务完成后资源存放的路径</p>
 <h3 id="gulp-watch-glob-opts-tasks"><a href="#gulp-watch-glob-opts-tasks" class="headerlink" title="gulp.watch(glob[, opts], tasks)"></a>gulp.watch(glob[, opts], tasks)</h3><blockquote>
-<p>&#x76D1;&#x89C6;&#x6307;&#x5B9A;&#x8D44;&#x6E90;&#x7684;&#x6539;&#x52A8;&#xFF0C;&#x7136;&#x540E;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x54CD;&#x5E94;&#x7684;&#x4EFB;&#x52A1;&#x5904;&#x7406;</p>
+<p>监视指定资源的改动，然后可以调用响应的任务处理</p>
 </blockquote>
 <h3 id="gulp-watch-glob-opts-cb"><a href="#gulp-watch-glob-opts-cb" class="headerlink" title="gulp.watch(glob [, opts, cb])"></a>gulp.watch(glob [, opts, cb])</h3><hr>
-<h2 id="&#x5E38;&#x7528;&#x63D2;&#x4EF6;"><a href="#&#x5E38;&#x7528;&#x63D2;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x63D2;&#x4EF6;"></a>&#x5E38;&#x7528;&#x63D2;&#x4EF6;</h2><table>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><table>
 <thead>
 <tr>
-<th>&#x63D2;&#x4EF6;&#x540D;&#x79F0;</th>
-<th>&#x4F5C;&#x7528;</th>
+<th>插件名称</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>del</td>
-<td>&#x5220;&#x9664;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;</td>
+<td>删除文件或文件夹</td>
 </tr>
 <tr>
 <td>gulp-less</td>
-<td>&#x7F16;&#x8BD1;LESS&#x6587;&#x4EF6;</td>
+<td>编译LESS文件</td>
 </tr>
 <tr>
 <td>gulp-rname</td>
-<td>&#x91CD;&#x547D;&#x540D;&#x6587;&#x4EF6;</td>
+<td>重命名文件</td>
 </tr>
 <tr>
 <td>gulp-imagemin</td>
-<td>&#x56FE;&#x7247;&#x538B;&#x7F29;</td>
+<td>图片压缩</td>
 </tr>
 <tr>
 <td>gulp-uglify</td>
-<td>&#x538B;&#x7F29;Javascript</td>
+<td>压缩Javascript</td>
 </tr>
 <tr>
 <td>gulp-concat</td>
-<td>&#x5408;&#x5E76; js &#x6587;&#x4EF6;</td>
+<td>合并 js 文件</td>
 </tr>
 <tr>
 <td>gulp-concat-css</td>
-<td>&#x5408;&#x5E76; css &#x6587;&#x4EF6;</td>
+<td>合并 css 文件</td>
 </tr>
 <tr>
 <td>gulp-cssnano</td>
-<td>&#x538B;&#x7F29; css</td>
+<td>压缩 css</td>
 </tr>
 <tr>
 <td>gulp-htmlmin</td>
-<td>&#x538B;&#x7F29;HTML</td>
+<td>压缩HTML</td>
 </tr>
 <tr>
 <td>gulp-nunjucks</td>
-<td>&#x6A21;&#x677F;&#x5F15;&#x64CE;</td>
+<td>模板引擎</td>
 </tr>
 <tr>
 <td>gulp-rev</td>
-<td>&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x53F7;</td>
+<td>添加版本号</td>
 </tr>
 <tr>
 <td>gulp-rev-collector</td>
-<td>&#x5185;&#x5BB9;&#x66FF;&#x6362;</td>
+<td>内容替换</td>
 </tr>
 <tr>
 <td>gulp-useref</td>
@@ -464,42 +468,42 @@
 </tr>
 <tr>
 <td>gulp-load-plugins</td>
-<td>&#x4F9D;&#x8D56;&#x81EA;&#x52A8;&#x52A0;&#x8F7D;</td>
+<td>依赖自动加载</td>
 </tr>
 <tr>
 <td>gulp-useref</td>
-<td>&#x81EA;&#x52A8;&#x5408;&#x5E76;&#x6253;&#x5305;&#x5904;&#x7406;</td>
+<td>自动合并打包处理</td>
 </tr>
 <tr>
 <td>gulp-wrap</td>
-<td>&#x5305;&#x88C5;&#x5185;&#x5BB9;</td>
+<td>包装内容</td>
 </tr>
 <tr>
 <td>gulp-angular-templatecache</td>
-<td>AngularJS &#x6A21;&#x677F;&#x7F13;&#x5B58;</td>
+<td>AngularJS 模板缓存</td>
 </tr>
 <tr>
 <td>browser-sync</td>
-<td>&#x548C; gulp &#x914D;&#x5408;&#x4F7F;&#x7528;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x6539;&#x53D8;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x4EFB;&#x52A1;&#x540E;&#x81EA;&#x52A8;&#x5237;&#x65B0;</td>
+<td>和 gulp 配合使用实现文件改变执行某个任务后自动刷新</td>
 </tr>
 <tr>
 <td>yargs</td>
-<td>&#x83B7;&#x53D6;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;</td>
+<td>获取命令行参数</td>
 </tr>
 <tr>
 <td>gulp-if</td>
-<td>&#x6839;&#x636E;&#x5224;&#x65AD;&#x6761;&#x4EF6;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x63D2;&#x4EF6;</td>
+<td>根据判断条件执行某个插件</td>
 </tr>
 <tr>
 <td>http-proxy-middleware</td>
-<td>http &#x4EE3;&#x7406;&#x63D2;&#x4EF6;</td>
+<td>http 代理插件</td>
 </tr>
 <tr>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="gulp-&#x5B9E;&#x6218;&#x4E4B;&#xFF1A;&#x9AD8;&#x7EA7;&#x5199;&#x9875;&#x9762;"><a href="#gulp-&#x5B9E;&#x6218;&#x4E4B;&#xFF1A;&#x9AD8;&#x7EA7;&#x5199;&#x9875;&#x9762;" class="headerlink" title="gulp &#x5B9E;&#x6218;&#x4E4B;&#xFF1A;&#x9AD8;&#x7EA7;&#x5199;&#x9875;&#x9762;"></a>gulp &#x5B9E;&#x6218;&#x4E4B;&#xFF1A;&#x9AD8;&#x7EA7;&#x5199;&#x9875;&#x9762;</h2><p>&#x5B9E;&#x73B0; HTML &#x6A21;&#x677F;&#x529F;&#x80FD;&#xFF0C;&#x4F8B;&#x5982;&#x516C;&#x5171; HTML &#x5934;&#x90E8;&#x548C;&#x5E95;&#x90E8;&#xFF0C;&#x63D0;&#x4F9B;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;<br>&#x4EE5;&#x53CA;&#x5B9E;&#x73B0; HTML &#x81EA;&#x52A8;&#x538B;&#x7F29;&#xFF0C;css &#x538B;&#x7F29;&#xFF0C;js &#x538B;&#x7F29;&#xFF0C;&#x6216;&#x8005;&#x5408;&#x5E76;&#x3002;</p>
+<h2 id="gulp-实战之：高级写页面"><a href="#gulp-实战之：高级写页面" class="headerlink" title="gulp 实战之：高级写页面"></a>gulp 实战之：高级写页面</h2><p>实现 HTML 模板功能，例如公共 HTML 头部和底部，提供可维护性，<br>以及实现 HTML 自动压缩，css 压缩，js 压缩，或者合并。</p>
 
       
     </div>
@@ -753,6 +757,8 @@
   
 
 
+  
+
 
 
 
@@ -780,6 +786,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

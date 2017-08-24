@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+<meta name="description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
 <meta property="og:url" content="http://whitelang0214.github.io/myhexo/2017/07/23/VUE实战第一天：高仿饿了么APP-项目先导/index.html">
 <meta property="og:site_name" content="郎雪的主页">
-<meta property="og:description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+<meta property="og:description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
 <meta property="og:updated_time" content="2017-08-22T16:26:56.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
-<meta name="twitter:description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+<meta name="twitter:description" content="学习目标 掌握vue.js在实战中的应用 学会使用vue.js完整地开发移动端APP 学会组件化,模块化的开发方式  学习内容 vue.js框架介绍 vue-cli脚手架 搭建基本代码框架 vue-router 官方插件管理路由 vue-resource Ajax通信 webpack  构建工具 es6 + eslint  eslint : es6代码风格检查工具 工程化  组件化  模块化 移">
 
 
 
@@ -155,6 +155,10 @@
 
 
 </head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
 
@@ -322,60 +326,60 @@
 
       
         <a id="more"></a>
-<h2 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;"><a href="#&#x5B66;&#x4E60;&#x76EE;&#x6807;" class="headerlink" title="&#x5B66;&#x4E60;&#x76EE;&#x6807;"></a>&#x5B66;&#x4E60;&#x76EE;&#x6807;</h2><ul class="ui list">
-<li>&#x638C;&#x63E1;vue.js&#x5728;&#x5B9E;&#x6218;&#x4E2D;&#x7684;&#x5E94;&#x7528;</li>
-<li>&#x5B66;&#x4F1A;&#x4F7F;&#x7528;vue.js&#x5B8C;&#x6574;&#x5730;&#x5F00;&#x53D1;&#x79FB;&#x52A8;&#x7AEF;APP</li>
-<li>&#x5B66;&#x4F1A;&#x7EC4;&#x4EF6;&#x5316;,&#x6A21;&#x5757;&#x5316;&#x7684;&#x5F00;&#x53D1;&#x65B9;&#x5F0F;</li>
+<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li>掌握vue.js在实战中的应用</li>
+<li>学会使用vue.js完整地开发移动端APP</li>
+<li>学会组件化,模块化的开发方式</li>
 </ul>
-<h2 id="&#x5B66;&#x4E60;&#x5185;&#x5BB9;"><a href="#&#x5B66;&#x4E60;&#x5185;&#x5BB9;" class="headerlink" title="&#x5B66;&#x4E60;&#x5185;&#x5BB9;"></a>&#x5B66;&#x4E60;&#x5185;&#x5BB9;</h2><ol class="ui list">
-<li>vue.js&#x6846;&#x67B6;&#x4ECB;&#x7ECD;</li>
-<li>vue-cli&#x811A;&#x624B;&#x67B6; &#x642D;&#x5EFA;&#x57FA;&#x672C;&#x4EE3;&#x7801;&#x6846;&#x67B6;</li>
-<li>vue-router &#x5B98;&#x65B9;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x8DEF;&#x7531;</li>
-<li>vue-resource Ajax&#x901A;&#x4FE1;</li>
-<li>webpack  &#x6784;&#x5EFA;&#x5DE5;&#x5177;</li>
-<li>es6 + eslint  eslint : es6&#x4EE3;&#x7801;&#x98CE;&#x683C;&#x68C0;&#x67E5;&#x5DE5;&#x5177;</li>
-<li>&#x5DE5;&#x7A0B;&#x5316;  &#x7EC4;&#x4EF6;&#x5316;  &#x6A21;&#x5757;&#x5316;</li>
-<li>&#x79FB;&#x52A8;&#x7AEF;&#x5E38;&#x7528;&#x7684;&#x5F00;&#x53D1;&#x6280;&#x5DE7;<ul>
-<li>flex&#x5F39;&#x6027;&#x5E03;&#x5C40;</li>
+<h2 id="学习内容"><a href="#学习内容" class="headerlink" title="学习内容"></a>学习内容</h2><ol>
+<li>vue.js框架介绍</li>
+<li>vue-cli脚手架 搭建基本代码框架</li>
+<li>vue-router 官方插件管理路由</li>
+<li>vue-resource Ajax通信</li>
+<li>webpack  构建工具</li>
+<li>es6 + eslint  eslint : es6代码风格检查工具</li>
+<li>工程化  组件化  模块化</li>
+<li>移动端常用的开发技巧<ul>
+<li>flex弹性布局</li>
 <li>css stickyfooter</li>
-<li>&#x9177;&#x70AB;&#x7684;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;</li>
+<li>酷炫的交互设计</li>
 </ul>
 </li>
 </ol>
-<h2 id="&#x6D41;&#x7A0B;"><a href="#&#x6D41;&#x7A0B;" class="headerlink" title="&#x6D41;&#x7A0B;"></a>&#x6D41;&#x7A0B;</h2><ol class="ui list">
-<li>&#x9700;&#x6C42;&#x5206;&#x6790;</li>
-<li>&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;</li>
-<li>&#x6570;&#x636E;mock</li>
-<li>&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</li>
-<li>&#x4EE3;&#x7801;&#x7F16;&#x5199;</li>
-<li>&#x81EA;&#x6D4B;</li>
-<li>&#x7F16;&#x8BD1;&#x6253;&#x5305;</li>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>需求分析</li>
+<li>脚手架工具</li>
+<li>数据mock</li>
+<li>架构设计</li>
+<li>代码编写</li>
+<li>自测</li>
+<li>编译打包</li>
 </ol>
-<h2 id="&#x8981;&#x6C42;"><a href="#&#x8981;&#x6C42;" class="headerlink" title="&#x8981;&#x6C42;"></a>&#x8981;&#x6C42;</h2><ol class="ui list">
-<li>&#x4EE3;&#x7801;&#x5F00;&#x53D1;&#x53CA;&#x6D4B;&#x8BD5;&#x73AF;&#x8282;<ul>
-<li>UI&#x6807;&#x6CE8;</li>
-<li>&#x771F;&#x662F;&#x6570;&#x636E;&#x6F14;&#x793A;</li>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><ol>
+<li>代码开发及测试环节<ul>
+<li>UI标注</li>
+<li>真是数据演示</li>
 </ul>
 </li>
-<li>&#x4EE3;&#x7801;&#x89C4;&#x8303;<ul>
-<li>&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</li>
-<li>&#x7EC4;&#x4EF6;&#x62BD;&#x8C61;</li>
-<li>&#x6A21;&#x5757;&#x62C6;&#x5206;</li>
-<li>&#x4EE3;&#x7801;&#x98CE;&#x683C;&#x7EDF;&#x4E00;</li>
-<li>JS&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;</li>
-<li>CSS&#x4EE3;&#x7801;&#x89C4;&#x8303;</li>
+<li>代码规范<ul>
+<li>架构设计</li>
+<li>组件抽象</li>
+<li>模块拆分</li>
+<li>代码风格统一</li>
+<li>JS变量命名规范</li>
+<li>CSS代码规范</li>
 </ul>
 </li>
 </ol>
-<h2 id="&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;"><a href="#&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;" class="headerlink" title="&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;"></a>&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;</h2><ol class="ui list">
-<li>&#x540E;&#x7AEF;&#x2014;&gt;&#x7528;vue-resource&#x505A;&#x6570;&#x636E;&#x4EA4;&#x4E92;</li>
-<li>&#x524D;&#x7AEF;&#x2014;&gt;&#x7528;vue-router&#x5B9E;&#x73B0;&#x5355;&#x9875;&#x5E94;&#x7528;</li>
-<li>&#x7528;&#x7B2C;&#x4E09;&#x65B9;js&#x5E93;better-scroll&#x5B9E;&#x73B0;&#x6700;&#x5927;&#x7A0B;&#x5EA6;&#x7EC4;&#x4EF6;&#x5316;,&#x91CD;&#x590D;&#x7684;CSS&#x53EF;&#x4EE5;&#x6700;&#x5927;&#x7A0B;&#x5EA6;&#x590D;&#x7528;</li>
-<li>&#x6536;&#x85CF;&#x5546;&#x5BB6;&#x529F;&#x80FD;&#x2014;&gt;&#x7528;html5&#x7684;localstorge</li>
-<li>&#x56FE;&#x6807;&#x5B57;&#x4F53;&#x7684;&#x4F7F;&#x7528;</li>
-<li>&#x79FB;&#x52A8;&#x7AEF;1&#x50CF;&#x7D20;&#x8FB9;&#x6846;</li>
-<li>css sticky footer&#x5E03;&#x5C40;</li>
-<li>flex&#x5F39;&#x6027;&#x5E03;&#x5C40;</li>
+<h2 id="功能技术分析"><a href="#功能技术分析" class="headerlink" title="功能技术分析"></a>功能技术分析</h2><ol>
+<li>后端—&gt;用vue-resource做数据交互</li>
+<li>前端—&gt;用vue-router实现单页应用</li>
+<li>用第三方js库better-scroll实现最大程度组件化,重复的CSS可以最大程度复用</li>
+<li>收藏商家功能—&gt;用html5的localstorge</li>
+<li>图标字体的使用</li>
+<li>移动端1像素边框</li>
+<li>css sticky footer布局</li>
+<li>flex弹性布局</li>
 </ol>
 
       
@@ -630,6 +634,8 @@
   
 
 
+  
+
 
 
 
@@ -657,6 +663,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

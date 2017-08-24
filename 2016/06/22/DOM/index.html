@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+<meta name="description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DOM">
 <meta property="og:url" content="http://whitelang0214.github.io/myhexo/2016/06/22/DOM/index.html">
 <meta property="og:site_name" content="郎雪的主页">
-<meta property="og:description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+<meta property="og:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
 <meta property="og:updated_time" content="2017-08-22T15:34:27.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM">
-<meta name="twitter:description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+<meta name="twitter:description" content="1. JavaScript分三个部分1. ECMAScript标准语法 2. DOM: Document Object Model 文档对象模型     整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象 3. BOM 2. HTML和XMLHTML文件侧重于展示数据 XML文件侧重于存储数据 3. 学习DOM的目的学习DOM的目的:操作页面元素 4. document页面中的顶级">
 
 
 
@@ -155,6 +155,10 @@
 
 
 </head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
 
@@ -321,29 +325,29 @@
       
 
       
-        <h2 id="1-JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;"><a href="#1-JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;" class="headerlink" title="1. JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;"></a>1. JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;</h2><pre><code>1. ECMAScript&#x6807;&#x51C6;&#x8BED;&#x6CD5;
-2. DOM: Document Object Model &#x6587;&#x6863;&#x5BF9;&#x8C61;&#x6A21;&#x578B;
-    &#x6574;&#x4E2A;&#x9875;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x6BCF;&#x4E2A;&#x6807;&#x7B7E;&#x548C;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x5305;&#x62EC;&#x7A7A;&#x767D;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
+        <h2 id="1-JavaScript分三个部分"><a href="#1-JavaScript分三个部分" class="headerlink" title="1. JavaScript分三个部分"></a>1. JavaScript分三个部分</h2><pre><code>1. ECMAScript标准语法
+2. DOM: Document Object Model 文档对象模型
+    整个页面是一个对象,每个标签和文字内容包括空白都可以看成是一个对象
 3. BOM
-</code></pre><h2 id="2-HTML&#x548C;XML"><a href="#2-HTML&#x548C;XML" class="headerlink" title="2. HTML&#x548C;XML"></a>2. HTML&#x548C;XML</h2><pre><code>HTML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5C55;&#x793A;&#x6570;&#x636E;
-XML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5B58;&#x50A8;&#x6570;&#x636E;
-</code></pre><h2 id="3-&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;"><a href="#3-&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;" class="headerlink" title="3. &#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;"></a>3. &#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;</h2><pre><code>&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;:&#x64CD;&#x4F5C;&#x9875;&#x9762;&#x5143;&#x7D20;
-</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>&#x9875;&#x9762;&#x4E2D;&#x7684;&#x9876;&#x7EA7;&#x5BF9;&#x8C61;:document
-</code></pre><h2 id="5-DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;"><a href="#5-DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;" class="headerlink" title="5. DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;"></a>5. DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;</h2><pre><code>&#x628A;&#x9875;&#x9762;&#x6A21;&#x62DF;&#x6210;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x6BCF;&#x4E2A;&#x6807;&#x7B7E;&#x770B;&#x6210;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
-&#x627E;&#x5143;&#x7D20;===&#x4E5F;&#x5C31;&#x662F;&#x627E;&#x6807;&#x7B7E;===&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x8C61;
-&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6807;&#x7B7E;===&#x4E5F;&#x5C31;&#x662F;&#x64CD;&#x4F5C;&#x6807;&#x7B7E;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x6837;&#x5F0F;
-&#x521B;&#x5EFA;&#x6807;&#x7B7E;,&#x5220;&#x9664;&#x6807;&#x7B7E;
-</code></pre><h2 id="6-&#x4E8B;&#x4EF6;"><a href="#6-&#x4E8B;&#x4EF6;" class="headerlink" title="6. &#x4E8B;&#x4EF6;"></a>6. &#x4E8B;&#x4EF6;</h2><h3 id="1-&#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;"><a href="#1-&#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;" class="headerlink" title="1. &#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;"></a>1. &#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;</h3><h3 id="2-&#x4E8B;&#x4EF6;&#x6E90;-&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;"><a href="#2-&#x4E8B;&#x4EF6;&#x6E90;-&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;" class="headerlink" title="2. &#x4E8B;&#x4EF6;&#x6E90;(&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;)"></a>2. &#x4E8B;&#x4EF6;&#x6E90;(&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;)</h3><pre><code>1. &#x7ED9;&#x6309;&#x94AE;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;,&#x4E8B;&#x4EF6;&#x662F;&#x6309;&#x94AE;&#x7684;,&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x662F;&#x6309;&#x94AE;&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x4E86;
-</code></pre><h3 id="3-&#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;-&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;"><a href="#3-&#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;-&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;" class="headerlink" title="3. &#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;====&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;"></a>3. &#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;====&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;</h3><h2 id="7-&#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;"><a href="#7-&#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;" class="headerlink" title="7. &#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;"></a>7. &#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;</h2><h3 id="1-&#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;"><a href="#1-&#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;" class="headerlink" title="1. &#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;"></a>1. &#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;</h3><pre><code>1. dom.className=&quot;&#x7C7B;&#x540D;&quot;;     dom.className=&quot;cls&quot;;
-2. dom.style.&#x6837;&#x5F0F;&#x540D;=&quot;&#x6837;&#x5F0F;&#x503C;&quot;;  dom.style.backgroundColor=&quot;red&quot;;
-3. &#x901A;&#x8FC7;dom.sytle&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;&#x7684;&#x6837;&#x5F0F;,&#x4E0D;&#x80FD;&#x901A;&#x8FC7;dom[style]&#x83B7;&#x53D6;&#x5230;&#x6837;&#x5F0F;&#x503C;
-</code></pre><h3 id="2-checked-disabled-selected&#x2026;"><a href="#2-checked-disabled-selected&#x2026;" class="headerlink" title="2. checked,disabled,selected&#x2026;"></a>2. checked,disabled,selected&#x2026;</h3><pre><code>&#x5728;HTML&#x6807;&#x7B7E;&#x4E2D;,&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x548C;&#x5C5E;&#x6027;&#x503C;&#x662F;&#x76F8;&#x540C;&#x7684;,&#x90A3;&#x4E48;&#x5728;DOM&#x64CD;&#x4F5C;&#x4E2D;,&#x8BE5;&#x5C5E;&#x6027;&#x503C;&#x4E3A;&#x5E03;&#x5C14;&#x7C7B;&#x578B;,&#x5982;&#x679C;&#x60F3;&#x9009;&#x4E2D;,&#x5219;&#x8BBE;&#x7F6E;&#x4E3A;true,&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x9009;&#x4E2D;,&#x5219;&#x8BBE;&#x7F6E;&#x4E3A;false
-</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>&#x8FD4;&#x56DE;id&#x540D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;
-</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>&#x8FD4;&#x56DE;name&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x96C6;&#x5408;
-&#x8FD4;&#x56DE;&#x7684;&#x662F;: &#x4F2A;&#x6570;&#x7EC4;
-</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x6807;&#x7B7E;&#x540D;&#x7684;&#x5BF9;&#x8C61;&#x96C6;&#x5408;
-&#x8FD4;&#x56DE;&#x7684;&#x662F;: &#x4F2A;&#x6570;&#x7EC4;
-</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;&#x503C;&quot;
+</code></pre><h2 id="2-HTML和XML"><a href="#2-HTML和XML" class="headerlink" title="2. HTML和XML"></a>2. HTML和XML</h2><pre><code>HTML文件侧重于展示数据
+XML文件侧重于存储数据
+</code></pre><h2 id="3-学习DOM的目的"><a href="#3-学习DOM的目的" class="headerlink" title="3. 学习DOM的目的"></a>3. 学习DOM的目的</h2><pre><code>学习DOM的目的:操作页面元素
+</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>页面中的顶级对象:document
+</code></pre><h2 id="5-DOM可以操作页面"><a href="#5-DOM可以操作页面" class="headerlink" title="5. DOM可以操作页面"></a>5. DOM可以操作页面</h2><pre><code>把页面模拟成一个对象,每个标签看成是一个对象
+找元素===也就是找标签===也就是对象
+操作这个标签===也就是操作标签的属性和样式
+创建标签,删除标签
+</code></pre><h2 id="6-事件"><a href="#6-事件" class="headerlink" title="6. 事件"></a>6. 事件</h2><h3 id="1-触发和响应"><a href="#1-触发和响应" class="headerlink" title="1. 触发和响应"></a>1. 触发和响应</h3><h3 id="2-事件源-事件的触发者"><a href="#2-事件源-事件的触发者" class="headerlink" title="2. 事件源(事件的触发者)"></a>2. 事件源(事件的触发者)</h3><pre><code>1. 给按钮注册一个点击事件,事件是按钮的,触发事件是按钮的点击事件触发了
+</code></pre><h3 id="3-响应的程序-事件处理程序"><a href="#3-响应的程序-事件处理程序" class="headerlink" title="3. 响应的程序====事件处理程序"></a>3. 响应的程序====事件处理程序</h3><h2 id="7-原生JS操作CSS样式"><a href="#7-原生JS操作CSS样式" class="headerlink" title="7. 原生JS操作CSS样式"></a>7. 原生JS操作CSS样式</h2><h3 id="1-给元素设置样式"><a href="#1-给元素设置样式" class="headerlink" title="1. 给元素设置样式"></a>1. 给元素设置样式</h3><pre><code>1. dom.className=&quot;类名&quot;;     dom.className=&quot;cls&quot;;
+2. dom.style.样式名=&quot;样式值&quot;;  dom.style.backgroundColor=&quot;red&quot;;
+3. 通过dom.sytle方式设置的样式,不能通过dom[style]获取到样式值
+</code></pre><h3 id="2-checked-disabled-selected…"><a href="#2-checked-disabled-selected…" class="headerlink" title="2. checked,disabled,selected…"></a>2. checked,disabled,selected…</h3><pre><code>在HTML标签中,如果一个属性和属性值是相同的,那么在DOM操作中,该属性值为布尔类型,如果想选中,则设置为true,如果不想选中,则设置为false
+</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>返回id名的第一个对象的引用
+</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>返回name属性名称的对象的集合
+返回的是: 伪数组
+</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>返回多个标签名的对象集合
+返回的是: 伪数组
+</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;值&quot;
 </code></pre>
       
     </div>
@@ -597,6 +601,8 @@ XML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5B58;&#x50A8;&#x6570;&#x636E;
   
 
 
+  
+
 
 
 
@@ -624,6 +630,9 @@ XML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5B58;&#x50A8;&#x6570;&#x636E;
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

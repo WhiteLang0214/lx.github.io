@@ -156,6 +156,10 @@
 
 </head>
 
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
 
   
@@ -322,27 +326,27 @@
 
       
         <blockquote>
-<p>&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#xFF1A;<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
+<p>官方网站：<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># &#x5168;&#x5C40;&#x5B89;&#x88C5; hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># &#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># &#x5207;&#x5165; blog &#x76EE;&#x5F55;</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># &#x542F;&#x52A8;&#x9884;&#x89C8;</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># &#x521B;&#x5EFA;&#x535A;&#x5BA2;</span></div><div class="line">hexo new &#x6587;&#x7AE0;&#x6807;&#x9898;</div></pre></td></tr></table></figure>
-<h3 id="&#x7ED3;&#x5408;-Github-Pages-&#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;"><a href="#&#x7ED3;&#x5408;-Github-Pages-&#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;" class="headerlink" title="&#x7ED3;&#x5408; Github Pages &#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;"></a>&#x7ED3;&#x5408; Github Pages &#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;</h3><p>&#x4E00;&#xFF1A;Github &#x521B;&#x5EFA;&#x57DF;&#x540D;&#x4ED3;&#x5E93;</p>
-<p>&#x4E8C;&#xFF1A;&#x4FEE;&#x6539;&#x535A;&#x5BA2;&#x4E2D;&#x7684; _config.yml &#x6587;&#x4EF6;&#x4E2D;</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:&#x5BC6;&#x7801;@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
-<p>&#x4E09;&#xFF1A;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 全局安装 hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># 初始化一个博客</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># 切入 blog 目录</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># 启动预览</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># 创建博客</span></div><div class="line">hexo new 文章标题</div></pre></td></tr></table></figure>
+<h3 id="结合-Github-Pages-自动发布博客"><a href="#结合-Github-Pages-自动发布博客" class="headerlink" title="结合 Github Pages 自动发布博客"></a>结合 Github Pages 自动发布博客</h3><p>一：Github 创建域名仓库</p>
+<p>二：修改博客中的 _config.yml 文件中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:密码@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
+<p>三：安装插件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<p>&#x56DB;&#xFF1A;&#x53D1;&#x5E03;</p>
+<p>四：发布</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-<p>&#x4E0A;&#x9762;&#x4E24;&#x6761;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x6210;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>&#x4F7F;&#x7528;&#x5176;&#x4E2D;&#x54EA;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x90FD;&#x53EF;&#x4EE5;&#x53D1;&#x5E03;</p>
-<p>&#x4E94;.&#x4E3B;&#x9898;</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#x5728;&#x4E3B;&#x9898;&#x5546;&#x5E97;&#x627E;&#x5230;&#x559C;&#x6B22;&#x7684;&#x4E3B;&#x9898;</div><div class="line">&#x627E;&#x5230;&#x4F5C;&#x8005;&#x7684;github&#x5730;&#x5740;  &#x590D;&#x5236;</div><div class="line">&#x5728;themes&#x6587;&#x4EF6;&#x4E2D;,&#x62F7;&#x8D1D;&#x5730;&#x5740; git <span class="built_in">clone</span> &#x5730;&#x5740; --depth=1</div><div class="line">&#x590D;&#x5236;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x5939;&#x540D;</div><div class="line">_config.yml&#x6587;&#x4EF6;&#x4E2D;  &#x66F4;&#x6539;theme:&#x7684;&#x5185;&#x5BB9;</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
-<h3 id="&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"><a href="#&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"></a>&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;</h3><ol class="ui list">
-<li>hexo &#x65E0;&#x9884;&#x89C8;&#x7684;&#x5185;&#x5BB9;&#x663E;&#x793A;<ul>
-<li>&#x4E3B;&#x9898;&#x914D;&#x7F6E;&#x91CC;&#x9762;&#x6709;&#x4E2A;auto_excerpt&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x5B83;&#x7684;length&#x5C5E;&#x6027;&#x503C;&#x662F;&#x9884;&#x89C8;&#x622A;&#x53D6;&#x7684;&#x5B57;&#x6570;&#x3002;hexo&#x5EFA;&#x8BAE;&#x5728;md&#x6587;&#x4EF6;&#x52A0;&#x5165;<a id="more"></a>&#x6765;&#x622A;&#x53D6;</li>
+<p>上面两条命令可以简写成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
+<p>使用其中哪一个命令都可以发布</p>
+<p>五.主题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">在主题商店找到喜欢的主题</div><div class="line">找到作者的github地址  复制</div><div class="line">在themes文件中,拷贝地址 git <span class="built_in">clone</span> 地址 --depth=1</div><div class="line">复制主题文件夹名</div><div class="line">_config.yml文件中  更改theme:的内容</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
+<h3 id="文章到github时遇到的问题"><a href="#文章到github时遇到的问题" class="headerlink" title="文章到github时遇到的问题"></a>文章到github时遇到的问题</h3><ol>
+<li>hexo 无预览的内容显示<ul>
+<li>主题配置里面有个auto_excerpt配置项，它的length属性值是预览截取的字数。hexo建议在md文件加入<a id="more"></a>来截取</li>
 </ul>
 </li>
-<li>&#x62A5;&#x9519;&#x9884;&#x671F;&#x7684;&#x53D8;&#x91CF;<ul>
-<li>&#x53EF;&#x80FD;&#x662F;&#x7531;&#x4E8E;markdown&#x8BED;&#x6CD5;&#x7684;&#x95EE;&#x9898;,&#x7531;&#x4E8E;&#x6587;&#x4EF6;&#x8FC7;&#x591A;,&#x6211;&#x662F;&#x5C06;&#x6587;&#x4EF6;&#x91CD;&#x65B0;&#x751F;&#x6210;&#x4E86;,&#x7136;&#x540E;&#x89E3;&#x51B3;&#x4E86;</li>
+<li>报错预期的变量<ul>
+<li>可能是由于markdown语法的问题,由于文件过多,我是将文件重新生成了,然后解决了</li>
 </ul>
 </li>
 </ol>
@@ -595,6 +599,8 @@
   
 
 
+  
+
 
 
 
@@ -622,6 +628,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   

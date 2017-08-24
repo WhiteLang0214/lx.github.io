@@ -95,16 +95,16 @@
 
 
 
-<meta name="description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+<meta name="description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件DOMContentLoaded和load的区别">
 <meta property="og:url" content="http://whitelang0214.github.io/myhexo/2017/05/11/事件DOMContentLoaded和load的区别/index.html">
 <meta property="og:site_name" content="郎雪的主页">
-<meta property="og:description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+<meta property="og:description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
 <meta property="og:updated_time" content="2017-08-22T15:58:21.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件DOMContentLoaded和load的区别">
-<meta name="twitter:description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+<meta name="twitter:description" content="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。DOM文档加载的步骤为:  解析HTML结构。 加载外部脚本和样式表文件。 解析并执行脚本代码。 DOM树构建完成。//DOMContentLoaded 加载图片等外部文件。 页面加载完毕。//load 在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。原生写法1234">
 
 
 
@@ -155,6 +155,10 @@
 
 
 </head>
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN.yml">
 
@@ -322,18 +326,18 @@
 
       
         <a id="more"></a>
-<h3 id="&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;"><a href="#&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;" class="headerlink" title="&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;"></a>&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;</h3><p>DOM&#x6587;&#x6863;&#x52A0;&#x8F7D;&#x7684;&#x6B65;&#x9AA4;&#x4E3A;:</p>
-<ol class="ui list">
-<li>&#x89E3;&#x6790;HTML&#x7ED3;&#x6784;&#x3002;</li>
-<li>&#x52A0;&#x8F7D;&#x5916;&#x90E8;&#x811A;&#x672C;&#x548C;&#x6837;&#x5F0F;&#x8868;&#x6587;&#x4EF6;&#x3002;</li>
-<li>&#x89E3;&#x6790;&#x5E76;&#x6267;&#x884C;&#x811A;&#x672C;&#x4EE3;&#x7801;&#x3002;</li>
-<li>DOM&#x6811;&#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x3002;//DOMContentLoaded</li>
-<li>&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x7B49;&#x5916;&#x90E8;&#x6587;&#x4EF6;&#x3002;</li>
-<li>&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x5B8C;&#x6BD5;&#x3002;//load</li>
-<li>&#x5728;&#x7B2C;4&#x6B65;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#x3002;&#x5728;&#x7B2C;6&#x6B65;&#xFF0C;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;<h3 id="&#x539F;&#x751F;&#x5199;&#x6CD5;"><a href="#&#x539F;&#x751F;&#x5199;&#x6CD5;" class="headerlink" title="&#x539F;&#x751F;&#x5199;&#x6CD5;"></a>&#x539F;&#x751F;&#x5199;&#x6CD5;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x4E0D;&#x517C;&#x5BB9;&#x8001;&#x7684;&#x6D4F;&#x89C8;&#x5668;</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&apos;DOContentLoaded&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">},<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&apos;load&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">}&#xFF0C;<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h3 id="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><a href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。" class="headerlink" title="他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"></a>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</h3><p>DOM文档加载的步骤为:</p>
+<ol>
+<li>解析HTML结构。</li>
+<li>加载外部脚本和样式表文件。</li>
+<li>解析并执行脚本代码。</li>
+<li>DOM树构建完成。//DOMContentLoaded</li>
+<li>加载图片等外部文件。</li>
+<li>页面加载完毕。//load</li>
+<li>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<h3 id="原生写法"><a href="#原生写法" class="headerlink" title="原生写法"></a>原生写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不兼容老的浏览器</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOContentLoaded'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;,<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//代码</span></div><div class="line">&#125;，<span class="literal">false</span>)</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="JQ&#x7684;&#x5199;&#x6CD5;"><a href="#JQ&#x7684;&#x5199;&#x6CD5;" class="headerlink" title="JQ&#x7684;&#x5199;&#x6CD5;"></a>JQ&#x7684;&#x5199;&#x6CD5;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">		<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">	});</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">		<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<h3 id="JQ的写法"><a href="#JQ的写法" class="headerlink" title="JQ的写法"></a>JQ的写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">	&#125;);</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//代码</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -586,6 +590,8 @@
   
 
 
+  
+
 
 
 
@@ -613,6 +619,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
