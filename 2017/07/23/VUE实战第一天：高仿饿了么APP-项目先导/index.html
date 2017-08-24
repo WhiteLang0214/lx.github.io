@@ -1,45 +1,305 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>VUE实战第一天：高仿饿了么APP---项目先导 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/VUE实战第一天：高仿饿了么APP-项目先导/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+<meta property="og:updated_time" content="2017-08-22T16:26:56.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE实战第一天：高仿饿了么APP---项目先导">
+<meta name="twitter:description" content="&amp;#x5B66;&amp;#x4E60;&amp;#x76EE;&amp;#x6807; &amp;#x638C;&amp;#x63E1;vue.js&amp;#x5728;&amp;#x5B9E;&amp;#x6218;&amp;#x4E2D;&amp;#x7684;&amp;#x5E94;&amp;#x7528; &amp;#x5B66;&amp;#x4F1A;&amp;#x4F7F;&amp;#x7528;vue.js&amp;#x5B8C;&amp;#x6574;&amp;#x5730;&amp;#x5F00;&amp;#x53D1;&amp;#x79FB;&amp;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-VUE实战第一天：高仿饿了么APP-项目先导" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    VUE实战第一天：高仿饿了么APP---项目先导
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;"><a href="#&#x5B66;&#x4E60;&#x76EE;&#x6807;" class="headerlink" title="&#x5B66;&#x4E60;&#x76EE;&#x6807;"></a>&#x5B66;&#x4E60;&#x76EE;&#x6807;</h2><ul class="ui list">
+<li>&#x638C;&#x63E1;vue.js&#x5728;&#x5B9E;&#x6218;&#x4E2D;&#x7684;&#x5E94;&#x7528;</li>
+<li>&#x5B66;&#x4F1A;&#x4F7F;&#x7528;vue.js&#x5B8C;&#x6574;&#x5730;&#x5F00;&#x53D1;&#x79FB;&#x52A8;&#x7AEF;APP</li>
+<li>&#x5B66;&#x4F1A;&#x7EC4;&#x4EF6;&#x5316;,&#x6A21;&#x5757;&#x5316;&#x7684;&#x5F00;&#x53D1;&#x65B9;&#x5F0F;</li>
+</ul>
+<h2 id="&#x5B66;&#x4E60;&#x5185;&#x5BB9;"><a href="#&#x5B66;&#x4E60;&#x5185;&#x5BB9;" class="headerlink" title="&#x5B66;&#x4E60;&#x5185;&#x5BB9;"></a>&#x5B66;&#x4E60;&#x5185;&#x5BB9;</h2><ol class="ui list">
+<li>vue.js&#x6846;&#x67B6;&#x4ECB;&#x7ECD;</li>
+<li>vue-cli&#x811A;&#x624B;&#x67B6; &#x642D;&#x5EFA;&#x57FA;&#x672C;&#x4EE3;&#x7801;&#x6846;&#x67B6;</li>
+<li>vue-router &#x5B98;&#x65B9;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x8DEF;&#x7531;</li>
+<li>vue-resource Ajax&#x901A;&#x4FE1;</li>
+<li>webpack  &#x6784;&#x5EFA;&#x5DE5;&#x5177;</li>
+<li>es6 + eslint  eslint : es6&#x4EE3;&#x7801;&#x98CE;&#x683C;&#x68C0;&#x67E5;&#x5DE5;&#x5177;</li>
+<li>&#x5DE5;&#x7A0B;&#x5316;  &#x7EC4;&#x4EF6;&#x5316;  &#x6A21;&#x5757;&#x5316;</li>
+<li>&#x79FB;&#x52A8;&#x7AEF;&#x5E38;&#x7528;&#x7684;&#x5F00;&#x53D1;&#x6280;&#x5DE7;<ul>
+<li>flex&#x5F39;&#x6027;&#x5E03;&#x5C40;</li>
+<li>css stickyfooter</li>
+<li>&#x9177;&#x70AB;&#x7684;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x6D41;&#x7A0B;"><a href="#&#x6D41;&#x7A0B;" class="headerlink" title="&#x6D41;&#x7A0B;"></a>&#x6D41;&#x7A0B;</h2><ol class="ui list">
+<li>&#x9700;&#x6C42;&#x5206;&#x6790;</li>
+<li>&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;</li>
+<li>&#x6570;&#x636E;mock</li>
+<li>&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</li>
+<li>&#x4EE3;&#x7801;&#x7F16;&#x5199;</li>
+<li>&#x81EA;&#x6D4B;</li>
+<li>&#x7F16;&#x8BD1;&#x6253;&#x5305;</li>
+</ol>
+<h2 id="&#x8981;&#x6C42;"><a href="#&#x8981;&#x6C42;" class="headerlink" title="&#x8981;&#x6C42;"></a>&#x8981;&#x6C42;</h2><ol class="ui list">
+<li>&#x4EE3;&#x7801;&#x5F00;&#x53D1;&#x53CA;&#x6D4B;&#x8BD5;&#x73AF;&#x8282;<ul>
+<li>UI&#x6807;&#x6CE8;</li>
+<li>&#x771F;&#x662F;&#x6570;&#x636E;&#x6F14;&#x793A;</li>
+</ul>
+</li>
+<li>&#x4EE3;&#x7801;&#x89C4;&#x8303;<ul>
+<li>&#x67B6;&#x6784;&#x8BBE;&#x8BA1;</li>
+<li>&#x7EC4;&#x4EF6;&#x62BD;&#x8C61;</li>
+<li>&#x6A21;&#x5757;&#x62C6;&#x5206;</li>
+<li>&#x4EE3;&#x7801;&#x98CE;&#x683C;&#x7EDF;&#x4E00;</li>
+<li>JS&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;</li>
+<li>CSS&#x4EE3;&#x7801;&#x89C4;&#x8303;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;"><a href="#&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;" class="headerlink" title="&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;"></a>&#x529F;&#x80FD;&#x6280;&#x672F;&#x5206;&#x6790;</h2><ol class="ui list">
+<li>&#x540E;&#x7AEF;&#x2014;&gt;&#x7528;vue-resource&#x505A;&#x6570;&#x636E;&#x4EA4;&#x4E92;</li>
+<li>&#x524D;&#x7AEF;&#x2014;&gt;&#x7528;vue-router&#x5B9E;&#x73B0;&#x5355;&#x9875;&#x5E94;&#x7528;</li>
+<li>&#x7528;&#x7B2C;&#x4E09;&#x65B9;js&#x5E93;better-scroll&#x5B9E;&#x73B0;&#x6700;&#x5927;&#x7A0B;&#x5EA6;&#x7EC4;&#x4EF6;&#x5316;,&#x91CD;&#x590D;&#x7684;CSS&#x53EF;&#x4EE5;&#x6700;&#x5927;&#x7A0B;&#x5EA6;&#x590D;&#x7528;</li>
+<li>&#x6536;&#x85CF;&#x5546;&#x5BB6;&#x529F;&#x80FD;&#x2014;&gt;&#x7528;html5&#x7684;localstorge</li>
+<li>&#x56FE;&#x6807;&#x5B57;&#x4F53;&#x7684;&#x4F7F;&#x7528;</li>
+<li>&#x79FB;&#x52A8;&#x7AEF;1&#x50CF;&#x7D20;&#x8FB9;&#x6846;</li>
+<li>css sticky footer&#x5E03;&#x5C40;</li>
+<li>flex&#x5F39;&#x6027;&#x5E03;&#x5C40;</li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-07-22T16:26:14.000Z" itemprop="datePublished">2017-07-23</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VUE实战第二天：高仿饿了么APP---介绍VUE.JS
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/07/05/vueJS/" class="ui tiny button">
+                    
+                    vueJS
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#学习目标"><span>学习目标</span></a></li><li><a href="#学习内容"><span>学习内容</span></a></li><li><a href="#流程"><span>流程</span></a></li><li><a href="#要求"><span>要求</span></a></li><li><a href="#功能技术分析"><span>功能技术分析</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

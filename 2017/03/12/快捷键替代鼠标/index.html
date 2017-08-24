@@ -1,45 +1,458 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>快捷键替代鼠标 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="windows &amp;#x5355;&amp;#x72EC;&amp;#x6309;Windows&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x6216;&amp;#x9690;&amp;#x85CF; &amp;#x201C;&amp;#x5F00;&amp;#x59CB;&amp;#x201D;&amp;#x529F;&amp;#x80FD;&amp;#x8868; Windows+BREAK&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x201C;&amp;#x7CFB;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快捷键替代鼠标">
+<meta property="og:url" content="http://yoursite.com/2017/03/12/快捷键替代鼠标/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="windows &amp;#x5355;&amp;#x72EC;&amp;#x6309;Windows&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x6216;&amp;#x9690;&amp;#x85CF; &amp;#x201C;&amp;#x5F00;&amp;#x59CB;&amp;#x201D;&amp;#x529F;&amp;#x80FD;&amp;#x8868; Windows+BREAK&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x201C;&amp;#x7CFB;&amp;">
+<meta property="og:updated_time" content="2017-08-22T15:43:12.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快捷键替代鼠标">
+<meta name="twitter:description" content="windows &amp;#x5355;&amp;#x72EC;&amp;#x6309;Windows&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x6216;&amp;#x9690;&amp;#x85CF; &amp;#x201C;&amp;#x5F00;&amp;#x59CB;&amp;#x201D;&amp;#x529F;&amp;#x80FD;&amp;#x8868; Windows+BREAK&amp;#xFF1A;&amp;#x663E;&amp;#x793A;&amp;#x201C;&amp;#x7CFB;&amp;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-快捷键替代鼠标" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    快捷键替代鼠标
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h2><ul class="ui list">
+<li>&#x5355;&#x72EC;&#x6309;Windows&#xFF1A;&#x663E;&#x793A;&#x6216;&#x9690;&#x85CF; &#x201C;&#x5F00;&#x59CB;&#x201D;&#x529F;&#x80FD;&#x8868;</li>
+<li>Windows+BREAK&#xFF1A;&#x663E;&#x793A;&#x201C;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;&#x201D; &#x5BF9;&#x8BDD;&#x6846;</li>
+<li>Windows+D&#xFF1A;&#x663E;&#x793A;&#x684C;&#x9762;</li>
+<li>Windows+M&#xFF1A;&#x6700;&#x5C0F;&#x5316;&#x6240;&#x6709;&#x7A97;&#x53E3;</li>
+<li>Windows+Shift+M&#xFF1A;&#x8FD8;&#x539F;&#x6700;&#x5C0F;&#x5316;&#x7684;&#x7A97;&#x53E3;</li>
+<li>Windows+E&#xFF1A;&#x5F00;&#x542F;&#x201C;&#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;</li>
+<li>Windows+F&#xFF1A;&#x67E5;&#x627E;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;</li>
+<li>Windows+ctrl+ F&#xFF1A;&#x67E5;&#x627E;&#x7535;&#x8111;</li>
+<li>Windows+F1&#xFF1A;&#x663E;&#x793A; Windows &#x201C;&#x5E2E;&#x52A9;&#x201D;</li>
+<li>Windows+R&#xFF1A;&#x5F00;&#x542F;&#x201C;&#x8FD0;&#x884C;&#x201D; &#x5BF9;&#x8BDD;&#x6846;</li>
+<li>Windows+U&#xFF1A;&#x5F00;&#x542F; &#x201C;&#x516C;&#x7528;&#x7A0B;&#x5E8F;&#x7BA1;&#x7406;&#x5668;&#x201D;</li>
+<li>Windows+L&#xFF1A;&#x5207;&#x6362;&#x4F7F;&#x7528;&#x8005;&#xFF08;Windows XP&#x65B0;&#x529F;&#x80FD;&#xFF09;<h2 id="Ctrl"><a href="#Ctrl" class="headerlink" title="Ctrl"></a>Ctrl</h2></li>
+<li>Ctrl+S &#x4FDD;&#x5B58;</li>
+<li>Ctrl+W &#x5173;&#x95ED;&#x7A0B;&#x5E8F;</li>
+<li>Ctrl+N &#x65B0;&#x5EFA;</li>
+<li>Ctrl+O &#x6253;&#x5F00;</li>
+<li>Ctrl+Z &#x64A4;&#x9500;</li>
+<li>Ctrl+F &#x67E5;&#x627E;</li>
+<li>Ctrl+X &#x526A;&#x5207;</li>
+<li>Ctrl+C &#x590D;&#x5236;</li>
+<li>Ctrl+V &#x7C98;&#x8D34;</li>
+<li>Ctrl+A &#x5168;&#x9009;</li>
+<li>Ctrl+[ &#x7F29;&#x5C0F;&#x6587;&#x5B57;</li>
+<li>Ctrl+] &#x653E;&#x5927;&#x6587;&#x5B57;</li>
+<li>Ctrl+B &#x7C97;&#x4F53;</li>
+<li>Ctrl+I &#x659C;&#x4F53;</li>
+<li>Ctrl+U &#x4E0B;&#x5212;&#x7EBF;</li>
+<li>Ctrl+Shift &#x8F93;&#x5165;&#x6CD5;&#x5207;&#x6362;</li>
+<li>Ctrl+&#x7A7A;&#x683C; &#x4E2D;&#x82F1;&#x6587;&#x5207;&#x6362;</li>
+<li>Ctrl+&#x56DE;&#x8F66; QQ&#x53F7;&#x4E2D;&#x53D1;&#x9001;&#x4FE1;&#x606F;</li>
+<li>Ctrl+Home &#x5149;&#x6807;&#x5FEB;&#x901F;&#x79FB;&#x5230;&#x6587;&#x4EF6;&#x5934;</li>
+<li>Ctrl+End &#x5149;&#x6807;&#x5FEB;&#x901F;&#x79FB;&#x5230;&#x6587;&#x4EF6;&#x5C3E;</li>
+<li>Ctrl+Esc &#x663E;&#x793A;&#x5F00;&#x59CB;&#x83DC;&#x5355;</li>
+<li>Ctrl+Shift+&lt; &#x5FEB;&#x901F;&#x7F29;&#x5C0F;&#x6587;&#x5B57;</li>
+<li>Ctrl+Shift+&gt; &#x5FEB;&#x901F;&#x653E;&#x5927;&#x6587;&#x5B57;</li>
+<li>Ctrl+F5 &#x5728;IE&#x4E2D;&#x5F3A;&#x884C;&#x5237;&#x65B0;</li>
+<li>Ctrl+&#x62D6;&#x52A8;&#x6587;&#x4EF6; &#x590D;&#x5236;&#x6587;&#x4EF6;</li>
+<li>Ctrl+Backspace &#x542F;&#x52A8;\&#x5173;&#x95ED;&#x8F93;&#x5165;&#x6CD5;</li>
+<li>&#x62D6;&#x52A8;&#x6587;&#x4EF6;&#x65F6;&#x6309;&#x4F4F;Ctrl+Shift &#x521B;&#x5EFA;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;<h2 id="Alt"><a href="#Alt" class="headerlink" title="Alt"></a>Alt</h2></li>
+<li>Alt+F4 &#x5173;&#x95ED;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;</li>
+<li>Alt+&#x7A7A;&#x683C;+C &#x5173;&#x95ED;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+N &#x6700;&#x5C0F;&#x5316;&#x5F53;&#x524D;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+R &#x6062;&#x590D;&#x6700;&#x5C0F;&#x5316;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+X &#x6700;&#x5927;&#x5316;&#x5F53;&#x524D;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+M &#x79FB;&#x52A8;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+S &#x6539;&#x53D8;&#x7A97;&#x53E3;&#x5927;&#x5C0F;</li>
+<li>Alt+Tab &#x4E24;&#x4E2A;&#x7A0B;&#x5E8F;&#x4EA4;&#x6362;</li>
+<li>Alt+255 QQ&#x53F7;&#x4E2D;&#x8F93;&#x5165;&#x65E0;&#x540D;&#x4EBA;</li>
+<li>Alt+F &#x6253;&#x5F00;&#x6587;&#x4EF6;&#x83DC;&#x5355;</li>
+<li>Alt+V &#x6253;&#x5F00;&#x89C6;&#x56FE;&#x83DC;&#x5355;</li>
+<li>Alt+E &#x6253;&#x5F00;&#x7F16;&#x8F91;&#x83DC;&#x5355;</li>
+<li>Alt+I &#x6253;&#x5F00;&#x63D2;&#x5165;&#x83DC;&#x5355;</li>
+<li>Alt+O &#x6253;&#x5F00;&#x683C;&#x5F0F;&#x83DC;&#x5355;</li>
+<li>Alt+T &#x6253;&#x5F00;&#x5DE5;&#x5177;&#x83DC;&#x5355;</li>
+<li>Alt+A &#x6253;&#x5F00;&#x8868;&#x683C;&#x83DC;&#x5355;</li>
+<li>Alt+W &#x6253;&#x5F00;&#x7A97;&#x53E3;&#x83DC;&#x5355;</li>
+<li>Alt+H &#x6253;&#x5F00;&#x5E2E;&#x52A9;&#x83DC;&#x5355;</li>
+<li>Alt+&#x56DE;&#x8F66; &#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5C5E;&#x6027;</li>
+<li>Alt+&#x53CC;&#x51FB;&#x6587;&#x4EF6; &#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5C5E;&#x6027;</li>
+<li>Alt+X &#x5173;&#x95ED;C&#x8BED;&#x8A00;<h2 id="Shift"><a href="#Shift" class="headerlink" title="Shift"></a>Shift</h2></li>
+<li>Shift+&#x7A7A;&#x683C; &#x534A;\&#x5168;&#x89D2;&#x5207;&#x6362;</li>
+<li>Shift+&#x53F3;&#x51FB; &#x53F3;&#x83DC;&#x5355;&#x6253;&#x5F00;&#x65B9;&#x5F0F;</li>
+<li>Shift+F10 &#x9009;&#x4E2D;&#x6587;&#x4EF6;&#x7684;&#x53F3;&#x83DC;&#x5355;</li>
+<li>Shift+&#x591A;&#x7EA7;&#x6587;&#x4EF6; &#x5168;&#x90E8;&#x5173;&#x95ED;</li>
+<li>Shift+Del &#x76F4;&#x63A5;&#x5220;&#x9664;&#x6587;&#x4EF6;</li>
+<li>Shift+&#xFF3E; &#x5904;&#x5728;&#x4E2D;&#x6587;&#x6807;&#x70B9;&#x7B26;&#x53F7;&#x534A;&#x89D2;&#x5728;&#x667A;&#x80FD;ABC&#x4E2D;&#x7701;&#x66F0;&#x53F7;</li>
+<li>Shift+\ &#x5904;&#x5728;&#x4E2D;&#x6587;&#x6807;&#x70B9;&#x7B26;&#x53F7;&#x534A;&#x89D2;&#x5728;&#x667A;&#x80FD;ABC&#x4E2D;&#x987F;&#x53F7;<h2 id="&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;"><a href="#&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;" class="headerlink" title="&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;"></a>&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;</h2></li>
+<li>Ctrl + C &#x590D;&#x5236;&#x3002;</li>
+<li>Ctrl + X &#x526A;&#x5207;&#x3002;</li>
+<li>Ctrl + V &#x7C98;&#x8D34;&#x3002;</li>
+<li>Ctrl + Z &#x64A4;&#x6D88;&#x3002;</li>
+<li>DELETE &#x5220;&#x9664;&#x3002;</li>
+<li>Shift + Delete &#x6C38;&#x4E45;&#x5220;&#x9664;&#x6240;&#x9009;&#x9879;&#xFF0C;&#x800C;&#x4E0D;&#x5C06;&#x5B83;&#x653E;&#x5230;&#x201C;&#x56DE;&#x6536;&#x7AD9;&#x201D;&#x4E2D;&#x3002;</li>
+<li>&#x62D6;&#x52A8;&#x67D0;&#x4E00;&#x9879;&#x65F6;&#x6309; CTRL &#x590D;&#x5236;&#x6240;&#x9009;&#x9879;&#x3002;</li>
+<li>&#x62D6;&#x52A8;&#x67D0;&#x4E00;&#x9879;&#x65F6;&#x6309; CTRL + SHIFT &#x521B;&#x5EFA;&#x6240;&#x9009;&#x9879;&#x76EE;&#x7684;&#x5FEB;&#x6377;&#x952E;&#x3002;</li>
+<li>F2 &#x91CD;&#x65B0;&#x547D;&#x540D;&#x6240;&#x9009;&#x9879;&#x76EE;&#x3002;</li>
+<li>CTRL + &#x5411;&#x53F3;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x5DE6;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x524D;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x4E0B;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x4E0B;&#x4E00;&#x6BB5;&#x843D;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x4E0A;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x524D;&#x4E00;&#x6BB5;&#x843D;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + SHIFT + &#x4EFB;&#x4F55;&#x7BAD;&#x5934;&#x952E; &#x7A81;&#x51FA;&#x663E;&#x793A;&#x4E00;&#x5757;&#x6587;&#x672C;&#x3002;</li>
+<li>SHIFT + &#x4EFB;&#x4F55;&#x7BAD;&#x5934;&#x952E; &#x5728;&#x7A97;&#x53E3;&#x6216;&#x684C;&#x9762;&#x4E0A;&#x9009;&#x62E9;&#x591A;&#x9879;&#xFF0C;&#x6216;&#x8005;&#x9009;&#x4E2D;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x6587;&#x672C;&#x3002;</li>
+<li>Ctrl + A &#x9009;&#x4E2D;&#x5168;&#x90E8;&#x5185;&#x5BB9;&#x3002;</li>
+<li>F3 &#x641C;&#x7D22;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;&#x3002;</li>
+<li>Alt + Enter &#x67E5;&#x770B;&#x6240;&#x9009;&#x9879;&#x76EE;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>Alt + F4 &#x5173;&#x95ED;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x6216;&#x8005;&#x9000;&#x51FA;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x3002;</li>
+<li>ALT + Enter &#x663E;&#x793A;&#x6240;&#x9009;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>Alt + &#x7A7A;&#x683C;&#x952E; &#x4E3A;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x3002;</li>
+<li>Ctrl + F4 &#x5728;&#x5141;&#x8BB8;&#x540C;&#x65F6;&#x6253;&#x5F00;&#x591A;&#x4E2A;&#x6587;&#x6863;&#x7684;&#x7A0B;&#x5E8F;&#x4E2D;&#x5173;&#x95ED;&#x5F53;&#x524D;&#x6587;&#x6863;&#x3002;</li>
+<li>Alt + Tab &#x5728;&#x6253;&#x5F00;&#x7684;&#x9879;&#x76EE;&#x4E4B;&#x95F4;&#x5207;&#x6362;&#x3002;</li>
+<li>Alt + Esc &#x4EE5;&#x9879;&#x76EE;&#x6253;&#x5F00;&#x7684;&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x5207;&#x6362;&#x3002;</li>
+<li>F6 &#x5728;&#x7A97;&#x53E3;&#x6216;&#x684C;&#x9762;&#x4E0A;&#x5FAA;&#x73AF;&#x5207;&#x6362;&#x5C4F;&#x5E55;&#x5143;&#x7D20;&#x3002;</li>
+<li>F4 &#x663E;&#x793A;&#x201C;&#x6211;&#x7684;&#x7535;&#x8111;&#x201D;&#x548C;&#x201C;Windows &#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;&#x4E2D;&#x7684;&#x201C;&#x5730;&#x5740;&#x201D;&#x680F;&#x5217;&#x8868;&#x3002;</li>
+<li>Shift + F10 &#x663E;&#x793A;&#x6240;&#x9009;&#x9879;&#x7684;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x3002;</li>
+<li>Alt + &#x7A7A;&#x683C;&#x952E; &#x663E;&#x793A;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x7684;&#x201C;&#x7CFB;&#x7EDF;&#x201D;&#x83DC;&#x5355;&#x3002;</li>
+<li>Ctrl + Esc &#x663E;&#x793A;&#x201C;&#x5F00;&#x59CB;&#x201D;&#x83DC;&#x5355;&#x3002;</li>
+<li>ALT + &#x83DC;&#x5355;&#x540D;&#x4E2D;&#x5E26;&#x4E0B;&#x5212;&#x7EBF;&#x7684;&#x5B57;&#x6BCD; &#x663E;&#x793A;&#x76F8;&#x5E94;&#x7684;&#x83DC;&#x5355;&#x3002;</li>
+<li>&#x5728;&#x6253;&#x5F00;&#x7684;&#x83DC;&#x5355;&#x4E0A;&#x663E;&#x793A;&#x7684;&#x547D;&#x4EE4;&#x540D;&#x79F0;&#x4E2D;&#x5E26;&#x6709;&#x4E0B;&#x5212;&#x7EBF;&#x7684;&#x5B57;&#x6BCD; &#x6267;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x547D;&#x4EE4;&#x3002;</li>
+<li>F10 &#x6FC0;&#x6D3B;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x83DC;&#x5355;&#x6761;&#x3002;</li>
+<li>&#x53F3;&#x7BAD;&#x5934;&#x952E; &#x6253;&#x5F00;&#x53F3;&#x8FB9;&#x7684;&#x4E0B;&#x4E00;&#x83DC;&#x5355;&#x6216;&#x8005;&#x6253;&#x5F00;&#x5B50;&#x83DC;&#x5355;&#x3002;</li>
+<li>&#x5DE6;&#x7BAD;&#x5934;&#x952E; &#x6253;&#x5F00;&#x5DE6;&#x8FB9;&#x7684;&#x4E0B;&#x4E00;&#x83DC;&#x5355;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5B50;&#x83DC;&#x5355;&#x3002;</li>
+<li>F5 &#x5237;&#x65B0;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x3002;</li>
+<li>BackSpace &#x5728;&#x201C;&#x6211;&#x7684;&#x7535;&#x8111;&#x201D;&#x6216;&#x201C;Windows &#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;&#x4E2D;&#x67E5;&#x627E;<h2 id="windows-1"><a href="#windows-1" class="headerlink" title="windows"></a>windows</h2></li>
+<li>&#x5355;&#x72EC;&#x6309;Windows&#xFF1A;&#x663E;&#x793A;&#x6216;&#x9690;&#x85CF; &#x201C;&#x5F00;&#x59CB;&#x201D;&#x529F;&#x80FD;&#x8868;</li>
+<li>Windows+BREAK&#xFF1A;&#x663E;&#x793A;&#x201C;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;&#x201D; &#x5BF9;&#x8BDD;&#x6846;</li>
+<li>Windows+D&#xFF1A;&#x663E;&#x793A;&#x684C;&#x9762;</li>
+<li>Windows+M&#xFF1A;&#x6700;&#x5C0F;&#x5316;&#x6240;&#x6709;&#x7A97;&#x53E3;</li>
+<li>Windows+Shift+M&#xFF1A;&#x8FD8;&#x539F;&#x6700;&#x5C0F;&#x5316;&#x7684;&#x7A97;&#x53E3;</li>
+<li>Windows+E&#xFF1A;&#x5F00;&#x542F;&#x201C;&#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;</li>
+<li>Windows+F&#xFF1A;&#x67E5;&#x627E;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;</li>
+<li>Windows+ctrl+ F&#xFF1A;&#x67E5;&#x627E;&#x7535;&#x8111;</li>
+<li>Windows+F1&#xFF1A;&#x663E;&#x793A; Windows &#x201C;&#x5E2E;&#x52A9;&#x201D;</li>
+<li>Windows+R&#xFF1A;&#x5F00;&#x542F;&#x201C;&#x8FD0;&#x884C;&#x201D; &#x5BF9;&#x8BDD;&#x6846;</li>
+<li>Windows+U&#xFF1A;&#x5F00;&#x542F; &#x201C;&#x516C;&#x7528;&#x7A0B;&#x5E8F;&#x7BA1;&#x7406;&#x5668;&#x201D;</li>
+<li>Windows+L&#xFF1A;&#x5207;&#x6362;&#x4F7F;&#x7528;&#x8005;&#xFF08;Windows XP&#x65B0;&#x529F;&#x80FD;&#xFF09;<h2 id="Ctrl-1"><a href="#Ctrl-1" class="headerlink" title="Ctrl"></a>Ctrl</h2></li>
+<li>Ctrl+S &#x4FDD;&#x5B58;</li>
+<li>Ctrl+W &#x5173;&#x95ED;&#x7A0B;&#x5E8F;</li>
+<li>Ctrl+N &#x65B0;&#x5EFA;</li>
+<li>Ctrl+O &#x6253;&#x5F00;</li>
+<li>Ctrl+Z &#x64A4;&#x9500;</li>
+<li>Ctrl+F &#x67E5;&#x627E;</li>
+<li>Ctrl+X &#x526A;&#x5207;</li>
+<li>Ctrl+C &#x590D;&#x5236;</li>
+<li>Ctrl+V &#x7C98;&#x8D34;</li>
+<li>Ctrl+A &#x5168;&#x9009;</li>
+<li>Ctrl+[ &#x7F29;&#x5C0F;&#x6587;&#x5B57;</li>
+<li>Ctrl+] &#x653E;&#x5927;&#x6587;&#x5B57;</li>
+<li>Ctrl+B &#x7C97;&#x4F53;</li>
+<li>Ctrl+I &#x659C;&#x4F53;</li>
+<li>Ctrl+U &#x4E0B;&#x5212;&#x7EBF;</li>
+<li>Ctrl+Shift &#x8F93;&#x5165;&#x6CD5;&#x5207;&#x6362;</li>
+<li>Ctrl+&#x7A7A;&#x683C; &#x4E2D;&#x82F1;&#x6587;&#x5207;&#x6362;</li>
+<li>Ctrl+&#x56DE;&#x8F66; QQ&#x53F7;&#x4E2D;&#x53D1;&#x9001;&#x4FE1;&#x606F;</li>
+<li>Ctrl+Home &#x5149;&#x6807;&#x5FEB;&#x901F;&#x79FB;&#x5230;&#x6587;&#x4EF6;&#x5934;</li>
+<li>Ctrl+End &#x5149;&#x6807;&#x5FEB;&#x901F;&#x79FB;&#x5230;&#x6587;&#x4EF6;&#x5C3E;</li>
+<li>Ctrl+Esc &#x663E;&#x793A;&#x5F00;&#x59CB;&#x83DC;&#x5355;</li>
+<li>Ctrl+Shift+&lt; &#x5FEB;&#x901F;&#x7F29;&#x5C0F;&#x6587;&#x5B57;</li>
+<li>Ctrl+Shift+&gt; &#x5FEB;&#x901F;&#x653E;&#x5927;&#x6587;&#x5B57;</li>
+<li>Ctrl+F5 &#x5728;IE&#x4E2D;&#x5F3A;&#x884C;&#x5237;&#x65B0;</li>
+<li>Ctrl+&#x62D6;&#x52A8;&#x6587;&#x4EF6; &#x590D;&#x5236;&#x6587;&#x4EF6;</li>
+<li>Ctrl+Backspace &#x542F;&#x52A8;\&#x5173;&#x95ED;&#x8F93;&#x5165;&#x6CD5;</li>
+<li>&#x62D6;&#x52A8;&#x6587;&#x4EF6;&#x65F6;&#x6309;&#x4F4F;Ctrl+Shift &#x521B;&#x5EFA;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;<h2 id="Alt-1"><a href="#Alt-1" class="headerlink" title="Alt"></a>Alt</h2></li>
+<li>Alt+F4 &#x5173;&#x95ED;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;</li>
+<li>Alt+&#x7A7A;&#x683C;+C &#x5173;&#x95ED;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+N &#x6700;&#x5C0F;&#x5316;&#x5F53;&#x524D;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+R &#x6062;&#x590D;&#x6700;&#x5C0F;&#x5316;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+X &#x6700;&#x5927;&#x5316;&#x5F53;&#x524D;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+M &#x79FB;&#x52A8;&#x7A97;&#x53E3;</li>
+<li>Alt+&#x7A7A;&#x683C;+S &#x6539;&#x53D8;&#x7A97;&#x53E3;&#x5927;&#x5C0F;</li>
+<li>Alt+Tab &#x4E24;&#x4E2A;&#x7A0B;&#x5E8F;&#x4EA4;&#x6362;</li>
+<li>Alt+255 QQ&#x53F7;&#x4E2D;&#x8F93;&#x5165;&#x65E0;&#x540D;&#x4EBA;</li>
+<li>Alt+F &#x6253;&#x5F00;&#x6587;&#x4EF6;&#x83DC;&#x5355;</li>
+<li>Alt+V &#x6253;&#x5F00;&#x89C6;&#x56FE;&#x83DC;&#x5355;</li>
+<li>Alt+E &#x6253;&#x5F00;&#x7F16;&#x8F91;&#x83DC;&#x5355;</li>
+<li>Alt+I &#x6253;&#x5F00;&#x63D2;&#x5165;&#x83DC;&#x5355;</li>
+<li>Alt+O &#x6253;&#x5F00;&#x683C;&#x5F0F;&#x83DC;&#x5355;</li>
+<li>Alt+T &#x6253;&#x5F00;&#x5DE5;&#x5177;&#x83DC;&#x5355;</li>
+<li>Alt+A &#x6253;&#x5F00;&#x8868;&#x683C;&#x83DC;&#x5355;</li>
+<li>Alt+W &#x6253;&#x5F00;&#x7A97;&#x53E3;&#x83DC;&#x5355;</li>
+<li>Alt+H &#x6253;&#x5F00;&#x5E2E;&#x52A9;&#x83DC;&#x5355;</li>
+<li>Alt+&#x56DE;&#x8F66; &#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5C5E;&#x6027;</li>
+<li>Alt+&#x53CC;&#x51FB;&#x6587;&#x4EF6; &#x67E5;&#x770B;&#x6587;&#x4EF6;&#x5C5E;&#x6027;</li>
+<li>Alt+X &#x5173;&#x95ED;C&#x8BED;&#x8A00;<h2 id="Shift-1"><a href="#Shift-1" class="headerlink" title="Shift"></a>Shift</h2></li>
+<li>Shift+&#x7A7A;&#x683C; &#x534A;\&#x5168;&#x89D2;&#x5207;&#x6362;</li>
+<li>Shift+&#x53F3;&#x51FB; &#x53F3;&#x83DC;&#x5355;&#x6253;&#x5F00;&#x65B9;&#x5F0F;</li>
+<li>Shift+F10 &#x9009;&#x4E2D;&#x6587;&#x4EF6;&#x7684;&#x53F3;&#x83DC;&#x5355;</li>
+<li>Shift+&#x591A;&#x7EA7;&#x6587;&#x4EF6; &#x5168;&#x90E8;&#x5173;&#x95ED;</li>
+<li>Shift+Del &#x76F4;&#x63A5;&#x5220;&#x9664;&#x6587;&#x4EF6;</li>
+<li>Shift+&#xFF3E; &#x5904;&#x5728;&#x4E2D;&#x6587;&#x6807;&#x70B9;&#x7B26;&#x53F7;&#x534A;&#x89D2;&#x5728;&#x667A;&#x80FD;ABC&#x4E2D;&#x7701;&#x66F0;&#x53F7;</li>
+<li>Shift+\ &#x5904;&#x5728;&#x4E2D;&#x6587;&#x6807;&#x70B9;&#x7B26;&#x53F7;&#x534A;&#x89D2;&#x5728;&#x667A;&#x80FD;ABC&#x4E2D;&#x987F;&#x53F7;<h2 id="&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;-1"><a href="#&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;-1" class="headerlink" title="&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;"></a>&#x5E38;&#x89C4;&#x952E;&#x76D8;&#x5FEB;&#x6377;&#x952E;</h2></li>
+<li>Ctrl + C &#x590D;&#x5236;&#x3002;</li>
+<li>Ctrl + X &#x526A;&#x5207;&#x3002;</li>
+<li>Ctrl + V &#x7C98;&#x8D34;&#x3002;</li>
+<li>Ctrl + Z &#x64A4;&#x6D88;&#x3002;</li>
+<li>DELETE &#x5220;&#x9664;&#x3002;</li>
+<li>Shift + Delete &#x6C38;&#x4E45;&#x5220;&#x9664;&#x6240;&#x9009;&#x9879;&#xFF0C;&#x800C;&#x4E0D;&#x5C06;&#x5B83;&#x653E;&#x5230;&#x201C;&#x56DE;&#x6536;&#x7AD9;&#x201D;&#x4E2D;&#x3002;</li>
+<li>&#x62D6;&#x52A8;&#x67D0;&#x4E00;&#x9879;&#x65F6;&#x6309; CTRL &#x590D;&#x5236;&#x6240;&#x9009;&#x9879;&#x3002;</li>
+<li>&#x62D6;&#x52A8;&#x67D0;&#x4E00;&#x9879;&#x65F6;&#x6309; CTRL + SHIFT &#x521B;&#x5EFA;&#x6240;&#x9009;&#x9879;&#x76EE;&#x7684;&#x5FEB;&#x6377;&#x952E;&#x3002;</li>
+<li>F2 &#x91CD;&#x65B0;&#x547D;&#x540D;&#x6240;&#x9009;&#x9879;&#x76EE;&#x3002;</li>
+<li>CTRL + &#x5411;&#x53F3;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x5DE6;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x524D;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x4E0B;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x4E0B;&#x4E00;&#x6BB5;&#x843D;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + &#x5411;&#x4E0A;&#x952E; &#x5C06;&#x63D2;&#x5165;&#x70B9;&#x79FB;&#x52A8;&#x5230;&#x524D;&#x4E00;&#x6BB5;&#x843D;&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</li>
+<li>CTRL + SHIFT + &#x4EFB;&#x4F55;&#x7BAD;&#x5934;&#x952E; &#x7A81;&#x51FA;&#x663E;&#x793A;&#x4E00;&#x5757;&#x6587;&#x672C;&#x3002;</li>
+<li>SHIFT + &#x4EFB;&#x4F55;&#x7BAD;&#x5934;&#x952E; &#x5728;&#x7A97;&#x53E3;&#x6216;&#x684C;&#x9762;&#x4E0A;&#x9009;&#x62E9;&#x591A;&#x9879;&#xFF0C;&#x6216;&#x8005;&#x9009;&#x4E2D;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x6587;&#x672C;&#x3002;</li>
+<li>Ctrl + A &#x9009;&#x4E2D;&#x5168;&#x90E8;&#x5185;&#x5BB9;&#x3002;</li>
+<li>F3 &#x641C;&#x7D22;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;&#x3002;</li>
+<li>Alt + Enter &#x67E5;&#x770B;&#x6240;&#x9009;&#x9879;&#x76EE;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>Alt + F4 &#x5173;&#x95ED;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x6216;&#x8005;&#x9000;&#x51FA;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x3002;</li>
+<li>ALT + Enter &#x663E;&#x793A;&#x6240;&#x9009;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>Alt + &#x7A7A;&#x683C;&#x952E; &#x4E3A;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x3002;</li>
+<li>Ctrl + F4 &#x5728;&#x5141;&#x8BB8;&#x540C;&#x65F6;&#x6253;&#x5F00;&#x591A;&#x4E2A;&#x6587;&#x6863;&#x7684;&#x7A0B;&#x5E8F;&#x4E2D;&#x5173;&#x95ED;&#x5F53;&#x524D;&#x6587;&#x6863;&#x3002;</li>
+<li>Alt + Tab &#x5728;&#x6253;&#x5F00;&#x7684;&#x9879;&#x76EE;&#x4E4B;&#x95F4;&#x5207;&#x6362;&#x3002;</li>
+<li>Alt + Esc &#x4EE5;&#x9879;&#x76EE;&#x6253;&#x5F00;&#x7684;&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x5207;&#x6362;&#x3002;</li>
+<li>F6 &#x5728;&#x7A97;&#x53E3;&#x6216;&#x684C;&#x9762;&#x4E0A;&#x5FAA;&#x73AF;&#x5207;&#x6362;&#x5C4F;&#x5E55;&#x5143;&#x7D20;&#x3002;</li>
+<li>F4 &#x663E;&#x793A;&#x201C;&#x6211;&#x7684;&#x7535;&#x8111;&#x201D;&#x548C;&#x201C;Windows &#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;&#x4E2D;&#x7684;&#x201C;&#x5730;&#x5740;&#x201D;&#x680F;&#x5217;&#x8868;&#x3002;</li>
+<li>Shift + F10 &#x663E;&#x793A;&#x6240;&#x9009;&#x9879;&#x7684;&#x5FEB;&#x6377;&#x83DC;&#x5355;&#x3002;</li>
+<li>Alt + &#x7A7A;&#x683C;&#x952E; &#x663E;&#x793A;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x7684;&#x201C;&#x7CFB;&#x7EDF;&#x201D;&#x83DC;&#x5355;&#x3002;</li>
+<li>Ctrl + Esc &#x663E;&#x793A;&#x201C;&#x5F00;&#x59CB;&#x201D;&#x83DC;&#x5355;&#x3002;</li>
+<li>ALT + &#x83DC;&#x5355;&#x540D;&#x4E2D;&#x5E26;&#x4E0B;&#x5212;&#x7EBF;&#x7684;&#x5B57;&#x6BCD; &#x663E;&#x793A;&#x76F8;&#x5E94;&#x7684;&#x83DC;&#x5355;&#x3002;</li>
+<li>&#x5728;&#x6253;&#x5F00;&#x7684;&#x83DC;&#x5355;&#x4E0A;&#x663E;&#x793A;&#x7684;&#x547D;&#x4EE4;&#x540D;&#x79F0;&#x4E2D;&#x5E26;&#x6709;&#x4E0B;&#x5212;&#x7EBF;&#x7684;&#x5B57;&#x6BCD; &#x6267;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x547D;&#x4EE4;&#x3002;</li>
+<li>F10 &#x6FC0;&#x6D3B;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x83DC;&#x5355;&#x6761;&#x3002;</li>
+<li>&#x53F3;&#x7BAD;&#x5934;&#x952E; &#x6253;&#x5F00;&#x53F3;&#x8FB9;&#x7684;&#x4E0B;&#x4E00;&#x83DC;&#x5355;&#x6216;&#x8005;&#x6253;&#x5F00;&#x5B50;&#x83DC;&#x5355;&#x3002;</li>
+<li>&#x5DE6;&#x7BAD;&#x5934;&#x952E; &#x6253;&#x5F00;&#x5DE6;&#x8FB9;&#x7684;&#x4E0B;&#x4E00;&#x83DC;&#x5355;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5B50;&#x83DC;&#x5355;&#x3002;</li>
+<li>F5 &#x5237;&#x65B0;&#x5F53;&#x524D;&#x7A97;&#x53E3;&#x3002;</li>
+<li>BackSpace &#x5728;&#x201C;&#x6211;&#x7684;&#x7535;&#x8111;&#x201D;&#x6216;&#x201C;Windows &#x8D44;&#x6E90;&#x7BA1;&#x7406;&#x5668;&#x201D;&#x4E2D;&#x67E5;&#x627E;</li>
+</ul>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-03-12T05:41:48.000Z" itemprop="datePublished">2017-03-12</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/04/14/highcharts/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    highcharts
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/08/22/浅析js/" class="ui tiny button">
+                    
+                    浅析js
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#windows"><span>windows</span></a></li><li><a href="#Ctrl"><span>Ctrl</span></a></li><li><a href="#Alt"><span>Alt</span></a></li><li><a href="#Shift"><span>Shift</span></a></li><li><a href="#常规键盘快捷键"><span>常规键盘快捷键</span></a></li><li><a href="#windows-1"><span>windows</span></a></li><li><a href="#Ctrl-1"><span>Ctrl</span></a></li><li><a href="#Alt-1"><span>Alt</span></a></li><li><a href="#Shift-1"><span>Shift</span></a></li><li><a href="#常规键盘快捷键-1"><span>常规键盘快捷键</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

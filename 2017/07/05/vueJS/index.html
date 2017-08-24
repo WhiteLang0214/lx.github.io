@@ -1,45 +1,263 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>vueJS | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x5B89;&amp;#x88C5; &amp;#x8BB0;&amp;#x9700;&amp;#x8981;&amp;#x5148;&amp;#x5B89;&amp;#x88C5;node&amp;#x548C;npm,&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x6DD8;&amp;#x5B9D;&amp;#x955C;&amp;#x50CF;&amp;#x5B89;&amp;#x88C5; &amp;#x5B89;&amp;#x88C5;&amp;#x6DD8;&amp;#x5B9D;&amp;#x95">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vueJS">
+<meta property="og:url" content="http://yoursite.com/2017/07/05/vueJS/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="&amp;#x5B89;&amp;#x88C5; &amp;#x8BB0;&amp;#x9700;&amp;#x8981;&amp;#x5148;&amp;#x5B89;&amp;#x88C5;node&amp;#x548C;npm,&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x6DD8;&amp;#x5B9D;&amp;#x955C;&amp;#x50CF;&amp;#x5B89;&amp;#x88C5; &amp;#x5B89;&amp;#x88C5;&amp;#x6DD8;&amp;#x5B9D;&amp;#x95">
+<meta property="og:updated_time" content="2017-08-22T15:59:31.657Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vueJS">
+<meta name="twitter:description" content="&amp;#x5B89;&amp;#x88C5; &amp;#x8BB0;&amp;#x9700;&amp;#x8981;&amp;#x5148;&amp;#x5B89;&amp;#x88C5;node&amp;#x548C;npm,&amp;#x53EF;&amp;#x4EE5;&amp;#x4F7F;&amp;#x7528;&amp;#x6DD8;&amp;#x5B9D;&amp;#x955C;&amp;#x50CF;&amp;#x5B89;&amp;#x88C5; &amp;#x5B89;&amp;#x88C5;&amp;#x6DD8;&amp;#x5B9D;&amp;#x95">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-vueJS" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    vueJS
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h2><ol class="ui list">
+<li>&#x8BB0;<br>&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;node&#x548C;npm,&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6DD8;&#x5B9D;&#x955C;&#x50CF;&#x5B89;&#x88C5;</li>
+<li>&#x5B89;&#x88C5;&#x6DD8;&#x5B9D;&#x955C;&#x50CF;<br>$ npm install -g cnpm &#x2013;registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a></li>
+<li>&#x5168;&#x5C40;&#x5B89;&#x88C5;<br>$ npm install &#x2013;global vue-cli</li>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E; webpack &#x6A21;&#x677F;&#x7684;&#x65B0;&#x9879;&#x76EE;<br>$ vue init webpack my-project</li>
+<li>&#x5B89;&#x88C5;&#x4F9D;&#x8D56;<br>$ cd my-project<br>$ npm install<br>$ npm run dev<h2 id="&#x5B89;&#x88C5;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"><a href="#&#x5B89;&#x88C5;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x5B89;&#x88C5;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"></a>&#x5B89;&#x88C5;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;</h2></li>
+<li>&#x5728;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;(npm install)&#xFF0C;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x542F;&#x52A8;</li>
+<li>&#x5728;&#x6B63;&#x5E38;&#x542F;&#x52A8;&#x670D;&#x52A1;&#x540E;&#xFF0C;&#x6253;&#x5F00;&#x7684;&#x9875;&#x9762;&#x62A5;&#x9519;&#xFF0C;&#x62A5;&#x9519;&#x5185;&#x5BB9;&#xFF1A;Cannot GET /<br>&#x89E3;&#x51B3;&#xFF1A; &#x6211;&#x628A;&#x6574;&#x4E2A;&#x9879;&#x76EE;&#x90FD;&#x5220;&#x9664;&#x4E4B;&#x540E;&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x4E86;&#x4E00;&#x904D;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x542F;&#x52A8;&#x4E86;<h2 id="&#x5F00;&#x59CB;&#x9879;&#x76EE;"><a href="#&#x5F00;&#x59CB;&#x9879;&#x76EE;" class="headerlink" title="&#x5F00;&#x59CB;&#x9879;&#x76EE;"></a>&#x5F00;&#x59CB;&#x9879;&#x76EE;</h2><h3 id="&#x4E00;&#xB7;TodoList"><a href="#&#x4E00;&#xB7;TodoList" class="headerlink" title="&#x4E00;&#xB7;TodoList"></a>&#x4E00;&#xB7;TodoList</h3></li>
+<li>&#x5728;app.vue&#x4E2D;&#x7F16;&#x5199;&#x4F60;&#x7684;&#x4EE3;&#x7801;<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#app</span> {</div><div class="line">  <span class="attribute">font-family</span>: <span class="string">&apos;Avenir&apos;</span>, Helvetica, Arial, sans-serif;</div><div class="line">  <span class="attribute">-webkit-font-smoothing</span>: antialiased;</div><div class="line">  <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#2c3e50</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">60px</span>;</div><div class="line">}</div><div class="line"><span class="selector-tag">input</span> {</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">outline-style</span>: none;</div><div class="line">}</div><div class="line"><span class="selector-tag">ul</span> {</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> auto <span class="number">0</span>;</div><div class="line">}</div><div class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> {</div><div class="line">  <span class="attribute">list-style</span>: none;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20</span>x;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#3c3c3c</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">320px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">}</div><div class="line"><span class="selector-class">.finished</span> {</div><div class="line">  <span class="attribute">text-decoration</span>: underline;</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-html</span>=<span class="string">&quot;title&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;&#x8BF7;&#x8F93;&#x5165;&#x6E05;&#x5355;&quot;</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">&quot;addNew&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;newItem&quot;</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- enter&#x952E;&#x89E6;&#x53D1;&#x51FD;&#x6570;&#xFF0C;&#x83B7;&#x53D6;input&#x6846;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x5C55;&#x793A;&#x5728;&#x4E0B;&#x9762;&#x7684;li&#x4E2D;&#xFF0C;&#x4E0B;&#x9762;&#x7684;li&#x5E94;&#x8BE5;&#x662F;&#x6839;&#x636E;&#x6DFB;&#x52A0;&#x7684;&#x6761;&#x76EE;&#x5FAA;&#x73AF;&#x51FA;&#x6765;&#x7684; --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- &#x5C06;&#x6807;&#x7B7E;&#x7ED1;&#x5B9A;&#x7C7B;&#x540D;finished  &#x503C;&#x4E3A;item.isFinishedn  &#x4E3A;true&#x7684;&#x65F6;&#x5019;&#x5E94;&#x7528;&#x7C7B;  &#x4E3A;false&#x7684;&#x65F6;&#x5019;&#x79FB;&#x9664;&#x7C7B; --&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;item in items&quot;</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;{finished:item.isFinished}&quot;</span> <span class="attr">v-on:click</span>=<span class="string">&quot;toggleFinished(item)&quot;</span>&gt;</span>{{ item.label }}<span class="tag">&lt;/<span class="name">li</span>&gt;</span> <span class="comment">&lt;!-- &#x5C55;&#x793A;&#x7684;&#x662F;&#x83B7;&#x53D6;&#x7684;input&#x6846;&#x4E2D;&#x7684;&#x65B0;&#x6761;&#x76EE; --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// &#x5BFC;&#x5165;store.js&#x6587;&#x4EF6;</span></div><div class="line"><span class="keyword">import</span> Store <span class="keyword">from</span> <span class="string">&apos;./store&apos;</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</div><div class="line">  <span class="attr">name</span>: <span class="string">&apos;app&apos;</span>,</div><div class="line">  <span class="attr">components</span>: { Store },  <span class="comment">//&#x5982;&#x679C;&#x4E0D;&#x5199;&#xFF0C;&#x53EA;&#x6709;&#x5F15;&#x7528;&#x4E86; Store &#xFF0C;&#x537B;&#x6C92;&#x628A;&#x4ED6;&#x52A0;&#x5165;&#x7236;&#x7D44;&#x4EF6;&#x7684; Components &#x88E1;&#x9762;   &#x4F1A;&#x62A5;&#x9519;</span></div><div class="line">  <span class="comment">// &#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x90FD;&#x5199;&#x5728;data&#x51FD;&#x6570;&#x4E2D;</span></div><div class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="keyword">return</span> {</div><div class="line">      <span class="attr">title</span>: <span class="string">&quot;This is a langxue&apos;s TodoList&quot;</span>,</div><div class="line">      <span class="attr">newItem</span>: <span class="string">&apos;&apos;</span>, <span class="comment">//input&#x6846;&#x4E2D;&#x7684;&#x8F93;&#x5165;&#x7684;&#x5185;&#x5BB9;</span></div><div class="line">      items:Store.fetch() <span class="comment">//&#x628A;&#x6DFB;&#x52A0;&#x7684;&#x65B0;&#x6761;&#x76EE;&#x6DFB;&#x52A0;&#x5230;&#x672C;&#x5730;&#x7F13;&#x5B58;&#x6587;&#x4EF6;&#x4E2D;</span></div><div class="line">    }</div><div class="line">  },</div><div class="line">  <span class="comment">// &#x76D1;&#x542C;</span></div><div class="line">  watch: {</div><div class="line">    <span class="attr">items</span>: {</div><div class="line">      <span class="attr">handler</span>:<span class="function"><span class="keyword">function</span>(<span class="params">items</span>)</span>{</div><div class="line">        Store.save(items)</div><div class="line">      },</div><div class="line">      <span class="attr">deep</span>:<span class="literal">true</span></div><div class="line">    }</div><div class="line">  },</div><div class="line">  <span class="comment">// &#x65B9;&#x6CD5;</span></div><div class="line">  methods: {</div><div class="line">    <span class="comment">// &#x6DFB;&#x52A0;&#x65B0;&#x6761;&#x76EE;&#x7684;&#x65B9;&#x6CD5;</span></div><div class="line">    addNew : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">      <span class="keyword">this</span>.items.push({ <span class="comment">//&#x62A5;&#x9519;  this.items&#x4E3A;&#x7A7A;</span></div><div class="line">        label : <span class="keyword">this</span>.newItem, <span class="comment">//label&#x662F;&#x952E;  this.newItem&#x662F;&#x503C;&#xFF0C;&#x586B;&#x5145;&#x5230;html&#x4E2D;</span></div><div class="line">        <span class="string">&quot;isFinished&quot;</span> : <span class="literal">false</span> <span class="comment">//&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#xFF0C;&#x503C;&#x9ED8;&#x8BA4;&#x7ED9;false</span></div><div class="line">      })</div><div class="line">      <span class="keyword">this</span>.newItem = <span class="string">&apos;&apos;</span> <span class="comment">//&#x5728;&#x6DFB;&#x52A0;&#x5B8C;&#x65B0;&#x6761;&#x76EE;&#x4E4B;&#x540E;&#x3002;&#x8BB2;input&#x6846;&#x6E05;&#x7A7A;</span></div><div class="line">    },</div><div class="line">    <span class="attr">toggleFinished</span>: <span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>{</div><div class="line">      item.isFinished = !item.isFinished</div><div class="line">    }</div><div class="line">  },</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x5728;APP.vue&#x540C;&#x7EA7;&#x76EE;&#x5F55;&#x4E0B;&#x5EFA;&#x7ACB;store.js&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x4E2D;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</span></div><div class="line"><span class="comment">//&#x4F5C;&#x7528;&#x5B58;&#x50A8;&#x7528;&#x6237;&#x586B;&#x5199;&#x7684;&#x65B0;&#x6761;&#x76EE;</span></div><div class="line"><span class="keyword">const</span> STORAGE_KEY=<span class="string">&apos;todos-vuejs&apos;</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span>{</div><div class="line">  <span class="attr">fetch</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</div><div class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.JSON.parse(<span class="built_in">window</span>.localStorage.getItem(STORAGE_KEY)||<span class="string">&apos;[]&apos;</span>)</div><div class="line">  },</div><div class="line">  <span class="attr">save</span>:<span class="function"><span class="keyword">function</span> (<span class="params">items</span>)</span>{</div><div class="line">    <span class="built_in">window</span>.localStorage.setItem(STORAGE_KEY,<span class="built_in">window</span>.JSON.stringify(items))</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-07-05T03:58:42.000Z" itemprop="datePublished">2017-07-05</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/07/23/VUE实战第一天：高仿饿了么APP-项目先导/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VUE实战第一天：高仿饿了么APP---项目先导
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/06/26/ajax/" class="ui tiny button">
+                    
+                    ajax
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#安装"><span>安装</span></a></li><li><a href="#安装遇到的问题"><span>安装遇到的问题</span></a></li><li><a href="#开始项目"><span>开始项目</span></a><ol><li><a href="#一·TodoList"><span>一·TodoList</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

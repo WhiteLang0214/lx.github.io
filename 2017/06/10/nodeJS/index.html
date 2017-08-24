@@ -1,45 +1,507 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>nodeJS | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="NodeJS node&amp;#x662F;js&amp;#x5199;&amp;#x7684;&amp;#x540E;&amp;#x53F0;&amp;#x8BED;&amp;#x8A00;&amp;#x4E4B;&amp;#x4E00; &amp;#x57FA;&amp;#x4E8E;chrome v8&amp;#x5F15;&amp;#x64CE; &amp;#x4F7F;&amp;#x7528;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E8B;&amp;#x4EF6;&amp;#x9A71;&amp;#x52A8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodeJS">
+<meta property="og:url" content="http://yoursite.com/2017/06/10/nodeJS/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="NodeJS node&amp;#x662F;js&amp;#x5199;&amp;#x7684;&amp;#x540E;&amp;#x53F0;&amp;#x8BED;&amp;#x8A00;&amp;#x4E4B;&amp;#x4E00; &amp;#x57FA;&amp;#x4E8E;chrome v8&amp;#x5F15;&amp;#x64CE; &amp;#x4F7F;&amp;#x7528;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E8B;&amp;#x4EF6;&amp;#x9A71;&amp;#x52A8">
+<meta property="og:updated_time" content="2017-08-22T15:53:26.104Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodeJS">
+<meta name="twitter:description" content="NodeJS node&amp;#x662F;js&amp;#x5199;&amp;#x7684;&amp;#x540E;&amp;#x53F0;&amp;#x8BED;&amp;#x8A00;&amp;#x4E4B;&amp;#x4E00; &amp;#x57FA;&amp;#x4E8E;chrome v8&amp;#x5F15;&amp;#x64CE; &amp;#x4F7F;&amp;#x7528;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E8B;&amp;#x4EF6;&amp;#x9A71;&amp;#x52A8">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-nodeJS" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    nodeJS
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h2><ol class="ui list">
+<li>node&#x662F;js&#x5199;&#x7684;&#x540E;&#x53F0;&#x8BED;&#x8A00;&#x4E4B;&#x4E00;</li>
+<li>&#x57FA;&#x4E8E;chrome v8&#x5F15;&#x64CE;</li>
+<li>&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x9A71;&#x52A8;,&#x975E;&#x963B;&#x585E;I/O</li>
+</ol>
+<h2 id="Node&#x670D;&#x52A1;&#x5668;"><a href="#Node&#x670D;&#x52A1;&#x5668;" class="headerlink" title="Node&#x670D;&#x52A1;&#x5668;"></a>Node&#x670D;&#x52A1;&#x5668;</h2><h3 id="&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;"><a href="#&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;" class="headerlink" title="&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;"></a>&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</h3><ol class="ui list">
+<li>&#x7C7B;&#x4F3C;&#x4E8E;&#x684C;&#x9762;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;</li>
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x65B9;&#x4FBF;&#x4ECE;&#x7EC8;&#x7AEF;&#x5FEB;&#x901F;&#x542F;&#x52A8;&#x67D0;&#x4E2A;&#x8F6F;&#x4EF6;</li>
+</ol>
+<h3 id="&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x52A0;&#x8F7D;&#x89C4;&#x5219;"><a href="#&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x52A0;&#x8F7D;&#x89C4;&#x5219;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x52A0;&#x8F7D;&#x89C4;&#x5219;"></a>&#x7CFB;&#x7EDF;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x52A0;&#x8F7D;&#x89C4;&#x5219;</h3><h2 id="REPL&#x73AF;&#x5883;"><a href="#REPL&#x73AF;&#x5883;" class="headerlink" title="REPL&#x73AF;&#x5883;"></a>REPL&#x73AF;&#x5883;</h2><ol class="ui list">
+<li>&#x4F1A;&#x4E8B;&#x5148;&#x52A0;&#x8F7D;nodejs&#x4E2D;&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;</li>
+</ol>
+<h2 id="&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x601D;&#x60F3;"><a href="#&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x601D;&#x60F3;" class="headerlink" title="&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x601D;&#x60F3;"></a>&#x6A21;&#x5757;&#x5316;&#x5F00;&#x53D1;&#x601D;&#x60F3;</h2><h3 id="1-&#x6A21;&#x5757;&#x7684;&#x4F53;&#x73B0;"><a href="#1-&#x6A21;&#x5757;&#x7684;&#x4F53;&#x73B0;" class="headerlink" title="1. &#x6A21;&#x5757;&#x7684;&#x4F53;&#x73B0;"></a>1. &#x6A21;&#x5757;&#x7684;&#x4F53;&#x73B0;</h3><h4 id="1-&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x7684;&#x5B66;&#x4E60;"><a href="#1-&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x7684;&#x5B66;&#x4E60;" class="headerlink" title="1. &#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x7684;&#x5B66;&#x4E60;"></a>1. &#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x7684;&#x5B66;&#x4E60;</h4><h4 id="2-NodeJS&#x6838;&#x5FC3;&#x6A21;&#x5757;-NodeJS&#x672C;&#x8EAB;&#x63D0;&#x4F9B;"><a href="#2-NodeJS&#x6838;&#x5FC3;&#x6A21;&#x5757;-NodeJS&#x672C;&#x8EAB;&#x63D0;&#x4F9B;" class="headerlink" title="2. NodeJS&#x6838;&#x5FC3;&#x6A21;&#x5757;: NodeJS&#x672C;&#x8EAB;&#x63D0;&#x4F9B;"></a>2. NodeJS&#x6838;&#x5FC3;&#x6A21;&#x5757;: NodeJS&#x672C;&#x8EAB;&#x63D0;&#x4F9B;</h4><h4 id="3-&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;-&#x81EA;&#x5DF1;&#x5199;"><a href="#3-&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;-&#x81EA;&#x5DF1;&#x5199;" class="headerlink" title="3. &#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;: &#x81EA;&#x5DF1;&#x5199;"></a>3. &#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;: &#x81EA;&#x5DF1;&#x5199;</h4><ol class="ui list">
+<li>&#x6A21;&#x5757;&#x5316;: &#x628A;&#x529F;&#x80FD;&#x76F8;&#x4F3C;&#x7684;&#x4EE3;&#x7801;&#x5199;&#x5728;&#x4E00;&#x8D77;(&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;js&#x6587;&#x4EF6;&#x4E2D;,&#x6216;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x4E0B;)</li>
+</ol>
+<h2 id="1-NodeJS&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;"><a href="#1-NodeJS&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;" class="headerlink" title="1. NodeJS&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;"></a>1. NodeJS&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;</h2><h3 id="http&#x2014;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;"><a href="#http&#x2014;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;" class="headerlink" title="http&#x2014;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;"></a>http&#x2014;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;</h3><ol class="ui list">
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x5F00;&#x542F;web&#x670D;&#x52A1;&#xFF0C;&#x4F9B;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;</li>
+<li>&#x6B65;&#x9AA4;&#xFF1A;<ol>
+<li>&#x5BFC;&#x5165;http&#x6A21;&#x5757;</li>
+<li>&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x5668;</li>
+<li>&#x8BF7;&#x6C42;&#x5904;&#x7406;&#x76F8;&#x5E94;</li>
+<li>&#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;&#x2013;&#x5EFA;&#x8BAE;&#x5199;&#x5728;&#x4EE3;&#x7801;&#x6700;&#x540E;</li>
+</ol>
+</li>
+</ol>
+<h3 id="url&#x2014;url&#x64CD;&#x4F5C;&#x5904;&#x7406;"><a href="#url&#x2014;url&#x64CD;&#x4F5C;&#x5904;&#x7406;" class="headerlink" title="url&#x2014;url&#x64CD;&#x4F5C;&#x5904;&#x7406;"></a>url&#x2014;url&#x64CD;&#x4F5C;&#x5904;&#x7406;</h3><ol class="ui list">
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x7684;&#x8DEF;&#x5F84;&#xFF1B;&#x4E5F;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x53C2;&#x6570;&#xFF0C;&#x4E0D;&#x5F7B;&#x5E95;</li>
+<li>url.parse();&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x2014;&#x91CD;&#x70B9;</li>
+<li>&#x6B65;&#x9AA4;&#xFF1B;</li>
+</ol>
+<h3 id="querystring&#x2014;&#x4E3B;&#x8981;&#x505A;get&#x53C2;&#x6570;&#x5904;&#x7406;"><a href="#querystring&#x2014;&#x4E3B;&#x8981;&#x505A;get&#x53C2;&#x6570;&#x5904;&#x7406;" class="headerlink" title="querystring&#x2014;&#x4E3B;&#x8981;&#x505A;get&#x53C2;&#x6570;&#x5904;&#x7406;"></a>querystring&#x2014;&#x4E3B;&#x8981;&#x505A;get&#x53C2;&#x6570;&#x5904;&#x7406;</h3><ol class="ui list">
+<li>&#x4F5C;&#x7528;:&#x5904;&#x7406;Get/post&#x8BF7;&#x6C42;&#x56DE;&#x6765;&#x7684;&#x5B57;&#x7B26;&#x4E32;,&#x8F6C;&#x4E3A;&#x5BF9;&#x8C61;</li>
+</ol>
+<h4 id="querystring-get"><a href="#querystring-get" class="headerlink" title="querystring-get"></a>querystring-get</h4><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//1.&#x5BFC;&#x5305;</div><div class="line">   const http = require(&quot;http&quot;);</div><div class="line">   const url = require(&quot;url&quot;);</div><div class="line">   const queryString = require(&quot;queryString&quot;);</div><div class="line">//2. &#x4F7F;&#x7528;http&#x521B;&#x5EFA;server</div><div class="line">   const server = http.createServer();</div><div class="line">//3. &#x5904;&#x7406;&#x8BF7;&#x6C42;,&#x8FD4;&#x56DE;&#x6570;&#x636E;</div><div class="line">   server.on(&quot;request&quot;,(req,res)=&gt;{</div><div class="line">     const urlString = req.url;</div><div class="line">     //console.log(urlString);</div><div class="line">     //&#x5982;&#x679C;&#x9700;&#x8981;&#x5904;&#x7406;&#x6389;/favicon.ico</div><div class="line">     if(urlString!=/favicon.ico){</div><div class="line">       console.log(urlString);</div><div class="line">       //&#x5C06;urlString&#x8F6C;&#x6210;url&#x5BF9;&#x8C61;</div><div class="line">       const urlObj = url.parse(urlString);</div><div class="line">       console.log(urlObj);</div><div class="line">       //&#x53D6;&#x51FA;urlObj&#x4E2D;&#x7684;query&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x7B26;&#x4E32;</div><div class="line">       const paramsString = urlObj.query;</div><div class="line">       //&#x5229;&#x7528;queryString,&#x5C06;urlObj&#x4E2D;query,&#x8F6C;&#x4E3A;js&#x5BF9;&#x8C61;</div><div class="line">       const params = queryString.parse(paramsString);</div><div class="line">       console.log(params);</div><div class="line">       console.log(typeof params);</div><div class="line">     }</div><div class="line">     res.end(&quot;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&quot;);</div><div class="line">   })</div><div class="line">//4. &#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;</div><div class="line">   server.listen(&#x7AEF;&#x53E3;&#x53F7;,&quot;&#x516C;&#x7F51;IP&quot;,callback);</div></pre></td></tr></table></figure>
+<h3 id="file-system&#xFF08;fs&#xFF09;&#x2014;&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;"><a href="#file-system&#xFF08;fs&#xFF09;&#x2014;&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;" class="headerlink" title="file system&#xFF08;fs&#xFF09;&#x2014;&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;"></a>file system&#xFF08;fs&#xFF09;&#x2014;&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;</h3><h4 id="1-&#x8BFB;&#x53D6;&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;"><a href="#1-&#x8BFB;&#x53D6;&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;" class="headerlink" title="1.&#x8BFB;&#x53D6;&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;"></a>1.&#x8BFB;&#x53D6;&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;</h4><h5 id="1-fs-readFile-file-options-cakkback-&#x2013;-gt-&#x5F02;&#x6B65;&#x8BFB;&#x53D6;"><a href="#1-fs-readFile-file-options-cakkback-&#x2013;-gt-&#x5F02;&#x6B65;&#x8BFB;&#x53D6;" class="headerlink" title="1.fs.readFile(file[,options],cakkback)&#x2013;&gt;&#x5F02;&#x6B65;&#x8BFB;&#x53D6;"></a>1.fs.readFile(file[,options],cakkback)&#x2013;&gt;&#x5F02;&#x6B65;&#x8BFB;&#x53D6;</h5><p>   &#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x5C31;&#x7528;&#x5F02;&#x6B65;&#x8BFB;&#x53D6;,&#x5F02;&#x6B65;&#x65B9;&#x6CD5;100%&#x6709;&#x56DE;&#x8C03;&#x51FD;&#x6570;;<br>   &#x53C2;&#x6570;1: &#x6587;&#x4EF6;&#x8DEF;&#x5F84;<br>   &#x53C2;&#x6570;2: &#x53EF;&#x9009;<br>   &#x53C2;&#x6570;3: &#x56DE;&#x8C03;&#x51FD;&#x6570;<br>   &#x901A;&#x8FC7;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x83B7;&#x53D6;&#x6570;&#x636E;</p>
+<h5 id="2-fs-readFileSync-options-&#x2013;-gt-&#x540C;&#x6B65;&#x8BFB;&#x53D6;"><a href="#2-fs-readFileSync-options-&#x2013;-gt-&#x540C;&#x6B65;&#x8BFB;&#x53D6;" class="headerlink" title="2.fs.readFileSync([options])&#x2013;&gt;&#x540C;&#x6B65;&#x8BFB;&#x53D6;"></a>2.fs.readFileSync([options])&#x2013;&gt;&#x540C;&#x6B65;&#x8BFB;&#x53D6;</h5><p>   &#x540C;&#x6B65;&#x7528;&#x7684;&#x6BD4;&#x8F83;&#x5C11;,100%&#x6CA1;&#x6709;&#x56DE;&#x8C03;&#x51FD;&#x6570;<br>   &#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x503C;&#x83B7;&#x53D6;&#x6570;&#x636E;<br>   &#x540C;&#x6B65;&#x7279;&#x6027;:&#x4F1A;&#x4E00;&#x4EF6;&#x4E8B;&#x4E00;&#x4EF6;&#x4E8B;&#x7684;&#x505A;&#x2014;&gt;&#x987A;&#x5E8F;&#x505A;&#x4E8B;</p>
+<ol class="ui list">
+<li>&#x56DE;&#x8C03;&#x51FD;&#x6570;: &#x2460; &#x4E00;&#x822C;&#x662F;&#x5728;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#x91CC;&#x9762;&#x624D;&#x6709;  &#x2461; &#x4F5C;&#x7528;&#x662F;&#x83B7;&#x53D6;&#x503C;</li>
+<li>&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x6700;&#x7EC8;&#x4F1A;&#x6298;&#x5C04;&#x6210;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;:&#x56E0;&#x4E3A;&#x6587;&#x4EF6;&#x662F;&#x901A;&#x8FC7;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x624D;&#x53EF;&#x4EE5;&#x627E;&#x5230;<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//1. &#x5F02;&#x6B65;&#x8BFB;&#x53D6;&#x65B9;&#x5F0F;</div><div class="line"><span class="string">&quot;use strict&quot;</span></div><div class="line">//1. &#x5F15;&#x5305;</div><div class="line">const fs = require(<span class="string">&quot;fs&quot;</span>);</div><div class="line">//2. &#x76F4;&#x63A5;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;---&#x5199;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;</div><div class="line">const filePath = <span class="string">&quot;./abc.txt&quot;</span>;</div><div class="line">fs.readFile(filePath,(err,data)=&gt;{</div><div class="line"><span class="keyword">if</span>(err){</div><div class="line"> console.log(err);</div><div class="line">}</div><div class="line">console.log(data.toString());</div><div class="line">});</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//2. &#x540C;&#x6B65;&#x65B9;&#x5F0F;--&gt;&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x503C;&#x83B7;&#x53D6;&#x6570;&#x636E;</div><div class="line">//&#x4F7F;&#x7528;fs&#x7684;&#x540C;&#x6B65;&#x51FD;&#x6570;&#x6765;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;</div><div class="line">const fs = require(<span class="string">&quot;fs&quot;</span>);</div><div class="line">const filePath = <span class="string">&quot;./abc.txt&quot;</span>;</div><div class="line">const content = fs.readFileSync(filePath);</div><div class="line">console.log(content.toString());</div></pre></td></tr></table></figure>
+<h4 id="2-&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;"><a href="#2-&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;" class="headerlink" title="2.&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;"></a>2.&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x64CD;&#x4F5C;</h4><h5 id="1-&#x521B;&#x5EFA;-&#x5220;&#x9664;"><a href="#1-&#x521B;&#x5EFA;-&#x5220;&#x9664;" class="headerlink" title="1.&#x521B;&#x5EFA;,&#x5220;&#x9664;"></a>1.&#x521B;&#x5EFA;,&#x5220;&#x9664;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</div><div class="line"><span class="comment">//&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;</span></div><div class="line"><span class="comment">//const dirPath = &quot;./abc.txt&quot;;</span></div><div class="line"><span class="comment">//&#x63A8;&#x8350;--&gt;&#x7528;path--&gt;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x540E;&#x9762;&#x62FC;&#x63A5;&#x5B50;&#x6587;&#x4EF6;&#x5939;&#x540D;</span></div><div class="line"><span class="comment">//__dirname&#x524D;&#x9762;&#x662F;&#x4E24;&#x4E2A;&#x4E0B;&#x5212;&#x7EBF;</span></div><div class="line"><span class="keyword">const</span> dirPath = path.join(__dirname,<span class="string">&quot;abc&quot;</span>);</div><div class="line"><span class="built_in">console</span>.log(__dirname);<span class="comment">//&#x6253;&#x5370;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;</span></div><div class="line"><span class="comment">//&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x5939;&#x662F;&#x5426;&#x5B58;&#x5728;,&#x5B58;&#x5728;,&#x5219;&#x4E0D;&#x521B;&#x5EFA;;&#x4E0D;&#x5B58;&#x5728;,&#x5219;&#x521B;&#x5EFA;</span></div><div class="line">fs.exists(dirPath,(exists)=&gt;{</div><div class="line">  <span class="keyword">if</span>(exists){</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;&#x5DF2;&#x5B58;&#x5728;&quot;</span>);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  }</div><div class="line">  <span class="comment">//&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;,&#x5219;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x5939;</span></div><div class="line">  fs.mkdir(dirPath,(err)=&gt;{</div><div class="line">    <span class="comment">//&#x5982;&#x679C;&#x521B;&#x5EFA;&#x6210;&#x529F;,err&#x5C31;&#x6CA1;&#x503C;</span></div><div class="line">    <span class="comment">//&#x5982;&#x679C;&#x521B;&#x5EFA;&#x5931;&#x8D25;,err&#x5C31;&#x6709;&#x503C;</span></div><div class="line">    <span class="keyword">if</span>(err){</div><div class="line">      <span class="built_in">console</span>.log(err);</div><div class="line">    }</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">&quot;&#x6210;&#x529F;&quot;</span>);</div><div class="line">  });</div><div class="line">})</div><div class="line"></div><div class="line"><span class="comment">//&#x5220;&#x9664;&#x6587;&#x4EF6;&#x5939;/&#x6587;&#x4EF6;</span></div><div class="line">fs.exitst(dirPath,(exists)=&gt;{</div><div class="line">  <span class="keyword">if</span>(!=exists){</div><div class="line">    <span class="comment">//&#x5219;&#x8FD4;&#x56DE;</span></div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  }</div><div class="line">  fs.rmdir(dirPath,(err)=&gt;{</div><div class="line">    <span class="keyword">if</span>(err){</div><div class="line">      <span class="built_in">console</span>.log(err);</div><div class="line">    }</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;&#x5220;&#x9664;&#x6210;&#x529F;&quot;</span>);</div><div class="line">  })</div><div class="line">})</div></pre></td></tr></table></figure>
+<h5 id="3-&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x5199;&#x5165;&#x2013;&#x91CD;&#x547D;&#x540D;&#x2013;&#x5220;&#x9664;"><a href="#3-&#x6587;&#x4EF6;-&#x6587;&#x4EF6;&#x5939;&#x5199;&#x5165;&#x2013;&#x91CD;&#x547D;&#x540D;&#x2013;&#x5220;&#x9664;" class="headerlink" title="3.&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x5199;&#x5165;&#x2013;&#x91CD;&#x547D;&#x540D;&#x2013;&#x5220;&#x9664;"></a>3.&#x6587;&#x4EF6;/&#x6587;&#x4EF6;&#x5939;&#x5199;&#x5165;&#x2013;&#x91CD;&#x547D;&#x540D;&#x2013;&#x5220;&#x9664;</h5><ol class="ui list">
+<li>&#x6587;&#x4EF6;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x70B9;:&#x5982;&#x679C;-&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x5219;&#x5E2E;&#x6211;&#x81EA;&#x52A8;&#x521B;&#x5EFA;,&#x4F46;&#x662F;&#x6587;&#x4EF6;&#x5939;&#x4E0D;&#x4F1A;,&#x5982;&#x679C;&#x6CA1;&#x6709;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x521B;&#x5EFA;</li>
+<li>&#x6587;&#x4EF6;&#x5199;&#x5165;&#x6709;2&#x79CD;&#x65B9;&#x5F0F;<br>&#x2460; &#x8986;&#x76D6;&#x5199;&#x5165;&#x2013;&gt;fs.writeFile();<br>&#x2461; &#x8FFD;&#x52A0;&#x5199;&#x5165;&#x2013;&gt;fs.appendFile();<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x6587;&#x4EF6;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x70B9;:&#x5982;&#x679C;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x5219;&#x5E2E;&#x6211;&#x81EA;&#x52A8;&#x521B;&#x5EFA;,&#x4F46;&#x662F;&#x6587;&#x4EF6;&#x5939;&#x4E0D;&#x4F1A;,&#x5982;&#x679C;&#x6CA1;&#x6709;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x521B;&#x5EFA;</span></div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</div><div class="line"><span class="keyword">const</span> filePath = path.join(__dirname,<span class="string">&quot;123.txt&quot;</span>);</div><div class="line"><span class="keyword">const</span> newFilePath = path.join(__dirname,<span class="string">&quot;6666.txt&quot;</span>);</div><div class="line"><span class="comment">//&#x6587;&#x4EF6;&#x5199;&#x5165;&#x6709;2&#x79CD;&#x65B9;&#x5F0F;</span></div><div class="line"><span class="comment">//1.&#x8986;&#x76D6;&#x5199;&#x5165;--&gt;fs.writeFile();</span></div><div class="line"><span class="comment">//2.&#x8FFD;&#x52A0;&#x5199;&#x5165;--&gt;fs.appendFile();</span></div><div class="line">fs.writeFile(filePath,<span class="string">&quot;&#x54C8;&#x54C8;&quot;</span>,(err)=&gt;{</div><div class="line">  <span class="keyword">if</span>(err){</div><div class="line">    <span class="built_in">console</span>.log(err);</div><div class="line">  }</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x6210;&#x529F;&quot;</span>);</div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">//&#x6587;&#x4EF6;&#x91CD;&#x547D;&#x540D;</span></div><div class="line">fs.rename(filePath,newFilePath,(err)=&gt;{</div><div class="line">  <span class="keyword">if</span>(err){</div><div class="line">    <span class="built_in">console</span>.log(err);</div><div class="line">  }</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;&#x91CD;&#x547D;&#x540D;&quot;</span>);</div><div class="line">});</div><div class="line"></div><div class="line"><span class="comment">//&#x6587;&#x4EF6;&#x5220;&#x9664;</span></div><div class="line">fs.exists(newFilePath,(exists)=&gt;{</div><div class="line">  <span class="keyword">if</span>(!=exists){</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;&#x6587;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&quot;</span>);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  }</div><div class="line">  fs.unlink(newFilePath,(err)=&gt;{</div><div class="line">    <span class="keyword">if</span>(err){</div><div class="line">      <span class="built_in">console</span>.log(err);</div><div class="line">    }</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;&#x5DF2;&#x5220;&#x9664;&#x6587;&#x4EF6;&quot;</span>);</div><div class="line">  })</div><div class="line">})</div><div class="line"></div><div class="line"><span class="comment">//&#x76D1;&#x63A7;&#x6587;&#x4EF6;</span></div><div class="line"><span class="comment">//curr--&gt;&#x4EE3;&#x8868;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x72B6;&#x6001;</span></div><div class="line"><span class="comment">//prev--&gt;&#x4EE3;&#x8868;&#x4E4B;&#x524D;&#x6587;&#x4EF6;&#x72B6;&#x6001;</span></div><div class="line"><span class="comment">//&#x5F53;&#x6587;&#x4EF6;&#x53D1;&#x751F;&#x6539;&#x53D8;,&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;</span></div><div class="line">fs.watchFile(path.join(__dirname,<span class="string">&quot;abc.txt&quot;</span>),(curr,prev)=&gt;{</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;the current mtime is: $(curr.mtime)&quot;</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;the previous mtime was: $(prev.mtime)&quot;</span>);</div><div class="line">})</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="path&#x2014;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x64CD;&#x4F5C;"><a href="#path&#x2014;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x64CD;&#x4F5C;" class="headerlink" title="path&#x2014;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x64CD;&#x4F5C;"></a>path&#x2014;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x64CD;&#x4F5C;</h3><ol class="ui list">
+<li>&#x4F5C;&#x7528;:&#x64CD;&#x4F5C;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;,&#x4E3A;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x670D;&#x52A1;</li>
+<li>&#x5E38;&#x7528;&#x7684;&#x51FD;&#x6570;:path.join(&#x7B2C;&#x4E00;&#x4E2A;&#x8DEF;&#x5F84;,&#x7B2C;&#x4E8C;&#x4E2A;&#x8DEF;&#x5F84;)  :   &#x62FC;&#x63A5;&#x8DEF;&#x5F84;</li>
+</ol>
+<h3 id="Global&#x6A21;&#x5757;"><a href="#Global&#x6A21;&#x5757;" class="headerlink" title="Global&#x6A21;&#x5757;"></a>Global&#x6A21;&#x5757;</h3><h4 id="&#x5C5E;&#x6027;1-dirname"><a href="#&#x5C5E;&#x6027;1-dirname" class="headerlink" title="&#x5C5E;&#x6027;1. __dirname"></a>&#x5C5E;&#x6027;1. __dirname</h4><ol class="ui list">
+<li>&#x6587;&#x4EF6;&#x6240;&#x5728;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x8DEF;&#x5F84;</li>
+</ol>
+<h4 id="&#x5C5E;&#x6027;2-filename"><a href="#&#x5C5E;&#x6027;2-filename" class="headerlink" title="&#x5C5E;&#x6027;2. __filename"></a>&#x5C5E;&#x6027;2. __filename</h4><ol class="ui list">
+<li>&#x6587;&#x4EF6;&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F84;</li>
+</ol>
+<h4 id="&#x5C5E;&#x6027;3-require"><a href="#&#x5C5E;&#x6027;3-require" class="headerlink" title="&#x5C5E;&#x6027;3. require()"></a>&#x5C5E;&#x6027;3. require()</h4><ol class="ui list">
+<li>&#x5BFC;&#x5165;&#x9700;&#x8981;&#x7684;&#x6A21;&#x5757;</li>
+</ol>
+<h4 id="&#x5C5E;&#x6027;4-module"><a href="#&#x5C5E;&#x6027;4-module" class="headerlink" title="&#x5C5E;&#x6027;4. module"></a>&#x5C5E;&#x6027;4. module</h4><ol class="ui list">
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x65F6;&#x7528;&#x5230;</li>
+</ol>
+<h4 id="&#x5C5E;&#x6027;5-exports"><a href="#&#x5C5E;&#x6027;5-exports" class="headerlink" title="&#x5C5E;&#x6027;5. exports"></a>&#x5C5E;&#x6027;5. exports</h4><ol class="ui list">
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x65F6;&#x7528;&#x5230;</li>
+</ol>
+<h2 id="2-&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x2014;&#x7528;&#x5230;Global&#x4E2D;&#x7684;&#x5C5E;&#x6027;"><a href="#2-&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x2014;&#x7528;&#x5230;Global&#x4E2D;&#x7684;&#x5C5E;&#x6027;" class="headerlink" title="2. &#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x2014;&#x7528;&#x5230;Global&#x4E2D;&#x7684;&#x5C5E;&#x6027;"></a>2. &#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x2014;&#x7528;&#x5230;Global&#x4E2D;&#x7684;&#x5C5E;&#x6027;</h2><h3 id="1-nodejs&#x9075;&#x5FAA;CommonJS&#x89C4;&#x8303;"><a href="#1-nodejs&#x9075;&#x5FAA;CommonJS&#x89C4;&#x8303;" class="headerlink" title="1. nodejs&#x9075;&#x5FAA;CommonJS&#x89C4;&#x8303;"></a>1. nodejs&#x9075;&#x5FAA;CommonJS&#x89C4;&#x8303;</h3><pre><code>Commonjs&#x7684;&#x4F5C;&#x7528;:&#x89C4;&#x8303;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x5199;js&#x4EE3;&#x7801;
+CommonJS&#x89C4;&#x5B9A;,&#x5982;&#x679C;exports&#x540E;&#x9762;&#x6CA1;&#x6709;&#x5C5E;&#x6027;,&#x524D;&#x9762;&#x7684;module&#x4E0D;&#x80FD;&#x7701;&#x7565;
+</code></pre><h4 id="CommonJS&#x548C;ECMAScript"><a href="#CommonJS&#x548C;ECMAScript" class="headerlink" title="CommonJS&#x548C;ECMAScript"></a>CommonJS&#x548C;ECMAScript</h4><pre><code>CommonJS&#x5728;ECMAScript&#x57FA;&#x7840;&#x4E0A;&#x505A;&#x4E86;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x53D1;&#x5C55;,&#x5176;&#x4E2D;&#x6709;&#x5F88;&#x591A;&#x89C4;&#x8303;&#x662F;&#x4E00;&#x6837;&#x7684;
+</code></pre><h3 id="2-Commonjs&#x89C4;&#x8303;&#x5185;&#x5BB9;"><a href="#2-Commonjs&#x89C4;&#x8303;&#x5185;&#x5BB9;" class="headerlink" title="2.Commonjs&#x89C4;&#x8303;&#x5185;&#x5BB9;:"></a>2.Commonjs&#x89C4;&#x8303;&#x5185;&#x5BB9;:</h3><h4 id="require"><a href="#require" class="headerlink" title="require()"></a>require()</h4><pre><code>require()--&gt;&#x5BFC;&#x5165;fs&#x7684;&#x6838;&#x5FC3;&#x6A21;&#x5757;,&#x7B2C;&#x4E09;&#x65B9;&#x6A21;&#x5757;,&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;,
+&#x5BFC;&#x5165;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x65F6;,&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x6A21;&#x5757;&#x7684;&#x5B8C;&#x6574;&#x7684;&#x8DEF;&#x5F84;&#x53CA;&#x6269;&#x5C55;&#x540D;
+</code></pre><h4 id="module-exports&#x2013;-gt-&#x5BFC;&#x51FA;&#x5355;&#x4E2A;&#x6210;&#x5458;"><a href="#module-exports&#x2013;-gt-&#x5BFC;&#x51FA;&#x5355;&#x4E2A;&#x6210;&#x5458;" class="headerlink" title="module.exports&#x2013;&gt;&#x5BFC;&#x51FA;&#x5355;&#x4E2A;&#x6210;&#x5458;"></a>module.exports&#x2013;&gt;&#x5BFC;&#x51FA;&#x5355;&#x4E2A;&#x6210;&#x5458;</h4><pre><code>module.exports--&gt;&#x5BFC;&#x51FA;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;/&#x5C5E;&#x6027;/&#x51FD;&#x6570;
+&#x5982;&#x679C;&#x5BFC;&#x51FA;&#x5F53;&#x524D;&#x6A21;&#x5757;&#x7684;&#x6210;&#x5458;:
+&#x5199;&#x6CD5;&#x2460;: module.exports.&#x5C5E;&#x6027;&#x540D;1 = &#x5C5E;&#x6027;&#x503C;1
+&#x5199;&#x6CD5;&#x2461;: module.exports = &#x51FD;&#x6570;
+&#x5199;&#x6CD5;&#x2462;: exports.&#x5C5E;&#x6027;&#x540D;2 = &#x5C5E;&#x6027;&#x503C;2 
+</code></pre><h4 id="exports-xxx&#x2014;&#x5BFC;&#x51FA;&#x591A;&#x4E2A;"><a href="#exports-xxx&#x2014;&#x5BFC;&#x51FA;&#x591A;&#x4E2A;" class="headerlink" title="exports.xxx&#x2014;&#x5BFC;&#x51FA;&#x591A;&#x4E2A;"></a>exports.xxx&#x2014;&#x5BFC;&#x51FA;&#x591A;&#x4E2A;</h4><pre><code>exports.xxx = xxx--&gt;&#x53EF;&#x4EE5;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;/&#x5C5E;&#x6027;/&#x51FD;&#x6570;
+exports
+</code></pre><h3 id="&#x6CE8;&#x610F;"><a href="#&#x6CE8;&#x610F;" class="headerlink" title="&#x6CE8;&#x610F;:"></a>&#x6CE8;&#x610F;:</h3><p>   &#x2460; module.exports &#x4E0E; exports&#x90FD;&#x53EF;&#x4EE5;&#x5BFC;&#x51FA;&#x5BF9;&#x8C61;/&#x5C5E;&#x6027;/&#x51FD;&#x6570;,&#x4F46;&#x662F;&#x4E00;&#x4E2A;&#x9002;&#x5408;&#x5BFC;&#x51FA;&#x5355;&#x4E2A;,&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x9002;&#x5408;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x6216;&#x662F;&#x591A;&#x4E2A;<br>   &#x2461; &#x203B;&#x203B;&#x901A;&#x8FC7;require()&#x5BFC;&#x5165;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;,&#x5176;&#x5B9E;&#x662F;&#x5BFC;&#x5165;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x5757;&#x4E2D;exports&#x6240;&#x6307;&#x5411;&#x7684;&#x4E1C;&#x897F;</p>
+<h2 id="3-&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x6A21;&#x5757;"><a href="#3-&#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x6A21;&#x5757;" class="headerlink" title="3. &#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x6A21;&#x5757;"></a>3. &#x7B2C;&#x4E09;&#x65B9;&#x5305;&#x6A21;&#x5757;</h2><ol class="ui list">
+<li>&#x56E0;&#x4E3A;nodeJS&#x672C;&#x8EAB;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x8BE5;&#x529F;&#x80FD;</li>
+<li>&#x5206;&#x7C7B;:&#x672C;&#x5730;&#x5305;&#x2014;&#x5168;&#x5C40;&#x5305;</li>
+<li>&#x5982;&#x4F55;&#x4E0A;&#x4F20;&#x5230;npm<h4 id="npmjs-com&#x4E0A;&#x2013;&#x672C;&#x5730;&#x5305;"><a href="#npmjs-com&#x4E0A;&#x2013;&#x672C;&#x5730;&#x5305;" class="headerlink" title="npmjs.com&#x4E0A;&#x2013;&#x672C;&#x5730;&#x5305;"></a>npmjs.com&#x4E0A;&#x2013;&#x672C;&#x5730;&#x5305;</h4> &#x6B65;&#x9AA4;:<br> 1.&#x5148;&#x5B89;&#x88C5;npmjs&#x5305;&#x2014;&gt;npm install iconv-lite<br> 2.&#x5BFC;&#x5165;&#x2013;&gt;const iconv = require(&#x201C;iconv-lite&#x201D;);<br> 3.str = iconv.decode(data,&#x201D;GBK&#x201D;);&#x4F7F;&#x7528;GBK&#x6765;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;data&#x4E2D;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5185;&#x5BB9;<br> 4.&#x4F5C;&#x7528;:&#x5F53;&#x524D;&#x9879;&#x76EE;&#x4E2D;&#x4F7F;&#x7528;<h4 id="&#x5B89;&#x88C5;nodemon-&#x5168;&#x5C40;&#x5305;"><a href="#&#x5B89;&#x88C5;nodemon-&#x5168;&#x5C40;&#x5305;" class="headerlink" title="&#x5B89;&#x88C5;nodemon-&#x5168;&#x5C40;&#x5305;"></a>&#x5B89;&#x88C5;nodemon-&#x5168;&#x5C40;&#x5305;</h4> npm install &#x5305;&#x540D; -g<br> &#x4F5C;&#x7528;:&#x5728;&#x7EC8;&#x7AEF;&#x91CC;&#x9762;&#x4F7F;&#x7528;<br> npm i nodemon<br> &#x4EE5;&#x540E;&#x7528;&#x7684;&#x65F6;&#x5019;,&#x952E;&#x5165;nodemon<br> &#x53EF;&#x4EE5;&#x76D1;&#x63A7;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x7684;&#x6539;&#x53D8;<br> &#x5C31;&#x4E0D;&#x7528;&#x6BCF;&#x6B21;&#x6539;&#x53D8;&#x6587;&#x4EF6;&#x4E4B;&#x540E;,&#x518D;&#x91CD;&#x65B0;&#x7684;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#x6765;&#x6267;&#x884C;&#x4E86;,&#x53EF;&#x4EE5;&#x5B9E;&#x65F6;&#x76D1;&#x63A7;</li>
+</ol>
+<h3 id="&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x955C;&#x50CF;&#x4E0A;&#x4E0B;&#x8F7D;&#x7B2C;&#x4E09;&#x65B9;&#x5305;"><a href="#&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x955C;&#x50CF;&#x4E0A;&#x4E0B;&#x8F7D;&#x7B2C;&#x4E09;&#x65B9;&#x5305;" class="headerlink" title="&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x955C;&#x50CF;&#x4E0A;&#x4E0B;&#x8F7D;&#x7B2C;&#x4E09;&#x65B9;&#x5305;"></a>&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x955C;&#x50CF;&#x4E0A;&#x4E0B;&#x8F7D;&#x7B2C;&#x4E09;&#x65B9;&#x5305;</h3><h4 id="&#x6B65;&#x9AA4;"><a href="#&#x6B65;&#x9AA4;" class="headerlink" title="&#x6B65;&#x9AA4;"></a>&#x6B65;&#x9AA4;</h4><pre><code>1. &#x9700;&#x8981;&#x5B89;&#x88C5;&#x4E24;&#x4E2A;&#x5168;&#x5C40;&#x5305;
+&#x2460; npm &#x548C; nrm.cmd &#x4F5C;&#x7528;:&#x5207;&#x6362;&#x955C;&#x50CF;
+&#x6307;&#x4EE4;:nrm ls--&gt;&#x5217;&#x51FA;&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684;&#x955C;&#x50CF;
+&#x6307;&#x4EE4;:nrm use taobao--&gt;&#x5207;&#x6362;&#x5230;&#x6DD8;&#x5B9D;&#x955C;&#x50CF;
+&#x2461; cnpm &#x548C; cnpm.cmd &#x4F5C;&#x7528;:&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x4E0B;&#x8F7D;&#x7B2C;&#x4E09;&#x65B9;&#x5305;
+2. &#x5C06;&#x955C;&#x50CF;&#x4ECE;npmjs.com&#x5207;&#x6362;&#x5230;&#x6DD8;&#x5B9D;,
+&#x8981;&#x60F3;&#x4F7F;&#x7528;cnpm i &#x5305;&#x540D; --save,&#x5FC5;&#x987B;&#x5C06;&#x955C;&#x50CF;&#x5207;&#x6362;&#x5230;&#x6DD8;&#x5B9D;
+3. &#x4F7F;&#x7528;cnpm i &#x5305;&#x540D; --save,&#x4ECE;&#x6DD8;&#x5B9D;&#x7684;&#x955C;&#x50CF;&#x4E0A;&#x9762;&#x4E0B;&#x8F7D;&#x5E76;&#x4E14;&#x5B89;&#x88C5;
+</code></pre><h2 id="require-&#x52A0;&#x8F7D;&#x89C4;&#x5219;"><a href="#require-&#x52A0;&#x8F7D;&#x89C4;&#x5219;" class="headerlink" title="require()&#x52A0;&#x8F7D;&#x89C4;&#x5219;"></a>require()&#x52A0;&#x8F7D;&#x89C4;&#x5219;</h2><h2 id="&#x5F00;&#x542F;&#x670D;&#x52A1;&#x5668;"><a href="#&#x5F00;&#x542F;&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x5F00;&#x542F;&#x670D;&#x52A1;&#x5668;"></a>&#x5F00;&#x542F;&#x670D;&#x52A1;&#x5668;</h2><ol class="ui list">
+<li><p>&#x5BFC;&#x5305;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const http = require(<span class="string">&quot;http&quot;</span>);</div><div class="line">const url = require(<span class="string">&quot;url&quot;</span>);</div><div class="line">const queryString = require(<span class="string">&quot;queryString&quot;</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x4F7F;&#x7528;http&#x521B;&#x5EFA;server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const server = http.createServer();</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5904;&#x7406;&#x8BF7;&#x6C42;,&#x8FD4;&#x56DE;&#x6570;&#x636E;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">server.on(<span class="string">&quot;request&quot;</span>,(req,res)=&gt;{</div><div class="line">  const urlString = req.url;</div><div class="line">  //console.log(urlString);</div><div class="line">  //&#x5982;&#x679C;&#x9700;&#x8981;&#x5904;&#x7406;&#x6389;/favicon.ico</div><div class="line">  <span class="keyword">if</span>(urlString!=/favicon.ico){</div><div class="line">    console.log(urlString);</div><div class="line">    //&#x5C06;urlString&#x8F6C;&#x6210;url&#x5BF9;&#x8C61;</div><div class="line">    const urlObj = url.parse(urlString);</div><div class="line">    console.log(urlObj);</div><div class="line">    //&#x53D6;&#x51FA;urlObj&#x4E2D;&#x7684;query&#x6240;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x7B26;&#x4E32;</div><div class="line">    const paramsString = urlObj.query;</div><div class="line">    //&#x5229;&#x7528;queryString,&#x5C06;urlObj&#x4E2D;query,&#x8F6C;&#x4E3A;js&#x5BF9;&#x8C61;</div><div class="line">    const params = queryString.parse(paramsString);</div><div class="line">    console.log(params);</div><div class="line">    console.log(typeof params);</div><div class="line">  }</div><div class="line">  res.end(<span class="string">&quot;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&quot;</span>);</div><div class="line">})</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">server.listen(&#x7AEF;&#x53E3;&#x53F7;,<span class="string">&quot;&#x516C;&#x7F51;IP&quot;</span>,callback);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="ES6&#x8BED;&#x6CD5;"><a href="#ES6&#x8BED;&#x6CD5;" class="headerlink" title="ES6&#x8BED;&#x6CD5;"></a>ES6&#x8BED;&#x6CD5;</h2><h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><ol class="ui list">
+<li>&#x5B9A;&#x4E49;&#x53D8;&#x91CF;&#x2014;&#x76F8;&#x5F53;&#x4E8E; var</li>
+</ol>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><ol class="ui list">
+<li>&#x5B9A;&#x4E49;&#x5E38;&#x91CF;</li>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x5B83;&#x6307;&#x5411;&#x7684;&#x5730;&#x5740;&#x4E0D;&#x80FD;&#x53D8;&#xFF0C;&#x4F46;&#x662F;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x6362;<br>const obj = { name:&#x2019;zhangsan&#x2019; , age:20 }</li>
+</ol>
+<h3 id="&#x5B57;&#x7B26;&#x4E32;&#x65B9;&#x6CD5;"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x65B9;&#x6CD5;"></a>&#x5B57;&#x7B26;&#x4E32;&#x65B9;&#x6CD5;</h3><h4 id="includes-gt-indexOf"><a href="#includes-gt-indexOf" class="headerlink" title="includes===&gt;indexOf"></a>includes===&gt;indexOf</h4><h4 id="startsWith-&#x5224;&#x65AD;&#x534F;&#x8BAE;&#x5934;"><a href="#startsWith-&#x5224;&#x65AD;&#x534F;&#x8BAE;&#x5934;" class="headerlink" title="startsWith: &#x5224;&#x65AD;&#x534F;&#x8BAE;&#x5934;"></a>startsWith: &#x5224;&#x65AD;&#x534F;&#x8BAE;&#x5934;</h4><h4 id="endsWith-&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x540E;&#x7F00;"><a href="#endsWith-&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x540E;&#x7F00;" class="headerlink" title="endsWith: &#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x540E;&#x7F00;"></a>endsWith: &#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x540E;&#x7F00;</h4><h4 id="repeat-&#x6570;&#x5B57;"><a href="#repeat-&#x6570;&#x5B57;" class="headerlink" title="repeat(&#x6570;&#x5B57;)"></a>repeat(&#x6570;&#x5B57;)</h4><p>####&#x6A21;&#x677F;&#x5B57;&#x7B26;&#x4E32; &#x2018;${xxx}&#x2019;</p>
+<h3 id="&#x7BAD;&#x5934;&#x51FD;&#x6570;"><a href="#&#x7BAD;&#x5934;&#x51FD;&#x6570;" class="headerlink" title="&#x7BAD;&#x5934;&#x51FD;&#x6570;"></a>&#x7BAD;&#x5934;&#x51FD;&#x6570;</h3><ol class="ui list">
+<li><p>&#x683C;&#x5F0F;: const &#x51FD;&#x6570;&#x540D; = (&#x5F62;&#x53C2;1&#x2026;&#x2026;) =&gt; {</p>
+<pre><code>&#x65B9;&#x6CD5;&#x4F53;;
+</code></pre><p>}</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const addFunc = (x,y) =&gt; {</div><div class="line">   <span class="built_in">return</span> x+y;</div><div class="line">}</div><div class="line">console.log(addFunc(1,2));</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6CE8;&#x610F;: </p>
+<ol>
+<li>&#x5982;&#x679C;&#x53C2;&#x6570;&#x53EA;&#x6709;&#x4E00;&#x4E2A;,&#x53EF;&#x4EE5;&#x5C06;()&#x7701;&#x7565;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x53C2;&#x6570;,&#x5219;&#x4E00;&#x5B9A;&#x8981;&#x5199;&#x4E0A;()&#x2014;&#x5426;&#x5219;&#x4F1A;&#x62A5;&#x9519;</li>
+<li>&#x5982;&#x679C;&#x591A;&#x4E8E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;,&#x6BCF;&#x4E2A;&#x53C2;&#x6570;&#x4E4B;&#x95F4;&#x7528;&#x9017;&#x53F7;&#x5206;&#x9694;</li>
+<li>&#x5982;&#x679C;&#x65B9;&#x6CD5;&#x4F53;&#x53EA;&#x6709;&#x4E00;&#x53E5;&#x4EE3;&#x7801;,&#x53EF;&#x4EE5;&#x7701;&#x7565;{}&#x548C;&#x5206;&#x53F7;</li>
+<li>&#x5982;&#x679C;&#x65B9;&#x6CD5;&#x4F53;&#x591A;&#x4E8E;&#x4E00;&#x53E5;&#x4EE3;&#x7801;,&#x5219;&#x4E0D;&#x80FD;&#x7701;&#x7565;{}</li>
+</ol>
+</li>
+</ol>
+<h2 id="&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6E32;&#x67D3;"><a href="#&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6E32;&#x67D3;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6E32;&#x67D3;"></a>&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6E32;&#x67D3;</h2><ol class="ui list">
+<li>index.html+&#x5360;&#x4F4D;&#x7B26;</li>
+<li>data.json</li>
+<li>node.exe&#x2014;REPL&#x73AF;&#x5883;&#x2014;&#x5185;&#x5B58;<ol>
+<li>&#x8BFB;&#x53D6;index.html</li>
+<li>&#x8BFB;&#x53D6;data.json&#x2013;const dataObj=require(path.join(__dirname,&#x5B8C;&#x6574;&#x7684;&#x8DEF;&#x5F84;));</li>
+<li>&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x5B8C;&#x6574;&#x7684;HTML</li>
+<li>&#x5C06;&#x4E0A;&#x4E00;&#x6B65;&#x751F;&#x6210;&#x597D;&#x7684;&#x5B8C;&#x6574;&#x7684;html&#x8FD4;&#x56DE;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;,&#x6D4F;&#x89C8;&#x5668;&#x5C55;&#x793A;&#x5373;&#x53EF;</li>
+<li>&#x8BFB;&#x53D6;css&#x6587;&#x4EF6;&#x5230;REPL&#x73AF;&#x5883;&#x4E2D;</li>
+</ol>
+</li>
+</ol>
+<h2 id="get&#x548C;post&#x7684;&#x590D;&#x4E60;"><a href="#get&#x548C;post&#x7684;&#x590D;&#x4E60;" class="headerlink" title="get&#x548C;post&#x7684;&#x590D;&#x4E60;"></a>get&#x548C;post&#x7684;&#x590D;&#x4E60;</h2><h3 id="&#x76F8;&#x540C;&#x70B9;&#xFF1A;"><a href="#&#x76F8;&#x540C;&#x70B9;&#xFF1A;" class="headerlink" title="&#x76F8;&#x540C;&#x70B9;&#xFF1A;"></a>&#x76F8;&#x540C;&#x70B9;&#xFF1A;</h3><ol class="ui list">
+<li>&#x53D1;&#x9001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</li>
+<li>&#x53EF;&#x4EE5;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x4F20;&#x9012;&#x53C2;&#x6570;</li>
+</ol>
+<h3 id="&#x4E0D;&#x540C;&#x70B9;&#xFF1A;"><a href="#&#x4E0D;&#x540C;&#x70B9;&#xFF1A;" class="headerlink" title="&#x4E0D;&#x540C;&#x70B9;&#xFF1A;"></a>&#x4E0D;&#x540C;&#x70B9;&#xFF1A;</h3><ol class="ui list">
+<li><p>&#x4F20;&#x9012;&#x53C2;&#x6570;&#x7684;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;<br>get&#x2013;&gt;http: //127.0.0.1/login?username=zhangsan&amp;password=123<br>   &#x2013;&gt;&#x8BF7;&#x6C42;&#x4F53;&#x4E2D;&#x6CA1;&#x6709;&#x5185;&#x5BB9;<br>post&#x2013;&gt;http: //127.0.0.1/login<br>   &#x2013;&gt;&#x53C2;&#x6570;&#x653E;&#x5728;&#x8BF7;&#x6C42;&#x4F53;&#x4E2D;&#xFF0C;&#x8BF7;&#x6C42;&#x4F53;&#x4E2D;&#x4E5F;&#x662F;&#x952E;&#x503C;&#x5BF9;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6CA1;&#x6709;&#x95EE;&#x53F7;username=zhangsan&amp;password=123</p>
+</li>
+<li><p>&#x4F20;&#x53C2;&#x7684;&#x957F;&#x5EA6;&#x4E0D;&#x540C;<br>get&#x2013;&gt;256kb<br>post&#x2013;&gt;&#x7406;&#x8BBA;&#x4E0A;&#x6CA1;&#x6709;&#x9650;&#x5236;,&#x4F46;&#x662F;&#x6BCF;&#x4E2A;&#x670D;&#x52A1;&#x5668;&#x89C4;&#x5B9A;&#x4E0D;&#x540C; </p>
+</li>
+<li><p>&#x7F13;&#x5B58;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;<br>get&#x2013;&gt;&#x6709;&#x7F13;&#x5B58;<br>post&#x2013;&gt;&#x6CA1;&#x6709;&#x7F13;&#x5B58;&#xFF0C;&#x56E0;&#x4E3A;+post&#x4E3B;&#x8981;&#x7528;&#x6765;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x662F;&#x52A8;&#x6001;&#x53D8;&#x5316;&#x7684;</p>
+</li>
+<li><p>&#x5B89;&#x5168;&#x6027;<br>get&#x2013;&gt;&#x4E0D;&#x5B89;&#x5168;<br>post&#x2013;&gt;&#x76F8;&#x5BF9;&#x5B89;&#x5168;</p>
+</li>
+</ol>
+<h3 id="&#x5E94;&#x7528;&#x573A;&#x666F;"><a href="#&#x5E94;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x5E94;&#x7528;&#x573A;&#x666F;"></a>&#x5E94;&#x7528;&#x573A;&#x666F;</h3><ol class="ui list">
+<li>get&#x2013;&gt;&#x5F53;&#x5355;&#x7EAF;&#x5411;&#x670D;&#x52A1;&#x5668;&#x83B7;&#x53D6;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;,&#x4E00;&#x822C;&#x7528;get;&#x56E0;&#x4E3A;get&#x6709;&#x7F13;&#x5B58;,&#x6548;&#x7387;&#x9AD8;</li>
+<li>post&#x2013;&gt;&#x4E00;&#x822C;&#x7528;&#x5728;&#x63D0;&#x4EA4;&#x6570;&#x636E;&#x7ED9;&#x670D;&#x52A1;&#x5668;,&#x4F8B;&#x5982;:&#x767B;&#x5F55;</li>
+<li>&#x6839;&#x636E;&#x516C;&#x53F8;&#x540E;&#x53F0;&#x4EBA;&#x5458;&#x7ED9;&#x7684;API&#x6587;&#x6863;</li>
+</ol>
+<h2 id="http&#x534F;&#x8BAE;"><a href="#http&#x534F;&#x8BAE;" class="headerlink" title="http&#x534F;&#x8BAE;"></a>http&#x534F;&#x8BAE;</h2><h3 id="&#x8BF7;&#x6C42;"><a href="#&#x8BF7;&#x6C42;" class="headerlink" title="&#x8BF7;&#x6C42;"></a>&#x8BF7;&#x6C42;</h3><ol class="ui list">
+<li>&#x8BF7;&#x6C42;&#x884C;:&#x8BF7;&#x6C42;&#x65B9;&#x5F0F; &#x8DEF;&#x5F84;http&#x534F;&#x8BAE;&#x7248;&#x672C;<br>&#x4F5C;&#x7528;:&#x8C03;&#x8BD5;</li>
+<li>&#x8BF7;&#x6C42;&#x5934;:&#x6D4F;&#x89C8;&#x5668;&#x544A;&#x8BC9;&#x670D;&#x52A1;&#x5668;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;<br>User-Agent:&#x544A;&#x8BC9;&#x670D;&#x52A1;&#x5668;&#x73B0;&#x5728;&#x7528;&#x7684;&#x662F;PC&#x7AEF;&#x7684;&#x8FD8;&#x662F;&#x79FB;&#x52A8;&#x7AEF;&#x7684;&#x6D4F;&#x89C8;&#x5668;</li>
+<li>&#x8BF7;&#x6C42;&#x4E3B;&#x4F53;:&#x4F5C;&#x7528;:&#x4F20;&#x503C;&#x3002;&#x5982;&#x679C;&#x662F;GET,&#x8BF7;&#x6C42;&#x4F53;&#x4E2D;&#x6CA1;&#x6709;&#x5185;&#x5BB9;;&#x5982;&#x679C;&#x662F;POST,&#x8BF7;&#x6C42;&#x4F53;&#x4E2D;&#x6709;&#x503C;,&#x503C;&#x5C31;&#x662F;key=value&amp;fkey2=value2</li>
+</ol>
+<h3 id="&#x54CD;&#x5E94;"><a href="#&#x54CD;&#x5E94;" class="headerlink" title="&#x54CD;&#x5E94;"></a>&#x54CD;&#x5E94;</h3><ol class="ui list">
+<li>&#x72B6;&#x6001;&#x884C;:http&#x534F;&#x8BAE;&#x7248;&#x672C; &#x72B6;&#x6001;&#x7801; &#x82F1;&#x6587;&#x63CF;&#x8FF0;</li>
+<li>&#x54CD;&#x5E94;&#x5934;:&#x670D;&#x52A1;&#x5668;&#x544A;&#x8BC9;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x4FE1;&#x606F;,&#x6BD4;&#x5982;:Content-type</li>
+<li>&#x54CD;&#x5E94;&#x4F53;:&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;</li>
+</ol>
+<p>&#x4E0D;&#x7BA1;&#x662F;&#x8BF7;&#x6C42;&#x8FD8;&#x662F;&#x54CD;&#x5E94;,&#x5E95;&#x5C42;&#x4F20;&#x8F93;&#x7684;&#x662F;&#x4E8C;&#x8FDB;&#x5236;</p>
+<h2 id="&#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;"><a href="#&#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;" class="headerlink" title="&#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;"></a>&#x540C;&#x6B65;&#x548C;&#x5F02;&#x6B65;</h2><h3 id="&#x76F8;&#x540C;"><a href="#&#x76F8;&#x540C;" class="headerlink" title="&#x76F8;&#x540C;"></a>&#x76F8;&#x540C;</h3><ol class="ui list">
+<li>&#x76EE;&#x7684;:&#x83B7;&#x53D6;&#x6570;&#x636E;</li>
+</ol>
+<h3 id="&#x4E0D;&#x540C;"><a href="#&#x4E0D;&#x540C;" class="headerlink" title="&#x4E0D;&#x540C;"></a>&#x4E0D;&#x540C;</h3><h4 id="&#x540C;&#x6B65;"><a href="#&#x540C;&#x6B65;" class="headerlink" title="&#x540C;&#x6B65;"></a>&#x540C;&#x6B65;</h4><ol class="ui list">
+<li>&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x503C;&#x83B7;&#x53D6;&#x6570;&#x636E;</li>
+</ol>
+<h4 id="&#x5F02;&#x6B65;"><a href="#&#x5F02;&#x6B65;" class="headerlink" title="&#x5F02;&#x6B65;"></a>&#x5F02;&#x6B65;</h4><ol class="ui list">
+<li>&#x901A;&#x8FC7;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x83B7;&#x53D6;&#x503C;</li>
+</ol>
+<h5 id="&#x5E94;&#x7528;&#x573A;&#x666F;-1"><a href="#&#x5E94;&#x7528;&#x573A;&#x666F;-1" class="headerlink" title="&#x5E94;&#x7528;&#x573A;&#x666F;"></a>&#x5E94;&#x7528;&#x573A;&#x666F;</h5><ol class="ui list">
+<li>&#x8017;&#x65F6;&#x95F4;&#x64CD;&#x4F5C;&#x7684;&#x7528;&#x5F02;&#x6B65;&#x6BD4;&#x8F83;&#x5408;&#x9002;,&#x6BD4;&#x5982;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;,&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</li>
+</ol>
+<h5 id="&#x7279;&#x70B9;"><a href="#&#x7279;&#x70B9;" class="headerlink" title="&#x7279;&#x70B9;:"></a>&#x7279;&#x70B9;:</h5><ol class="ui list">
+<li>&#x80FD;&#x540C;&#x65F6;&#x505A;&#x51E0;&#x4EF6;&#x4E8B;</li>
+<li>&#x90FD;&#x8981;&#x6709;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x624D;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x503C;</li>
+</ol>
+<h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><ol class="ui list">
+<li>&#x4F7F;&#x7528;use,&#x9996;&#x5148;&#x5F15;&#x5165;bodyParser&#x5305;</li>
+</ol>
+<h3 id="&#x597D;&#x5904;"><a href="#&#x597D;&#x5904;" class="headerlink" title="&#x597D;&#x5904;"></a>&#x597D;&#x5904;</h3><ol class="ui list">
+<li>&#x83B7;&#x53D6;get/post&#x66F4;&#x65B9;&#x4FBF;:get&#x2013;&gt;&#x76F4;&#x63A5;&#x70B9;get(req.query);post&#x2013;&gt;&#x5F15;&#x5165;&#x7B2C;&#x4E09;&#x65B9;&#x5305;body-parser&#x540E;,&#x76F4;&#x63A5;&#x70B9;post()&#x2013;&gt;body-parser&#x79F0;&#x4F5C;express&#x7684;&#x4E2D;&#x95F4;&#x4EF6;</li>
+<li>&#x8DEF;&#x7531;:&#x53EF;&#x4EE5;&#x5206;&#x95E8;&#x522B;&#x7C7B;&#x7684;&#x5904;&#x7406;&#x6570;&#x636E;;<br>&#x6B65;&#x9AA4;:&#x521B;&#x5EFA;router&#x6587;&#x4EF6;&#x2013;&gt;&#x5904;&#x7406;&#x903B;&#x8F91;&#x2013;&gt;&#x5728;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;&#x8DEF;&#x7531;</li>
+<li>all&#x65B9;&#x6CD5;&#x548C;next&#x65B9;&#x6CD5;&#x7ED3;&#x5408;&#x5B9E;&#x73B0;&#x6743;&#x9650;&#x9A8C;&#x8BC1;<br>&#x62E6;&#x622A;&#x5230;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;,&#x7136;&#x540E;&#x5728;&#x8FD9;&#x91CC;&#x505A;&#x6743;&#x9650;&#x9A8C;&#x8BC1;,&#x5982;&#x679C;&#x6709;&#x6743;&#x9650;(&#x4EE3;&#x8868;&#x767B;&#x5F55;&#x4E86;)&#x5C31;&#x8BA9;&#x4F60;&#x8BBF;&#x95EE;&#x771F;&#x5B9E;&#x7684;&#x6570;&#x636E;;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5219;&#x8DF3;&#x8F6C;&#x5230;&#x63D0;&#x793A;&#x9875;&#x9762;(&#x767B;&#x5F55;&#x9875;&#x9762;)</li>
+</ol>
+<h3 id="&#x8DEF;&#x7531;"><a href="#&#x8DEF;&#x7531;" class="headerlink" title="&#x8DEF;&#x7531;"></a>&#x8DEF;&#x7531;</h3><ol class="ui list">
+<li>&#x76EE;&#x7684;:&#x4E3A;&#x4E86;&#x5206;&#x95E8;&#x522B;&#x7C7B;&#x7684;&#x5904;&#x7406;</li>
+<li>&#x6B65;&#x9AA4;:<ol>
+<li>&#x5C06;&#x76F8;&#x540C;&#x89C4;&#x5219;&#x5904;&#x7406;&#x7684;&#x8DEF;&#x7531;,&#x5199;&#x5728;&#x4E00;&#x4E2A;js&#x6587;&#x4EF6;&#x4E2D;(manRouter.js)</li>
+<li>&#x7684;</li>
+<li>&#x5728;&#x5165;&#x53E3;&#x8DEF;&#x7531;&#x4E2D;</li>
+</ol>
+</li>
+<li>&#x5199;&#x5728;&#x6240;&#x6709;&#x7684;&#x4E0B;&#x9762;,&#x542F;&#x52A8;&#x670D;&#x52A1;&#x5668;&#x7684;&#x524D;&#x9762;</li>
+</ol>
+<h3 id="all-amp-next"><a href="#all-amp-next" class="headerlink" title="all &amp; next"></a>all &amp; next</h3><ol class="ui list">
+<li>&#x505A;&#x6743;&#x9650;&#x9A8C;&#x8BC1;</li>
+</ol>
+<h3 id="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5904;&#x7406;"><a href="#&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5904;&#x7406;" class="headerlink" title="&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5904;&#x7406;"></a>&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5904;&#x7406;</h3><ol class="ui list">
+<li>&#x5728;&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x4E2D;&#x5199;&#x4E0A;: express.static(root,[options]);</li>
+<li>&#x5728;&#x9700;&#x8981;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x7684;html&#x6587;&#x4EF6;&#x4E2D;,&#x6309;&#x7167;express&#x7684;&#x89C4;&#x5219;&#x8FDB;&#x884C;&#x6539;&#x9020;&#x2013;&gt;&#x5199;&#x4E0A;&#x6587;&#x4EF6;&#x5939;/&#x6587;&#x4EF6;&#x5373;&#x53EF;</li>
+<li>app.use(express.static(&#x9759;&#x6001;&#x8D44;&#x6E90;&#x6839;&#x76EE;&#x5F55;));</li>
+</ol>
+<h2 id="&#x6570;&#x636E;&#x5E93;"><a href="#&#x6570;&#x636E;&#x5E93;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;"></a>&#x6570;&#x636E;&#x5E93;</h2><ol class="ui list">
+<li>&#x4EC0;&#x4E48;&#x53EB;&#x6570;&#x636E;&#x5E93;?<ol>
+<li>&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x4ED3;&#x5E93;</li>
+<li>&#x5C06;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x2014;&gt;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EB;&#x505A;&#x6570;&#x636E;&#x7684;&#x6301;&#x4E45;&#x5316;&#x2013;&gt;&#x53EF;&#x4EE5;&#x6C38;&#x4E45;&#x4FDD;&#x5B58;&#x6570;&#x636E;</li>
+<li>&#x6570;&#x636E;&#x5E93;&#x64CD;&#x4F5C;&#x65B9;&#x4FBF;</li>
+</ol>
+</li>
+<li>&#x5B66;&#x4E60;&#x7684;&#x5FC5;&#x8981;&#x6027;:<ol>
+<li>&#x666E;&#x901A;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x4FDD;&#x5B58;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x4E0D;&#x65B9;&#x4FBF;</li>
+<li>&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x65B9;&#x4FBF;</li>
+</ol>
+</li>
+<li>&#x6570;&#x636E;&#x5E93;&#x600E;&#x4E48;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;?<ol>
+<li>&#x7C7B;&#x4F3C;&#x8868;&#x683C;</li>
+</ol>
+</li>
+<li>&#x542F;&#x52A8;&#x6570;&#x636E;&#x5E93;&#x8F6F;&#x4EF6;&#x2014;-&#x8FD8;&#x9700;&#x8981;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#x2014;&#x624D;&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x6570;&#x636E;</li>
+<li>&#x6570;&#x636E;&#x5E93;&#x5206;&#x7C7B;<ol>
+<li>&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6570;&#x636E;&#x5E93;<ol>
+<li>&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;<ol>
+<li>mysql&#x2013;&gt;&#x4E2D;&#x5C0F;&#x578B;&#x9879;&#x76EE;</li>
+<li>sqlserver&#x2013;&gt;&#x4E2D;&#x578B;&#x9879;&#x76EE;</li>
+<li>oracle,db2(IBM)&#x2013;&gt;</li>
+</ol>
+</li>
+<li>&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</li>
+</ol>
+</li>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x6570;&#x636E;&#x5E93;( android  ios)<ol>
+<li>sqlite:&#x975E;&#x5E38;&#x5C0F;,&#x8F7B;&#x91CF;&#x7EA7;</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="mongoDB"><a href="#mongoDB" class="headerlink" title="mongoDB"></a>mongoDB</h2><p>Bson</p>
+<h2 id="NodeJS&#x4E2D;&#x64CD;&#x4F5C;mongoDB"><a href="#NodeJS&#x4E2D;&#x64CD;&#x4F5C;mongoDB" class="headerlink" title="NodeJS&#x4E2D;&#x64CD;&#x4F5C;mongoDB"></a>NodeJS&#x4E2D;&#x64CD;&#x4F5C;mongoDB</h2><ol class="ui list">
+<li>&#x5728;node&#x4E2D;&#x5B89;&#x88C5;&#x7B2C;&#x4E09;&#x65B9;&#x5305;</li>
+<li>&#x5BFC;&#x5165;,&#x5E76;&#x4E14;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#x7684;MongoClient&#x2013;&gt;var MongoClient = require(&#x201C;mongodb&#x201D;).MongoClient;</li>
+<li>&#x8FDE;&#x63A5;mongodb&#x2013;&gt;&#x201D;mongodn: //&#x6CE8;&#x610F;:IP&#x4E3A;&#x81EA;&#x5DF1;&#x4E3B;&#x673A;&#x7684;&#x2013;&gt;&#x6570;&#x636E;&#x5E93;&#x4E3A;&#x4E8B;&#x5148;&#x5B9A;&#x4E49;&#x597D;&#x7684;</li>
+<li>&#x4F7F;&#x7528;db&#x5BF9;&#x8C61;,&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;</li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-06-10T00:50:38.000Z" itemprop="datePublished">2017-06-10</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/06/23/禁止微信webview调整字体大小/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    禁止微信webview调整字体大小
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/06/05/canvas/" class="ui tiny button">
+                    
+                    canvas
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#NodeJS"><span>NodeJS</span></a></li><li><a href="#Node服务器"><span>Node服务器</span></a><ol><li><a href="#配置环境变量"><span>配置环境变量</span></a></li><li><a href="#系统环境变量加载规则"><span>系统环境变量加载规则</span></a></li></ol></li><li><a href="#REPL环境"><span>REPL环境</span></a></li><li><a href="#模块化开发思想"><span>模块化开发思想</span></a><ol><li><a href="#1-模块的体现"><span>1. 模块的体现</span></a><ol><li><a href="#1-第三方包的学习"><span>1. 第三方包的学习</span></a></li><li><a href="#2-NodeJS核心模块-NodeJS本身提供"><span>2. NodeJS核心模块: NodeJS本身提供</span></a></li><li><a href="#3-自定义模块-自己写"><span>3. 自定义模块: 自己写</span></a></li></ol></li></ol></li><li><a href="#1-NodeJS的核心模块"><span>1. NodeJS的核心模块</span></a><ol><li><a href="#http—网络操作"><span>http—网络操作</span></a></li><li><a href="#url—url操作处理"><span>url—url操作处理</span></a></li><li><a href="#querystring—主要做get参数处理"><span>querystring—主要做get参数处理</span></a><ol><li><a href="#querystring-get"><span>querystring-get</span></a></li></ol></li><li><a href="#file-system（fs）—文件-文件夹操作"><span>file system（fs）—文件/文件夹操作</span></a><ol><li><a href="#1-读取文件-文件夹"><span>1.读取文件/文件夹</span></a><ol><li><a href="#1-fs-readFile-file-options-cakkback-–-gt-异步读取"><span>1.fs.readFile(file[,options],cakkback)–>异步读取</span></a></li><li><a href="#2-fs-readFileSync-options-–-gt-同步读取"><span>2.fs.readFileSync([options])–>同步读取</span></a></li></ol></li><li><a href="#2-文件-文件夹操作"><span>2.文件/文件夹操作</span></a><ol><li><a href="#1-创建-删除"><span>1.创建,删除</span></a></li><li><a href="#3-文件-文件夹写入–重命名–删除"><span>3.文件/文件夹写入–重命名–删除</span></a></li></ol></li></ol></li><li><a href="#path—文件路径操作"><span>path—文件路径操作</span></a></li><li><a href="#Global模块"><span>Global模块</span></a><ol><li><a href="#属性1-dirname"><span>属性1. __dirname</span></a></li><li><a href="#属性2-filename"><span>属性2. __filename</span></a></li><li><a href="#属性3-require"><span>属性3. require()</span></a></li><li><a href="#属性4-module"><span>属性4. module</span></a></li><li><a href="#属性5-exports"><span>属性5. exports</span></a></li></ol></li></ol></li><li><a href="#2-自定义模块—用到Global中的属性"><span>2. 自定义模块—用到Global中的属性</span></a><ol><li><a href="#1-nodejs遵循CommonJS规范"><span>1. nodejs遵循CommonJS规范</span></a><ol><li><a href="#CommonJS和ECMAScript"><span>CommonJS和ECMAScript</span></a></li></ol></li><li><a href="#2-Commonjs规范内容"><span>2.Commonjs规范内容:</span></a><ol><li><a href="#require"><span>require()</span></a></li><li><a href="#module-exports–-gt-导出单个成员"><span>module.exports–>导出单个成员</span></a></li><li><a href="#exports-xxx—导出多个"><span>exports.xxx—导出多个</span></a></li></ol></li><li><a href="#注意"><span>注意:</span></a></li></ol></li><li><a href="#3-第三方包模块"><span>3. 第三方包模块</span></a><ol><li><a href="#npmjs-com上–本地包"><span>npmjs.com上–本地包</span></a></li><li><a href="#安装nodemon-全局包"><span>安装nodemon-全局包</span></a></li></ol></li><li><a href="#从淘宝的镜像上下载第三方包"><span>从淘宝的镜像上下载第三方包</span></a><ol><li><a href="#步骤"><span>步骤</span></a></li></ol></li></ol></li><li><a href="#require-加载规则"><span>require()加载规则</span></a></li><li><a href="#开启服务器"><span>开启服务器</span></a></li><li><a href="#ES6语法"><span>ES6语法</span></a><ol><li><a href="#let"><span>let</span></a></li><li><a href="#const"><span>const</span></a></li><li><a href="#字符串方法"><span>字符串方法</span></a><ol><li><a href="#includes-gt-indexOf"><span>includes===>indexOf</span></a></li><li><a href="#startsWith-判断协议头"><span>startsWith: 判断协议头</span></a></li><li><a href="#endsWith-可以判断文件后缀"><span>endsWith: 可以判断文件后缀</span></a></li><li><a href="#repeat-数字"><span>repeat(数字)</span></a></li></ol></li><li><a href="#箭头函数"><span>箭头函数</span></a></li></ol></li><li><a href="#服务器端渲染"><span>服务器端渲染</span></a></li><li><a href="#get和post的复习"><span>get和post的复习</span></a><ol><li><a href="#相同点："><span>相同点：</span></a></li><li><a href="#不同点："><span>不同点：</span></a></li><li><a href="#应用场景"><span>应用场景</span></a></li></ol></li><li><a href="#http协议"><span>http协议</span></a><ol><li><a href="#请求"><span>请求</span></a></li><li><a href="#响应"><span>响应</span></a></li></ol></li><li><a href="#同步和异步"><span>同步和异步</span></a><ol><li><a href="#相同"><span>相同</span></a></li><li><a href="#不同"><span>不同</span></a><ol><li><a href="#同步"><span>同步</span></a></li><li><a href="#异步"><span>异步</span></a><ol><li><a href="#应用场景-1"><span>应用场景</span></a></li><li><a href="#特点"><span>特点:</span></a></li></ol></li></ol></li></ol></li><li><a href="#express"><span>express</span></a><ol><li><a href="#好处"><span>好处</span></a></li><li><a href="#路由"><span>路由</span></a></li><li><a href="#all-amp-next"><span>all & next</span></a></li><li><a href="#静态资源处理"><span>静态资源处理</span></a></li></ol></li><li><a href="#数据库"><span>数据库</span></a></li><li><a href="#mongoDB"><span>mongoDB</span></a></li><li><a href="#NodeJS中操作mongoDB"><span>NodeJS中操作mongoDB</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

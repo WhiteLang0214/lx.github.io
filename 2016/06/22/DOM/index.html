@@ -1,45 +1,272 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>DOM | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM">
+<meta property="og:url" content="http://yoursite.com/2016/06/22/DOM/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+<meta property="og:updated_time" content="2017-08-22T15:34:27.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM">
+<meta name="twitter:description" content="1. JavaScript&amp;#x5206;&amp;#x4E09;&amp;#x4E2A;&amp;#x90E8;&amp;#x5206;1. ECMAScript&amp;#x6807;&amp;#x51C6;&amp;#x8BED;&amp;#x6CD5; 2. DOM: Document Object Model &amp;#x6587;&amp;#x6863;&amp;#x5BF9;&amp;#x8C61;&amp;#x6A21;&amp;#x578B;     &amp;#x6574;&amp;#x4E2A;&amp;#">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-DOM" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    DOM
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="1-JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;"><a href="#1-JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;" class="headerlink" title="1. JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;"></a>1. JavaScript&#x5206;&#x4E09;&#x4E2A;&#x90E8;&#x5206;</h2><pre><code>1. ECMAScript&#x6807;&#x51C6;&#x8BED;&#x6CD5;
+2. DOM: Document Object Model &#x6587;&#x6863;&#x5BF9;&#x8C61;&#x6A21;&#x578B;
+    &#x6574;&#x4E2A;&#x9875;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x6BCF;&#x4E2A;&#x6807;&#x7B7E;&#x548C;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x5305;&#x62EC;&#x7A7A;&#x767D;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
+3. BOM
+</code></pre><h2 id="2-HTML&#x548C;XML"><a href="#2-HTML&#x548C;XML" class="headerlink" title="2. HTML&#x548C;XML"></a>2. HTML&#x548C;XML</h2><pre><code>HTML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5C55;&#x793A;&#x6570;&#x636E;
+XML&#x6587;&#x4EF6;&#x4FA7;&#x91CD;&#x4E8E;&#x5B58;&#x50A8;&#x6570;&#x636E;
+</code></pre><h2 id="3-&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;"><a href="#3-&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;" class="headerlink" title="3. &#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;"></a>3. &#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;</h2><pre><code>&#x5B66;&#x4E60;DOM&#x7684;&#x76EE;&#x7684;:&#x64CD;&#x4F5C;&#x9875;&#x9762;&#x5143;&#x7D20;
+</code></pre><h2 id="4-document"><a href="#4-document" class="headerlink" title="4. document"></a>4. document</h2><pre><code>&#x9875;&#x9762;&#x4E2D;&#x7684;&#x9876;&#x7EA7;&#x5BF9;&#x8C61;:document
+</code></pre><h2 id="5-DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;"><a href="#5-DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;" class="headerlink" title="5. DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;"></a>5. DOM&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x9875;&#x9762;</h2><pre><code>&#x628A;&#x9875;&#x9762;&#x6A21;&#x62DF;&#x6210;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x6BCF;&#x4E2A;&#x6807;&#x7B7E;&#x770B;&#x6210;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;
+&#x627E;&#x5143;&#x7D20;===&#x4E5F;&#x5C31;&#x662F;&#x627E;&#x6807;&#x7B7E;===&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x8C61;
+&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6807;&#x7B7E;===&#x4E5F;&#x5C31;&#x662F;&#x64CD;&#x4F5C;&#x6807;&#x7B7E;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x6837;&#x5F0F;
+&#x521B;&#x5EFA;&#x6807;&#x7B7E;,&#x5220;&#x9664;&#x6807;&#x7B7E;
+</code></pre><h2 id="6-&#x4E8B;&#x4EF6;"><a href="#6-&#x4E8B;&#x4EF6;" class="headerlink" title="6. &#x4E8B;&#x4EF6;"></a>6. &#x4E8B;&#x4EF6;</h2><h3 id="1-&#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;"><a href="#1-&#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;" class="headerlink" title="1. &#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;"></a>1. &#x89E6;&#x53D1;&#x548C;&#x54CD;&#x5E94;</h3><h3 id="2-&#x4E8B;&#x4EF6;&#x6E90;-&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;"><a href="#2-&#x4E8B;&#x4EF6;&#x6E90;-&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;" class="headerlink" title="2. &#x4E8B;&#x4EF6;&#x6E90;(&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;)"></a>2. &#x4E8B;&#x4EF6;&#x6E90;(&#x4E8B;&#x4EF6;&#x7684;&#x89E6;&#x53D1;&#x8005;)</h3><pre><code>1. &#x7ED9;&#x6309;&#x94AE;&#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;,&#x4E8B;&#x4EF6;&#x662F;&#x6309;&#x94AE;&#x7684;,&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x662F;&#x6309;&#x94AE;&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x4E86;
+</code></pre><h3 id="3-&#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;-&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;"><a href="#3-&#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;-&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;" class="headerlink" title="3. &#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;====&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;"></a>3. &#x54CD;&#x5E94;&#x7684;&#x7A0B;&#x5E8F;====&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x7A0B;&#x5E8F;</h3><h2 id="7-&#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;"><a href="#7-&#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;" class="headerlink" title="7. &#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;"></a>7. &#x539F;&#x751F;JS&#x64CD;&#x4F5C;CSS&#x6837;&#x5F0F;</h2><h3 id="1-&#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;"><a href="#1-&#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;" class="headerlink" title="1. &#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;"></a>1. &#x7ED9;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x6837;&#x5F0F;</h3><pre><code>1. dom.className=&quot;&#x7C7B;&#x540D;&quot;;     dom.className=&quot;cls&quot;;
+2. dom.style.&#x6837;&#x5F0F;&#x540D;=&quot;&#x6837;&#x5F0F;&#x503C;&quot;;  dom.style.backgroundColor=&quot;red&quot;;
+3. &#x901A;&#x8FC7;dom.sytle&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;&#x7684;&#x6837;&#x5F0F;,&#x4E0D;&#x80FD;&#x901A;&#x8FC7;dom[style]&#x83B7;&#x53D6;&#x5230;&#x6837;&#x5F0F;&#x503C;
+</code></pre><h3 id="2-checked-disabled-selected&#x2026;"><a href="#2-checked-disabled-selected&#x2026;" class="headerlink" title="2. checked,disabled,selected&#x2026;"></a>2. checked,disabled,selected&#x2026;</h3><pre><code>&#x5728;HTML&#x6807;&#x7B7E;&#x4E2D;,&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#x548C;&#x5C5E;&#x6027;&#x503C;&#x662F;&#x76F8;&#x540C;&#x7684;,&#x90A3;&#x4E48;&#x5728;DOM&#x64CD;&#x4F5C;&#x4E2D;,&#x8BE5;&#x5C5E;&#x6027;&#x503C;&#x4E3A;&#x5E03;&#x5C14;&#x7C7B;&#x578B;,&#x5982;&#x679C;&#x60F3;&#x9009;&#x4E2D;,&#x5219;&#x8BBE;&#x7F6E;&#x4E3A;true,&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x9009;&#x4E2D;,&#x5219;&#x8BBE;&#x7F6E;&#x4E3A;false
+</code></pre><h2 id="getElementById"><a href="#getElementById" class="headerlink" title="getElementById()"></a>getElementById()</h2><pre><code>&#x8FD4;&#x56DE;id&#x540D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;
+</code></pre><h2 id="getElementByName"><a href="#getElementByName" class="headerlink" title="getElementByName()"></a>getElementByName()</h2><pre><code>&#x8FD4;&#x56DE;name&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x96C6;&#x5408;
+&#x8FD4;&#x56DE;&#x7684;&#x662F;: &#x4F2A;&#x6570;&#x7EC4;
+</code></pre><h2 id="getElementByTagName"><a href="#getElementByTagName" class="headerlink" title="getElementByTagName()"></a>getElementByTagName()</h2><pre><code>&#x8FD4;&#x56DE;&#x591A;&#x4E2A;&#x6807;&#x7B7E;&#x540D;&#x7684;&#x5BF9;&#x8C61;&#x96C6;&#x5408;
+&#x8FD4;&#x56DE;&#x7684;&#x662F;: &#x4F2A;&#x6570;&#x7EC4;
+</code></pre><h2 id="innerText"><a href="#innerText" class="headerlink" title="innerText"></a>innerText</h2><pre><code>innerText=&quot;&#x503C;&quot;
+</code></pre>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-06-22T08:33:08.000Z" itemprop="datePublished">2016-06-22</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/06/22/git的那些事儿/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    git的那些事儿
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/06/22/使用hexo搭建静态博客/" class="ui tiny button">
+                    
+                    使用hexo搭建静态博客
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#1-JavaScript分三个部分"><span>1. JavaScript分三个部分</span></a></li><li><a href="#2-HTML和XML"><span>2. HTML和XML</span></a></li><li><a href="#3-学习DOM的目的"><span>3. 学习DOM的目的</span></a></li><li><a href="#4-document"><span>4. document</span></a></li><li><a href="#5-DOM可以操作页面"><span>5. DOM可以操作页面</span></a></li><li><a href="#6-事件"><span>6. 事件</span></a><ol><li><a href="#1-触发和响应"><span>1. 触发和响应</span></a></li><li><a href="#2-事件源-事件的触发者"><span>2. 事件源(事件的触发者)</span></a></li><li><a href="#3-响应的程序-事件处理程序"><span>3. 响应的程序====事件处理程序</span></a></li></ol></li><li><a href="#7-原生JS操作CSS样式"><span>7. 原生JS操作CSS样式</span></a><ol><li><a href="#1-给元素设置样式"><span>1. 给元素设置样式</span></a></li><li><a href="#2-checked-disabled-selected…"><span>2. checked,disabled,selected…</span></a></li></ol></li><li><a href="#getElementById"><span>getElementById()</span></a></li><li><a href="#getElementByName"><span>getElementByName()</span></a></li><li><a href="#getElementByTagName"><span>getElementByTagName()</span></a></li><li><a href="#innerText"><span>innerText</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

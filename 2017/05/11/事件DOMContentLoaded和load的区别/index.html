@@ -1,45 +1,261 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>事件DOMContentLoaded和load的区别 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件DOMContentLoaded和load的区别">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/事件DOMContentLoaded和load的区别/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+<meta property="og:updated_time" content="2017-08-22T15:58:21.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件DOMContentLoaded和load的区别">
+<meta name="twitter:description" content="&amp;#x4ED6;&amp;#x4EEC;&amp;#x7684;&amp;#x533A;&amp;#x522B;&amp;#x662F;&amp;#xFF0C;&amp;#x89E6;&amp;#x53D1;&amp;#x7684;&amp;#x65F6;&amp;#x673A;&amp;#x4E0D;&amp;#x4E00;&amp;#x6837;&amp;#xFF0C;&amp;#x5148;&amp;#x89E6;&amp;#x53D1;DOMContentLoaded&amp;#x4E8B;&amp;#x4EF6;&amp;#xFF0C;&amp;#x540E">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-事件DOMContentLoaded和load的区别" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    事件DOMContentLoaded和load的区别
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h3 id="&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;"><a href="#&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;" class="headerlink" title="&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;"></a>&#x4ED6;&#x4EEC;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF0C;&#x89E6;&#x53D1;&#x7684;&#x65F6;&#x673A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x5148;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#xFF0C;&#x540E;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;</h3><p>DOM&#x6587;&#x6863;&#x52A0;&#x8F7D;&#x7684;&#x6B65;&#x9AA4;&#x4E3A;:</p>
+<ol class="ui list">
+<li>&#x89E3;&#x6790;HTML&#x7ED3;&#x6784;&#x3002;</li>
+<li>&#x52A0;&#x8F7D;&#x5916;&#x90E8;&#x811A;&#x672C;&#x548C;&#x6837;&#x5F0F;&#x8868;&#x6587;&#x4EF6;&#x3002;</li>
+<li>&#x89E3;&#x6790;&#x5E76;&#x6267;&#x884C;&#x811A;&#x672C;&#x4EE3;&#x7801;&#x3002;</li>
+<li>DOM&#x6811;&#x6784;&#x5EFA;&#x5B8C;&#x6210;&#x3002;//DOMContentLoaded</li>
+<li>&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x7B49;&#x5916;&#x90E8;&#x6587;&#x4EF6;&#x3002;</li>
+<li>&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x5B8C;&#x6BD5;&#x3002;//load</li>
+<li>&#x5728;&#x7B2C;4&#x6B65;&#xFF0C;&#x4F1A;&#x89E6;&#x53D1;DOMContentLoaded&#x4E8B;&#x4EF6;&#x3002;&#x5728;&#x7B2C;6&#x6B65;&#xFF0C;&#x89E6;&#x53D1;load&#x4E8B;&#x4EF6;&#x3002;<h3 id="&#x539F;&#x751F;&#x5199;&#x6CD5;"><a href="#&#x539F;&#x751F;&#x5199;&#x6CD5;" class="headerlink" title="&#x539F;&#x751F;&#x5199;&#x6CD5;"></a>&#x539F;&#x751F;&#x5199;&#x6CD5;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x4E0D;&#x517C;&#x5BB9;&#x8001;&#x7684;&#x6D4F;&#x89C8;&#x5668;</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">&apos;DOContentLoaded&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">},<span class="literal">false</span>);</div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&apos;load&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">}&#xFF0C;<span class="literal">false</span>)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="JQ&#x7684;&#x5199;&#x6CD5;"><a href="#JQ&#x7684;&#x5199;&#x6CD5;" class="headerlink" title="JQ&#x7684;&#x5199;&#x6CD5;"></a>JQ&#x7684;&#x5199;&#x6CD5;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	<span class="comment">//DOMContentLoaded</span></div><div class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">		<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">	});</div><div class="line">	<span class="comment">//load</span></div><div class="line">	$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">		<span class="comment">//&#x4EE3;&#x7801;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-05-11T10:00:37.000Z" itemprop="datePublished">2017-05-11</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/05/11/移动端开发细节/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    移动端开发细节
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/05/11/项目构建工具gulp/" class="ui tiny button">
+                    
+                    项目构建工具gulp
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。"><span>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</span></a></li><li><a href="#原生写法"><span>原生写法</span></a></li><li><a href="#JQ的写法"><span>JQ的写法</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

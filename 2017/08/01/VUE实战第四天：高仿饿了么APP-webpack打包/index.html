@@ -1,45 +1,263 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>VUE实战第四天：高仿饿了么APP---webpack打包 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x5C06;&amp;#x5404;&amp;#x79CD;&amp;#x524D;&amp;#x7AEF;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x6210;js css png&amp;#x7B49;&amp;#x6587;&amp;#x4EF6; &amp;#x5165;&amp;#x53E3;: package.json&amp;#x6587;&amp;#x4EF6;,&amp;#x8FD0;&amp;#x884C;npm run dev,&amp;#x6267;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE实战第四天：高仿饿了么APP---webpack打包">
+<meta property="og:url" content="http://yoursite.com/2017/08/01/VUE实战第四天：高仿饿了么APP-webpack打包/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="&amp;#x5C06;&amp;#x5404;&amp;#x79CD;&amp;#x524D;&amp;#x7AEF;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x6210;js css png&amp;#x7B49;&amp;#x6587;&amp;#x4EF6; &amp;#x5165;&amp;#x53E3;: package.json&amp;#x6587;&amp;#x4EF6;,&amp;#x8FD0;&amp;#x884C;npm run dev,&amp;#x6267;">
+<meta property="og:updated_time" content="2017-08-22T16:31:21.764Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE实战第四天：高仿饿了么APP---webpack打包">
+<meta name="twitter:description" content="&amp;#x5C06;&amp;#x5404;&amp;#x79CD;&amp;#x524D;&amp;#x7AEF;&amp;#x8D44;&amp;#x6E90;&amp;#x6253;&amp;#x5305;&amp;#x6210;js css png&amp;#x7B49;&amp;#x6587;&amp;#x4EF6; &amp;#x5165;&amp;#x53E3;: package.json&amp;#x6587;&amp;#x4EF6;,&amp;#x8FD0;&amp;#x884C;npm run dev,&amp;#x6267;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-VUE实战第四天：高仿饿了么APP-webpack打包" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    VUE实战第四天：高仿饿了么APP---webpack打包
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<ul class="ui list">
+<li>&#x5C06;&#x5404;&#x79CD;&#x524D;&#x7AEF;&#x8D44;&#x6E90;&#x6253;&#x5305;&#x6210;js css png&#x7B49;&#x6587;&#x4EF6;</li>
+<li>&#x5165;&#x53E3;: package.json&#x6587;&#x4EF6;,&#x8FD0;&#x884C;npm run dev,&#x6267;&#x884C;&#x7684;&#x662F;build&#x2014;&gt;dev-server.js&#x6587;&#x4EF6;</li>
+<li>resolve<ul>
+<li>extensions: &#x81EA;&#x52A8;&#x5C06;&#x6587;&#x4EF6;&#x8865;&#x9F50;js,vue&#x7B49;&#x540E;&#x7F00;</li>
+<li>fallback: &#x81EA;&#x52A8;&#x627E;&#x5BFB;&#x8DEF;&#x5F84;&#x4E3A;node_modules</li>
+</ul>
+</li>
+<li>module<ul>
+<li>preloaders: &#x5BF9;&#x67D0;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5E94;&#x7528;loader&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x5904;&#x7406;</li>
+</ul>
+</li>
+</ul>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-08-01T13:30:39.000Z" itemprop="datePublished">2017-08-01</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/08/01/VUE实战第五天：高仿饿了么APP-项目目录/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VUE实战第五天：高仿饿了么APP---项目目录
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/" class="ui tiny button">
+                    
+                    VUE实战第三天：高仿饿了么APP---Vue-cli开始项目
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

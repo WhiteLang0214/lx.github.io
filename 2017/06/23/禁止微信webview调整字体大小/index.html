@@ -1,45 +1,252 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>禁止微信webview调整字体大小 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="ios123body {  -webkit-text-size-adjust: 100% !important;} andriod12345678910111213141516171819(function() {    if (typeof WeixinJSBridge == &amp;quot;object&amp;quot; &amp;amp;&amp;amp; typeof WeixinJSBridge.invoke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="禁止微信webview调整字体大小">
+<meta property="og:url" content="http://yoursite.com/2017/06/23/禁止微信webview调整字体大小/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="ios123body {  -webkit-text-size-adjust: 100% !important;} andriod12345678910111213141516171819(function() {    if (typeof WeixinJSBridge == &amp;quot;object&amp;quot; &amp;amp;&amp;amp; typeof WeixinJSBridge.invoke">
+<meta property="og:updated_time" content="2017-08-22T16:22:18.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="禁止微信webview调整字体大小">
+<meta name="twitter:description" content="ios123body {  -webkit-text-size-adjust: 100% !important;} andriod12345678910111213141516171819(function() {    if (typeof WeixinJSBridge == &amp;quot;object&amp;quot; &amp;amp;&amp;amp; typeof WeixinJSBridge.invoke">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-禁止微信webview调整字体大小" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    禁止微信webview调整字体大小
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body {</div><div class="line">  -webkit-text-size-adjust: 100% !important;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="andriod"><a href="#andriod" class="headerlink" title="andriod"></a>andriod</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">(function() {    </div><div class="line">if (typeof WeixinJSBridge == &quot;object&quot; &amp;&amp; typeof WeixinJSBridge.invoke == &quot;function&quot;) {</div><div class="line">        handleFontSize();</div><div class="line">} else {        </div><div class="line">if (document.addEventListener) {</div><div class="line">    document.addEventListener(&quot;WeixinJSBridgeReady&quot;, handleFontSize, false);</div><div class="line">} else if (document.attachEvent) {</div><div class="line">    document.attachEvent(&quot;WeixinJSBridgeReady&quot;, handleFontSize);</div><div class="line">    document.attachEvent(&quot;onWeixinJSBridgeReady&quot;, handleFontSize);  }</div><div class="line">}    </div><div class="line">function handleFontSize() {        </div><div class="line">        // &#x8BBE;&#x7F6E;&#x7F51;&#x9875;&#x5B57;&#x4F53;&#x4E3A;&#x9ED8;&#x8BA4;&#x5927;&#x5C0F;</div><div class="line">        WeixinJSBridge.invoke(&apos;setFontSizeCallback&apos;, { &apos;fontSize&apos; : 0 });        </div><div class="line">        // &#x91CD;&#x5199;&#x8BBE;&#x7F6E;&#x7F51;&#x9875;&#x5B57;&#x4F53;&#x5927;&#x5C0F;&#x7684;&#x4E8B;&#x4EF6;</div><div class="line">        WeixinJSBridge.on(&apos;menu:setfont&apos;, function() {</div><div class="line">            WeixinJSBridge.invoke(&apos;setFontSizeCallback&apos;, { &apos;fontSize&apos; : 0 });</div><div class="line">        });</div><div class="line">    }</div><div class="line">})();</div></pre></td></tr></table></figure>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-06-23T12:21:16.000Z" itemprop="datePublished">2017-06-23</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/06/26/ajax/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    ajax
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/06/10/nodeJS/" class="ui tiny button">
+                    
+                    nodeJS
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#ios"><span>ios</span></a></li><li><a href="#andriod"><span>andriod</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,45 +1,292 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>VUE实战第三天：高仿饿了么APP---Vue-cli开始项目 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="vue-cli&amp;#x811A;&amp;#x624B;&amp;#x67B6;&amp;#x5DE5;&amp;#x5177;- &amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x5199;&amp;#x597D;vue.js&amp;#x57FA;&amp;#x7840;&amp;#x4EE3;&amp;#x7801;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;,&amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x641E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
+<meta property="og:url" content="http://yoursite.com/2017/07/24/VUE实战第三天：高仿饿了么APP-Vue-cli开始项目/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="vue-cli&amp;#x811A;&amp;#x624B;&amp;#x67B6;&amp;#x5DE5;&amp;#x5177;- &amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x5199;&amp;#x597D;vue.js&amp;#x57FA;&amp;#x7840;&amp;#x4EE3;&amp;#x7801;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;,&amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x641E">
+<meta property="og:updated_time" content="2017-08-22T16:29:57.890Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VUE实战第三天：高仿饿了么APP---Vue-cli开始项目">
+<meta name="twitter:description" content="vue-cli&amp;#x811A;&amp;#x624B;&amp;#x67B6;&amp;#x5DE5;&amp;#x5177;- &amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x5199;&amp;#x597D;vue.js&amp;#x57FA;&amp;#x7840;&amp;#x4EE3;&amp;#x7801;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;,&amp;#x5E2E;&amp;#x52A9;&amp;#x6211;&amp;#x4EEC;&amp;#x641E">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-VUE实战第三天：高仿饿了么APP-Vue-cli开始项目" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    VUE实战第三天：高仿饿了么APP---Vue-cli开始项目
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <a id="more"></a>
+<h2 id="vue-cli&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;"><a href="#vue-cli&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;" class="headerlink" title="vue-cli&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;"></a>vue-cli&#x811A;&#x624B;&#x67B6;&#x5DE5;&#x5177;</h2><pre><code>- &#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5199;&#x597D;vue.js&#x57FA;&#x7840;&#x4EE3;&#x7801;&#x7684;&#x5DE5;&#x5177;,&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x641E;&#x5B9A;
+- &#x76EE;&#x5F55;&#x7ED3;&#x6784;
+- &#x672C;&#x5730;&#x8C03;&#x8BD5;
+- &#x4EE3;&#x7801;&#x90E8;&#x7F72;
+- &#x70ED;&#x52A0;&#x8F7D;
+- &#x5355;&#x5143;&#x6D4B;&#x8BD5;
+</code></pre><h2 id="&#x5B89;&#x88C5;vue-cli"><a href="#&#x5B89;&#x88C5;vue-cli" class="headerlink" title="&#x5B89;&#x88C5;vue-cli"></a>&#x5B89;&#x88C5;vue-cli</h2><pre><code>- &#x4FDD;&#x969C;node.js&#x5728;&#x7248;&#x672C;4.4.5&#x4EE5;&#x4E0A;
+- 
+</code></pre><h3 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h3><pre><code>- $npm install -g vue-cli
+</code></pre><h3 id="&#x521D;&#x59CB;&#x5316;webpack&#x6253;&#x5305;&#x9879;&#x76EE;&#x540D;"><a href="#&#x521D;&#x59CB;&#x5316;webpack&#x6253;&#x5305;&#x9879;&#x76EE;&#x540D;" class="headerlink" title="&#x521D;&#x59CB;&#x5316;webpack&#x6253;&#x5305;&#x9879;&#x76EE;&#x540D;"></a>&#x521D;&#x59CB;&#x5316;webpack&#x6253;&#x5305;&#x9879;&#x76EE;&#x540D;</h3><pre><code>- $vue init webpack &#x9879;&#x76EE;&#x540D;
+</code></pre><h3 id="&#x5207;&#x6362;&#x5230;&#x76EE;&#x5F55;"><a href="#&#x5207;&#x6362;&#x5230;&#x76EE;&#x5F55;" class="headerlink" title="&#x5207;&#x6362;&#x5230;&#x76EE;&#x5F55;"></a>&#x5207;&#x6362;&#x5230;&#x76EE;&#x5F55;</h3><pre><code>- $cd &#x9879;&#x76EE;&#x540D;
+</code></pre><h3 id="&#x5B89;&#x88C5;&#x4F9D;&#x8D56;"><a href="#&#x5B89;&#x88C5;&#x4F9D;&#x8D56;" class="headerlink" title="&#x5B89;&#x88C5;&#x4F9D;&#x8D56;"></a>&#x5B89;&#x88C5;&#x4F9D;&#x8D56;</h3><pre><code>- $npm install
+- &#x5B89;&#x88C5;&#x6210;&#x529F;&#x540E;,&#x9879;&#x76EE;&#x4E2D;&#x589E;&#x52A0;&#x6587;&#x4EF6;:node_modules
+</code></pre><h3 id="&#x8FD0;&#x884C;"><a href="#&#x8FD0;&#x884C;" class="headerlink" title="&#x8FD0;&#x884C;"></a>&#x8FD0;&#x884C;</h3><pre><code>- $npm run dev
+- &#x5982;&#x679C;&#x51FA;&#x73B0;listening at http: // localhost: 4000&#x5C31;&#x8BF4;&#x660E;&#x542F;&#x52A8;&#x6210;&#x529F;&#x4E86;
+</code></pre><h2 id="&#x9879;&#x76EE;&#x6587;&#x4EF6;"><a href="#&#x9879;&#x76EE;&#x6587;&#x4EF6;" class="headerlink" title="&#x9879;&#x76EE;&#x6587;&#x4EF6;"></a>&#x9879;&#x76EE;&#x6587;&#x4EF6;</h2><h3 id="&#x4E00;&#x7EA7;&#x76EE;&#x5F55;"><a href="#&#x4E00;&#x7EA7;&#x76EE;&#x5F55;" class="headerlink" title="&#x4E00;&#x7EA7;&#x76EE;&#x5F55;"></a>&#x4E00;&#x7EA7;&#x76EE;&#x5F55;</h3><h4 id="1-build"><a href="#1-build" class="headerlink" title="1. build"></a>1. build</h4><h4 id="2-config"><a href="#2-config" class="headerlink" title="2. config"></a>2. config</h4><h4 id="3-node-modules"><a href="#3-node-modules" class="headerlink" title="3. node_modules"></a>3. node_modules</h4><pre><code>- &#x901A;&#x8FC7;npm install &#x5B89;&#x88C5;&#x7684;&#x4F9D;&#x8D56;&#x4EE3;&#x7801;&#x5E93;
+</code></pre><h4 id="4-src"><a href="#4-src" class="headerlink" title="4. src"></a>4. src</h4><pre><code>- &#x5B58;&#x653E;&#x7684;&#x6E90;&#x7801;
+</code></pre><h4 id="5-static"><a href="#5-static" class="headerlink" title="5. static"></a>5. static</h4><pre><code>- &#x5B58;&#x653E;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;
+</code></pre><h3 id="babelIrc&#x6587;&#x4EF6;"><a href="#babelIrc&#x6587;&#x4EF6;" class="headerlink" title=".babelIrc&#x6587;&#x4EF6;"></a>.babelIrc&#x6587;&#x4EF6;</h3><ol class="ui list">
+<li>babel-plugin-transform-es2015-block-scopped-function&#x6587;&#x4EF6;&#x5C06;es6&#x7684;&#x8BED;&#x6CD5;&#x8F6C;&#x6362;&#x4E3A;es5&#x7684;&#x8BED;&#x6CD5;</li>
+<li>babel-plugin-transform-es2015-classes&#x6587;&#x4EF6;&#x5C06;class&#x7F16;&#x8BD1;&#x6210;es5&#x7F16;&#x8BD1;&#x7C7B;&#x7684;&#x65B9;&#x5F0F;</li>
+<li>babel-plugin-transform-runtime&#x2014;&gt;lib&#x2014;&gt;definitions.js&#x6587;&#x4EF6;&#x5BF9;es6&#x7684;symble</li>
+</ol>
+<h3 id="editorconfig&#x6587;&#x4EF6;"><a href="#editorconfig&#x6587;&#x4EF6;" class="headerlink" title=".editorconfig&#x6587;&#x4EF6;"></a>.editorconfig&#x6587;&#x4EF6;</h3><ol class="ui list">
+<li>&#x7F16;&#x8F91;&#x5668;&#x4E00;&#x4E9B;&#x7684;&#x914D;&#x7F6E;</li>
+</ol>
+<h3 id="eslintignore&#x6587;&#x4EF6;"><a href="#eslintignore&#x6587;&#x4EF6;" class="headerlink" title=".eslintignore&#x6587;&#x4EF6;"></a>.eslintignore&#x6587;&#x4EF6;</h3><ol class="ui list">
+<li>&#x5FFD;&#x7565;&#x8BED;&#x6CD5;&#x68C0;&#x67E5;&#x7684;&#x76EE;&#x5F55;&#x6587;&#x4EF6;</li>
+<li>&#x4E3B;&#x8981;&#x5BF9;build&#x548C;config&#x6587;&#x4EF6;&#x4E2D;&#x7684;js&#x505A;es&#x8BED;&#x6CD5;&#x68C0;&#x67E5;<h3 id="eslintsrc-js"><a href="#eslintsrc-js" class="headerlink" title=".eslintsrc.js"></a>.eslintsrc.js</h3></li>
+<li>extends: &#x2018;standard&#x2019;  &#x4F7F;&#x7528;&#x6807;&#x51C6;&#x7684;&#x8BED;&#x6CD5;&#x6807;&#x51C6;</li>
+<li>rules&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x89C4;&#x5219;<br>&#x4E3A;:0&#x7684;&#x5C31;&#x662F;&#x5FFD;&#x7565;&#x8BED;&#x6CD5;&#x68C0;&#x67E5;<ol>
+<li>&#x2018;arrow-parens&#x2019;:&#x5BF9;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7684;&#x89C4;&#x5219;</li>
+</ol>
+</li>
+</ol>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><ol class="ui list">
+<li>&#x5165;&#x53E3;html&#x6587;&#x4EF6;</li>
+<li>webpack&#x7F16;&#x8BD1;&#x65F6;,&#x4F1A;&#x5C06;&#x9879;&#x76EE;&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x5230;index.html&#x4E2D;</li>
+</ol>
+<h3 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h3><ol class="ui list">
+<li>&#x5165;&#x53E3;&#x6587;&#x4EF6;&#x7684;js</li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-07-23T16:29:33.000Z" itemprop="datePublished">2017-07-24</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/08/01/VUE实战第四天：高仿饿了么APP-webpack打包/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    VUE实战第四天：高仿饿了么APP---webpack打包
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/07/23/VUE实战第二天：高仿饿了么APP-介绍VUE-JS/" class="ui tiny button">
+                    
+                    VUE实战第二天：高仿饿了么APP---介绍VUE.JS
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#vue-cli脚手架工具"><span>vue-cli脚手架工具</span></a></li><li><a href="#安装vue-cli"><span>安装vue-cli</span></a><ol><li><a href="#安装"><span>安装</span></a></li><li><a href="#初始化webpack打包项目名"><span>初始化webpack打包项目名</span></a></li><li><a href="#切换到目录"><span>切换到目录</span></a></li><li><a href="#安装依赖"><span>安装依赖</span></a></li><li><a href="#运行"><span>运行</span></a></li></ol></li><li><a href="#项目文件"><span>项目文件</span></a><ol><li><a href="#一级目录"><span>一级目录</span></a><ol><li><a href="#1-build"><span>1. build</span></a></li><li><a href="#2-config"><span>2. config</span></a></li><li><a href="#3-node-modules"><span>3. node_modules</span></a></li><li><a href="#4-src"><span>4. src</span></a></li><li><a href="#5-static"><span>5. static</span></a></li></ol></li><li><a href="#babelIrc文件"><span>.babelIrc文件</span></a></li><li><a href="#editorconfig文件"><span>.editorconfig文件</span></a></li><li><a href="#eslintignore文件"><span>.eslintignore文件</span></a></li><li><a href="#eslintsrc-js"><span>.eslintsrc.js</span></a></li><li><a href="#index-html"><span>index.html</span></a></li><li><a href="#main-js"><span>main.js</span></a></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

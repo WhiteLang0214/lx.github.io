@@ -1,45 +1,271 @@
-extends ./_partial/layout.pug
-block content
-  include ./_partial/post_header.pug
-  .article-content(style='max-width:'+ theme.content_width +'px')
-    if page.photos && page.photos.length
-      div
-        each photo in page.photos
-          a.article-gallery-img.fancybox(href=photo)
-            img(src=photo)
-    | !{page.content}
-  .article-meta(style='max-width:'+ theme.content_width +'px')
-    if page.tags && page.tags.length
-      .tags
-        i.icon.icon-tag
-        | !{list_tags(page.tags)}
-    if page.tags && page.categories.length
-      .categories
-        i.icon.icon-category
-        | !{list_categories(page.categories)}
-  if theme.duoshuo.enable
-    .article-comment(style='max-width:'+ theme.content_width +'px')
-      #ds-thread.ds-thread(data-thread-key=page._id, data-title=page.title, data-url=config.url + url_for(page.path), site-name=theme.duoshuo.siteName)
-      script.
-        var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-        var duoshuoQuery = {short_name: siteName};
-        (function() {
-          var ds = document.createElement('script');
-          ds.type = 'text/javascript';ds.async = true;
-          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-          ds.charset = 'UTF-8';
-          (document.getElementsByTagName('head')[0] 
-          || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-  ul.navication
-    li.home
-      a(href="/")
-        i.icon.icon-home
-    if page.prev && page.prev.path
-      li
-        a(href=url_for(page.prev.path))
-          i.icon.icon-arror-left
-    if page.next && page.next.path
-      li
-        a(href=url_for(page.next.path))
-          i.icon.icon-arror-right
+
+
+<!DOCTYPE html>
+<html lang="zh-CN.yml">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>使用hexo搭建静态博客 | 郎雪的博客</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo搭建静态博客">
+<meta property="og:url" content="http://yoursite.com/2016/06/22/使用hexo搭建静态博客/index.html">
+<meta property="og:site_name" content="郎雪的博客">
+<meta property="og:description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
+<meta property="og:updated_time" content="2017-08-22T15:47:52.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用hexo搭建静态博客">
+<meta name="twitter:description" content="官方网站：https://hexo.io/zh-cn/  1234567891011121314# 全局安装 hexonpm install -g hexo-cli# 初始化一个博客hexo init blog# 切入 blog 目录cd blog# 启动预览hexo server# 创建博客hexo new 文章标题 结合 Github Pages 自动发布博客一：Github 创建域名仓库">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "http://E:\My folder\photos\psb.jpg",
+  "name": "郎雪",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>郎雪的博客</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">郎雪</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-使用hexo搭建静态博客" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    使用hexo搭建静态博客
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <blockquote>
+<p>&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#xFF1A;<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># &#x5168;&#x5C40;&#x5B89;&#x88C5; hexo</span></div><div class="line">npm install -g hexo-cli</div><div class="line"></div><div class="line"><span class="comment"># &#x521D;&#x59CB;&#x5316;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;</span></div><div class="line">hexo init blog</div><div class="line"></div><div class="line"><span class="comment"># &#x5207;&#x5165; blog &#x76EE;&#x5F55;</span></div><div class="line"><span class="built_in">cd</span> blog</div><div class="line"></div><div class="line"><span class="comment"># &#x542F;&#x52A8;&#x9884;&#x89C8;</span></div><div class="line">hexo server</div><div class="line"></div><div class="line"><span class="comment"># &#x521B;&#x5EFA;&#x535A;&#x5BA2;</span></div><div class="line">hexo new &#x6587;&#x7AE0;&#x6807;&#x9898;</div></pre></td></tr></table></figure>
+<h3 id="&#x7ED3;&#x5408;-Github-Pages-&#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;"><a href="#&#x7ED3;&#x5408;-Github-Pages-&#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;" class="headerlink" title="&#x7ED3;&#x5408; Github Pages &#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;"></a>&#x7ED3;&#x5408; Github Pages &#x81EA;&#x52A8;&#x53D1;&#x5E03;&#x535A;&#x5BA2;</h3><p>&#x4E00;&#xFF1A;Github &#x521B;&#x5EFA;&#x57DF;&#x540D;&#x4ED3;&#x5E93;</p>
+<p>&#x4E8C;&#xFF1A;&#x4FEE;&#x6539;&#x535A;&#x5BA2;&#x4E2D;&#x7684; _config.yml &#x6587;&#x4EF6;&#x4E2D;</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> <span class="string">git</span></div><div class="line"><span class="attr">  repo:</span> <span class="attr">https://username:&#x5BC6;&#x7801;@github.com/lipengzhou/lipengzhou.github.io.git</span></div></pre></td></tr></table></figure>
+<p>&#x4E09;&#xFF1A;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>&#x56DB;&#xFF1A;&#x53D1;&#x5E03;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate --deploy</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
+<p>&#x4E0A;&#x9762;&#x4E24;&#x6761;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x7B80;&#x5199;&#x6210;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo g -d</div><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
+<p>&#x4F7F;&#x7528;&#x5176;&#x4E2D;&#x54EA;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x90FD;&#x53EF;&#x4EE5;&#x53D1;&#x5E03;</p>
+<p>&#x4E94;.&#x4E3B;&#x9898;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#x5728;&#x4E3B;&#x9898;&#x5546;&#x5E97;&#x627E;&#x5230;&#x559C;&#x6B22;&#x7684;&#x4E3B;&#x9898;</div><div class="line">&#x627E;&#x5230;&#x4F5C;&#x8005;&#x7684;github&#x5730;&#x5740;  &#x590D;&#x5236;</div><div class="line">&#x5728;themes&#x6587;&#x4EF6;&#x4E2D;,&#x62F7;&#x8D1D;&#x5730;&#x5740; git <span class="built_in">clone</span> &#x5730;&#x5740; --depth=1</div><div class="line">&#x590D;&#x5236;&#x4E3B;&#x9898;&#x6587;&#x4EF6;&#x5939;&#x540D;</div><div class="line">_config.yml&#x6587;&#x4EF6;&#x4E2D;  &#x66F4;&#x6539;theme:&#x7684;&#x5185;&#x5BB9;</div><div class="line">hexo deploy --generate</div></pre></td></tr></table></figure>
+<h3 id="&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"><a href="#&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;"></a>&#x6587;&#x7AE0;&#x5230;github&#x65F6;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;</h3><ol class="ui list">
+<li>hexo &#x65E0;&#x9884;&#x89C8;&#x7684;&#x5185;&#x5BB9;&#x663E;&#x793A;<ul>
+<li>&#x4E3B;&#x9898;&#x914D;&#x7F6E;&#x91CC;&#x9762;&#x6709;&#x4E2A;auto_excerpt&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x5B83;&#x7684;length&#x5C5E;&#x6027;&#x503C;&#x662F;&#x9884;&#x89C8;&#x622A;&#x53D6;&#x7684;&#x5B57;&#x6570;&#x3002;hexo&#x5EFA;&#x8BAE;&#x5728;md&#x6587;&#x4EF6;&#x52A0;&#x5165;<a id="more"></a>&#x6765;&#x622A;&#x53D6;</li>
+</ul>
+</li>
+<li>&#x62A5;&#x9519;&#x9884;&#x671F;&#x7684;&#x53D8;&#x91CF;<ul>
+<li>&#x53EF;&#x80FD;&#x662F;&#x7531;&#x4E8E;markdown&#x8BED;&#x6CD5;&#x7684;&#x95EE;&#x9898;,&#x7531;&#x4E8E;&#x6587;&#x4EF6;&#x8FC7;&#x591A;,&#x6211;&#x662F;&#x5C06;&#x6587;&#x4EF6;&#x91CD;&#x65B0;&#x751F;&#x6210;&#x4E86;,&#x7136;&#x540E;&#x89E3;&#x51B3;&#x4E86;</li>
+</ul>
+</li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-06-22T05:29:07.000Z" itemprop="datePublished">2016-06-22</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/06/22/DOM/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    DOM
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a class="ui tiny button disabled">下一篇<i class="angle right icon"></i></a>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#结合-Github-Pages-自动发布博客"><span>结合 Github Pages 自动发布博客</span></a></li><li><a href="#文章到github时遇到的问题"><span>文章到github时遇到的问题</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">郎雪</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
